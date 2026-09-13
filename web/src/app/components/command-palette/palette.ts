@@ -155,6 +155,22 @@ export class CommandPaletteComponent {
 
   cveCases: SearchResultItem[] = [
     {
+      id: 'cve-pve-auth',
+      title: 'CVE Assessment: CVE-2023-54391 (Proxmox VE Auth Bypass)',
+      category: 'Cyber Threat Intel · CVSS 9.8',
+      subtext: 'Proxmox VE libpve-access-control Authentication Bypass to root@pam via tfa-challenge parameter',
+      type: 'command',
+      actionData: { hash: '#cve-pve-auth' }
+    },
+    {
+      id: 'cve-pve-xss',
+      title: 'CVE Assessment: CVE-2025-57539 (Proxmox VE Stored XSS)',
+      category: 'Cyber Threat Intel · CVSS 5.4',
+      subtext: 'Proxmox VE Datacenter Configuration Stored XSS in U2F Origin field leading to root privilege escalation',
+      type: 'command',
+      actionData: { hash: '#cve-pve-xss' }
+    },
+    {
       id: 'cve-hyperv',
       title: 'CVE Assessment: CVE-2026-69603 & CVE-2026-80083',
       category: 'Cyber Threat Intel · CVSS 8.8',

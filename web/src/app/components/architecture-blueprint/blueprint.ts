@@ -688,6 +688,8 @@ export interface ForensicCase {
                           [class.text-white]="cve.cvssSeverity === 'CRITICAL'"
                           [class.bg-amber-500]="cve.cvssSeverity === 'HIGH'"
                           [class.text-slate-950]="cve.cvssSeverity === 'HIGH'"
+                          [class.bg-sky-500]="cve.cvssSeverity === 'MEDIUM'"
+                          [class.text-slate-950]="cve.cvssSeverity === 'MEDIUM'"
                         >
                           CVSS {{ cve.cvssScore }} · {{ cve.cvssSeverity }}
                         </span>
@@ -1582,6 +1584,8 @@ export interface ForensicCase {
                     [class.text-white]="selectedCve.cvssSeverity === 'CRITICAL'"
                     [class.bg-amber-500]="selectedCve.cvssSeverity === 'HIGH'"
                     [class.text-slate-950]="selectedCve.cvssSeverity === 'HIGH'"
+                    [class.bg-sky-500]="selectedCve.cvssSeverity === 'MEDIUM'"
+                    [class.text-slate-950]="selectedCve.cvssSeverity === 'MEDIUM'"
                   >
                     CVSS {{ selectedCve.cvssScore }} · {{ selectedCve.cvssSeverity }}
                   </span>
@@ -1698,18 +1702,34 @@ export interface ForensicCase {
 
             <!-- Modal Footer -->
             <div class="border-t border-obsidian-750 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div class="text-xs font-sans text-slate-400">
-                {{ ts.isRomanian ? 'Raport complet arhivat în repozitoriu: ' : 'Full technical report in repo: ' }}
-                <code class="text-slate-300 bg-obsidian-800 px-2 py-0.5 rounded border border-obsidian-750 font-mono">{{ selectedCve.repoPath }}/report.md</code>
+              <div class="text-xs font-sans text-slate-400 space-y-1">
+                <div>
+                  {{ ts.isRomanian ? 'Raport tehnic: ' : 'Technical report: ' }}
+                  <code class="text-slate-300 bg-obsidian-800 px-2 py-0.5 rounded border border-obsidian-750 font-mono">{{ selectedCve.repoPath }}/report.md</code>
+                </div>
+                <div>
+                  {{ ts.isRomanian ? 'Ghid remediere: ' : 'Fix playbook: ' }}
+                  <code class="text-emerald-300 bg-obsidian-800 px-2 py-0.5 rounded border border-obsidian-750 font-mono">{{ selectedCve.repoPath }}/fix.md</code>
+                </div>
               </div>
-              <div class="flex items-center gap-3 w-full sm:w-auto">
+              <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto">
+                <a
+                  [href]="selectedCve.fixGithubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs font-sans text-center transition-all shadow-lg flex items-center justify-center gap-1.5"
+                >
+                  <span>🛠️</span>
+                  <span>{{ ts.isRomanian ? 'Ghid Rezolvare (fix.md) ↗' : 'Fix Guide (fix.md) ↗' }}</span>
+                </a>
                 <a
                   [href]="selectedCve.githubUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs font-sans text-center transition-all shadow-lg"
+                  class="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs font-sans text-center transition-all shadow-lg flex items-center justify-center gap-1.5"
                 >
-                  {{ ts.isRomanian ? 'Vezi Raportul Markdown pe GitHub ↗' : 'View Full Report on GitHub ↗' }}
+                  <span>📄</span>
+                  <span>{{ ts.isRomanian ? 'Raport (report.md) ↗' : 'Report (report.md) ↗' }}</span>
                 </a>
                 <button
                   (click)="closeCve()"
@@ -1763,7 +1783,11 @@ export class ArchitectureBlueprintComponent implements OnInit {
         if (hash.startsWith('#cve-')) {
           const cveId = hash.replace('#cve-', '');
           const list = this.ts.isRomanian ? this.cveAssessmentsRo : this.cveAssessmentsEn;
-          const found = list.find(c => c.id.toLowerCase().includes(cveId));
+          const found = list.find(c =>
+            c.id.toLowerCase().includes(cveId) ||
+            c.cveId.toLowerCase().includes(cveId) ||
+            cveId.includes(c.id.toLowerCase())
+          );
           if (found) {
             this.openCve(found);
           }
