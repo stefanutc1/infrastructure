@@ -153,6 +153,33 @@ export class CommandPaletteComponent {
     }
   ];
 
+  cveCases: SearchResultItem[] = [
+    {
+      id: 'cve-hyperv',
+      title: 'CVE Assessment: CVE-2026-69603 & CVE-2026-80083',
+      category: 'Cyber Threat Intel · CVSS 8.8',
+      subtext: 'Windows Hyper-V Guest-to-Host Virtual Machine Escape via synthetic device shared memory',
+      type: 'command',
+      actionData: { hash: '#cve-hyperv' }
+    },
+    {
+      id: 'cve-dns',
+      title: 'CVE Assessment: CVE-2026-69730',
+      category: 'Cyber Threat Intel · CVSS 9.8',
+      subtext: 'Windows DNS Server Critical Remote Code Execution (RCE) via malformed response',
+      type: 'command',
+      actionData: { hash: '#cve-dns' }
+    },
+    {
+      id: 'cve-dhcp',
+      title: 'CVE Assessment: CVE-2026-69845 & CVE-2026-72979',
+      category: 'Cyber Threat Intel · CVSS 9.8',
+      subtext: 'Windows DHCP Server Heap Overflow & Use-After-Free RCE via malformed vendor options',
+      type: 'command',
+      actionData: { hash: '#cve-dhcp' }
+    }
+  ];
+
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
@@ -229,6 +256,8 @@ export class CommandPaletteComponent {
       }
       // Add Forensic Investigation Cases
       results.push(...this.forensicCases);
+      // Add Windows CVE Threat Intelligence Assessments
+      results.push(...this.cveCases);
     }
 
     if (!q) return results.slice(0, 12);
@@ -243,7 +272,13 @@ export class CommandPaletteComponent {
   onSelect(item: SearchResultItem) {
     this.close();
 
-    if (item.id.startsWith('case-')) {
+    if (item.id.startsWith('cve-')) {
+      const data = item.actionData as { hash: string };
+      window.location.hash = data.hash;
+      const el = document.getElementById('cyber') || document.getElementById('blueprint');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      return;
+    } else if (item.id.startsWith('case-')) {
       const data = item.actionData as { hash: string; caseSlug: string };
       window.location.hash = `#case-${data.caseSlug}`;
       const el = document.getElementById('cyber') || document.getElementById('blueprint');

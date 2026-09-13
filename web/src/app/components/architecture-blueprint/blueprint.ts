@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslationService } from '../../services/translation.service';
+import { CveAssessment, CVE_ASSESSMENTS_RO, CVE_ASSESSMENTS_EN } from '../../data/cve.data';
 
 export interface ForensicCase {
   id: string;
@@ -554,6 +555,18 @@ export interface ForensicCase {
               >
                 {{ ts.isRomanian ? 'Piloni SOC (8)' : 'SOC Pillars (8)' }}
               </button>
+              <button
+                (click)="cyberSubSection = 'cve'"
+                [class.bg-slate-200]="cyberSubSection === 'cve'"
+                [class.text-slate-950]="cyberSubSection === 'cve'"
+                [class.font-semibold]="cyberSubSection === 'cve'"
+                [class.border-slate-300]="cyberSubSection === 'cve'"
+                [class.text-slate-300]="cyberSubSection !== 'cve'"
+                [class.hover:text-slate-50]="cyberSubSection !== 'cve'"
+                class="px-3 py-1.5 rounded-lg border border-transparent transition-all"
+              >
+                {{ ts.isRomanian ? 'Vulnerabilități Windows (CVE)' : 'Windows CVE Assessments' }}
+              </button>
             </div>
           </div>
 
@@ -634,6 +647,102 @@ export interface ForensicCase {
                       <span class="text-slate-400 text-[11px] font-sans">{{ c.status }}</span>
                       <span class="font-sans text-xs font-semibold text-slate-300 group-hover:text-slate-100 flex items-center gap-1 transition-colors">
                         {{ ts.isRomanian ? 'Deschide Dosarul Criminalistic →' : 'Open Forensic Dossier →' }}
+                      </span>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <!-- SUB-SECTION 1.5: CRITICAL WINDOWS CVE ASSESSMENTS & HOMELAB IMPACT -->
+          @if (cyberSubSection === 'all' || cyberSubSection === 'cve') {
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="space-y-1">
+                  <h4 class="text-lg sm:text-xl font-serif font-normal text-slate-100 flex items-center gap-2.5">
+                    <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                    <span>{{ ts.isRomanian ? '2. Evaluare Vulnerabilități Critice Windows & Impact Homelab (CVE 2026)' : '2. Critical Windows CVE Assessments & Homelab Threat Impact (2026)' }}</span>
+                  </h4>
+                  <p class="text-xs sm:text-sm text-slate-400 font-sans font-normal leading-relaxed">
+                    {{ ts.isRomanian ? 'Analiză tehnică aprofundată a celor 5 vulnerabilități critice Windows (Hyper-V Escape, DNS Server RCE, DHCP Server RCE), corelate cu Domain Controllerele noastre (ad2025_vm, ad2022_vm) și hypervisorul fizic.' : 'In-depth technical analysis of 5 critical Windows CVEs (Hyper-V Escape, DNS Server RCE, DHCP Server RCE) mapped directly to our Domain Controllers (ad2025_vm, ad2022_vm) and physical hypervisor host.' }}
+                  </p>
+                </div>
+                <span class="text-xs font-sans text-rose-400 font-semibold px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20">
+                  {{ ts.isRomanian ? '3 Dosare Active (CVSS 8.8 - 9.8)' : '3 Active Dossiers (CVSS 8.8 - 9.8)' }}
+                </span>
+              </div>
+
+              <!-- CVE Cards Grid -->
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans text-xs">
+                @for (cve of (ts.isRomanian ? cveAssessmentsRo : cveAssessmentsEn); track cve.id) {
+                  <div
+                    (click)="openCve(cve)"
+                    class="p-6 rounded-2xl bg-obsidian-850/90 border border-obsidian-750 hover:border-rose-500/40 shadow-xl transition-all duration-200 cursor-pointer flex flex-col justify-between group hover:bg-obsidian-800/90"
+                  >
+                    <div class="space-y-4">
+                      <!-- Top Metadata Badges -->
+                      <div class="flex items-center justify-between gap-2 border-b border-obsidian-750 pb-3">
+                        <span class="text-[10px] font-sans font-bold px-2 py-0.5 rounded uppercase tracking-wide"
+                          [class.bg-rose-500]="cve.cvssSeverity === 'CRITICAL'"
+                          [class.text-white]="cve.cvssSeverity === 'CRITICAL'"
+                          [class.bg-amber-500]="cve.cvssSeverity === 'HIGH'"
+                          [class.text-slate-950]="cve.cvssSeverity === 'HIGH'"
+                        >
+                          CVSS {{ cve.cvssScore }} · {{ cve.cvssSeverity }}
+                        </span>
+                        <span class="text-[10px] font-sans text-slate-400">{{ cve.date }}</span>
+                      </div>
+
+                      <!-- CVE Title & Component -->
+                      <div>
+                        <div class="text-[10px] font-sans font-bold uppercase tracking-wider text-rose-400 mb-1">
+                          {{ cve.cveId }}
+                        </div>
+                        <h4 class="text-base font-sans font-bold text-slate-50 group-hover:text-slate-200 transition-colors leading-snug">
+                          {{ cve.title }}
+                        </h4>
+                      </div>
+
+                      <!-- Component Badge -->
+                      <div class="px-2.5 py-1.5 rounded-lg bg-obsidian-900 border border-obsidian-750 text-[11px] font-mono text-slate-300">
+                        {{ cve.component }}
+                      </div>
+
+                      <!-- Summary Paragraph -->
+                      <p class="text-xs text-slate-300 line-clamp-3 leading-relaxed font-sans font-normal">
+                        {{ cve.summary }}
+                      </p>
+
+                      <!-- Homelab Target Node Exposure -->
+                      <div class="p-3.5 rounded-xl bg-obsidian-900/90 border border-obsidian-750 space-y-1.5">
+                        <div class="text-[10px] font-sans text-slate-400 uppercase tracking-wider font-semibold">
+                          {{ ts.isRomanian ? 'Noduri Afectate în Homelab' : 'Affected Homelab Nodes' }}
+                        </div>
+                        <div class="flex flex-wrap gap-1 text-[10px] font-mono">
+                          @for (node of cve.affectedNodes.slice(0, 2); track node) {
+                            <span class="px-1.5 py-0.5 rounded bg-obsidian-800 text-slate-300 border border-obsidian-700 truncate max-w-full">
+                              {{ node }}
+                            </span>
+                          }
+                        </div>
+                      </div>
+
+                      <!-- MITRE ATT&CK Badges -->
+                      <div class="flex flex-wrap gap-1.5 font-sans text-[10px]">
+                        @for (m of cve.mitreAttack; track m) {
+                          <span class="px-2 py-0.5 rounded bg-obsidian-900 border border-obsidian-750 text-slate-400">
+                            {{ m }}
+                          </span>
+                        }
+                      </div>
+                    </div>
+
+                    <!-- Footer Action -->
+                    <div class="mt-5 pt-3 border-t border-obsidian-750 flex items-center justify-between text-xs">
+                      <span class="text-slate-400 text-[11px] font-sans">{{ cve.status }}</span>
+                      <span class="font-sans text-xs font-semibold text-rose-400 group-hover:text-rose-300 flex items-center gap-1 transition-colors">
+                        {{ ts.isRomanian ? 'Analiză Tehnică & Raport →' : 'Technical Dossier →' }}
                       </span>
                     </div>
                   </div>
@@ -1457,14 +1566,184 @@ export interface ForensicCase {
         </div>
       }
 
+      <!-- MODAL DIALOG: SELECTED WINDOWS CVE DOSSIER -->
+      @if (selectedCve) {
+        <div class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto" (click)="closeCve()">
+          <div
+            class="relative w-full max-w-4xl max-h-[90vh] bg-obsidian-900 border border-obsidian-700 rounded-2xl shadow-2xl overflow-y-auto p-6 sm:p-8 space-y-6 text-slate-200 font-sans my-auto"
+            (click)="$event.stopPropagation()"
+          >
+            <!-- Modal Header -->
+            <div class="flex items-start justify-between border-b border-obsidian-750 pb-4 gap-4">
+              <div class="space-y-2">
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-xs font-sans font-bold px-2.5 py-0.5 rounded uppercase"
+                    [class.bg-rose-500]="selectedCve.cvssSeverity === 'CRITICAL'"
+                    [class.text-white]="selectedCve.cvssSeverity === 'CRITICAL'"
+                    [class.bg-amber-500]="selectedCve.cvssSeverity === 'HIGH'"
+                    [class.text-slate-950]="selectedCve.cvssSeverity === 'HIGH'"
+                  >
+                    CVSS {{ selectedCve.cvssScore }} · {{ selectedCve.cvssSeverity }}
+                  </span>
+                  <span class="text-xs font-mono px-2 py-0.5 rounded bg-obsidian-800 text-rose-300 border border-obsidian-700">
+                    {{ selectedCve.cveId }}
+                  </span>
+                  <span class="text-xs font-sans px-2 py-0.5 rounded bg-obsidian-850 text-slate-400 border border-obsidian-800">
+                    {{ selectedCve.date }}
+                  </span>
+                  <span class="text-xs font-sans px-2 py-0.5 rounded bg-obsidian-800 text-slate-200 border border-obsidian-700 flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                    {{ selectedCve.status }}
+                  </span>
+                </div>
+                <h3 class="text-xl sm:text-2xl font-serif font-normal text-slate-50 leading-tight tracking-tight">
+                  {{ selectedCve.title }}
+                </h3>
+                <div class="text-xs font-mono text-slate-400">
+                  <span class="text-slate-500">Vector:</span> <span class="text-slate-300">{{ selectedCve.cvssVector }}</span>
+                </div>
+              </div>
+
+              <!-- Close Button -->
+              <button
+                (click)="closeCve()"
+                class="p-2 rounded-xl bg-obsidian-800 hover:bg-obsidian-750 text-slate-300 hover:text-slate-100 transition-colors border border-obsidian-700 shrink-0"
+                aria-label="Close modal"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="space-y-6 text-xs sm:text-sm">
+              <!-- 1. Executive Summary -->
+              <div class="space-y-2">
+                <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-slate-400">
+                  {{ ts.isRomanian ? '1. Sumar Executiv & Clasificare Amenințare' : '1. Executive Summary & Threat Classification' }}
+                </h4>
+                <p class="text-slate-300 leading-relaxed font-sans font-normal">
+                  {{ selectedCve.summary }}
+                </p>
+              </div>
+
+              <!-- 2. Root Cause Analysis -->
+              <div class="space-y-2">
+                <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-slate-400">
+                  {{ ts.isRomanian ? '2. Cauza Primară & Mecanismul de Memorie (Root Cause)' : '2. Root Cause Analysis & Memory Flaw Mechanism' }}
+                </h4>
+                <div class="p-4 rounded-xl bg-obsidian-950/80 border border-obsidian-750 text-slate-300 leading-relaxed font-sans text-xs">
+                  {{ selectedCve.rootCause }}
+                </div>
+              </div>
+
+              <!-- 3. Impact on Our Homelab Infrastructure -->
+              <div class="space-y-2">
+                <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-rose-400">
+                  {{ ts.isRomanian ? '3. Impact Specific pe Arhitectura Noastră (hosts.yml & Hyper-V)' : '3. Specific Impact on Our Homelab Architecture (hosts.yml & Hyper-V)' }}
+                </h4>
+                <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-slate-200 leading-relaxed font-sans text-xs">
+                  {{ selectedCve.homelabImpact }}
+                </div>
+                <div class="flex flex-wrap gap-2 pt-1">
+                  @for (node of selectedCve.affectedNodes; track node) {
+                    <span class="px-2 py-1 rounded bg-obsidian-800 border border-obsidian-700 text-slate-300 text-xs font-mono">
+                      {{ node }}
+                    </span>
+                  }
+                </div>
+              </div>
+
+              <!-- 4. Attack Kill Chain -->
+              <div class="space-y-2">
+                <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-slate-400">
+                  {{ ts.isRomanian ? '4. Lanțul de Exploatare (Kill Chain Step-by-Step)' : '4. Exploitation Kill Chain Step-by-Step' }}
+                </h4>
+                <div class="space-y-2 p-4 rounded-xl bg-obsidian-950/80 border border-obsidian-750">
+                  @for (step of selectedCve.attackChain; track step; let idx = $index) {
+                    <div class="flex items-start gap-2.5 text-xs font-sans">
+                      <span class="px-1.5 py-0.5 rounded bg-obsidian-800 text-slate-300 border border-obsidian-700 font-mono text-[10px] font-bold">{{ idx + 1 }}</span>
+                      <span class="text-slate-300 leading-relaxed">{{ step }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <!-- 5. Remediation Playbook -->
+              <div class="space-y-2">
+                <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-emerald-400">
+                  {{ ts.isRomanian ? '5. Plan de Remediere & Hardening' : '5. Remediation & Hardening Playbook' }}
+                </h4>
+                <div class="space-y-2 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-slate-200 text-xs">
+                  @for (rem of selectedCve.remediationSteps; track rem) {
+                    <div class="flex items-start gap-2">
+                      <span class="text-emerald-400 font-bold">✓</span>
+                      <span class="leading-relaxed">{{ rem }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <!-- 6. Sigma Detection Rule -->
+              @if (selectedCve.sigmaRule) {
+                <div class="space-y-2">
+                  <h4 class="text-xs font-sans font-bold uppercase tracking-wider text-slate-400">
+                    {{ ts.isRomanian ? '6. Regulă de Detecție SIEM (Sigma Rule)' : '6. SIEM Detection Signature (Sigma Rule)' }}
+                  </h4>
+                  <pre class="p-3.5 rounded-xl bg-obsidian-950 border border-obsidian-800 font-mono text-[11px] text-emerald-300 overflow-x-auto leading-tight">{{ selectedCve.sigmaRule }}</pre>
+                </div>
+              }
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="border-t border-obsidian-750 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="text-xs font-sans text-slate-400">
+                {{ ts.isRomanian ? 'Raport complet arhivat în repozitoriu: ' : 'Full technical report in repo: ' }}
+                <code class="text-slate-300 bg-obsidian-800 px-2 py-0.5 rounded border border-obsidian-750 font-mono">{{ selectedCve.repoPath }}/report.md</code>
+              </div>
+              <div class="flex items-center gap-3 w-full sm:w-auto">
+                <a
+                  [href]="selectedCve.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-rose-500 hover:bg-rose-400 text-white font-bold text-xs font-sans text-center transition-all shadow-lg"
+                >
+                  {{ ts.isRomanian ? 'Vezi Raportul Markdown pe GitHub ↗' : 'View Full Report on GitHub ↗' }}
+                </a>
+                <button
+                  (click)="closeCve()"
+                  class="px-4 py-2 rounded-xl bg-obsidian-800 hover:bg-obsidian-750 text-slate-300 hover:text-slate-100 text-xs font-sans transition-all border border-obsidian-700"
+                >
+                  {{ ts.isRomanian ? 'Închide' : 'Close' }}
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      }
+
     </section>
   `
 })
 export class ArchitectureBlueprintComponent implements OnInit {
   ts = inject(TranslationService);
   activeTab: 'cloud' | 'vlan' | 'power' | 'storage' | 'cyber' | 'zerotrust' | 'generator' | 'chaos' | 'observability' | 'glossary' = 'cloud';
-  cyberSubSection: 'all' | 'cases' | 'perimeter' | 'pillars' = 'all';
+  cyberSubSection: 'all' | 'cases' | 'cve' | 'perimeter' | 'pillars' = 'all';
   selectedCase: ForensicCase | null = null;
+  selectedCve: CveAssessment | null = null;
+
+  cveAssessmentsRo = CVE_ASSESSMENTS_RO;
+  cveAssessmentsEn = CVE_ASSESSMENTS_EN;
+
+  openCve(c: CveAssessment) {
+    this.selectedCve = c;
+  }
+
+  closeCve() {
+    this.selectedCve = null;
+  }
 
   ngOnInit() {
     this.checkHash();
@@ -1478,6 +1757,17 @@ export class ArchitectureBlueprintComponent implements OnInit {
       const hash = window.location.hash.toLowerCase();
       if (hash === '#cyber' || hash === '#cybersecurity' || hash === '#dfir' || hash === '#forensics') {
         this.activeTab = 'cyber';
+      } else if (hash === '#cve' || hash.startsWith('#cve-')) {
+        this.activeTab = 'cyber';
+        this.cyberSubSection = 'cve';
+        if (hash.startsWith('#cve-')) {
+          const cveId = hash.replace('#cve-', '');
+          const list = this.ts.isRomanian ? this.cveAssessmentsRo : this.cveAssessmentsEn;
+          const found = list.find(c => c.id.toLowerCase().includes(cveId));
+          if (found) {
+            this.openCve(found);
+          }
+        }
       } else if (hash.startsWith('#case-')) {
         this.activeTab = 'cyber';
         const caseSlug = hash.replace('#case-', '');
