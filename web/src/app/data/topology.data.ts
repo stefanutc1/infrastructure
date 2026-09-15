@@ -817,7 +817,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'jellyfin-media',
     name: 'Jellyfin Media',
-    sublabel: 'CT 106 · Streaming Hub',
+    sublabel: 'CT 105 · Streaming Hub',
     ip: '192.168.1.21',
     port: 8096,
     category: 'services',

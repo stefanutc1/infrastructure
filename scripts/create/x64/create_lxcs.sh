@@ -187,9 +187,9 @@ create_or_skip_lxc 104 "scrutiny" \
 # ------------------------------------------------------------------------------
 # CT 105: media-suite
 # ------------------------------------------------------------------------------
-create_or_skip_lxc 105 "media-suite" \
+create_or_skip_lxc 105 "jellyfin" \
   "$ALPINE_TMPL" \
-  --hostname "media-suite" \
+  --hostname "jellyfin" \
   --cores 2 \
   --memory 896 \
   --swap 256 \

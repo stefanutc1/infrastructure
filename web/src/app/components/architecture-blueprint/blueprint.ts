@@ -410,7 +410,7 @@ export interface ForensicCase {
             <div class="grid grid-cols-1 md:grid-cols-4 gap-3 font-sans text-xs">
               <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-750 space-y-1">
                 <span class="text-slate-300 font-bold">{{ ts.isRomanian ? 'Pasul 1: Non-Critic' : 'Step 1: Non-Critical' }}</span>
-                <p class="text-slate-300 text-[11px] font-sans">{{ ts.isRomanian ? 'Oprire Media (Jellyfin CT 109) & Nextcloud' : 'Stop Media (Jellyfin CT 109) & Nextcloud' }}</p>
+                <p class="text-slate-300 text-[11px] font-sans">{{ ts.isRomanian ? 'Oprire Media (Jellyfin CT 105) & Nextcloud' : 'Stop Media (Jellyfin CT 105) & Nextcloud' }}</p>
               </div>
               <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-750 space-y-1">
                 <span class="text-slate-300 font-bold">{{ ts.isRomanian ? 'Pasul 2: Baze de Date' : 'Step 2: Databases' }}</span>

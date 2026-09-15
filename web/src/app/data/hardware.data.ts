@@ -231,16 +231,15 @@ export const HARDWARE_NODES: HardwareNode[] = [
       'VM 302: Kali Licență (Bachelor Thesis / Lucrare de Licență · 4096 MB / Balloon: 2048 MB · 30 GB NVMe · Isolated vmbr1 Pentest)',
       'CT 303: OWASP Licență (Bachelor Thesis / Lucrare de Licență · 512 MB · 8 GB NVMe · Alpine LXC Docker Container on vmbr1)',
       'VM 400-410: Active Directory Lab Fleet: ad2025 (VM 400, GTX 1050 Ti Passthrough, 256 GB), ad2022 (VM 401), ad2019 (VM 402, 128 GB), ad2016 (VM 403), ad2012 (VM 404), ad2008 (VM 405), ad2003 (VM 410), adwin7 (VM 408), adwin10 (VM 406), adwin11 (VM 407), adrhel (VM 409) · Multi-Generation Windows & Linux Active Directory Enterprise Lab',
-      'CT 100-105: Core Infrastructure & Media: Immich AI (CT 100), Nextcloud Hub (CT 101), Home Assistant (CT 102), n8n Workflows (CT 103), Scrutiny SMART (CT 104), Media-Suite (CT 105)',
+      'CT 100-105: Core Infrastructure & Media: Immich AI (CT 100), Nextcloud Hub (CT 101), Home Assistant (CT 102), n8n Workflows (CT 103), Scrutiny SMART (CT 104), Jellyfin Media Server (CT 105)',
       'CT 106-107: Ollama GPU LLM Server (CT 106) & Open-WebUI Assistant (CT 107) (CUDA GTX 1050 Ti Passthrough)',
       'CT 108: Faster-Whisper GPU Speech-to-Text Transcriber (CT 108 · CUDA Accelerated)',
-      'CT 109: Flowise Agentic AI Workflow & LangChain Graph Engine (CT 109)',
-      'CT 110: Paperless-AI Automated Document Analysis & DeepSeek Vision Tagging (CT 110)',
-      'CT 111: Code-Server Web IDE (VS Code Cloud Workspace · CT 111)',
-      'CT 112: Proxmox Backup Server (PBS Enterprise Deduplication & Verification · CT 112)',
-      'CT 113: Proxmox Datacenter Manager (PDM Multi-Cluster Fleet UI · CT 113)',
-      'CT 114: Woodpecker CI Server & Runner on Alpine Linux backed by k0s Kubernetes Engine (CT 114)',
-      'CT 115-175: Consolidated Utilities & Self-Hosted Microservices (onboot: 0 · IT-Tools, Actual Budget, Trilium, ChangeDetection, Uptime Kuma, Vaultwarden, Monitoring, Authelia, Gitea, Gatus, Ntfy, Linkding, Step-CA, Beszel, PocketBase, Homepage, Speedtest, Memos, Wallos, Syncthing, Microbin, Vikunja, Blackbox, YourSpotify, WebCheck, OpenGist, Flatnotes, Whoogle, Shlink, Pingvin-Share, RSS-Bridge, Excalidraw, Renovate, Transmission, Kavita, Stirling-PDF, Audiobookshelf, Calibre-Web, Kiwix, RomM, EmulatorJS, TubeArchivist, Kopia, Paperless-ngx, MinIO, pgAdmin, Meilisearch, Vector, Dozzle, NetAlertX, RustDesk, WG-Easy, Vault, Draw.io, CyberChef, HedgeDoc, Glances, Gotify, Miniflux, Grocy, OWASP Juice Shop)'
+      'CT 109: Paperless-AI Automated Document Analysis & DeepSeek Vision Tagging (CT 109)',
+      'CT 110: Code-Server Web IDE (VS Code Cloud Workspace · CT 110)',
+      'CT 111: Proxmox Backup Server (PBS Enterprise Deduplication & Verification · CT 111)',
+      'CT 112: Proxmox Datacenter Manager (PDM Multi-Cluster Fleet UI · CT 112)',
+      'CT 113: Woodpecker CI Server & Runner on Alpine Linux backed by k0s Kubernetes Engine (CT 113)',
+      'CT 114-120: Consolidated Utilities & Self-Hosted Microservices (onboot: 0 · IT-Tools (CT 114), Uptime Kuma (CT 115), Vaultwarden (CT 116), Monitoring (CT 117), Authelia (CT 118), Gitea (CT 119), OWASP Juice Shop (CT 120))'
     ]
   },
   {

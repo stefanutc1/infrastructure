@@ -96,7 +96,7 @@ module "lxc_media_suite" {
   source       = "../modules/proxmox_lxc"
   target_node  = var.primary_node
   vmid         = 105
-  hostname     = "media-suite"
+  hostname     = "jellyfin"
   ostemplate   = var.debian_template
   ostype       = "debian"
   cores        = 2
