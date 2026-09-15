@@ -141,7 +141,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'homeassistant-core',
     name: 'Home Assistant',
-    sublabel: 'CT 103 · Automation Hub',
+    sublabel: 'CT 102 · Automation Hub',
     ip: '192.168.1.10',
     port: 8123,
     category: 'services',
@@ -202,7 +202,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'grafana-dash',
     name: 'Grafana Telemetry',
-    sublabel: 'CT 121 · Unified Dashboard',
+    sublabel: 'CT 117 · Unified Dashboard',
     ip: '192.168.1.121',
     port: 3000,
     category: 'services',
@@ -221,7 +221,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'loki-logs-node',
     name: 'Loki Centralized',
-    sublabel: 'CT 121 · Enterprise Log Stream',
+    sublabel: 'CT 117 · Enterprise Log Stream',
     ip: '192.168.1.121',
     port: 3100,
     category: 'services',
@@ -240,7 +240,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'prometheus-tsdb',
     name: 'Prometheus Metrics',
-    sublabel: 'CT 121 · TSDB Engine',
+    sublabel: 'CT 117 · TSDB Engine',
     ip: '192.168.1.121',
     port: 9090,
     category: 'services',
@@ -316,7 +316,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'tpot-cluster',
     name: 'T-Pot Honeypot',
-    sublabel: 'VM 213 · Deception Lab',
+    sublabel: 'VM 503 · Deception Lab',
     ip: '192.168.1.213',
     port: 64297,
     category: 'security',
@@ -396,7 +396,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'vaultwarden-core',
     name: 'Vaultwarden Secrets',
-    sublabel: 'CT 104 · Bitwarden Engine',
+    sublabel: 'CT 116 · Bitwarden Engine',
     ip: '192.168.1.104',
     port: 80,
     category: 'security',
@@ -436,7 +436,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'ollama-gpu-node',
     name: 'Ollama AI Engine',
-    sublabel: 'CT 107 · GTX 1050 Ti PCIe',
+    sublabel: 'CT 106 · GTX 1050 Ti PCIe',
     ip: '192.168.1.110',
     port: 11434,
     category: 'elo',
@@ -455,7 +455,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'whisper-ai-node',
     name: 'Whisper STT AI',
-    sublabel: 'CT 109 · GPU Accelerated',
+    sublabel: 'CT 108 · GPU Accelerated',
     ip: '192.168.1.112',
     port: 8000,
     category: 'elo',
@@ -496,7 +496,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'kali-licenta',
     name: 'Kali Linux',
-    sublabel: 'VM 302 · Bachelor Thesis Pentest',
+    sublabel: 'VM 504 · Offensive Security Pentest',
     ip: '192.168.30.102',
     port: 22,
     category: 'compute',
@@ -515,7 +515,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'owasp-licenta',
     name: 'OWASP Juice Shop',
-    sublabel: 'CT 303 · Bachelor Thesis Target',
+    sublabel: 'CT 120 · Security Target',
     ip: '192.168.30.103',
     port: 3000,
     category: 'compute',
@@ -722,25 +722,6 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     connections: ['node1-pve', 'ad2025']
   },
   {
-    id: 'ad2003',
-    name: 'AD Server 2003',
-    sublabel: 'VM 410 · Windows Server 2003 R2 SP2',
-    ip: '192.168.1.209',
-    port: 3389,
-    category: 'compute',
-    tier: 5,
-    status: 'OPERATIONAL',
-    x: -125,
-    y: 475,
-    z: 110,
-    color: '#0078d4',
-    icon: 'windows',
-    hardware: { node: 'Node 1 (x86_64)', ram: '2,048 MB (Balloon: 1024 MB)', storage: '40 GB' },
-    tags: ['Active Directory', 'Windows Server 2003', 'Ultra-Legacy DC', 'SMBv1', 'NTLMv1'],
-    role: 'Ultra-legacy Windows Server 2003 R2 SP2 Enterprise DC for legacy LanMan and SMBv1 testing.',
-    connections: ['node1-pve', 'ad2025', 'ad2008']
-  },
-  {
     id: 'pbs-backup',
     name: 'Proxmox Backup',
     sublabel: 'PBS · Deduplicated Snapshots',
@@ -798,7 +779,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'immich-core',
     name: 'Immich Photos',
-    sublabel: 'CT 101 · Media AI Archival',
+    sublabel: 'CT 100 · Media AI Archival',
     ip: '192.168.1.15',
     port: 2283,
     category: 'services',
@@ -836,7 +817,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'nextcloud-drive',
     name: 'Nextcloud Hub',
-    sublabel: 'CT 102 · Private Cloud',
+    sublabel: 'CT 101 · Private Cloud',
     ip: '192.168.1.8',
     port: 80,
     category: 'storage',
@@ -855,7 +836,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'gitea-forge',
     name: 'Gitea Source Forge',
-    sublabel: 'CT 123 · Private Git SCM',
+    sublabel: 'CT 119 · Private Git SCM',
     ip: '192.168.1.123',
     port: 3000,
     category: 'services',
@@ -987,7 +968,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'woodpecker-k0s',
     name: 'Woodpecker CI (k0s)',
-    sublabel: 'CT 115 · Alpine + k0s Runner',
+    sublabel: 'CT 113 · Alpine + k0s Runner',
     ip: '192.168.1.118',
     port: 8000,
     category: 'services',
@@ -1025,7 +1006,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'metasploitable2-target',
     name: 'Metasploitable 2',
-    sublabel: 'VM 202 · Vulnerable Target',
+    sublabel: 'VM 502 · Vulnerable Target',
     ip: '192.168.1.202',
     port: 80,
     category: 'security',
@@ -1044,7 +1025,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'tpot-honeypot-node',
     name: 'T-Pot Honeypot',
-    sublabel: 'VM 203 · Multi-Honeypot Decoy',
+    sublabel: 'VM 503 · Multi-Honeypot Decoy',
     ip: '192.168.1.203',
     port: 64297,
     category: 'security',
@@ -1082,7 +1063,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'remnux-dfir-node',
     name: 'REMnux',
-    sublabel: 'VM 205 · Malware Analysis & DFIR',
+    sublabel: 'VM 501 · Malware Analysis & DFIR',
     ip: '192.168.1.205',
     port: 22,
     category: 'security',

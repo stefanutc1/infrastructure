@@ -274,37 +274,32 @@ flowchart TD
 ### QEMU / KVM Virtual Machines & VirtIO Memory Ballooning
 
 | VMID | VM Name | Operating System | vCPU | RAM Max | Balloon Min | Passthrough / Hardware | Primary Role |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| **200** | `opnsense` | Hardened FreeBSD 14 | 4 Cores | 4,096 MB | **2,048 MB** | VirtIO Net Multi-VLAN | Perimeter Firewall, Zenarmor NGFW (L7 Shun-Tuned), AdGuard Home + Unbound Split-DNS (:5335), FQ_CoDel Traffic Shaper, CrowdSec IPS + Threat Feeds, FRR BGP/OSPF, LLDP Discovery, iperf3, Encrypted Git/Nextcloud Backup |
-| **201** | `openstack` | OpenStack 2024.1 Caracal | 4 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (32 GB) | Enterprise IaaS Cloud Controller (Nova, Neutron, Keystone, Glance, Horizon Dashboard) |
-| **202** | `metasploitable2` | Metasploitable 2 (Ubuntu 8.04) | 1 Core | 512 MB | **512 MB** | VirtIO Net + IDE (8 GB) | Intentionally Vulnerable Linux Target, Penetration Testing & IDS/IPS Tuning |
-| **203** | `tpot-honeypot` | T-Pot 24.04 Multi-Honeypot | 4 Cores | 8,192 MB | **4,096 MB** | VirtIO SCSI (60 GB) | Multi-Honeypot Sensor Cluster (Cowrie, Dionaea, Honeytrap, Elastic, Kibana) |
-| **204** | `securityonion` | Security Onion 3.2 | 4 Cores | 8,192 MB | **4,096 MB** | VirtIO Net + SCSI (50 GB) | Enterprise SIEM, HIDS, Log Analysis, Network Security Monitoring (Zeek, Suricata, Elastic) |
-| **205** | `remnux` | REMnux v7 Noble | 4 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (40 GB) | Malware Analysis, Memory Forensics (Volatility), Ghidra & YARA Hunting |
-| **301** | `metasploitable-licenta` | Metasploitable Linux Target | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (20 GB) | **Bachelor's Thesis (Lucrare de Licență)** · Dedicated Penetration Testing Proving Ground, Vulnerability Assessment & Wazuh Tuning |
-| **302** | `kali-licenta` | Kali Linux Rolling (Offensive Security) | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (30 GB) | **Bachelor's Thesis (Lucrare de Licență)** · Offensive Security & Red Team Pentest Workstation, isolated on `vmbr1` / VLAN 30 |
-| **303** | `owasp-licenta` | Alpine Linux 3.24 LXC | 2 Cores | 512 MB | - | Rootfs (8 GB) | **Bachelor's Thesis (Lucrare de Licență)** · Containerized OWASP Juice Shop / DVWA Target with Docker nesting on isolated `vmbr1` |
-| **400** | `ad2025` | Windows Server 2025 Datacenter | 6 Cores | 8,192 MB | **4,096 MB** | GTX 1050 Ti PCIe Passthrough + VirtIO SCSI (256 GB) + Q35 OVMF UEFI + vTPM 2.0 | **Active Directory Enterprise Lab** · Primary Domain Controller (PDC) & Forest Root, GPO Lab, Sysmon & Windows Event Forwarding |
-| **401** | `ad2022` | Windows Server 2022 Datacenter | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (60 GB) + Q35 | **Active Directory Enterprise Lab** · Windows Server 2022 Domain Controller, DNS/DHCP & GPO replication |
-| **402** | `ad2019` | Windows Server 2019 Standard | 2 Cores | 2,048 MB | **2,048 MB** | VirtIO SCSI (128 GB) + Q35 OVMF UEFI | **Active Directory Enterprise Lab** · Windows Server 2019 Domain Controller & Kerberos authentication delegation (128 GB NVMe) |
-| **403** | `ad2016` | Windows Server 2016 Standard | 2 Cores | 3,072 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Active Directory Enterprise Lab** · Windows Server 2016 Domain Controller & Cross-Forest Trust testing |
-| **404** | `ad2012` | Windows Server 2012 R2 Standard | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (40 GB) + i440fx | **Active Directory Enterprise Lab** · Windows Server 2012 R2 Legacy Functional Level Domain Controller |
-| **405** | `ad2008` | Windows Server 2008 R2 SP1 Standard | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (40 GB) + i440fx | **Active Directory Enterprise Lab** · Windows Server 2008 R2 SP1 Legacy DC for Kerberos RC4 & NTLM migration analysis |
-| **406** | `adwin10` | Windows 10 Enterprise | 2 Cores | 3,072 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Active Directory Enterprise Lab** · Windows 10 Enterprise Domain-Joined Workstation Client & GPO policy target |
-| **407** | `adwin11` | Windows 11 Enterprise | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (60 GB) + Q35 OVMF UEFI + vTPM 2.0 | **Active Directory Enterprise Lab** · Windows 11 Enterprise Modern Domain-Joined Client & Credential Guard target |
-| **408** | `adwin7` | Windows 7 Ultimate SP1 | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (50 GB) + i440fx SeaBIOS | **Active Directory Enterprise Lab** · Windows 7 Ultimate SP1 Legacy Client for NTLMv2 & SMBv1 testing |
-| **409** | `adrhel` | RHEL 9.8 Enterprise | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (50 GB) + Q35 OVMF UEFI | **Active Directory Enterprise Lab** · Red Hat Enterprise Linux 9.8 Domain Integration (realmd, SSSD, Kerberos SSO, SELinux Enforcing) |
-| **410** | `ad2003` | Windows Server 2003 R2 Enterprise | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (40 GB) + i440fx SeaBIOS | **Active Directory Enterprise Lab** · Windows Server 2003 R2 SP2 Ultra-Legacy DC for SMBv1 & NTLMv1 testing |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **200** | `opnsense` | Hardened FreeBSD 14 | 1 Core | 1,024 MB | **1,024 MB** | VirtIO Net Multi-VLAN | Perimeter Firewall, Zenarmor NGFW, AdGuard Home, Unbound Split-DNS, CrowdSec IPS, FRR BGP |
+| **201** | `openstack` | Ubuntu 24.04 LTS | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (32 GB) | OpenStack 2024.1 Caracal Enterprise Cloud Controller & Horizon |
+| **400** | `ad2025` | Windows Server 2025 Datacenter | 4 Cores | 5,120 MB | **4,096 MB** | GTX 1050 Ti PCIe Passthrough + VirtIO SCSI (256 GB) + Q35 OVMF UEFI | **Active Directory Enterprise Lab** · Primary Domain Controller (PDC) & Forest Root |
+| **401** | `ad2022` | Windows Server 2022 Standard | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (60 GB) + Q35 | **Active Directory Enterprise Lab** · Windows Server 2022 Domain Controller, DNS/DHCP |
+| **402** | `ad2019` | Windows Server 2019 Standard | 2 Cores | 2,048 MB | **2,048 MB** | VirtIO SCSI (128 GB) + Q35 OVMF UEFI | **Active Directory Enterprise Lab** · Windows Server 2019 Domain Controller & Kerberos delegation |
+| **403** | `ad2016` | Windows Server 2016 Standard | 2 Cores | 3,072 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Active Directory Enterprise Lab** · Windows Server 2016 Domain Controller & Cross-Forest Trust |
+| **404** | `ad2012` | Windows Server 2012 R2 Standard | 2 Cores | 1,024 MB | **1,024 MB** | VirtIO SCSI (50 GB) + i440fx | **Active Directory Enterprise Lab** · Windows Server 2012 R2 Legacy Functional Level DC |
+| **405** | `ad2008` | Windows Server 2008 R2 SP1 | 1 Core | 1,024 MB | **1,024 MB** | VirtIO SCSI (40 GB) + i440fx | **Active Directory Enterprise Lab** · Windows Server 2008 R2 SP1 Legacy DC |
+| **406** | `adwin10` | Windows 10 Enterprise | 2 Cores | 2,560 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Active Directory Enterprise Lab** · Windows 10 Enterprise Domain-Joined Workstation |
+| **407** | `adwin11` | Windows 11 Enterprise | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (60 GB) + Q35 OVMF UEFI + vTPM 2.0 | **Active Directory Enterprise Lab** · Windows 11 Enterprise Modern Domain Client |
+| **408** | `adwin7` | Windows 7 Ultimate SP1 | 2 Cores | 2,048 MB | **1,024 MB** | VirtIO SCSI (50 GB) + i440fx SeaBIOS | **Active Directory Enterprise Lab** · Windows 7 Ultimate SP1 Legacy Client |
+| **409** | `adrhel` | RHEL 9.8 Enterprise | 2 Cores | 1,536 MB | **1,024 MB** | VirtIO SCSI (50 GB) + Q35 OVMF UEFI | **Active Directory Enterprise Lab** · Red Hat Enterprise Linux 9.8 Domain Integration (SSSD) |
+| **500** | `winmlw` | Windows 10 Enterprise x64 | 2 Cores | 2,560 MB | **2,048 MB** | VirtIO SCSI (50 GB) | **Cyber Security Lab** · Isolated Windows 10 Sandbox for Dynamic Malware Analysis |
+| **501** | `remnux` | REMnux v7 Noble (Ubuntu 24.04) | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (40 GB) | **Cyber Security Lab** · Malware Analysis, Volatility Forensics, Ghidra & YARA Hunting |
+| **502** | `metasploitable2` | Metasploitable 2 (Ubuntu 8.04) | 1 Core | 512 MB | **512 MB** | VirtIO Net + IDE (8 GB) | **Cyber Security Lab** · Intentionally Vulnerable Linux Target for Penetration Testing |
+| **503** | `honeypot` | T-Pot 24.04 Multi-Honeypot | 4 Cores | 8,192 MB | **4,096 MB** | VirtIO SCSI (60 GB) | **Cyber Security Lab** · Multi-Honeypot Sensor Cluster (Cowrie, Dionaea, Elastic, Kibana) |
+| **504** | `kali` | Kali Linux Rolling | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (30 GB) | **Cyber Security Lab** · Offensive Security & Red Team Pentest Workstation on `vmbr1` |
 
-> **Consolidated Enterprise Virtualization on Node 1**: All microservices and utility containers (CT 100–120, CT 303) are unified on Node 1 (x86_64). Active enterprise VMs (VM 200–205) leverage VirtIO dynamic memory ballooning, while consolidated containers (CT 114–120), Bachelor Thesis research workloads (VM 301, 302, CT 303), and the Active Directory lab fleet (VM 400–410) are configured with `onboot: 0` for zero-overhead on-demand activation without consuming baseline RAM. The thesis environment features an isolated CyberLab network on `vmbr1` (VLAN 30) for safe offensive security testing. Wazuh Manager 4.14 SIEM/XDR executes natively on the hypervisor host (Debian 13) listening on ports 1514, 1515, and 55000.
-
-### 🏢 Multi-Generation Active Directory Enterprise Laboratory (VM 400–410)
+### 🏢 Multi-Generation Active Directory Enterprise Laboratory (VM 400–409)
 
 The Active Directory enterprise lab spans across ten major Windows Server and client releases plus enterprise Linux domain integration, establishing a complete environment for cross-forest trusts, domain upgrades, Kerberos authentication delegation, Group Policy Objects (GPO), and Windows Event Forwarding:
 
 ```mermaid
 flowchart TD
-    subgraph FOREST["Active Directory Forest & Domain Ecosystem (Fleet 400 - 410)"]
+    subgraph FOREST["Active Directory Forest & Domain Ecosystem (Fleet 400 - 409)"]
         PDC["VM 400: ad2025<br/>(Server 2025 PDC / Forest Root)"]
         DC22["VM 401: ad2022<br/>(Server 2022 Replica DC / DNS)"]
         DC19["VM 402: ad2019<br/>(Server 2019 DC / Kerberos)"]

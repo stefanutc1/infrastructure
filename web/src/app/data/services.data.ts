@@ -931,7 +931,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Code-Server Cloud IDE",
     "category": "automation",
     "containerName": "code-server",
-    "node": "Node 1 (Intel i3-10100F) · CT 111",
+    "node": "Node 1 (Intel i3-10100F) · CT 109",
     "ram": "384 MB",
     "storage": "8 GB Pool",
     "ip": "192.168.1.115",
@@ -1727,7 +1727,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Proxmox Backup Server (PBS)",
     "category": "storage",
     "containerName": "proxmox-backup-server",
-    "node": "Node 1 (Intel i3-10100F) · CT 112",
+    "node": "Node 1 (Intel i3-10100F) · CT 111",
     "ram": "512 MB",
     "storage": "100 GB Backup Pool",
     "ip": "192.168.1.116",
@@ -1751,7 +1751,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Proxmox Datacenter Manager (PDM)",
     "category": "monitoring",
     "containerName": "proxmox-datacenter-manager",
-    "node": "Node 1 (Intel i3-10100F) · CT 113",
+    "node": "Node 1 (Intel i3-10100F) · CT 112",
     "ram": "512 MB",
     "storage": "10 GB Pool",
     "ip": "192.168.1.117",
@@ -1774,7 +1774,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "HashiCorp Vault / OpenBao",
     "category": "security",
     "containerName": "vault-secrets",
-    "node": "Node 1 (Intel i3-10100F) · CT 120",
+    "node": "Node 1 (Intel i3-10100F) · CT 116",
     "ram": "256 MB",
     "storage": "10 GB Pool",
     "ip": "192.168.1.120",
@@ -1893,7 +1893,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Metasploitable Licență (Bachelor Thesis Pentest Target)",
     "category": "cyber",
     "containerName": "metasploitable-licenta",
-    "node": "Node 1 (Intel i3-10100F) · VM 301",
+    "node": "Node 1 (Intel i3-10100F) · VM 502",
     "ram": "2,048 MB",
     "storage": "20 GB NVMe",
     "ip": "192.168.1.211",
@@ -1909,18 +1909,18 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Penetration Testing",
       "Red Team",
       "Vulnerability Lab",
-      "VM 301"
+      "VM 502"
     ],
     "color": "#dc2626",
     "icon": "shield",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 301) · Bachelor's Thesis Lab\n# OS: Metasploitable Linux Target · Dynamic Ballooning: 1024 MB - 2048 MB\ncores: 2\nmemory: 2048\nballoon: 1024\nscsi0: local-lvm:vm-301-disk-0,discard=on,size=20G,ssd=1\nnet0: virtio=BC:24:11:A4:6B:8E,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 502) · Bachelor's Thesis Lab\n# OS: Metasploitable Linux Target · Dynamic Ballooning: 1024 MB - 2048 MB\ncores: 2\nmemory: 2048\nballoon: 1024\nscsi0: local-lvm:vm-502-disk-0,discard=on,size=20G,ssd=1\nnet0: virtio=BC:24:11:A4:6B:8E,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-kali-licenta",
     "name": "Kali Linux Rolling (Licență / Bachelor Thesis)",
     "category": "cyber",
     "containerName": "kali-licenta",
-    "node": "Node 1 (Intel i3-10100F) · VM 302",
+    "node": "Node 1 (Intel i3-10100F) · VM 504",
     "ram": "4,096 MB",
     "storage": "30 GB NVMe",
     "ip": "192.168.30.102",
@@ -1936,11 +1936,11 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Offensive Security",
       "Penetration Testing",
       "Red Team",
-      "VM 302"
+      "VM 504"
     ],
     "color": "#0ea5e9",
     "icon": "terminal",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 302) · Bachelor's Thesis Lab\n# OS: Kali Linux Rolling · Dynamic Ballooning: 2048 MB - 4096 MB\ncores: 2\nmemory: 4096\nballoon: 2048\nscsi0: local-lvm:vm-302-disk-0,discard=on,size=30G,ssd=1\nnet0: virtio=BC:24:11:C3:02:11,bridge=vmbr1,firewall=1,tag=30"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 504) · Bachelor's Thesis Lab\n# OS: Kali Linux Rolling · Dynamic Ballooning: 2048 MB - 4096 MB\ncores: 2\nmemory: 4096\nballoon: 2048\nscsi0: local-lvm:vm-504-disk-0,discard=on,size=30G,ssd=1\nnet0: virtio=BC:24:11:C3:02:11,bridge=vmbr1,firewall=1,tag=30"
   },
   {
     "id": "lxc-owasp-licenta",
@@ -1973,7 +1973,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "OWASP Juice Shop (Security Vulnerability Lab)",
     "category": "cyber",
     "containerName": "owasp",
-    "node": "Node 1 (Intel i3-10100F) · CT 175",
+    "node": "Node 1 (Intel i3-10100F) · CT 120",
     "ram": "512 MB",
     "storage": "8 GB NVMe",
     "ip": "192.168.1.175",
@@ -2448,7 +2448,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "T-Pot Multi-Honeypot Decoy Platform",
     "category": "cyber",
     "containerName": "tpot-platform-vm203",
-    "node": "Node 1 (Intel i3-10100F) · VM 203",
+    "node": "Node 1 (Intel i3-10100F) · VM 503",
     "ram": "8,192 MB (Balloon: 4,096 MB)",
     "storage": "60 GB NVMe Pool",
     "ip": "192.168.1.203",
@@ -2464,11 +2464,11 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Threat Intelligence",
       "Elasticsearch",
       "Kibana",
-      "VM 203"
+      "VM 503"
     ],
     "color": "#3b82f6",
     "icon": "security",
-    "composeCode": "# T-Pot Multi-Honeypot Decoy Engine (VM 203)\n# Web Command Center: https://192.168.1.203:64297\n# Monitored: SSH, Telnet, SMB, RDP, HTTP, SCADA"
+    "composeCode": "# T-Pot Multi-Honeypot Decoy Engine (VM 503)\n# Web Command Center: https://192.168.1.203:64297\n# Monitored: SSH, Telnet, SMB, RDP, HTTP, SCADA"
   },
   {
     "id": "securityonion",
@@ -2504,7 +2504,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "REMnux Malware Analysis & DFIR Toolkit",
     "category": "cyber",
     "containerName": "remnux-vm205",
-    "node": "Node 1 (Intel i3-10100F) · VM 205",
+    "node": "Node 1 (Intel i3-10100F) · VM 501",
     "ram": "4,096 MB (Balloon: 2,048 MB)",
     "storage": "40 GB NVMe Pool",
     "ip": "192.168.1.205",
@@ -2521,10 +2521,10 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Ghidra",
       "Volatility",
       "CyberSecurity",
-      "VM 205"
+      "VM 501"
     ],
     "color": "#f43f5e",
     "icon": "shield",
-    "composeCode": "# REMnux Noble Appliance on QEMU KVM (VM 205)\n# vCPU: 2 · RAM: 4096 MB (Balloon: 2048 MB) · Disk: 40 GB · SSH: :22"
+    "composeCode": "# REMnux Noble Appliance on QEMU KVM (VM 501)\n# vCPU: 2 · RAM: 4096 MB (Balloon: 2048 MB) · Disk: 40 GB · SSH: :22"
   }
 ];
