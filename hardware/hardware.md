@@ -38,16 +38,15 @@ This file describes hardware and host-level virtualization only. Service definit
 
 This host currently serves three primary virtualization tiers:
 
-1. **Perimeter Firewall & Core Cyber Security Lab (VM 200–205)**:
+1. **Perimeter Firewall & Core Cloud Infrastructure (VM 200–201)**:
    - **VM 200**: OPNsense perimeter firewall, Zenarmor L7, CrowdSec IPS, and Unbound DNS.
    - **VM 201**: OpenStack 2024.1 Caracal IaaS compute (Nova), SDN (Neutron), and Horizon Web Dashboard.
-   - **VM 202**: Metasploitable 2 intentionally vulnerable Linux target for penetration testing and detection calibration.
-   - **VM 203**: T-Pot 24.04 multi-honeypot threat intelligence decoy platform (Cowrie, Dionaea, Honeytrap, Elastic, Kibana, Suricata).
-   - **VM 204**: Windows Malware Analysis Sandbox (Windows 10 Enterprise x64 on isolated bridge `vmbr3`).
-   - **VM 205**: REMnux v7 Noble malware analysis, memory forensics (Volatility), and Ghidra reverse engineering.
-2. **Bachelor Thesis CyberLab (VM 300, VM 202 & CT 117)**:
+2. **Cyber Security Lab & Bachelor Thesis CyberLab (VM 300–304 & CT 117)**:
    - **VM 300**: Kali Linux Rolling offensive security and red teaming workstation on isolated bridge `vmbr1` (VLAN 30).
-   - **VM 202**: Metasploitable 2 Linux Target for thesis offensive testing and detection engineering.
+   - **VM 301**: Metasploitable 2 intentionally vulnerable Linux target for penetration testing and detection calibration.
+   - **VM 302**: T-Pot 24.04 multi-honeypot threat intelligence decoy platform (Cowrie, Dionaea, Honeytrap, Elastic, Kibana, Suricata).
+   - **VM 303**: Windows Malware Analysis Sandbox (Windows 10 Enterprise x64 on isolated bridge `vmbr3`).
+   - **VM 304**: REMnux v7 Noble malware analysis, memory forensics (Volatility), and Ghidra reverse engineering.
    - **CT 117**: OWASP Juice Shop vulnerable web application container.
 3. **Active Directory Enterprise Lab (VM 400–405)**:
    - **VM 400**: Windows Server 2022 Standard Primary Domain Controller & DNS/DHCP infrastructure.

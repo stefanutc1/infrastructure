@@ -67,7 +67,16 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Controller Cloud Privat OpenStack Enterprise (Calcul Nova, Rețele Neutron, Keystone IAM, Panou Horizon)'
       },
       { 
-        vmid: 202, 
+        vmid: 300, 
+        name: 'kali', 
+        os: 'Kali Linux Rolling (Offensive Security)', 
+        allocatedMb: 4096, 
+        balloonMinMb: 2048, 
+        purpose: 'Offensive Security & Red Team Pentest Workstation (Isolated vmbr1 / VLAN 30)',
+        purposeRo: 'Stație de Lucru Kali Linux pentru Securitate Ofensivă și Teste de Penetrare (Izolat vmbr1 / VLAN 30)'
+      },
+      { 
+        vmid: 301, 
         name: 'metasploitable2', 
         os: 'Metasploitable 2 (Ubuntu 8.04)', 
         allocatedMb: 512, 
@@ -76,7 +85,7 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Țintă Linux Vulnerabilă Intenționat, Teste de Penetrare & Calibrare IDS/IPS Suricata/Wazuh'
       },
       { 
-        vmid: 203, 
+        vmid: 302, 
         name: 'honeypot', 
         os: 'Debian 12 / T-Pot 24.04 Multi-Honeypot Decoy Platform', 
         allocatedMb: 8192, 
@@ -85,7 +94,7 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Platformă Multi-Honeypot Decoy Telekom Security (Cowrie, Dionaea, Elastic, Kibana, Suricata)'
       },
       { 
-        vmid: 204, 
+        vmid: 303, 
         name: 'windows-malware-analysis', 
         os: 'Windows 10 Enterprise x64', 
         allocatedMb: 2560, 
@@ -94,22 +103,13 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Laborator Securitate Cibernetică - Sandbox Izolat Windows 10 pentru Detonare Dinamică și Analiză Malware'
       },
       { 
-        vmid: 205, 
+        vmid: 304, 
         name: 'remnux', 
         os: 'REMnux v7 Noble (Ubuntu 24.04)', 
         allocatedMb: 4096, 
         balloonMinMb: 2048, 
         purpose: 'Dedicated Linux Toolkit for Reverse Engineering, Malware Analysis & Digital Forensics (DFIR)',
         purposeRo: 'Toolkit Linux Dedicat pentru Reverse Engineering, Analiză Malware și Investigare Digitală (DFIR)'
-      },
-      { 
-        vmid: 300, 
-        name: 'kali', 
-        os: 'Kali Linux Rolling (Offensive Security)', 
-        allocatedMb: 4096, 
-        balloonMinMb: 2048, 
-        purpose: 'Offensive Security & Red Team Pentest Workstation (Isolated vmbr1 / VLAN 30)',
-        purposeRo: 'Stație de Lucru Kali Linux pentru Securitate Ofensivă și Teste de Penetrare (Izolat vmbr1 / VLAN 30)'
       },
       { 
         vmid: 400, 
@@ -169,8 +169,7 @@ export const HARDWARE_NODES: HardwareNode[] = [
     workloads: [
       'VM 200: OPNsense Core Firewall (1024 MB · Suricata IDS/IPS, CrowdSec Bouncer, GeoIP Drop, DoT Quad9, Telegraf, Monit, GitOps, FRR BGP, Tailscale, NetFlow)',
       'VM 201: OpenStack 2024.1 Caracal (4096 MB / Balloon: 2048 MB · 32 GB NVMe · Enterprise Cloud Controller & Horizon)',
-      'VM 202-205: Cyber Security Lab & Threat Emulation: metasploitable2 (VM 202, Vulnerable Target), honeypot (VM 203, T-Pot 24.04 Multi-Honeypot Decoy Platform), windows-malware-analysis (VM 204, Detonation Sandbox), remnux (VM 205, DFIR & Reverse Engineering)',
-      'VM 300: Kali Linux Rolling (4096 MB · Offensive Security & Red Team Pentest Workstation · Isolated vmbr1 / VLAN 30)',
+      'VM 300-304: Cyber Security Lab & Threat Emulation: kali (VM 300, Offensive Pentest Workstation), metasploitable2 (VM 301, Vulnerable Target), honeypot (VM 302, T-Pot 24.04 Multi-Honeypot Decoy Platform), windows-malware-analysis (VM 303, Detonation Sandbox), remnux (VM 304, DFIR & Reverse Engineering)',
       'VM 400-405: Active Directory Lab Fleet: ad2022 (VM 400, Primary Domain Controller), ad2016 (VM 401, Domain Controller), ad2012 (VM 402, Legacy Functional Level), adwin10 (VM 403, Enterprise Client Workstation), adwin7 (VM 404, Legacy Client / NTLMv2 Testing), adrhel (VM 405, RHEL 9.8 SSSD/Kerberos Domain Integration)',
       'CT 100-105: Core Infrastructure & Media: Immich AI (CT 100), Nextcloud Hub (CT 101), Home Assistant (CT 102), n8n Workflows (CT 103), Scrutiny SMART (CT 104), Jellyfin Media Server (CT 105)',
       'CT 106-107: Ollama GPU LLM Server (CT 106) & Open-WebUI Assistant (CT 107) (CUDA GTX 1050 Ti Passthrough)',

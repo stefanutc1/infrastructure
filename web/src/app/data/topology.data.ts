@@ -316,7 +316,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'tpot-cluster',
     name: 'T-Pot Honeypot',
-    sublabel: 'VM 203 · Deception Lab',
+    sublabel: 'VM 302 · Deception Lab',
     ip: '192.168.1.213',
     port: 64297,
     category: 'security',
@@ -477,8 +477,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'metasploitable-licenta',
     name: 'Metasploitable Lab',
-    sublabel: 'VM 202 · Vulnerable Pentest Target',
-    ip: '192.168.1.202',
+    sublabel: 'VM 301 · Vulnerable Pentest Target',
+    ip: '192.168.1.301',
     port: 22,
     category: 'compute',
     tier: 5,
@@ -930,8 +930,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'metasploitable2-target',
     name: 'Metasploitable 2',
-    sublabel: 'VM 202 · Vulnerable Target',
-    ip: '192.168.1.202',
+    sublabel: 'VM 301 · Vulnerable Target',
+    ip: '192.168.1.301',
     port: 80,
     category: 'security',
     tier: 3,
@@ -949,8 +949,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'tpot-honeypot-node',
     name: 'T-Pot Honeypot',
-    sublabel: 'VM 203 · Multi-Honeypot Decoy',
-    ip: '192.168.1.203',
+    sublabel: 'VM 302 · Multi-Honeypot Decoy',
+    ip: '192.168.1.302',
     port: 64297,
     category: 'security',
     tier: 3,
@@ -968,8 +968,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'windows-malware-sandbox',
     name: 'Windows Malware Sandbox',
-    sublabel: 'VM 204 · Detonation Sandbox',
-    ip: '192.168.1.204',
+    sublabel: 'VM 303 · Detonation Sandbox',
+    ip: '192.168.1.303',
     port: 3389,
     category: 'security',
     tier: 4,
@@ -987,8 +987,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'remnux-dfir-node',
     name: 'REMnux',
-    sublabel: 'VM 205 · Malware Analysis & DFIR',
-    ip: '192.168.1.205',
+    sublabel: 'VM 304 · Malware Analysis & DFIR',
+    ip: '192.168.1.304',
     port: 22,
     category: 'security',
     tier: 4,
@@ -1044,11 +1044,11 @@ export const TOPOLOGY_LINKS: TopologyLink[] = [
   { from: 'woodpecker-ci', to: 'kubernetes-node', protocol: 'K8s Deploy', color: 'rgba(56, 189, 248, 0.7)' },
 
   // Hypervisor to VMs & Containers
-  { from: 'node1-pve', to: 'metasploitable-licenta', protocol: 'VirtIO Pentest Target (VM 202)', color: 'rgba(220, 38, 38, 0.7)' },
+  { from: 'node1-pve', to: 'metasploitable-licenta', protocol: 'VirtIO Pentest Target (VM 301)', color: 'rgba(220, 38, 38, 0.7)' },
   { from: 'node1-pve', to: 'kali-licenta', protocol: 'VirtIO Offensive VM (VM 300)', color: 'rgba(14, 165, 233, 0.7)' },
   { from: 'node1-pve', to: 'owasp-licenta', protocol: 'LXC Vulnerable Target (CT 117)', color: 'rgba(234, 179, 8, 0.7)' },
-  { from: 'node1-pve', to: 'windows-malware-sandbox', protocol: 'QEMU KVM · Malware Sandbox (VM 204)', color: 'rgba(14, 165, 233, 0.7)' },
-  { from: 'node1-pve', to: 'remnux-dfir-node', protocol: 'QEMU KVM · DFIR Toolkit (VM 205)', color: 'rgba(244, 63, 94, 0.7)' },
+  { from: 'node1-pve', to: 'windows-malware-sandbox', protocol: 'QEMU KVM · Malware Sandbox (VM 303)', color: 'rgba(14, 165, 233, 0.7)' },
+  { from: 'node1-pve', to: 'remnux-dfir-node', protocol: 'QEMU KVM · DFIR Toolkit (VM 304)', color: 'rgba(244, 63, 94, 0.7)' },
   { from: 'kali-licenta', to: 'owasp-licenta', protocol: 'Isolated vmbr1 Pentest', color: 'rgba(234, 179, 8, 0.7)' },
   { from: 'node1-pve', to: 'ollama-gpu-node', protocol: 'PCIe GPU Passthrough', color: 'rgba(244, 63, 94, 0.8)' },
   { from: 'ollama-gpu-node', to: 'whisper-ai-node', protocol: 'Local AI Pipeline', color: 'rgba(236, 72, 153, 0.7)' },

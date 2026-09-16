@@ -277,11 +277,11 @@ flowchart TD
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **200** | `opnsense` | Hardened FreeBSD 14 | 1 Core | 1,024 MB | **1,024 MB** | VirtIO Net Multi-VLAN | Perimeter Firewall, Zenarmor NGFW, AdGuard Home, Unbound Split-DNS, CrowdSec IPS, FRR BGP |
 | **201** | `openstack` | Ubuntu 24.04 LTS | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (32 GB) | OpenStack 2024.1 Caracal Enterprise Cloud Controller & Horizon |
-| **202** | `metasploitable2` | Metasploitable 2 (Ubuntu 8.04) | 1 Core | 512 MB | **512 MB** | VirtIO Net + IDE (8 GB) | **Cyber Security Lab** · Intentionally Vulnerable Linux Target for Penetration Testing |
-| **203** | `honeypot` | T-Pot 24.04 Multi-Honeypot | 4 Cores | 8,192 MB | **4,096 MB** | VirtIO SCSI (60 GB) | **Cyber Security Lab** · Multi-Honeypot Sensor Cluster (Cowrie, Dionaea, Elastic, Kibana) |
-| **204** | `windows-malware-analysis` | Windows 10 Enterprise x64 | 2 Cores | 2,560 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Cyber Security Lab** · Isolated Windows 10 Sandbox for Dynamic Malware Detonation & Triage |
-| **205** | `remnux` | REMnux v7 Noble (Ubuntu 24.04) | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (40 GB) | **Cyber Security Lab** · Malware Analysis, Volatility Forensics, Ghidra & YARA Hunting |
 | **300** | `kali` | Kali Linux Rolling | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (30 GB) | **Bachelor Thesis & Offensive Security** · Red Team Pentest Workstation on `vmbr1` (VLAN 30) |
+| **301** | `metasploitable2` | Metasploitable 2 (Ubuntu 8.04) | 1 Core | 512 MB | **512 MB** | VirtIO Net + IDE (8 GB) | **Cyber Security Lab** · Intentionally Vulnerable Linux Target for Penetration Testing |
+| **302** | `honeypot` | T-Pot 24.04 Multi-Honeypot | 4 Cores | 8,192 MB | **4,096 MB** | VirtIO SCSI (60 GB) | **Cyber Security Lab** · Multi-Honeypot Sensor Cluster (Cowrie, Dionaea, Elastic, Kibana) |
+| **303** | `windows-malware-analysis` | Windows 10 Enterprise x64 | 2 Cores | 2,560 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Cyber Security Lab** · Isolated Windows 10 Sandbox for Dynamic Malware Detonation & Triage |
+| **304** | `remnux` | REMnux v7 Noble (Ubuntu 24.04) | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (40 GB) | **Cyber Security Lab** · Malware Analysis, Volatility Forensics, Ghidra & YARA Hunting |
 | **400** | `ad2022` | Windows Server 2022 Standard | 2 Cores | 4,096 MB | **2,048 MB** | VirtIO SCSI (60 GB) + Q35 | **Active Directory Enterprise Lab** · Primary Domain Controller (PDC), DNS/DHCP Infrastructure |
 | **401** | `ad2016` | Windows Server 2016 Standard | 2 Cores | 3,072 MB | **2,048 MB** | VirtIO SCSI (50 GB) + Q35 | **Active Directory Enterprise Lab** · Windows Server 2016 Domain Controller & Cross-Forest Trust |
 | **402** | `ad2012` | Windows Server 2012 R2 Standard | 2 Cores | 1,024 MB | **1,024 MB** | VirtIO SCSI (50 GB) + i440fx | **Active Directory Enterprise Lab** · Windows Server 2012 R2 Legacy Functional Level DC |
@@ -315,7 +315,7 @@ flowchart TD
 * **Architecture & Firmwares**: Server 2022, Server 2016, Windows 10, and RHEL 9.8 feature modern Q35 chipset emulation with OVMF UEFI, while legacy systems (2012 R2, Windows 7) utilize i440fx chipset for compatibility.
 * **Storage Allocation**: High-speed VirtIO SCSI controllers with `iothread=1` and `local-lvm` thin provisioning for optimal I/O throughput.
 
-### 🎓 Bachelor's Thesis CyberLab Architecture (VM 300, VM 202 & CT 117)
+### 🎓 Bachelor's Thesis CyberLab Architecture (VM 300, VM 301 & CT 117)
 
 The dedicated Bachelor's Thesis (Lucrare de Licență) laboratory establishes an enterprise offensive and defensive cybersecurity proving ground. Full technical specifications, attack scenarios (Metasploit CVE exploitation, OWASP Top 10), and detection engineering pipelines are detailed in the [Bachelor's Thesis CyberLab Architecture Guide](docs/LICENTA_ARCHITECTURE.md).
 
@@ -323,7 +323,7 @@ The dedicated Bachelor's Thesis (Lucrare de Licență) laboratory establishes an
 flowchart LR
     subgraph THESIS["VLAN 30 (CyberLab) & Isolated Bridge vmbr1"]
         KALI["VM 300: kali<br/>(Offensive Red Team Workstation)"]
-        META["VM 202: metasploitable2<br/>(Linux Vulnerability Target)"]
+        META["VM 301: metasploitable2<br/>(Linux Vulnerability Target)"]
         OWASP["CT 117: owasp<br/>(OWASP Juice Shop / Security Target)"]
     end
 
@@ -920,7 +920,6 @@ All hardware nodes, virtual machines, and containers execute live on physical in
 
 ### Specialized Operating Systems & Telemetry (Loki Telemetry & Runtime Logs)
 | Windows Server 2025 Datacenter (VM 400 · Loki Telemetry) | Red Hat Enterprise Linux 9.8 (VM 409 · Loki Telemetry) | ![Windows Server 2025 Datacenter Telemetry](photos/services/vm-windows.png) | ![RHEL 9.8 Telemetry](photos/services/vm-rhel.png) | :---: | :---: 
-| OpenStack 2024.1 Caracal (VM 201 · Cloud Horizon) | Metasploitable 2 (VM 202 · Vulnerable Target) | ![OpenStack Cloud Horizon](photos/services/openstack.png) | ![Metasploitable 2](photos/services/metasploitable2.png) | :---: | :---: 
-| REMnux v7 Noble (VM 205 · Reverse Engineering) | OPNsense Core Gateway & Firewall (VM 200) | ![REMnux Malware Analysis](photos/services/remnux.png) | ![OPNsense Core Gateway](photos/services/opnsense-core.png) | :---: | :---: 
+| OpenStack 2024.1 Caracal (VM 201 · Cloud Horizon) | Metasploitable 2 (VM 301 · Vulnerable Target) | ![OpenStack Cloud Horizon](photos/services/openstack.png) | ![Metasploitable 2](photos/services/metasploitable2.png) | :---: | :---: 
+| REMnux v7 Noble (VM 304 · Reverse Engineering) | OPNsense Core Gateway & Firewall (VM 200) | ![REMnux Malware Analysis](photos/services/remnux.png) | ![OPNsense Core Gateway](photos/services/opnsense-core.png) | :---: | :---: 
 | Proxmox VE 9.2 Primary (Node 1 · x86_64 Hypervisor) | ![Proxmox VE Primary x86_64](photos/services/proxmox-x64.png) |
-

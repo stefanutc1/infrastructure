@@ -1893,10 +1893,10 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Metasploitable Licență (Bachelor Thesis Pentest Target)",
     "category": "cyber",
     "containerName": "metasploitable-licenta",
-    "node": "Node 1 (Intel i3-10100F) · VM 202",
+    "node": "Node 1 (Intel i3-10100F) · VM 301",
     "ram": "512 MB",
     "storage": "8 GB NVMe",
-    "ip": "192.168.1.202",
+    "ip": "192.168.1.301",
     "port": 22,
     "domain": "metasploitable.homelab.local",
     "status": "STANDBY",
@@ -1909,11 +1909,11 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Penetration Testing",
       "Red Team",
       "Vulnerability Lab",
-      "VM 202"
+      "VM 301"
     ],
     "color": "#dc2626",
     "icon": "shield",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 202) · Bachelor's Thesis Lab\n# OS: Metasploitable Linux Target\ncores: 1\nmemory: 512\nscsi0: local-lvm:vm-202-disk-0,discard=on,size=8G,ssd=1\nnet0: virtio=BC:24:11:A4:6B:8E,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 301) · Bachelor's Thesis Lab\n# OS: Metasploitable Linux Target\ncores: 1\nmemory: 512\nscsi0: local-lvm:vm-301-disk-0,discard=on,size=8G,ssd=1\nnet0: virtio=BC:24:11:A4:6B:8E,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-kali-licenta",
@@ -2259,11 +2259,11 @@ export const SERVICES_DATA: ServiceItem[] = [
     "id": "metasploitable2",
     "name": "Metasploitable 2 Vulnerable Target",
     "category": "cyber",
-    "containerName": "metasploitable2-vm202",
-    "node": "Node 1 (Intel i3-10100F) · VM 202",
+    "containerName": "metasploitable2-vm301",
+    "node": "Node 1 (Intel i3-10100F) · VM 301",
     "ram": "512 MB",
     "storage": "8 GB NVMe Pool",
-    "ip": "192.168.1.202",
+    "ip": "192.168.1.301",
     "port": 80,
     "domain": "metasploitable.homelab.local",
     "status": "ONLINE",
@@ -2275,21 +2275,21 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Red Team",
       "Cybersecurity",
       "Vulnerability Lab",
-      "VM 202"
+      "VM 301"
     ],
     "color": "#dc2626",
     "icon": "security",
-    "composeCode": "# Metasploitable 2 (VM 202 · QEMU KVM Target)\n# Vulnerable Stack: vsftpd, Apache, Samba, MySQL, PostgreSQL, Tomcat\n# IP: 192.168.1.202\n# Cores: 1 · RAM: 512 MB · Disk: 8 GB"
+    "composeCode": "# Metasploitable 2 (VM 301 · QEMU KVM Target)\n# Vulnerable Stack: vsftpd, Apache, Samba, MySQL, PostgreSQL, Tomcat\n# IP: 192.168.1.301\n# Cores: 1 · RAM: 512 MB · Disk: 8 GB"
   },
   {
     "id": "tpot-honeypot",
     "name": "T-Pot Multi-Honeypot Decoy Platform",
     "category": "cyber",
-    "containerName": "tpot-platform-vm203",
-    "node": "Node 1 (Intel i3-10100F) · VM 203",
+    "containerName": "tpot-platform-vm302",
+    "node": "Node 1 (Intel i3-10100F) · VM 302",
     "ram": "8,192 MB (Balloon: 4,096 MB)",
     "storage": "60 GB NVMe Pool",
-    "ip": "192.168.1.203",
+    "ip": "192.168.1.302",
     "port": 64297,
     "domain": "tpot.homelab.local",
     "status": "ONLINE",
@@ -2302,21 +2302,21 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Threat Intelligence",
       "Elasticsearch",
       "Kibana",
-      "VM 203"
+      "VM 302"
     ],
     "color": "#3b82f6",
     "icon": "security",
-    "composeCode": "# T-Pot Multi-Honeypot Decoy Engine (VM 203)\n# Web Command Center: https://192.168.1.203:64297\n# Monitored: SSH, Telnet, SMB, RDP, HTTP, SCADA"
+    "composeCode": "# T-Pot Multi-Honeypot Decoy Engine (VM 302)\n# Web Command Center: https://192.168.1.302:64297\n# Monitored: SSH, Telnet, SMB, RDP, HTTP, SCADA"
   },
   {
     "id": "windows-malware-analysis",
     "name": "Windows Malware Analysis Sandbox",
     "category": "cyber",
-    "containerName": "windows-malware-analysis-vm204",
-    "node": "Node 1 (Intel i3-10100F) · VM 204",
+    "containerName": "windows-malware-analysis-vm303",
+    "node": "Node 1 (Intel i3-10100F) · VM 303",
     "ram": "2,560 MB (Balloon: 2,048 MB)",
     "storage": "50 GB NVMe Pool",
-    "ip": "192.168.1.204",
+    "ip": "192.168.1.303",
     "port": 3389,
     "domain": "winmlw.homelab.local",
     "status": "ONLINE",
@@ -2329,21 +2329,21 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Windows 10",
       "DFIR",
       "CyberSecurity",
-      "VM 204"
+      "VM 303"
     ],
     "color": "#0ea5e9",
     "icon": "windows",
-    "composeCode": "# Windows Malware Analysis Sandbox (VM 204)\n# OS: Windows 10 Enterprise x64 · Isolated Bridge vmbr3\ncores: 2\nmemory: 2560\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-204-disk-0,iothread=1,size=50G\nnet0: virtio=BC:24:11:97:72:ED,bridge=vmbr3,firewall=1"
+    "composeCode": "# Windows Malware Analysis Sandbox (VM 303)\n# OS: Windows 10 Enterprise x64 · Isolated Bridge vmbr3\ncores: 2\nmemory: 2560\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-303-disk-0,iothread=1,size=50G\nnet0: virtio=BC:24:11:97:72:ED,bridge=vmbr3,firewall=1"
   },
   {
     "id": "remnux",
     "name": "REMnux Malware Analysis & DFIR Toolkit",
     "category": "cyber",
-    "containerName": "remnux-vm205",
-    "node": "Node 1 (Intel i3-10100F) · VM 205",
+    "containerName": "remnux-vm304",
+    "node": "Node 1 (Intel i3-10100F) · VM 304",
     "ram": "4,096 MB (Balloon: 2,048 MB)",
     "storage": "40 GB NVMe Pool",
-    "ip": "192.168.1.205",
+    "ip": "192.168.1.304",
     "port": 22,
     "domain": "remnux.homelab.local",
     "status": "ONLINE",
@@ -2357,10 +2357,10 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Ghidra",
       "Volatility",
       "CyberSecurity",
-      "VM 205"
+      "VM 304"
     ],
     "color": "#f43f5e",
     "icon": "shield",
-    "composeCode": "# REMnux Noble Appliance on QEMU KVM (VM 205)\n# vCPU: 2 · RAM: 4096 MB (Balloon: 2048 MB) · Disk: 40 GB · SSH: :22"
+    "composeCode": "# REMnux Noble Appliance on QEMU KVM (VM 304)\n# vCPU: 2 · RAM: 4096 MB (Balloon: 2048 MB) · Disk: 40 GB · SSH: :22"
   }
 ];
