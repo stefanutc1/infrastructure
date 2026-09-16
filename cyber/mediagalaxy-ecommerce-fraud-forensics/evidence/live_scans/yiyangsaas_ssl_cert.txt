@@ -1,0 +1,55 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            14:ff:d6:6e:4c:fc:a8:b7:0e:89:bd:2a:bb:f3:f5:c8
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=US, O=Google Trust Services, CN=WE1
+        Validity
+            Not Before: Aug  4 17:28:11 2026 GMT
+            Not After : Nov  2 18:28:03 2026 GMT
+        Subject: CN=yiyangsaas.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:85:17:4a:99:88:df:c9:25:3d:54:39:25:41:61:
+                    db:b9:0d:67:d4:40:96:43:0c:a7:63:1b:5d:30:7b:
+                    6d:03:b1:e9:ef:db:e9:3f:cf:ea:92:1d:58:51:0e:
+                    05:a8:ad:11:da:6c:a5:09:e8:fb:af:4e:9f:bf:04:
+                    81:bf:cc:5b:49
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                CE:4C:B7:0E:FE:E2:C3:08:BB:0C:DA:01:76:7B:F2:10:0A:E3:ED:26
+            X509v3 Authority Key Identifier: 
+                keyid:90:77:92:35:67:C4:FF:A8:CC:A9:E6:7B:D9:80:79:7B:CC:93:F9:38
+
+            Authority Information Access: 
+                CA Issuers - URI:http://i.pki.goog/we1.crt
+
+            X509v3 Subject Alternative Name: 
+                DNS:yiyangsaas.com, DNS:*.yiyangsaas.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://c.pki.goog/we1/yoggNsz3xQU.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......v...U;.Oz....o.O.....^.U&....r.EK..............G0E. .}....v......................M...!..f)..5K.7t7.{_...o........U..D...v..1~WE..E..8...A...!Z".....v...R........Y.....G0E. W..y..Q..u........w#k.....9>.....!..A../.H...L..q.l........'\..B.h.
+    Signature Algorithm: ecdsa-with-SHA256
+         30:46:02:21:00:c5:08:93:ff:f6:4e:b6:1e:15:d9:6f:fa:7d:
+         ab:d0:ca:1e:73:38:f3:d2:29:fa:b4:f4:5d:b3:f1:51:13:e8:
+         bc:02:21:00:c8:c4:8e:fb:dc:c5:23:33:69:23:b1:92:2b:f5:
+         c2:dd:d4:05:8e:8b:12:a8:4d:8e:fc:1f:05:7d:64:17:e5:00
+SHA256 Fingerprint=8C:58:E4:06:25:8D:A2:92:5B:B4:2E:E8:EA:96:D2:41:87:F2:56:31:E3:8C:51:4D:EF:98:99:CB:F0:8D:F8:DC

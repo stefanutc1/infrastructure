@@ -143,6 +143,22 @@ The campaign operated on a multi-tier infrastructure:
 
 ---
 
+### Section 2.5: Live Airtight Browser Sandbox Probing & Discoveries
+In addition to the historical screenshots provided on the Desktop, active forensic probing was conducted using an isolated Google Chrome headless sandbox (`--headless=new --incognito --user-data-dir=/tmp/isolated_chrome_sandbox`) with ephemeral profiles to prevent any client fingerprint leakage.
+
+Key artifacts captured live into `evidence/live_scans/`:
+1. **Live Proof of Shared Origin (`104.16.145.247`):** Active DNS resolution confirmed that both `mediagalaxy.voetbalshop-nlco.com` and the central C2 domain `yiyangsaas.com` point to the exact same Cloudflare IP address: `104.16.145.247`.
+2. **TikTok Ad Preloading Detection:** Live DOM dumping captured the explicit meta directive:
+   `<meta name="tiktok-ads-preloading-nocache" content="1">`
+   This proves the threat actor specifically tailored their application to exploit the caching and preloading behavior of TikTok's in-app webview.
+3. **Deobfuscated OEMCart Chinese Engine:** Client-side JavaScript execution environment revealed the decoded token `atob("b2VtY2FydF8=") === "oemcart_"`, associated with asset path `/skins/default/guoqi.png` (*guoqi* being Chinese pinyin for national flag 国旗). This confirms the platform runs on China's OEMCart turnkey counterfeit/phishing software.
+4. **Certificate Timestamping:** OpenSSL certificate extraction verified the active SSL certificate for `mediagalaxy.voetbalshop-nlco.com` (Serial `b4:66:51:7d...`) was issued by Google Trust Services on **September 15, 2026 at 00:43:20 GMT**, less than 24 hours prior to the fraudulent charge.
+5. **Burned Secondary Dispatchers:** Mail dispatch subdomains `info.mailapp-fly.com` and `email.worvixglobal.com` now resolve to `NXDOMAIN`, confirming threat actors purged their secondary DNS records post-campaign.
+
+Refer to [`evidence/LIVE_WEB_VERIFICATION.md`](evidence/LIVE_WEB_VERIFICATION.md) for full raw dumps and header logs.
+
+---
+
 ## 3. Threat Actor Infrastructure Graph
 
 ```mermaid

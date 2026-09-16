@@ -1,0 +1,57 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            b4:66:51:7d:eb:1e:d7:97:13:40:2c:1b:1d:a5:3f:c3
+    Signature Algorithm: ecdsa-with-SHA256
+        Issuer: C=US, O=Google Trust Services, CN=WE1
+        Validity
+            Not Before: Sep 15 00:43:20 2026 GMT
+            Not After : Dec 14 01:43:16 2026 GMT
+        Subject: CN=mediagalaxy.voetbalshop-nlco.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:dc:6a:83:dc:4b:69:ce:e5:fd:5a:95:9b:52:27:
+                    1e:1a:e7:ea:e5:98:e7:35:d1:95:05:b8:c0:c1:a2:
+                    20:34:c9:9b:f9:fd:da:12:ff:d5:8e:b6:58:ce:b9:
+                    f9:04:47:98:5c:cc:2f:b8:f3:7a:2c:1f:92:d5:da:
+                    67:c8:37:a1:a8
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                09:33:E5:9B:FC:EE:15:1A:29:CC:4E:E3:71:21:63:82:C6:4C:A9:BC
+            X509v3 Authority Key Identifier: 
+                keyid:90:77:92:35:67:C4:FF:A8:CC:A9:E6:7B:D9:80:79:7B:CC:93:F9:38
+
+            Authority Information Access: 
+                CA Issuers - URI:http://i.pki.goog/we1.crt
+
+            X509v3 Subject Alternative Name: 
+                DNS:mediagalaxy.voetbalshop-nlco.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://c.pki.goog/we1/cVHHAHfPue8.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......w.%...........p.2*&b
+.Z..|u.}....e.............H0F.!...7&...)l...!.......4_..).. ..#..!....3
+...!.....a..A..b...S..2@....v..m}....w..._......3Ze....s....iw.............G0E. cq.U..o.o..b......CDD...p........!.......d..O.@.W.............rX..2
+    Signature Algorithm: ecdsa-with-SHA256
+         30:46:02:21:00:f7:6f:e3:01:f5:07:f1:da:ce:12:8a:2d:2f:
+         8f:16:26:97:f9:6f:2e:6d:33:64:01:a2:c1:f9:2c:cb:43:99:
+         7e:02:21:00:a4:03:42:50:90:d4:68:e6:ed:e9:b6:e0:aa:64:
+         72:af:d4:b0:a7:55:b4:e3:7f:63:bc:bc:54:74:ae:91:ff:72
+SHA256 Fingerprint=B1:CA:67:E1:01:B2:0B:24:25:F6:BB:1F:26:54:B7:34:8A:6D:8E:1E:09:53:F2:FE:8C:53:CB:31:97:CD:98:94

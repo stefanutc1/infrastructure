@@ -1,0 +1,58 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number:
+            06:24:74:df:95:b4:f1:b3:ed:db:4d:e2:06:29:8c:b5:ec:e3
+    Signature Algorithm: ecdsa-with-SHA384
+        Issuer: C=US, O=Let's Encrypt, CN=YE1
+        Validity
+            Not Before: Sep 12 21:03:27 2026 GMT
+            Not After : Dec 11 21:03:26 2026 GMT
+        Subject: CN=worvixglobal.com
+        Subject Public Key Info:
+            Public Key Algorithm: id-ecPublicKey
+                Public-Key: (256 bit)
+                pub: 
+                    04:30:a1:b2:77:74:ad:99:4f:7a:a5:3d:b7:5f:06:
+                    84:ac:88:66:c4:e6:f4:c1:05:aa:6a:5d:a3:ca:56:
+                    60:78:3c:74:3b:bc:f0:0d:4f:cb:be:4d:7b:16:cb:
+                    d6:5a:f6:97:a5:43:0c:94:13:98:41:1d:0f:69:c9:
+                    ea:0b:ce:5e:51
+                ASN1 OID: prime256v1
+                NIST CURVE: P-256
+        X509v3 extensions:
+            X509v3 Key Usage: critical
+                Digital Signature
+            X509v3 Extended Key Usage: 
+                TLS Web Server Authentication
+            X509v3 Basic Constraints: critical
+                CA:FALSE
+            X509v3 Subject Key Identifier: 
+                C6:3D:81:90:F5:D1:6A:81:E5:7F:89:6D:50:09:8B:03:9E:FC:27:E1
+            X509v3 Authority Key Identifier: 
+                keyid:BB:20:CA:47:0B:FE:D7:E5:9C:F9:8F:09:2A:A3:8C:37:45:B1:BC:D8
+
+            Authority Information Access: 
+                CA Issuers - URI:http://ye1.i.lencr.org/
+
+            X509v3 Subject Alternative Name: 
+                DNS:*.worvixglobal.com, DNS:worvixglobal.com
+            X509v3 Certificate Policies: 
+                Policy: 2.23.140.1.2.1
+
+            X509v3 CRL Distribution Points: 
+
+                Full Name:
+                  URI:http://ye1.c.lencr.org/100.crl
+
+            1.3.6.1.4.1.11129.2.4.2: 
+                ......u..1~WE..E..8...A...!Z".....v...R.......;......F0D. *.|....T=...;q....&..CPC["DO.c... (|<M.vo.K.....m...Nf_`.@.......D.~....k.....y9..1
+......F..,.._^&%.......=\......@......G0E. X...L....i.........|..H..A.:.M}!.!..\.+....`.aT;.48..m.o...5rH.| .2
+    Signature Algorithm: ecdsa-with-SHA384
+         30:66:02:31:00:e7:9c:19:22:9e:d8:93:a9:2e:f6:f9:cf:c2:
+         b2:e8:49:d6:ff:c0:ef:d6:b0:63:96:93:82:aa:94:39:63:0a:
+         9e:7c:70:60:d1:94:3e:cb:58:8b:69:01:77:2b:a2:b8:93:02:
+         31:00:b1:5b:d6:2e:d1:63:fa:9b:c9:ec:be:61:bf:7d:64:de:
+         55:34:43:90:6c:fc:f9:91:24:ca:f8:74:5b:8a:ad:26:19:59:
+         25:af:d2:d5:38:14:98:b2:c3:0f:2c:d1:ae:ef
+SHA256 Fingerprint=08:A5:DA:F5:2A:F4:38:25:44:55:9D:74:15:0A:7F:93:E1:95:98:72:45:62:76:DC:2E:ED:39:C1:EF:8A:76:44

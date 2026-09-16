@@ -1,0 +1,16 @@
+HTTP/2 200 
+date: Wed, 16 Sep 2026 18:24:03 GMT
+content-type: text/html; charset=utf-8
+server: cloudflare
+vary: Accept-Encoding
+set-cookie: OCSESSID=b7044e4a12e6cb6682c819d88e; path=/
+set-cookie: OCSESSID=0129189d96d3c7c4af8a9fd66c; path=/
+set-cookie: language=en-gb; expires=Fri, 16-Oct-2026 18:24:01 GMT; Max-Age=2592000; path=/; domain=worvixglobal.com
+set-cookie: currency=EUR; expires=Fri, 16-Oct-2026 18:24:01 GMT; Max-Age=2592000; path=/; domain=worvixglobal.com
+strict-transport-security: max-age=31536000
+alt-svc: h3=":443"; ma=86400
+cf-cache-status: DYNAMIC
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=e4OaTmQNoR4a3vBSTppHf6cH5c%2BAIfgFZkctIZzddkUTogkzVySIvewi0AuMX0FyGP%2BZVoQBRpbDCiKxunYaySVQqYwbOFTAm4wh%2Fve58TQxn3r0W%2Fo%2FtvsnBlWc%2BYhZBHChbp6hjyu7oXK817Jk"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+cf-ray: a3c1e7d3bba8e3d9-OTP
+

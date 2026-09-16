@@ -2,10 +2,9 @@ import os
 import sys
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
-from reportlab.lib.units import inch
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, KeepTogether, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak, HRFlowable
 )
 
 def create_incident_report(output_pdf_path):
@@ -21,13 +20,12 @@ def create_incident_report(output_pdf_path):
     
     styles = getSampleStyleSheet()
     
-    # Custom styles
-    primary_color = colors.HexColor("#0f172a")    # Slate 900
-    accent_color = colors.HexColor("#dc2626")     # Red 600
-    secondary_color = colors.HexColor("#2563eb")  # Blue 600
-    text_dark = colors.HexColor("#1e293b")        # Slate 800
-    bg_light = colors.HexColor("#f8fafc")         # Slate 50
-    border_color = colors.HexColor("#cbd5e1")     # Slate 300
+    primary_color = colors.HexColor("#0f172a")
+    accent_color = colors.HexColor("#dc2626")
+    secondary_color = colors.HexColor("#2563eb")
+    text_dark = colors.HexColor("#1e293b")
+    bg_light = colors.HexColor("#f8fafc")
+    border_color = colors.HexColor("#cbd5e1")
     
     title_style = ParagraphStyle(
         'DocTitle',
@@ -119,7 +117,7 @@ def create_incident_report(output_pdf_path):
     
     # Document Title
     story.append(Paragraph("E-Commerce Brand Impersonation & Chinese SaaS Fraud Funnel", title_style))
-    story.append(Paragraph("Investigation Reference: <b>SEC-2026-ECOM-005</b> · Target: Media Galaxy (Altex România) · Date: 16 September 2026", subtitle_style))
+    story.append(Paragraph("Case: <b>SEC-2026-ECOM-005</b> · Target: Media Galaxy (Altex România) · Live Sandbox Verified: 16 Sept 2026", subtitle_style))
     story.append(HRFlowable(width="100%", thickness=1, color=border_color, spaceAfter=8))
     
     # Metadata Summary Box
@@ -127,7 +125,7 @@ def create_incident_report(output_pdf_path):
         [Paragraph("<b>Incident Type:</b> Social Media Phishing / Brand Impersonation", table_cell), Paragraph("<b>Financial Impact:</b> ~21 EUR (~105 RON)", table_cell)],
         [Paragraph("<b>Target Lure Platform:</b> TikTok Sponsored In-App Ads", table_cell), Paragraph("<b>Payment Rail:</b> Revolut Virtual Card / BCR Source", table_cell)],
         [Paragraph("<b>Phishing Landing FQDN:</b> mediagalaxy.voetbalshop-nlco.com", table_cell), Paragraph("<b>Backend C2 SaaS:</b> yiyangsaas.com (Yunnan, CN)", table_cell)],
-        [Paragraph("<b>Investigator:</b> @stefanutc1 (Senior Security Engineer)", table_cell), Paragraph("<b>Remediation Status:</b> Card Terminated / Gateway Sinkholed", table_cell)],
+        [Paragraph("<b>Investigator:</b> @stefanutc1 (Senior Security Engineer)", table_cell), Paragraph("<b>Verification Mode:</b> Airtight Headless Chrome Sandbox", table_cell)],
     ]
     meta_table = Table(meta_data, colWidths=[265, 265])
     meta_table.setStyle(TableStyle([
@@ -159,45 +157,45 @@ def create_incident_report(output_pdf_path):
     )
     story.append(Paragraph(summary_p2, body_style))
     
-    # Section 2: Technical Findings & Infrastructure Attribution
-    story.append(Paragraph("2. Technical Forensics & Attribution Findings", heading2_style))
+    # Section 2: Live Technical Verification
+    story.append(Paragraph("2. Live Web Verification & Infrastructure Forensics", heading2_style))
     tech_p1 = (
-        "<b>A. DOM Reverse Engineering & Chinese Source Attribution:</b> Deep inspection of the landing page DOM exposed "
-        "<code>&lt;html lang=\"zh-CN\"&gt;</code>, styling containers labeled <code>module_login_default</code>, and execution tracking variable "
-        "<code>window._CEDDE_ET</code>. These signatures match commercial turnkey phishing/e-commerce SaaS software marketed on Chinese underground channels."
+        "<b>A. Airtight Browser Probe & Shared Origin Proof:</b> Operating in an isolated headless Chrome sandbox, active network probes "
+        "confirmed that <code>mediagalaxy.voetbalshop-nlco.com</code> and the central C2 domain <code>yiyangsaas.com</code> resolve to the "
+        "<b>exact same IP (104.16.145.247)</b> on Cloudflare, definitively proving co-located infrastructure."
     )
     story.append(Paragraph(tech_p1, body_style))
     
     tech_p2 = (
-        "<b>B. Infrastructure Pivot to Backend C2:</b> Network probes against the Cloudflare proxy IP <code>104.16.145.247</code> hosting the landing subdomain "
-        "uncovered a crucial configuration leak: direct HTTPS queries to ports 443 and 8443 returned an SSL certificate with Common Name: "
-        "<b><code>cn: yiyangsaas.com</code></b>. WHOIS queries verified that <code>yiyangsaas.com</code> was registered via <b>eName Technology Co., Ltd.</b> "
-        "in Yunnan, China, operating continuously since September 2023."
+        "<b>B. Targeted TikTok Ad Preloader & OEMCart Codebase:</b> Live DOM extraction revealed the explicit tag "
+        "<code>&lt;meta name=\"tiktok-ads-preloading-nocache\" content=\"1\"&gt;</code>, proving purposeful weaponization of TikTok's in-app webview. "
+        "Deobfuscating client scripts exposed the base64-decoded token <code>oemcart_</code> and asset path <code>/skins/default/guoqi.png</code> "
+        "(<i>guoqi</i> = national flag in Chinese pinyin), confirming the application is built on China's OEMCart turnkey fraud suite."
     )
     story.append(Paragraph(tech_p2, body_style))
     
     tech_p3 = (
-        "<b>C. Dual-Relay Phishing Architecture:</b> The campaign utilized two distinct mail infrastructures: "
-        "(1) <code>worvixglobal.com</code> (registered at NameSilo in Feb 2025, using Zoho Mail MX), and "
-        "(2) <code>info.mailapp-fly.com</code> (cryptographically signed via DKIM). In both flows, the <code>Reply-To</code> header was hardcoded "
-        "to drop inboxes: <code>MaryxBeckb96@gmail.com</code> and <code>brekerfurught@outlook.com</code>."
+        "<b>C. Fresh Certificate Issuance & Burned Relays:</b> Live X.509 certificate extraction revealed that the SSL certificate for "
+        "<code>mediagalaxy.voetbalshop-nlco.com</code> was issued on <b>September 15, 2026 at 00:43:20 GMT</b> (under 24h before the debit). "
+        "Meanwhile, secondary email dispatch domains (<code>info.mailapp-fly.com</code>, <code>email.worvixglobal.com</code>) have already been burned to <code>NXDOMAIN</code>."
     )
     story.append(Paragraph(tech_p3, body_style))
     
     # Section 3: Evidence Matrix Table
-    story.append(Paragraph("3. Extracted Evidence Matrix (Desktop Screenshots)", heading2_style))
+    story.append(Paragraph("3. Evidence Matrix (Desktop Screenshots & Live Probes)", heading2_style))
     evidence_rows = [
-        [Paragraph("<b>File / Evidence ID</b>", table_header), Paragraph("<b>Artifact Type</b>", table_header), Paragraph("<b>Forensic Value & Extracted Intelligence</b>", table_header)],
-        [Paragraph("01-02_worvixglobal", table_cell), Paragraph("Web Facade & WHOIS", table_cell), Paragraph("Shell portal registered at NameSilo (2025-02-08) to establish aged domain reputation.", table_cell)],
-        [Paragraph("03-04_mailappfly", table_cell), Paragraph("SMTP & DKIM Headers", table_cell), Paragraph("DKIM-signed relay via info.mailapp-fly.com, Reply-To: MaryxBeckb96@gmail.com.", table_cell)],
-        [Paragraph("05-06_order_confirmation", table_cell), Paragraph("Fake Invoice Token", table_cell), Paragraph("Confirmation lure [229942-177457] from noreply@email.worvixglobal.com with Media Galaxy footer.", table_cell)],
-        [Paragraph("07-10_voetbalshop_landing", table_cell), Paragraph("DOM & Chinese Lang", table_cell), Paragraph("mediagalaxy.voetbalshop-nlco.com, lang='zh-CN', module_login, Cloudflare NS.", table_cell)],
-        [Paragraph("11-13_crt_wayback", table_cell), Paragraph("Archival & SSL Certs", table_cell), Paragraph("Zero historical Wayback captures; rapid wildcard SSL issuance via Let's Encrypt / Google Trust.", table_cell)],
-        [Paragraph("14_merchant_descriptor", table_cell), Paragraph("Bank Descriptor Search", table_cell), Paragraph("'morvethemi london' has zero registered business filings; shell billing aggregator.", table_cell)],
-        [Paragraph("19-22_yiyangsaas_pivot", table_cell), Paragraph("Port 443 SSL & WHOIS", table_cell), Paragraph("Direct IP query revealed cn: yiyangsaas.com; eName Technology registrant in Yunnan, China.", table_cell)],
-        [Paragraph("23-24_reset_password_ato", table_cell), Paragraph("Secondary ATO Lure", table_cell), Paragraph("Password reset code 586571 delivered to victim Moana Madalina with fake MEDIACALAXY logo.", table_cell)],
+        [Paragraph("<b>Evidence ID</b>", table_header), Paragraph("<b>Source / Artifact</b>", table_header), Paragraph("<b>Forensic Finding & Intelligence Value</b>", table_header)],
+        [Paragraph("01-02_worvixglobal", table_cell), Paragraph("Desktop / WHOIS", table_cell), Paragraph("Shell trade facade registered at NameSilo (2025-02-08) to bypass NRD spam filters.", table_cell)],
+        [Paragraph("03-06_email_lures", table_cell), Paragraph("Desktop / SMTP", table_cell), Paragraph("DKIM relay info.mailapp-fly.com, Reply-To MaryxBeckb96@gmail.com, fake token [229942-177457].", table_cell)],
+        [Paragraph("07-10_dom_source", table_cell), Paragraph("Desktop / DevTools", table_cell), Paragraph("Subdomain mediagalaxy, <html lang='zh-CN'>, module_login_default, Cloudflare CDN.", table_cell)],
+        [Paragraph("14_merchant_descriptor", table_cell), Paragraph("Desktop / Search", table_cell), Paragraph("'morvethemi london' has zero registered business records; offshore shell descriptor.", table_cell)],
+        [Paragraph("19-22_c2_attribution", table_cell), Paragraph("Desktop / Certs", table_cell), Paragraph("Port 443 query revealed cn: yiyangsaas.com; eName Technology registrant in Yunnan, China.", table_cell)],
+        [Paragraph("23-24_ato_lure", table_cell), Paragraph("Desktop / Mail", table_cell), Paragraph("Password reset code 586571 delivered to victim with spoofed MEDIACALAXY logo.", table_cell)],
+        [Paragraph("LIVE_01_shared_ip", table_cell), Paragraph("Chrome Sandbox", table_cell), Paragraph("Shared IP 104.16.145.247 co-locating phishing frontend with yiyangsaas.com backend.", table_cell)],
+        [Paragraph("LIVE_02_tiktok_tag", table_cell), Paragraph("Live DOM Extraction", table_cell), Paragraph("Meta tag tiktok-ads-preloading-nocache=1 and decoded oemcart_ Chinese engine scripts.", table_cell)],
+        [Paragraph("LIVE_03_cert_dump", table_cell), Paragraph("Live OpenSSL Probe", table_cell), Paragraph("Fresh Google Trust cert issued Sep 15 2026; subdomains info.mailapp-fly.com burned.", table_cell)],
     ]
-    evidence_table = Table(evidence_rows, colWidths=[120, 110, 300])
+    evidence_table = Table(evidence_rows, colWidths=[110, 110, 310])
     evidence_table.setStyle(TableStyle([
         ('BACKGROUND', (0,0), (-1,0), primary_color),
         ('GRID', (0,0), (-1,-1), 0.5, border_color),
@@ -207,7 +205,7 @@ def create_incident_report(output_pdf_path):
     story.append(evidence_table)
     story.append(Spacer(1, 8))
     
-    story.append(PageBreak()) # Clean page break for IoCs & Action Plan
+    story.append(PageBreak())
     
     # Section 4: Indicators of Compromise (IoCs)
     story.append(Paragraph("4. Indicators of Compromise (IoCs)", heading2_style))

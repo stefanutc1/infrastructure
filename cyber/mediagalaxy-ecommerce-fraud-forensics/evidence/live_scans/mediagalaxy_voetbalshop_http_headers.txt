@@ -1,0 +1,26 @@
+HTTP/2 200 
+date: Wed, 16 Sep 2026 18:23:54 GMT
+content-type: text/html; charset=utf-8
+server: cloudflare
+vary: Accept-Encoding
+x-trace-id: 3DBEC6BF-35E0-3712-921B-8C5A11FD12A1
+execution-time: 0.0241711140
+trace_id: 3DBEC6BF-35E0-3712-921B-8C5A11FD12A1
+set-cookie: _bbiidb_vid=817FE2D8-69F2-2BEB-D348-0651223610A4; expires=Sat, 13-Sep-2036 18:23:54 GMT; Max-Age=315360000; path=/
+set-cookie: _bbiidb_cvid=2A5EA814-5894-7EC0-F13C-BD5427519F65; expires=Sat, 13-Sep-2036 18:23:54 GMT; Max-Age=315360000; path=/
+set-cookie: _bbiidb_vs=C7CADC22-3E35-4829-C0D7-3F74E6908BD4; expires=Thu, 17-Sep-2026 18:23:54 GMT; Max-Age=86400; path=/
+set-cookie: utm_source=direct; expires=Fri, 16-Oct-2026 18:23:54 GMT; Max-Age=2592000; path=/
+set-cookie: utm_medium=default; expires=Fri, 16-Oct-2026 18:23:54 GMT; Max-Age=2592000; path=/
+set-cookie: utm_term=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/
+set-cookie: utm_campaign=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/
+set-cookie: utm_content=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/
+set-cookie: order_utm_history=%5B%7B%22utm_source%22%3A%22direct%22%2C%22utm_medium%22%3A%22default%22%2C%22utm_term%22%3A%22%22%2C%22utm_campaign%22%3A%22%22%2C%22utm_content%22%3A%22%22%2C%22source_device%22%3A%22computer%22%2C%22create_time%22%3A1789583034%2C%22expire_time%22%3A1792175034%7D%5D; expires=Fri, 16-Oct-2026 18:23:54 GMT; Max-Age=2592000; path=/
+set-cookie: landing_page=aHR0cHM6Ly9tZWRpYWdhbGF4eS52b2V0YmFsc2hvcC1ubGNvLmNvbS8%3D; expires=Thu, 16-Sep-2027 18:23:54 GMT; Max-Age=31536000; path=/
+set-cookie: _bbiidb_ka=11EB43CE-89F1-2BA3-9E64-55A951FFFFDB; expires=Wed, 16-Sep-2026 18:53:54 GMT; Max-Age=1800; path=/
+set-cookie: first_http_referer=null; expires=Fri, 16-Oct-2026 18:23:54 GMT; Max-Age=2592000; path=/
+set-cookie: first_visit_time=1789583034; expires=Sat, 13-Sep-2036 18:23:54 GMT; Max-Age=315360000; path=/
+set-cookie: PHPSESSID=c8c73fde8c32ed46b4d2b9003892d867; path=/
+set-cookie: __cf_bm=6YtTAr0Ac0JycIfKMQG0NAvKcVc3iinvyi0DsOkkwBg-1789583034.5577583-1.0.1.1-RSe16i5QjQrnAnCEiA5ZliLcqPtAI04W8mm.olIv5Gy1JNWzXOdrMop5.7A7FG8yL_sKkoJvm2Nxneq9OvS0kVi2p3T3fGGLvF7hc_olOXOs66i8pJPCRp1SNxyaJaYM; HttpOnly; SameSite=None; Secure; Path=/; Domain=mediagalaxy.voetbalshop-nlco.com; Expires=Wed, 16 Sep 2026 18:53:54 GMT
+cf-cache-status: DYNAMIC
+cf-ray: a3c1e7adffa4645c-OTP
+
