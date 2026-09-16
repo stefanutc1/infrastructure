@@ -501,7 +501,7 @@ export interface ForensicCase {
                 {{ ts.isRomanian ? 'Investigații Criminalistice Reale & Apărare Perimetrală' : 'Real-World Cyber Forensics & Dual-Tier Perimeter Defense' }}
               </h3>
               <p class="text-xs sm:text-sm text-slate-300 max-w-2xl font-sans font-normal leading-relaxed">
-                {{ ts.isRomanian ? '4 dosare complete de investigație criminalistică (reverse engineering C2, deconstrucție API fraudulos, SIP spoofing și atacuri BitM), corelate cu stiva de detecție din Datacenter.' : '4 exhaustive digital forensics investigations (C2 reverse engineering, fraudulent API deconstruction, SIP spoofing, and BitM attacks) correlated directly with the Datacenter detection stack.' }}
+                {{ ts.isRomanian ? '5 dosare complete de investigație criminalistică (reverse engineering C2, deconstrucție API fraudulos, SIP spoofing, atacuri BitM și clonare brand e-commerce cu SaaS chinezesc), corelate cu stiva de detecție din Datacenter.' : '5 exhaustive digital forensics investigations (C2 reverse engineering, fraudulent API deconstruction, SIP spoofing, BitM attacks, and e-commerce brand impersonation with Chinese SaaS infrastructure) correlated directly with the Datacenter detection stack.' }}
               </p>
             </div>
 
@@ -529,7 +529,7 @@ export interface ForensicCase {
                 [class.hover:text-slate-50]="cyberSubSection !== 'cases'"
                 class="px-3 py-1.5 rounded-lg border border-transparent transition-all"
               >
-                {{ ts.isRomanian ? 'Dosare DFIR (4)' : 'DFIR Cases (4)' }}
+                {{ ts.isRomanian ? 'Dosare DFIR (5)' : 'DFIR Cases (5)' }}
               </button>
               <button
                 (click)="cyberSubSection = 'perimeter'"
@@ -570,7 +570,7 @@ export interface ForensicCase {
             </div>
           </div>
 
-          <!-- SUB-SECTION 1: THE 4 DIGITAL FORENSICS INVESTIGATIONS -->
+          <!-- SUB-SECTION 1: THE 5 DIGITAL FORENSICS INVESTIGATIONS -->
           @if (cyberSubSection === 'all' || cyberSubSection === 'cases') {
             <div class="space-y-4">
               <div class="flex items-center justify-between">
@@ -583,10 +583,10 @@ export interface ForensicCase {
                     {{ ts.isRomanian ? 'Selectează un dosar pentru a citi analiza tehnică completă, decompilarea API și regulile de detecție.' : 'Select any investigation to inspect full technical analysis, API decompilation, and detection signatures.' }}
                   </p>
                 </div>
-                <span class="text-xs font-sans text-slate-400">4 {{ ts.isRomanian ? 'Cazuri Finalizate' : 'Completed Cases' }}</span>
+                <span class="text-xs font-sans text-slate-400">5 {{ ts.isRomanian ? 'Cazuri Finalizate' : 'Completed Cases' }}</span>
               </div>
 
-              <!-- 4 Cases Grid -->
+              <!-- 5 Cases Grid -->
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-sans text-xs">
                 @for (c of (ts.isRomanian ? forensicCasesRo : forensicCasesEn); track c.id) {
                   <div
@@ -1795,7 +1795,8 @@ export class ArchitectureBlueprintComponent implements OnInit {
       } else if (hash.startsWith('#case-')) {
         this.activeTab = 'cyber';
         const caseSlug = hash.replace('#case-', '');
-        const found = this.forensicCasesEn.find(c => c.id.includes(caseSlug));
+        const list = this.ts.isRomanian ? this.forensicCasesRo : this.forensicCasesEn;
+        const found = list.find(c => c.id.includes(caseSlug)) || this.forensicCasesEn.find(c => c.id.includes(caseSlug));
         if (found) {
           this.openCase(found);
         }
@@ -1812,6 +1813,37 @@ export class ArchitectureBlueprintComponent implements OnInit {
   }
 
   forensicCasesEn: ForensicCase[] = [
+    {
+      id: 'mediagalaxy-fraud',
+      caseId: 'SEC-2026-ECOM-005',
+      title: 'Forensic Deconstruction: E-Commerce Brand Impersonation & Chinese SaaS Fraud Funnel (Media Galaxy Spoof via TikTok)',
+      badge: 'Social Ad Phishing & Cloudflare C2 Pivot',
+      classification: 'TLP:CLEAR',
+      date: '16 September 2026',
+      author: '@stefanutc1',
+      status: 'Mitigated & Sinkholed',
+      summary: 'Comprehensive digital forensics analysis of an aggressive social engineering campaign executed via sponsored TikTok ads impersonating Romanian electronics retailer Media Galaxy (Altex Group). The threat actors directed victims to a compromised CMS subdomain linked to a Chinese SaaS fraud framework (yiyangsaas.com), executing unauthorized charges on a Revolut virtual card and launching secondary account takeover (ATO) traps.',
+      attackVector: 'Sponsored TikTok video ad -> In-app browser -> Phishing subdomain (mediagalaxy.voetbalshop-nlco.com) -> Cloned checkout portal -> Harvest of full card credentials (PAN/CVV) and PII -> Simulated "System Maintenance" decoy -> Automated false order confirmation [229942-177457] and OTP password reset trap (586571).',
+      reverseFindings: [
+        'DOM inspection revealed explicit <html lang="zh-CN"> markup with CSS classes unique to Chinese turnkey fraud engines (#module_login.module_login_default, window._CEDDE_ET).',
+        'Direct port scan on SSL ports 443/8443 of Cloudflare edge IP (104.16.145.247) unveiled an active certificate with CN: yiyangsaas.com, registered via eName Technology Co. in Yunnan, China.',
+        'Dual relay infrastructure: info.mailapp-fly.com (DKIM-signed) coupled with front domain worvixglobal.com (registered at NameSilo in Feb 2025, MX pointed to Zoho Mail).',
+        'C2 drop mailboxes configured in Reply-To headers: MaryxBeckb96@gmail.com and brekerfurught@outlook.com.'
+      ],
+      financialFlow: 'Unauthorized transaction of ~21 EUR (~105 RON) charged to a Revolut virtual card funded via BCR, under the bogus merchant descriptor "morvethemi london". Virtual card immediately terminated; formal chargeback dispute initiated under Visa/Mastercard Rule 4853 / Condition 13.1.',
+      iocs: [
+        { type: 'Phishing FQDN', value: 'mediagalaxy.voetbalshop-nlco.com' },
+        { type: 'Backend C2 SaaS', value: 'yiyangsaas.com (Yunnan, China)' },
+        { type: 'Email Relay FQDN', value: 'email.worvixglobal.com & info.mailapp-fly.com' },
+        { type: 'Drop Mailboxes', value: 'MaryxBeckb96@gmail.com / brekerfurught@outlook.com' },
+        { type: 'Proxy IPs', value: '104.16.145.247 / 104.21.14.99' },
+        { type: 'Fraud Tokens', value: 'Order [229942-177457] / OTP 586571' }
+      ],
+      datacenterDefense: 'Unbound DNS Sinkhole (0.0.0.0) deployed on OPNsense core gateway (192.168.1.1), custom Suricata IDS rules (sid:1000951-1000956), L3/L4 floating firewall drop rules, and Wazuh SIEM threat correlation.',
+      repoPath: 'cyber/mediagalaxy-ecommerce-fraud-forensics',
+      githubUrl: 'https://github.com/stefanutc1/datacenter/blob/main/cyber/mediagalaxy-ecommerce-fraud-forensics/case_study.md',
+      mitreAttack: ['T1566.002 (Spearphishing Link)', 'T1056.003 (Web Portal Harvesting)', 'T1584.001 (Domain Compromise)', 'T1071.001 (Web Protocols)', 'T1657 (Financial Theft)']
+    },
     {
       id: 'task-scam',
       caseId: 'SEC-2026-TASK-001',
