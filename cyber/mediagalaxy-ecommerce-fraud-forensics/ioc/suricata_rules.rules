@@ -1,0 +1,20 @@
+# ==============================================================================
+# Custom Suricata IDS/IPS Signatures
+# Incident: Social Media Ad Phishing / Brand Impersonation (Media Galaxy)
+# ==============================================================================
+
+# Alert on HTTP request to fraudulent Media Galaxy landing host
+alert http any any -> any any (msg:"SEC-ALERT [Phishing] Fraudulent Media Galaxy Subdomain HTTP Request"; http.host; content:"mediagalaxy.voetbalshop-nlco.com"; startswith; endswith; nocase; classtype:trojan-activity; sid:1000951; rev:1;)
+
+# Alert on TLS SNI to compromised base domain
+alert tls any any -> any any (msg:"SEC-ALERT [Phishing] TLS SNI Connection to Suspicious voetbalshop-nlco.com"; tls.sni; content:"voetbalshop-nlco.com"; nocase; classtype:trojan-activity; sid:1000952; rev:1;)
+
+# Alert on outbound TLS connection to backend Chinese C2 SaaS platform
+alert tls any any -> any any (msg:"SEC-ALERT [C2] TLS Handshake to Known Phishing SaaS Backend yiyangsaas.com"; tls.sni; content:"yiyangsaas.com"; nocase; classtype:trojan-activity; sid:1000953; rev:1;)
+
+# Alert on TLS SNI to WorvixGlobal Shell Infrastructure
+alert tls any any -> any any (msg:"SEC-ALERT [Fraud] TLS SNI Connection to worvixglobal.com E-commerce Shell"; tls.sni; content:"worvixglobal.com"; nocase; classtype:bad-unknown; sid:1000954; rev:1;)
+
+# Alert on SMTP traffic from spoofed sender addresses
+alert smtp any any -> any any (msg:"SEC-ALERT [Mail] Inbound Phishing Delivery from WorvixGlobal Infrastructure"; file.data; content:"noreply@email.worvixglobal.com"; nocase; classtype:trojan-activity; sid:1000955; rev:1;)
+alert smtp any any -> any any (msg:"SEC-ALERT [Mail] Inbound Phishing Delivery from mailapp-fly Relay"; file.data; content:"noreply@info.mailapp-fly.com"; nocase; classtype:trojan-activity; sid:1000956; rev:1;)

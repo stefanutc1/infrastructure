@@ -1,0 +1,16 @@
+# ==============================================================================
+# OPNsense / Unbound DNS / Pi-hole Blocklist
+# Threat: Media Galaxy Social Media Phishing & Fraud Infrastructure (SEC-2026-ECOM-005)
+# Generated: 2026-09-16 | Classification: TLP:CLEAR
+# ==============================================================================
+mediagalaxy.voetbalshop-nlco.com
+voetbalshop-nlco.com
+*.voetbalshop-nlco.com
+yiyangsaas.com
+*.yiyangsaas.com
+worvixglobal.com
+*.worvixglobal.com
+email.worvixglobal.com
+info.mailapp-fly.com
+mailapp-fly.com
+*.mailapp-fly.com

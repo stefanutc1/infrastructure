@@ -1932,6 +1932,37 @@ export class ArchitectureBlueprintComponent implements OnInit {
 
   forensicCasesRo: ForensicCase[] = [
     {
+      id: 'mediagalaxy-fraud',
+      caseId: 'SEC-2026-ECOM-005',
+      title: 'Deconstrucție Forensic: Clonare Retailer E-Commerce & Infrastructură SaaS Chineză (Clonă Media Galaxy pe TikTok)',
+      badge: 'Phishing Reclame Sociale & Pivot C2 Cloudflare',
+      classification: 'TLP:CLEAR',
+      date: '16 Septembrie 2026',
+      author: '@stefanutc1',
+      status: 'Mitigat & Izolat prin Sinkhole',
+      summary: 'Analiză criminalistică completă a unei campanii agresive de inginerie socială derulată prin reclame plătite pe TikTok, ce clona identitatea vizuală a retailerului Media Galaxy (Altex România). Atacatorii au direcționat utilizatorii către un subdomeniu compromis conectat la o platformă de phishing SaaS din China (yiyangsaas.com), tranzacționând fraudulos fonduri de pe un card virtual Revolut și lansând capcane secundare de preluare de cont (ATO).',
+      attackVector: 'Reclamă video sponsorizată TikTok -> Browser in-app -> Subdomeniu de phishing (mediagalaxy.voetbalshop-nlco.com) -> Pagină clonată de checkout -> Furt date card (PAN/CVV) și date personale -> Afișare pagină falsă de "Mentenanță" -> Trimitere automată confirmare falsă de comandă [229942-177457] și tentativă resetare parolă (586571).',
+      reverseFindings: [
+        'Codul sursă DOM declară explicit <html lang="zh-CN"> cu module CSS specifice platformelor de fraudă din China (#module_login.module_login_default, window._CEDDE_ET).',
+        'Scanarea directă pe porturile SSL 443/8443 ale IP-ului Cloudflare (104.16.145.247) a dezvăluit certificatul cu CN: yiyangsaas.com, înregistrat prin eName Technology Co. în Yunnan, China.',
+        'Arhitectură duală de releu e-mail: info.mailapp-fly.com (cu semnătură DKIM validă) și domeniul paravan worvixglobal.com (înregistrat la NameSilo în Feb 2025 cu servere MX Zoho Mail).',
+        'Adrese drop de recepție configurate în antetul Reply-To: MaryxBeckb96@gmail.com și brekerfurught@outlook.com.'
+      ],
+      financialFlow: 'Tranzacție neautorizată de ~21 EUR (~105 RON) pe card virtual Revolut alimentat din cont BCR, sub descrierea de comerciant fictiv "morvethemi london". Cardul a fost șters imediat; procedură de refuz la plată (chargeback) inițiată conform Visa/Mastercard Rule 4853 / Condition 13.1.',
+      iocs: [
+        { type: 'FQDN Phishing', value: 'mediagalaxy.voetbalshop-nlco.com' },
+        { type: 'Backend C2 SaaS', value: 'yiyangsaas.com (Yunnan, China)' },
+        { type: 'Releu E-mail FQDN', value: 'email.worvixglobal.com & info.mailapp-fly.com' },
+        { type: 'Adrese Drop', value: 'MaryxBeckb96@gmail.com / brekerfurught@outlook.com' },
+        { type: 'IP-uri Proxy', value: '104.16.145.247 / 104.21.14.99' },
+        { type: 'Token Fraudă', value: 'Comandă [229942-177457] / Cod OTP 586571' }
+      ],
+      datacenterDefense: 'Sinkhole Unbound DNS (0.0.0.0) pe gateway OPNsense (192.168.1.1), reguli Suricata IDS personalizate (sid:1000951-1000956), reguli plutitoare de respingere firewall L3/L4 și corelare în Wazuh SIEM.',
+      repoPath: 'cyber/mediagalaxy-ecommerce-fraud-forensics',
+      githubUrl: 'https://github.com/stefanutc1/datacenter/blob/main/cyber/mediagalaxy-ecommerce-fraud-forensics/case_study.md',
+      mitreAttack: ['T1566.002 (Link Spearphishing)', 'T1056.003 (Recoltare Credențiale Web)', 'T1584.001 (Compromitere Domeniu)', 'T1071.001 (Protocoale Web)', 'T1657 (Furt Financiar)']
+    },
+    {
       id: 'task-scam',
       caseId: 'SEC-2026-TASK-001',
       title: 'Deconstrucție Forensic: Platformă Frauduloasă de Task Scam & Drenaj USDT TRC-20',

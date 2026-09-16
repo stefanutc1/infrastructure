@@ -1,0 +1,17 @@
+indicator,type,role,risk_level,first_seen,registrar_or_asn,ip_resolution,confidence,mitre_attck_technique,action
+mediagalaxy.voetbalshop-nlco.com,FQDN,Phishing Landing Subdomain (Media Galaxy Spoof),CRITICAL,2026-03-12,Cloudflare Inc. (AS13335),104.16.145.247,HIGH,T1566.002 / T1056.003,Block / Sinkhole via Unbound DNS
+voetbalshop-nlco.com,Domain,Compromised Base Domain / Host Infrastructure,HIGH,2026-03-12,Cloudflare Inc. (AS13335),104.16.145.247,HIGH,T1584.001,Block at Gateway / DNS Sinkhole
+yiyangsaas.com,Domain,Backend C2 & Phishing SaaS Management Platform,CRITICAL,2023-09-12,eName Technology Co. Ltd. (AS13335),104.16.145.247,HIGH,T1071.001 / T1583.003,Block across all outbound egress
+worvixglobal.com,Domain,Attacker Shell Front & Email Domain,CRITICAL,2025-02-08,NameSilo LLC / Cloudflare (AS13335),104.21.14.99,HIGH,T1583.001,Block / DNS Sinkhole
+email.worvixglobal.com,FQDN,Phishing Order Confirmation Sender Subdomain,CRITICAL,2025-02-08,NameSilo LLC / Cloudflare (AS13335),104.21.14.99,HIGH,T1566.001,Block / Quarantine at Mail Gateway
+info.mailapp-fly.com,FQDN,Phishing Password Reset / Code Dispatcher,CRITICAL,2026-01-15,Tencent / Cloudflare,104.21.14.99,HIGH,T1566.002,Block / Quarantine at Mail Gateway
+mailapp-fly.com,Domain,Bulk Phishing Relay Infrastructure,HIGH,2026-01-15,Namecheap / Cloudflare,Unknown,HIGH,T1583.001,Block / Sinkhole
+noreply@email.worvixglobal.com,Email,Phishing Sender (Order Fake Confirmation),CRITICAL,2026-09-16,NameSilo / Zoho Mail MX,N/A,HIGH,T1566.001,Add to Blacklist / Report Abuse
+noreply@info.mailapp-fly.com,Email,Phishing Sender (Credential & OTP Harvest),CRITICAL,2026-09-16,DKIM Signed info.mailapp-fly.com,N/A,HIGH,T1566.002,Add to Blacklist / Report Abuse
+brekerfurught@outlook.com,Email,Attacker Reply-To Drop Address (Campaign 1),HIGH,2026-09-16,Microsoft Corporation,N/A,HIGH,T1589.002,Report to abuse@outlook.com
+MaryxBeckb96@gmail.com,Email,Attacker Reply-To Drop Address (Campaign 2),HIGH,2026-09-16,Google LLC,N/A,HIGH,T1589.002,Report to Google Abuse / Fraud
+104.16.145.247,IPv4,Cloudflare Reverse Proxy (voetbalshop-nlco.com / yiyangsaas.com),MEDIUM,2026-03-12,Cloudflare Inc. (AS13335),104.16.145.247,MEDIUM,T1071.001,Inspect SSL SNI headers / WAF alert
+104.21.14.99,IPv4,Cloudflare Reverse Proxy (worvixglobal.com),MEDIUM,2025-02-08,Cloudflare Inc. (AS13335),104.21.14.99,MEDIUM,T1071.001,Inspect SSL SNI headers / WAF alert
+[229942-177457],String,Fake Purchase Order Tracking Token,HIGH,2026-09-16,N/A,N/A,HIGH,T1566,Correlation token in SIEM / Mails
+586571,String,Lure One-Time Validation Code,HIGH,2026-09-16,N/A,N/A,HIGH,T1539,Evidence tracking
+morvethemi london,Merchant Descriptor,Fraudulent Bank Card Charge Descriptor,CRITICAL,2026-09-16,Payment Gateway Aggregator / Shell Merchant,N/A,HIGH,T1657,Flag for Chargeback Dispute (Visa/MC)
