@@ -16,7 +16,7 @@
 [Live Interactive Web Architecture Viewer](https://stefanutc1.github.io/infrastructure/) • [Architecture Blueprint](ARCHITECTURE.md) • [Cyber Forensics Suite](https://stefanutc1.github.io/infrastructure/#cyber) • [Security Policy](SECURITY.md)
 
 <!-- AUTO-METRICS-START -->
-[![Active Workloads](https://img.shields.io/badge/Workloads-102%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
+[![Active Workloads](https://img.shields.io/badge/Workloads-96%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
 [![CI Pipeline](https://img.shields.io/badge/CI%20Pipeline-Passed%20(100%25)-brightgreen?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/ci.yml)
 [![CD Pipeline](https://img.shields.io/badge/CD%20Pipeline-Active-blue?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/cd.yml)
 [![Last Sync](https://img.shields.io/badge/Last%20Auto--Sync-2026--09--16-informational?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions)
