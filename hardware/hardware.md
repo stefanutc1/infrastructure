@@ -20,8 +20,8 @@ This file describes hardware and host-level virtualization only. Service definit
 
 **Capacity notes:**
 
-* 12 GB of RAM provides expanded headroom on this host, allowing concurrent operation of enterprise VMs (OpenStack, Metasploitable 2, T-Pot Honeypot, Security Onion, REMnux, OPNsense, Bachelor Thesis targets 301-302, and the Active Directory Enterprise Lab 400-410) alongside native Wazuh 4.14 SIEM/XDR and GPU-accelerated ML workloads (Ollama, Faster-Whisper) with active VirtIO ballooning and ZRAM swap compression.
-* The GTX 1050 Ti's 4 GB VRAM is dedicated to Windows Server 2025 Datacenter (VM 400) via PCIe passthrough, providing full GPU acceleration for remote desktop and graphics compute.
+* 12 GB of RAM provides expanded headroom on this host, allowing concurrent operation of enterprise VMs (OpenStack, Metasploitable 2, T-Pot Honeypot, Windows Malware Sandbox, REMnux, OPNsense, Kali Linux VM 300, and the Active Directory Enterprise Lab 400-405) alongside native Wazuh 4.14 SIEM/XDR and GPU-accelerated ML workloads (Ollama, Faster-Whisper) with active VirtIO ballooning and ZRAM swap compression.
+* The GTX 1050 Ti's 4 GB VRAM provides hardware acceleration for local AI inference (Ollama, Faster-Whisper) and compute workloads.
 * 512 GB SSD is the single storage tier — there is currently no separate fast/slow tier, so backup jobs, Frigate's recording retention, and VM/container disk growth all draw from the same pool. Worth tracking usage per-workload if any one of them starts growing unpredictably (Frigate recordings are the most likely culprit).
 
 ### Software & Infrastructure
@@ -38,29 +38,24 @@ This file describes hardware and host-level virtualization only. Service definit
 
 This host currently serves three primary virtualization tiers:
 
-1. **Perimeter Firewall & Core Workloads (VM 200–205)**:
+1. **Perimeter Firewall & Core Cyber Security Lab (VM 200–205)**:
    - **VM 200**: OPNsense perimeter firewall, Zenarmor L7, CrowdSec IPS, and Unbound DNS.
    - **VM 201**: OpenStack 2024.1 Caracal IaaS compute (Nova), SDN (Neutron), and Horizon Web Dashboard.
    - **VM 202**: Metasploitable 2 intentionally vulnerable Linux target for penetration testing and detection calibration.
    - **VM 203**: T-Pot 24.04 multi-honeypot threat intelligence decoy platform (Cowrie, Dionaea, Honeytrap, Elastic, Kibana, Suricata).
-   - **VM 204**: Security Onion 3.2 enterprise SIEM, Zeek, Suricata, Elastic, and Wazuh SOC platform.
+   - **VM 204**: Windows Malware Analysis Sandbox (Windows 10 Enterprise x64 on isolated bridge `vmbr3`).
    - **VM 205**: REMnux v7 Noble malware analysis, memory forensics (Volatility), and Ghidra reverse engineering.
-2. **Bachelor Thesis CyberLab (VM 301–302 & CT 303)**:
-   - **VM 301**: Metasploitable Linux Target for thesis offensive testing and detection engineering.
-   - **VM 302**: Kali Linux Rolling offensive security and red teaming workstation.
-   - **CT 303**: OWASP Juice Shop vulnerable web application container.
-3. **Active Directory Enterprise Lab (VM 400–410)**:
-   - **VM 400**: Windows Server 2025 Datacenter Domain Controller (256 GB NVMe, GTX 1050 Ti PCIe passthrough, OVMF UEFI).
-   - **VM 401**: Windows Server 2022 Datacenter Domain Controller.
-   - **VM 402**: Windows Server 2019 Standard Domain Controller (128 GB NVMe, Q35, OVMF UEFI).
-   - **VM 403**: Windows Server 2016 Standard Domain Controller.
-   - **VM 404**: Windows Server 2012 R2 Standard Domain Controller.
-   - **VM 405**: Windows Server 2008 R2 SP1 Standard Domain Controller.
-   - **VM 406**: Windows 10 Enterprise Domain Member Client.
-   - **VM 407**: Windows 11 Enterprise Modern Client (vTPM 2.0, Credential Guard).
-   - **VM 408**: Windows 7 Ultimate SP1 Domain Member Client.
-   - **VM 409**: Red Hat Enterprise Linux 9.8 Enterprise Domain Workload (SSSD, Realmd, Kerberos Keytab).
-   - **VM 410**: Windows Server 2003 R2 SP2 Enterprise Domain Controller.
+2. **Bachelor Thesis CyberLab (VM 300, VM 202 & CT 117)**:
+   - **VM 300**: Kali Linux Rolling offensive security and red teaming workstation on isolated bridge `vmbr1` (VLAN 30).
+   - **VM 202**: Metasploitable 2 Linux Target for thesis offensive testing and detection engineering.
+   - **CT 117**: OWASP Juice Shop vulnerable web application container.
+3. **Active Directory Enterprise Lab (VM 400–405)**:
+   - **VM 400**: Windows Server 2022 Standard Primary Domain Controller & DNS/DHCP infrastructure.
+   - **VM 401**: Windows Server 2016 Standard Domain Controller & Cross-Forest Trust.
+   - **VM 402**: Windows Server 2012 R2 Standard Legacy Functional Level Domain Controller.
+   - **VM 403**: Windows 10 Enterprise Domain Member Client Workstation (GPO Target).
+   - **VM 404**: Windows 7 Ultimate SP1 Legacy Client Workstation (NTLMv2 / SMBv1 Testing).
+   - **VM 405**: Red Hat Enterprise Linux 9.8 Enterprise Domain Workload (SSSD, Realmd, Kerberos Keytab).
 
 ---
 

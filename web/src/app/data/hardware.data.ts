@@ -67,115 +67,7 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Controller Cloud Privat OpenStack Enterprise (Calcul Nova, Rețele Neutron, Keystone IAM, Panou Horizon)'
       },
       { 
-        vmid: 400, 
-        name: 'ad2025', 
-        os: 'Windows Server 2025 Datacenter', 
-        allocatedMb: 5120, 
-        balloonMinMb: 4096, 
-        purpose: 'Active Directory Enterprise Lab - Windows Server 2025 Primary Domain Controller (PDC) & Forest Root with GTX 1050 Ti PCIe Passthrough (256 GB NVMe)',
-        purposeRo: 'Laborator Enterprise Active Directory - Controller Principal de Domeniu (PDC) și Rădăcină Forest Windows Server 2025 cu Passthrough PCIe GTX 1050 Ti (256 GB NVMe)'
-      },
-      { 
-        vmid: 401, 
-        name: 'ad2022', 
-        os: 'Windows Server 2022 Standard / Datacenter', 
-        allocatedMb: 4096, 
-        balloonMinMb: 2048, 
-        purpose: 'Active Directory Enterprise Lab - Windows Server 2022 Domain Controller & DNS / DHCP Infrastructure',
-        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2022 și Infrastructură DNS / DHCP'
-      },
-      { 
-        vmid: 402, 
-        name: 'ad2019', 
-        os: 'Windows Server 2019 Standard', 
-        allocatedMb: 2048, 
-        balloonMinMb: 2048, 
-        purpose: 'Active Directory Enterprise Lab - Windows Server 2019 Domain Controller & Kerberos Authentication Delegation (128 GB NVMe, Q35 OVMF UEFI)',
-        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2019 și Delegare Autentificare Kerberos (128 GB NVMe, Q35 OVMF UEFI)'
-      },
-      { 
-        vmid: 403, 
-        name: 'ad2016', 
-        os: 'Windows Server 2016 Standard', 
-        allocatedMb: 3072, 
-        balloonMinMb: 2048, 
-        purpose: 'Active Directory Enterprise Lab - Windows Server 2016 Domain Controller & Cross-Forest Trust Testing',
-        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2016 și Testare Cross-Forest Trust'
-      },
-      { 
-        vmid: 404, 
-        name: 'ad2012', 
-        os: 'Windows Server 2012 R2 Standard', 
-        allocatedMb: 1024, 
-        balloonMinMb: 1024, 
-        purpose: 'Active Directory Enterprise Lab - Windows Server 2012 R2 Domain Controller (Legacy Functional Level Compatibility)',
-        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2012 R2 (Compatibilitate Nivel Funcțional Moștenit)'
-      },
-      { 
-        vmid: 405, 
-        name: 'ad2008', 
-        os: 'Windows Server 2008 R2 SP1 Standard', 
-        allocatedMb: 1024, 
-        balloonMinMb: 1024, 
-        purpose: 'Active Directory Enterprise Lab - Windows Server 2008 R2 SP1 Domain Controller (Legacy Forest Testing & Kerberos Migration)',
-        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2008 R2 SP1 (Testare Forest Moștenit și Migrare Kerberos)'
-      },
-      { 
-        vmid: 406, 
-        name: 'adwin10', 
-        os: 'Windows 10 Enterprise / Pro', 
-        allocatedMb: 2560, 
-        balloonMinMb: 2048, 
-        purpose: 'Active Directory Enterprise Lab - Windows 10 Enterprise Domain-Joined Workstation Client & GPO Policy Target',
-        purposeRo: 'Laborator Enterprise Active Directory - Stație Client Windows 10 Enterprise Integrată în Domeniu și Țintă Politici GPO'
-      },
-      { 
-        vmid: 407, 
-        name: 'adwin11', 
-        os: 'Windows 11 Enterprise / Pro', 
-        allocatedMb: 4096, 
-        balloonMinMb: 2048, 
-        purpose: 'Active Directory Enterprise Lab - Windows 11 Enterprise Modern Domain-Joined Client & TPM 2.0 Security Target',
-        purposeRo: 'Laborator Enterprise Active Directory - Stație Modernă Client Windows 11 Enterprise Integrată în Domeniu și Securitate TPM 2.0'
-      },
-      { 
-        vmid: 408, 
-        name: 'adwin7', 
-        os: 'Windows 7 Ultimate SP1', 
-        allocatedMb: 2048, 
-        balloonMinMb: 1024, 
-        purpose: 'Active Directory Enterprise Lab - Windows 7 Ultimate SP1 Legacy Client (NTLMv2 & SMBv1 Testing)',
-        purposeRo: 'Laborator Enterprise Active Directory - Stație Client Windows 7 Ultimate SP1 Moștenită (Testare NTLMv2 & SMBv1)'
-      },
-      { 
-        vmid: 409, 
-        name: 'adrhel', 
-        os: 'RHEL 9.8 Enterprise', 
-        allocatedMb: 1536, 
-        balloonMinMb: 1024, 
-        purpose: 'Active Directory Enterprise Lab - Red Hat Enterprise Linux 9.8 Domain Integration (realmd / SSSD / Kerberos, SELinux Enforcing)',
-        purposeRo: 'Laborator Enterprise Active Directory - Integrare în Domeniu Red Hat Enterprise Linux 9.8 (realmd / SSSD / Kerberos, SELinux Enforcing)'
-      },
-      { 
-        vmid: 500, 
-        name: 'winmlw', 
-        os: 'Windows 10 Enterprise x64', 
-        allocatedMb: 2560, 
-        balloonMinMb: 2048, 
-        purpose: 'Cyber Security Lab - Isolated Windows 10 Sandbox for Dynamic Malware Detonation & Triage',
-        purposeRo: 'Laborator Securitate Cibernetică - Sandbox Izolat Windows 10 pentru Detonare Dinamică și Analiză Malware'
-      },
-      { 
-        vmid: 501, 
-        name: 'remnux', 
-        os: 'REMnux v7 Noble (Ubuntu 24.04)', 
-        allocatedMb: 4096, 
-        balloonMinMb: 2048, 
-        purpose: 'Dedicated Linux Toolkit for Reverse Engineering, Malware Analysis & Digital Forensics (DFIR)',
-        purposeRo: 'Toolkit Linux Dedicat pentru Reverse Engineering, Analiză Malware și Investigare Digitală (DFIR)'
-      },
-      { 
-        vmid: 502, 
+        vmid: 202, 
         name: 'metasploitable2', 
         os: 'Metasploitable 2 (Ubuntu 8.04)', 
         allocatedMb: 512, 
@@ -184,7 +76,7 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Țintă Linux Vulnerabilă Intenționat, Teste de Penetrare & Calibrare IDS/IPS Suricata/Wazuh'
       },
       { 
-        vmid: 503, 
+        vmid: 203, 
         name: 'honeypot', 
         os: 'Debian 12 / T-Pot 24.04 Multi-Honeypot Decoy Platform', 
         allocatedMb: 8192, 
@@ -193,29 +85,102 @@ export const HARDWARE_NODES: HardwareNode[] = [
         purposeRo: 'Platformă Multi-Honeypot Decoy Telekom Security (Cowrie, Dionaea, Elastic, Kibana, Suricata)'
       },
       { 
-        vmid: 504, 
+        vmid: 204, 
+        name: 'windows-malware-analysis', 
+        os: 'Windows 10 Enterprise x64', 
+        allocatedMb: 2560, 
+        balloonMinMb: 2048, 
+        purpose: 'Cyber Security Lab - Isolated Windows 10 Sandbox for Dynamic Malware Detonation & Triage',
+        purposeRo: 'Laborator Securitate Cibernetică - Sandbox Izolat Windows 10 pentru Detonare Dinamică și Analiză Malware'
+      },
+      { 
+        vmid: 205, 
+        name: 'remnux', 
+        os: 'REMnux v7 Noble (Ubuntu 24.04)', 
+        allocatedMb: 4096, 
+        balloonMinMb: 2048, 
+        purpose: 'Dedicated Linux Toolkit for Reverse Engineering, Malware Analysis & Digital Forensics (DFIR)',
+        purposeRo: 'Toolkit Linux Dedicat pentru Reverse Engineering, Analiză Malware și Investigare Digitală (DFIR)'
+      },
+      { 
+        vmid: 300, 
         name: 'kali', 
         os: 'Kali Linux Rolling (Offensive Security)', 
         allocatedMb: 4096, 
         balloonMinMb: 2048, 
         purpose: 'Offensive Security & Red Team Pentest Workstation (Isolated vmbr1 / VLAN 30)',
         purposeRo: 'Stație de Lucru Kali Linux pentru Securitate Ofensivă și Teste de Penetrare (Izolat vmbr1 / VLAN 30)'
+      },
+      { 
+        vmid: 400, 
+        name: 'ad2022', 
+        os: 'Windows Server 2022 Standard / Datacenter', 
+        allocatedMb: 4096, 
+        balloonMinMb: 2048, 
+        purpose: 'Active Directory Enterprise Lab - Windows Server 2022 Primary Domain Controller & DNS / DHCP Infrastructure',
+        purposeRo: 'Laborator Enterprise Active Directory - Controller Principal de Domeniu Windows Server 2022 și Infrastructură DNS / DHCP'
+      },
+      { 
+        vmid: 401, 
+        name: 'ad2016', 
+        os: 'Windows Server 2016 Standard', 
+        allocatedMb: 3072, 
+        balloonMinMb: 2048, 
+        purpose: 'Active Directory Enterprise Lab - Windows Server 2016 Domain Controller & Cross-Forest Trust Testing',
+        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2016 și Testare Cross-Forest Trust'
+      },
+      { 
+        vmid: 402, 
+        name: 'ad2012', 
+        os: 'Windows Server 2012 R2 Standard', 
+        allocatedMb: 1024, 
+        balloonMinMb: 1024, 
+        purpose: 'Active Directory Enterprise Lab - Windows Server 2012 R2 Domain Controller (Legacy Functional Level Compatibility)',
+        purposeRo: 'Laborator Enterprise Active Directory - Controller de Domeniu Windows Server 2012 R2 (Compatibilitate Nivel Funcțional Moștenit)'
+      },
+      { 
+        vmid: 403, 
+        name: 'adwin10', 
+        os: 'Windows 10 Enterprise / Pro', 
+        allocatedMb: 2560, 
+        balloonMinMb: 2048, 
+        purpose: 'Active Directory Enterprise Lab - Windows 10 Enterprise Domain-Joined Workstation Client & GPO Policy Target',
+        purposeRo: 'Laborator Enterprise Active Directory - Stație Client Windows 10 Enterprise Integrată în Domeniu și Țintă Politici GPO'
+      },
+      { 
+        vmid: 404, 
+        name: 'adwin7', 
+        os: 'Windows 7 Ultimate SP1', 
+        allocatedMb: 2048, 
+        balloonMinMb: 1024, 
+        purpose: 'Active Directory Enterprise Lab - Windows 7 Ultimate SP1 Legacy Client (NTLMv2 & SMBv1 Testing)',
+        purposeRo: 'Laborator Enterprise Active Directory - Stație Client Windows 7 Ultimate SP1 Moștenită (Testare NTLMv2 & SMBv1)'
+      },
+      { 
+        vmid: 405, 
+        name: 'adrhel', 
+        os: 'RHEL 9.8 Enterprise', 
+        allocatedMb: 1536, 
+        balloonMinMb: 1024, 
+        purpose: 'Active Directory Enterprise Lab - Red Hat Enterprise Linux 9.8 Domain Integration (realmd / SSSD / Kerberos, SELinux Enforcing)',
+        purposeRo: 'Laborator Enterprise Active Directory - Integrare în Domeniu Red Hat Enterprise Linux 9.8 (realmd / SSSD / Kerberos, SELinux Enforcing)'
       }
     ],
     workloads: [
       'VM 200: OPNsense Core Firewall (1024 MB · Suricata IDS/IPS, CrowdSec Bouncer, GeoIP Drop, DoT Quad9, Telegraf, Monit, GitOps, FRR BGP, Tailscale, NetFlow)',
       'VM 201: OpenStack 2024.1 Caracal (4096 MB / Balloon: 2048 MB · 32 GB NVMe · Enterprise Cloud Controller & Horizon)',
-      'VM 400-409: Active Directory Lab Fleet: ad2025 (VM 400, GTX 1050 Ti Passthrough, 256 GB NVMe), ad2022 (VM 401), ad2019 (VM 402, 128 GB NVMe), ad2016 (VM 403), ad2012 (VM 404), ad2008 (VM 405), adwin7 (VM 408), adwin10 (VM 406), adwin11 (VM 407), adrhel (VM 409) · Multi-Generation Windows & Linux Active Directory Enterprise Lab',
-      'VM 500-504: Cyber Security, Malware Analysis & Threat Emulation Lab: winmlw (VM 500, Sandbox), remnux (VM 501, DFIR), metasploitable2 (VM 502), honeypot (VM 503, T-Pot), kali (VM 504, Pentest)',
+      'VM 202-205: Cyber Security Lab & Threat Emulation: metasploitable2 (VM 202, Vulnerable Target), honeypot (VM 203, T-Pot 24.04 Multi-Honeypot Decoy Platform), windows-malware-analysis (VM 204, Detonation Sandbox), remnux (VM 205, DFIR & Reverse Engineering)',
+      'VM 300: Kali Linux Rolling (4096 MB · Offensive Security & Red Team Pentest Workstation · Isolated vmbr1 / VLAN 30)',
+      'VM 400-405: Active Directory Lab Fleet: ad2022 (VM 400, Primary Domain Controller), ad2016 (VM 401, Domain Controller), ad2012 (VM 402, Legacy Functional Level), adwin10 (VM 403, Enterprise Client Workstation), adwin7 (VM 404, Legacy Client / NTLMv2 Testing), adrhel (VM 405, RHEL 9.8 SSSD/Kerberos Domain Integration)',
       'CT 100-105: Core Infrastructure & Media: Immich AI (CT 100), Nextcloud Hub (CT 101), Home Assistant (CT 102), n8n Workflows (CT 103), Scrutiny SMART (CT 104), Jellyfin Media Server (CT 105)',
       'CT 106-107: Ollama GPU LLM Server (CT 106) & Open-WebUI Assistant (CT 107) (CUDA GTX 1050 Ti Passthrough)',
       'CT 108: Faster-Whisper GPU Speech-to-Text Transcriber (CT 108 · CUDA Accelerated)',
-      'CT 109: Paperless-AI Automated Document Analysis & DeepSeek Vision Tagging (CT 109)',
-      'CT 110: Code-Server Web IDE (VS Code Cloud Workspace · CT 110)',
-      'CT 111: Proxmox Backup Server (PBS Enterprise Deduplication & Verification · CT 111)',
-      'CT 112: Proxmox Datacenter Manager (PDM Multi-Cluster Fleet UI · CT 112)',
-      'CT 113: Woodpecker CI Server & Runner on Alpine Linux backed by k0s Kubernetes Engine (CT 113)',
-      'CT 114-120: Consolidated Utilities & Self-Hosted Microservices (onboot: 0 · IT-Tools (CT 114), Uptime Kuma (CT 115), Vaultwarden (CT 116), Monitoring (CT 117), Authelia (CT 118), Gitea (CT 119), OWASP Juice Shop (CT 120))'
+      'CT 109: Code-Server Web IDE (VS Code Cloud Workspace · CT 109)',
+      'CT 110: Proxmox Backup Server (PBS Enterprise Deduplication & Verification · CT 110)',
+      'CT 111: Proxmox Datacenter Manager (PDM Multi-Cluster Fleet UI · CT 111)',
+      'CT 112: Woodpecker CI Server & Runner on Alpine Linux backed by k0s Kubernetes Engine (CT 112)',
+      'CT 113-117: Consolidated Utilities & Microservices: IT-Tools (CT 113), Uptime Kuma (CT 114), Monitoring Prometheus/Grafana (CT 115), Gitea (CT 116), OWASP Juice Shop (CT 117)',
+      'CT 121: Wazuh SIEM Security Manager, Indexer & Dashboard (CT 121 · Centralized Telemetry & Compliance)'
     ]
   },
   {

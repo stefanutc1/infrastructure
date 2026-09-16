@@ -1672,7 +1672,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Windows 7 Ultimate SP1 (AD Domain Client)",
     "category": "core",
     "containerName": "adwin7",
-    "node": "Node 1 (Intel i3-10100F) · VM 408",
+    "node": "Node 1 (Intel i3-10100F) · VM 404",
     "ram": "2,048 MB",
     "storage": "50 GB NVMe",
     "ip": "192.168.1.207",
@@ -1688,18 +1688,18 @@ export const SERVICES_DATA: ServiceItem[] = [
       "NTLMv2",
       "SMBv1",
       "GPO",
-      "VM 408"
+      "VM 404"
     ],
     "color": "#0078d7",
     "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 408) · Active Directory Lab\n# Machine: i440fx (pc) · BIOS: SeaBIOS · OS: Windows 7 SP1\ncores: 2\nmemory: 2048\nballoon: 1024\nmachine: pc-i440fx-11.0+pve2\nscsi0: local-lvm:vm-408-disk-0,iothread=1,size=50G\nide0: local:iso/virtioVECHI.iso,media=cdrom\nide2: local:iso/windows_7_sp1_x64.iso,media=cdrom\nnet0: virtio,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 404) · Active Directory Lab\n# Machine: i440fx (pc) · BIOS: SeaBIOS · OS: Windows 7 SP1\ncores: 2\nmemory: 2048\nballoon: 1024\nmachine: pc-i440fx-11.0+pve2\nscsi0: local-lvm:vm-404-disk-0,iothread=1,size=50G\nide0: local:iso/virtioVECHI.iso,media=cdrom\nide2: local:iso/windows_7_sp1_x64.iso,media=cdrom\nnet0: virtio,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-adrhel",
     "name": "Red Hat Enterprise Linux 9.8 (AD Domain Member)",
     "category": "core",
     "containerName": "adrhel",
-    "node": "Node 1 (Intel i3-10100F) · VM 409",
+    "node": "Node 1 (Intel i3-10100F) · VM 405",
     "ram": "2,048 MB",
     "storage": "50 GB NVMe",
     "ip": "192.168.1.208",
@@ -1715,11 +1715,11 @@ export const SERVICES_DATA: ServiceItem[] = [
       "realmd",
       "SSSD",
       "SELinux",
-      "VM 409"
+      "VM 405"
     ],
     "color": "#ee0000",
     "icon": "rhel",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 409) · Active Directory Lab\n# Machine: Q35 · BIOS: OVMF UEFI · OS: RHEL 9.8\ncores: 2\nmemory: 2048\nballoon: 1024\nmachine: pc-q35-11.0+pve2\nbios: ovmf\nefidisk0: local-lvm:vm-409-disk-1,efitype=4m,ms-cert=2023k,pre-enrolled-keys=1,size=4M\nscsi0: local-lvm:vm-409-disk-0,iothread=1,size=50G\nnet0: virtio=BC:24:11:90:3B:58,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 405) · Active Directory Lab\n# Machine: Q35 · BIOS: OVMF UEFI · OS: RHEL 9.8\ncores: 2\nmemory: 2048\nballoon: 1024\nmachine: pc-q35-11.0+pve2\nbios: ovmf\nefidisk0: local-lvm:vm-405-disk-1,efitype=4m,ms-cert=2023k,pre-enrolled-keys=1,size=4M\nscsi0: local-lvm:vm-405-disk-0,iothread=1,size=50G\nnet0: virtio=BC:24:11:90:3B:58,bridge=vmbr0,firewall=1"
   },
 
   {
@@ -1893,10 +1893,10 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "Metasploitable Licență (Bachelor Thesis Pentest Target)",
     "category": "cyber",
     "containerName": "metasploitable-licenta",
-    "node": "Node 1 (Intel i3-10100F) · VM 502",
-    "ram": "2,048 MB",
-    "storage": "20 GB NVMe",
-    "ip": "192.168.1.211",
+    "node": "Node 1 (Intel i3-10100F) · VM 202",
+    "ram": "512 MB",
+    "storage": "8 GB NVMe",
+    "ip": "192.168.1.202",
     "port": 22,
     "domain": "metasploitable.homelab.local",
     "status": "STANDBY",
@@ -1909,18 +1909,18 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Penetration Testing",
       "Red Team",
       "Vulnerability Lab",
-      "VM 502"
+      "VM 202"
     ],
     "color": "#dc2626",
     "icon": "shield",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 502) · Bachelor's Thesis Lab\n# OS: Metasploitable Linux Target · Dynamic Ballooning: 1024 MB - 2048 MB\ncores: 2\nmemory: 2048\nballoon: 1024\nscsi0: local-lvm:vm-502-disk-0,discard=on,size=20G,ssd=1\nnet0: virtio=BC:24:11:A4:6B:8E,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 202) · Bachelor's Thesis Lab\n# OS: Metasploitable Linux Target\ncores: 1\nmemory: 512\nscsi0: local-lvm:vm-202-disk-0,discard=on,size=8G,ssd=1\nnet0: virtio=BC:24:11:A4:6B:8E,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-kali-licenta",
     "name": "Kali Linux Rolling (Licență / Bachelor Thesis)",
     "category": "cyber",
     "containerName": "kali-licenta",
-    "node": "Node 1 (Intel i3-10100F) · VM 504",
+    "node": "Node 1 (Intel i3-10100F) · VM 300",
     "ram": "4,096 MB",
     "storage": "30 GB NVMe",
     "ip": "192.168.30.102",
@@ -1936,44 +1936,18 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Offensive Security",
       "Penetration Testing",
       "Red Team",
-      "VM 504"
+      "VM 300"
     ],
     "color": "#0ea5e9",
     "icon": "terminal",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 504) · Bachelor's Thesis Lab\n# OS: Kali Linux Rolling · Dynamic Ballooning: 2048 MB - 4096 MB\ncores: 2\nmemory: 4096\nballoon: 2048\nscsi0: local-lvm:vm-504-disk-0,discard=on,size=30G,ssd=1\nnet0: virtio=BC:24:11:C3:02:11,bridge=vmbr1,firewall=1,tag=30"
-  },
-  {
-    "id": "lxc-owasp-licenta",
-    "name": "OWASP Vulnerable Web Target (Licență / Bachelor Thesis)",
-    "category": "cyber",
-    "containerName": "owasp-licenta",
-    "node": "Node 1 (Intel i3-10100F) · CT 303",
-    "ram": "512 MB",
-    "storage": "8 GB NVMe",
-    "ip": "192.168.30.103",
-    "port": 3000,
-    "domain": "owasp.homelab.local",
-    "status": "STANDBY",
-    "description": "Dedicated Bachelor's Thesis (Lucrare de Licență) intentionally vulnerable web target. Alpine Linux 3.24 unprivileged LXC container with Docker nesting running OWASP Juice Shop in quarantine on isolated bridge vmbr1 / VLAN 30.",
-    "descriptionRo": "Țintă web vulnerabilă intenționat pentru Lucrarea de Licență (Bachelor's Thesis). Container LXC unprivileged Alpine Linux 3.24 cu suport Docker nesting, rulând OWASP Juice Shop în carantină pe bridge-ul izolat vmbr1 / VLAN 30.",
-    "tags": [
-      "Bachelor Thesis",
-      "Lucrare de Licență",
-      "OWASP Juice Shop",
-      "Vulnerable App",
-      "Docker in LXC",
-      "CT 303"
-    ],
-    "color": "#eab308",
-    "icon": "shield",
-    "composeCode": "services:\n  juice-shop:\n    image: bkimminich/juice-shop:v17.1.1\n    container_name: owasp-licenta\n    restart: unless-stopped\n    ports:\n      - '3000:3000'"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 300) · Bachelor's Thesis Lab\n# OS: Kali Linux Rolling · Dynamic Ballooning: 2048 MB - 4096 MB\ncores: 2\nmemory: 4096\nballoon: 2048\nscsi0: local-lvm:vm-300-disk-0,discard=on,size=30G,ssd=1\nnet0: virtio=BC:24:11:C3:02:11,bridge=vmbr1,firewall=1,tag=30"
   },
   {
     "id": "lxc-owasp",
     "name": "OWASP Juice Shop (Security Vulnerability Lab)",
     "category": "cyber",
     "containerName": "owasp",
-    "node": "Node 1 (Intel i3-10100F) · CT 120",
+    "node": "Node 1 (Intel i3-10100F) · CT 117",
     "ram": "512 MB",
     "storage": "8 GB NVMe",
     "ip": "192.168.1.175",
@@ -1987,7 +1961,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Vulnerability Target",
       "OWASP Juice Shop",
       "Docker Nesting",
-      "CT 175"
+      "CT 117"
     ],
     "color": "#ef4444",
     "icon": "shield",
@@ -1995,95 +1969,39 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
 
   {
-    "id": "vm-ad2025",
-    "name": "Windows Server 2025 (Active Directory PDC)",
-    "category": "core",
-    "containerName": "ad2025",
-    "node": "Node 1 (Intel i3-10100F) · VM 400",
-    "ram": "8,192 MB (Balloon: 4,096 MB)",
-    "storage": "256 GB NVMe",
-    "ip": "192.168.1.225",
-    "port": 3389,
-    "domain": "ad2025.homelab.local",
-    "status": "STANDBY",
-    "description": "Multi-generation Active Directory enterprise laboratory forest root. Windows Server 2025 Primary Domain Controller (PDC) provisioned with GTX 1050 Ti PCIe passthrough, 256 GB NVMe, Q35 modern chipset, OVMF UEFI, virtual TPM 2.0, and VirtIO SCSI acceleration.",
-    "descriptionRo": "Rădăcină forest a laboratorului enterprise Active Directory multi-generație. Controller Principal de Domeniu (PDC) Windows Server 2025 configurat cu passthrough PCIe GTX 1050 Ti, 256 GB NVMe, cipset modern Q35, UEFI OVMF, TPM 2.0 virtual și accelerare VirtIO SCSI.",
-    "tags": [
-      "Active Directory",
-      "Windows Server 2025",
-      "Domain Controller",
-      "PDC",
-      "GTX 1050 Ti Passthrough",
-      "Massgrave Genuine",
-      "Q35 / UEFI",
-      "TPM 2.0",
-      "VM 400"
-    ],
-    "color": "#0078d4",
-    "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 400) · Active Directory Lab\n# Machine: Q35 · BIOS: OVMF UEFI · vTPM: 2.0 · GPU: GTX 1050 Ti PCIe Passthrough\ncores: 6\nmemory: 8192\nballoon: 4096\nmachine: pc-q35-11.0+pve2\nbios: ovmf\nhostpci0: mapping=gtx1050ti,pcie=1,x-vga=1\nefidisk0: local-lvm:vm-400-disk-0,efitype=4m,ms-cert=2023k,pre-enrolled-keys=1,size=4M\ntpmstate0: local-lvm:vm-400-disk-2,size=4M,version=v2.0\nide0: local-lvm:vm-400-disk-1,size=256G\nide1: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/en-us_windows_server_2025_updated_aug_2026_x64_dvd_b0833651.iso,media=cdrom\nnet0: virtio=BC:24:11:78:80:C6,bridge=vmbr0,firewall=1"
-  },
-  {
     "id": "vm-ad2022",
-    "name": "Windows Server 2022 (Active Directory DC)",
+    "name": "Windows Server 2022 (Active Directory Primary DC)",
     "category": "core",
     "containerName": "ad2022",
-    "node": "Node 1 (Intel i3-10100F) · VM 401",
-    "ram": "4,096 MB",
+    "node": "Node 1 (Intel i3-10100F) · VM 400",
+    "ram": "4,096 MB (Balloon: 2,048 MB)",
     "storage": "60 GB NVMe",
     "ip": "192.168.1.222",
     "port": 3389,
     "domain": "ad2022.homelab.local",
     "status": "STANDBY",
-    "description": "Multi-generation Active Directory enterprise laboratory domain controller. Windows Server 2022 instance hosting DNS/DHCP infrastructure, enterprise GPO distribution, and replica catalog synchronization.",
-    "descriptionRo": "Controller de domeniu pentru laboratorul enterprise Active Directory multi-generație. Instanță Windows Server 2022 ce găzduiește infrastructura DNS/DHCP, distribuția politicilor GPO și replicarea catalogului global.",
+    "description": "Multi-generation Active Directory enterprise laboratory primary domain controller. Windows Server 2022 instance hosting DNS/DHCP infrastructure, enterprise GPO distribution, and replica catalog synchronization.",
+    "descriptionRo": "Controller principal de domeniu pentru laboratorul enterprise Active Directory multi-generație. Instanță Windows Server 2022 ce găzduiește infrastructura DNS/DHCP, distribuția politicilor GPO și replicarea catalogului global.",
     "tags": [
       "Active Directory",
       "Windows Server 2022",
-      "Domain Controller",
+      "Primary Domain Controller",
       "DNS / DHCP",
       "Massgrave Genuine",
       "Q35",
-      "VM 401"
+      "VM 400"
     ],
     "color": "#0078d4",
     "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 401) · Active Directory Lab\n# Machine: Q35 · OS: Windows Server 2022 Standard/Datacenter\ncores: 2\nmemory: 4096\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-401-disk-0,iothread=1,size=60G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/windows_server_2022_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:0D:80:89,bridge=vmbr0,firewall=1"
-  },
-  {
-    "id": "vm-ad2019",
-    "name": "Windows Server 2019 (Active Directory DC)",
-    "category": "core",
-    "containerName": "ad2019",
-    "node": "Node 1 (Intel i3-10100F) · VM 402",
-    "ram": "2,048 MB",
-    "storage": "128 GB NVMe",
-    "ip": "192.168.1.219",
-    "port": 3389,
-    "domain": "ad2019.homelab.local",
-    "status": "STANDBY",
-    "description": "Multi-generation Active Directory enterprise laboratory domain controller. Windows Server 2019 Standard providing stable domain services, Kerberos authentication delegation, Q35 chipset, OVMF UEFI, and Sysmon security logging (128 GB NVMe).",
-    "descriptionRo": "Controller de domeniu pentru laboratorul enterprise Active Directory multi-generație. Windows Server 2019 Standard furnizând servicii de domeniu, delegare autentificare Kerberos, cipset Q35, UEFI OVMF și audit avansat Sysmon (128 GB NVMe).",
-    "tags": [
-      "Active Directory",
-      "Windows Server 2019",
-      "Domain Controller",
-      "Kerberos",
-      "Q35 / UEFI",
-      "Massgrave Genuine",
-      "VM 402"
-    ],
-    "color": "#0078d4",
-    "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 402) · Active Directory Lab\n# Machine: Q35 · BIOS: OVMF UEFI · OS: Windows Server 2019 Standard\ncores: 2\nmemory: 2048\nmachine: pc-q35-11.0+pve2\nbios: ovmf\nefidisk0: local-lvm:vm-402-disk-0,efitype=4m,ms-cert=2023k,pre-enrolled-keys=1,size=4M\nscsi0: local-lvm:vm-402-disk-1,iothread=1,size=128G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/windows_server_2019_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:EF:BB:E4,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 400) · Active Directory Lab\n# Machine: Q35 · OS: Windows Server 2022 Standard/Datacenter\ncores: 2\nmemory: 4096\nballoon: 2048\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-400-disk-0,iothread=1,size=60G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/windows_server_2022_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:0D:80:89,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-ad2016",
     "name": "Windows Server 2016 (Active Directory DC)",
     "category": "core",
     "containerName": "ad2016",
-    "node": "Node 1 (Intel i3-10100F) · VM 403",
-    "ram": "3,072 MB",
+    "node": "Node 1 (Intel i3-10100F) · VM 401",
+    "ram": "3,072 MB (Balloon: 2,048 MB)",
     "storage": "50 GB NVMe",
     "ip": "192.168.1.216",
     "port": 3389,
@@ -2097,20 +2015,20 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Domain Controller",
       "AD FS",
       "Massgrave Genuine",
-      "VM 403"
+      "VM 401"
     ],
     "color": "#0078d4",
     "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 403) · Active Directory Lab\n# Machine: Q35 · OS: Windows Server 2016 Standard\ncores: 2\nmemory: 3072\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-403-disk-0,iothread=1,size=50G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/en_windows_server_2016_vl_x64_dvd_11636701.iso,media=cdrom\nnet0: virtio=BC:24:11:48:0E:3F,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 401) · Active Directory Lab\n# Machine: Q35 · OS: Windows Server 2016 Standard\ncores: 2\nmemory: 3072\nballoon: 2048\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-401-disk-0,iothread=1,size=50G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/en_windows_server_2016_vl_x64_dvd_11636701.iso,media=cdrom\nnet0: virtio=BC:24:11:48:0E:3F,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-ad2012",
     "name": "Windows Server 2012 R2 (Active Directory DC)",
     "category": "core",
     "containerName": "ad2012",
-    "node": "Node 1 (Intel i3-10100F) · VM 404",
-    "ram": "2,048 MB",
-    "storage": "40 GB NVMe",
+    "node": "Node 1 (Intel i3-10100F) · VM 402",
+    "ram": "1,024 MB",
+    "storage": "50 GB NVMe",
     "ip": "192.168.1.212",
     "port": 3389,
     "domain": "ad2012.homelab.local",
@@ -2123,71 +2041,19 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Domain Controller",
       "Legacy AD",
       "Massgrave Genuine",
-      "VM 404"
+      "VM 402"
     ],
     "color": "#0078d4",
     "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 404) · Active Directory Lab\n# Machine: i440fx · OS: Windows Server 2012 R2 Standard\ncores: 2\nmemory: 2048\nmachine: pc-i440fx-11.0+pve2\nsata0: local-lvm:vm-404-disk-0,size=40G\nide0: local:iso/virtioVECHI.iso,media=cdrom\nide2: local:iso/windows_server_2012_r2_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:ED:93:04,bridge=vmbr0,firewall=1"
-  },
-  {
-    "id": "vm-ad2008",
-    "name": "Windows Server 2008 R2 (Active Directory DC)",
-    "category": "core",
-    "containerName": "ad2008",
-    "node": "Node 1 (Intel i3-10100F) · VM 405",
-    "ram": "2,048 MB",
-    "storage": "40 GB NVMe",
-    "ip": "192.168.1.208",
-    "port": 3389,
-    "domain": "ad2008.homelab.local",
-    "status": "STANDBY",
-    "description": "Multi-generation Active Directory enterprise laboratory legacy DC. Windows Server 2008 R2 SP1 Standard for legacy protocol testing (NTLMv1/v2, SMBv1 deprecation, Kerberos RC4-HMAC migration).",
-    "descriptionRo": "Controller de domeniu legacy pentru laboratorul enterprise Active Directory. Windows Server 2008 R2 SP1 Standard pentru testarea protocoalelor vechi (NTLMv1/v2, renunțarea la SMBv1, migrare de la Kerberos RC4-HMAC).",
-    "tags": [
-      "Active Directory",
-      "Windows Server 2008 R2",
-      "Domain Controller",
-      "Legacy Security",
-      "Massgrave Genuine",
-      "VM 405"
-    ],
-    "color": "#0078d4",
-    "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 405) · Active Directory Lab\n# Machine: i440fx · OS: Windows Server 2008 R2 SP1 Standard\ncores: 2\nmemory: 2048\nmachine: pc-i440fx-11.0+pve2\nscsi0: local-lvm:vm-405-disk-0,iothread=1,size=40G\nide0: local:iso/virtioVECHI.iso,media=cdrom\nide2: local:iso/windows_server_2008_r2_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:AE:F2:EA,bridge=vmbr0,firewall=1"
-  },
-  {
-    "id": "vm-ad2003",
-    "name": "Windows Server 2003 R2 (Active Directory DC)",
-    "category": "core",
-    "containerName": "ad2003",
-    "node": "Node 1 (Intel i3-10100F) · VM 410",
-    "ram": "2,048 MB",
-    "storage": "40 GB NVMe",
-    "ip": "192.168.1.209",
-    "port": 3389,
-    "domain": "ad2003.homelab.local",
-    "status": "STANDBY",
-    "description": "Multi-generation Active Directory enterprise laboratory ultra-legacy DC. Windows Server 2003 R2 SP2 Enterprise Edition for foundational SMBv1, LanMan, and NTLMv1 testing.",
-    "descriptionRo": "Controller de domeniu ultra-legacy pentru laboratorul enterprise Active Directory. Windows Server 2003 R2 SP2 Enterprise Edition pentru testarea protocoalelor fundamentale SMBv1, LanMan și NTLMv1.",
-    "tags": [
-      "Active Directory",
-      "Windows Server 2003 R2",
-      "Domain Controller",
-      "Ultra-Legacy",
-      "Massgrave Genuine",
-      "VM 410"
-    ],
-    "color": "#0078d4",
-    "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 410) · Active Directory Lab\n# Machine: i440fx · OS: Windows Server 2003 R2 SP2 Enterprise\ncores: 2\nmemory: 2048\nmachine: pc-i440fx-11.0+pve2\nscsi0: local-lvm:vm-410-disk-0,iothread=1,size=40G\nide0: local:iso/virtioDINALDOILEARAZBOIMONDIAL.iso,media=cdrom\nide2: local:iso/windows_server_2003_r2_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:F9:7E:68,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 402) · Active Directory Lab\n# Machine: i440fx · OS: Windows Server 2012 R2 Standard\ncores: 2\nmemory: 1024\nmachine: pc-i440fx-11.0+pve2\nscsi0: local-lvm:vm-402-disk-0,size=50G\nide0: local:iso/virtioVECHI.iso,media=cdrom\nide2: local:iso/windows_server_2012_r2_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:ED:93:04,bridge=vmbr0,firewall=1"
   },
   {
     "id": "vm-adwin10",
     "name": "Windows 10 Enterprise (AD Domain Client)",
     "category": "core",
     "containerName": "adwin10",
-    "node": "Node 1 (Intel i3-10100F) · VM 406",
-    "ram": "3,072 MB",
+    "node": "Node 1 (Intel i3-10100F) · VM 403",
+    "ram": "2,560 MB (Balloon: 2,048 MB)",
     "storage": "50 GB NVMe",
     "ip": "192.168.1.217",
     "port": 3389,
@@ -2202,39 +2068,11 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Workstation",
       "GPO Target",
       "Massgrave Genuine",
-      "VM 406"
+      "VM 403"
     ],
     "color": "#0078d4",
     "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 406) · Active Directory Lab\n# Machine: Q35 · OS: Windows 10 Enterprise Edition\ncores: 2\nmemory: 3072\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-406-disk-0,iothread=1,size=50G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/windows_10_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:10:CA:FE,bridge=vmbr0,firewall=1"
-  },
-  {
-    "id": "vm-adwin11",
-    "name": "Windows 11 Enterprise (AD Modern Client)",
-    "category": "core",
-    "containerName": "adwin11",
-    "node": "Node 1 (Intel i3-10100F) · VM 407",
-    "ram": "4,096 MB",
-    "storage": "60 GB NVMe",
-    "ip": "192.168.1.218",
-    "port": 3389,
-    "domain": "adwin11.homelab.local",
-    "status": "STANDBY",
-    "description": "Active Directory enterprise laboratory modern workstation client. Windows 11 Enterprise provisioned with Q35 chipset, OVMF UEFI, virtual TPM 2.0, Credential Guard, and Windows Hello for Business testing.",
-    "descriptionRo": "Stație client workstation modernă pentru laboratorul enterprise Active Directory. Windows 11 Enterprise provizionat cu cipset Q35, UEFI OVMF, TPM 2.0 virtual, protecție Credential Guard și testare Windows Hello for Business.",
-    "tags": [
-      "Active Directory",
-      "Windows 11 Enterprise",
-      "Domain Client",
-      "Modern Workstation",
-      "TPM 2.0",
-      "Credential Guard",
-      "Massgrave Genuine",
-      "VM 407"
-    ],
-    "color": "#0078d4",
-    "icon": "windows",
-    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 407) · Active Directory Lab\n# Machine: Q35 · BIOS: OVMF UEFI · vTPM: 2.0 · OS: Windows 11 Enterprise\ncores: 2\nmemory: 4096\nmachine: pc-q35-11.0+pve2\nbios: ovmf\nefidisk0: local-lvm:vm-407-disk-0,efitype=4m,ms-cert=2023k,pre-enrolled-keys=1,size=4M\ntpmstate0: local-lvm:vm-407-disk-2,size=4M,version=v2.0\nscsi0: local-lvm:vm-407-disk-1,iothread=1,size=60G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/windows_11_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:56:2C:3B,bridge=vmbr0,firewall=1"
+    "composeCode": "# Proxmox VE QEMU/KVM Configuration (VM 403) · Active Directory Lab\n# Machine: Q35 · OS: Windows 10 Enterprise Edition\ncores: 2\nmemory: 2560\nballoon: 2048\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-403-disk-0,iothread=1,size=50G\nide0: local:iso/virtio-win.iso,media=cdrom\nide2: local:iso/windows_10_x64.iso,media=cdrom\nnet0: virtio=BC:24:11:10:CA:FE,bridge=vmbr0,firewall=1"
   },
   {
     "id": "argocd",
@@ -2448,7 +2286,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     "name": "T-Pot Multi-Honeypot Decoy Platform",
     "category": "cyber",
     "containerName": "tpot-platform-vm203",
-    "node": "Node 1 (Intel i3-10100F) · VM 503",
+    "node": "Node 1 (Intel i3-10100F) · VM 203",
     "ram": "8,192 MB (Balloon: 4,096 MB)",
     "storage": "60 GB NVMe Pool",
     "ip": "192.168.1.203",
@@ -2464,47 +2302,45 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Threat Intelligence",
       "Elasticsearch",
       "Kibana",
-      "VM 503"
+      "VM 203"
     ],
     "color": "#3b82f6",
     "icon": "security",
-    "composeCode": "# T-Pot Multi-Honeypot Decoy Engine (VM 503)\n# Web Command Center: https://192.168.1.203:64297\n# Monitored: SSH, Telnet, SMB, RDP, HTTP, SCADA"
+    "composeCode": "# T-Pot Multi-Honeypot Decoy Engine (VM 203)\n# Web Command Center: https://192.168.1.203:64297\n# Monitored: SSH, Telnet, SMB, RDP, HTTP, SCADA"
   },
   {
-    "id": "securityonion",
-    "name": "Security Onion SIEM & SOC Platform",
+    "id": "windows-malware-analysis",
+    "name": "Windows Malware Analysis Sandbox",
     "category": "cyber",
-    "containerName": "securityonion-vm204",
+    "containerName": "windows-malware-analysis-vm204",
     "node": "Node 1 (Intel i3-10100F) · VM 204",
-    "ram": "8,192 MB (Balloon: 4,096 MB)",
+    "ram": "2,560 MB (Balloon: 2,048 MB)",
     "storage": "50 GB NVMe Pool",
     "ip": "192.168.1.204",
-    "port": 443,
-    "domain": "securityonion.homelab.local",
+    "port": 3389,
+    "domain": "winmlw.homelab.local",
     "status": "ONLINE",
-    "description": "Enterprise Security Information & Event Management (SIEM), HIDS, log analysis, Zeek network telemetry, Suricata IDS/IPS, and centralized SOC investigation dashboards.",
-    "descriptionRo": "Platformă Enterprise SIEM & SOC, HIDS, analiză de loguri, telemetrie de rețea Zeek, Suricata IDS/IPS și dashboard-uri centralizate de investigare pentru securitate cibernetică.",
+    "description": "Isolated Windows 10 sandbox for dynamic malware detonation, memory triage, threat emulation, and automated behavioural analysis.",
+    "descriptionRo": "Sandbox izolat Windows 10 pentru detonare dinamică de malware, analiză de memorie, simulare de amenințări și analiză comportamentală.",
     "tags": [
-      "Security Onion",
-      "Wazuh",
-      "SIEM",
-      "SOC",
-      "HIDS",
-      "Zeek",
-      "Suricata",
-      "Kibana",
+      "Malware Analysis",
+      "Sandbox",
+      "Detonation Lab",
+      "Windows 10",
+      "DFIR",
+      "CyberSecurity",
       "VM 204"
     ],
     "color": "#0ea5e9",
-    "icon": "shield",
-    "composeCode": "# Security Onion 3.2 on QEMU KVM (VM 204)\n# vCPU: 4 · RAM: 8192 MB (Balloon: 4096 MB) · Disk: 50 GB · Port: 443"
+    "icon": "windows",
+    "composeCode": "# Windows Malware Analysis Sandbox (VM 204)\n# OS: Windows 10 Enterprise x64 · Isolated Bridge vmbr3\ncores: 2\nmemory: 2560\nmachine: pc-q35-11.0+pve2\nscsi0: local-lvm:vm-204-disk-0,iothread=1,size=50G\nnet0: virtio=BC:24:11:97:72:ED,bridge=vmbr3,firewall=1"
   },
   {
     "id": "remnux",
     "name": "REMnux Malware Analysis & DFIR Toolkit",
     "category": "cyber",
     "containerName": "remnux-vm205",
-    "node": "Node 1 (Intel i3-10100F) · VM 501",
+    "node": "Node 1 (Intel i3-10100F) · VM 205",
     "ram": "4,096 MB (Balloon: 2,048 MB)",
     "storage": "40 GB NVMe Pool",
     "ip": "192.168.1.205",
@@ -2521,10 +2357,10 @@ export const SERVICES_DATA: ServiceItem[] = [
       "Ghidra",
       "Volatility",
       "CyberSecurity",
-      "VM 501"
+      "VM 205"
     ],
     "color": "#f43f5e",
     "icon": "shield",
-    "composeCode": "# REMnux Noble Appliance on QEMU KVM (VM 501)\n# vCPU: 2 · RAM: 4096 MB (Balloon: 2048 MB) · Disk: 40 GB · SSH: :22"
+    "composeCode": "# REMnux Noble Appliance on QEMU KVM (VM 205)\n# vCPU: 2 · RAM: 4096 MB (Balloon: 2048 MB) · Disk: 40 GB · SSH: :22"
   }
 ];
