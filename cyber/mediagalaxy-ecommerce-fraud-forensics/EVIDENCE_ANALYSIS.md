@@ -136,7 +136,7 @@ The campaign operated on a multi-tier infrastructure:
 - **Files:** `evidence/23_fake_password_reset_lure.png`, `evidence/24_fake_verification_code_delivery.png`
 - **Subject:** `Reset Your Password`
 - **Timestamps:** 16 September 2026 at `13:10:45` & `13:12:09`
-- **Target Victim:** `Moana Madalina`
+- **Target Victim:** `[REDACTED]`
 - **Header:** Emblazoned with a spoofed red `MEDIACALAXY` logo.
 - **Verification Code:** `586571`
 - **Forensic Assessment:** Hours after capturing the payment, the automated infrastructure initiated secondary credential harvesting, prompting the victim to input their password or two-factor authentication code under the guise of an account recovery procedure.

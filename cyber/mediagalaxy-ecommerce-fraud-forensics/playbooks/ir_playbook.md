@@ -26,7 +26,7 @@ flowchart TD
    - Exact timestamp of link traversal from TikTok ad.
    - Exact amount charged: `~21 EUR` (or equivalent in RON on Revolut).
    - Funding flow: **BCR (Banca Comercială Română)** account -> **Revolut Virtual Card** -> Merchant transaction.
-   - Information disclosed: Full Name (`Moana Madalina`), Email address, Shipping address, Card Number (PAN), Expiration Date, CVV, and SMS/OTP verification code.
+   - Information disclosed: Full Name (`[REDACTED]`), Email address, Shipping address, Card Number (PAN), Expiration Date, CVV, and SMS/OTP verification code.
 2. **Determine Compromise Scope:**
    - Since the virtual card was single-use/disposable or virtual multi-use, identify whether persistent recurring tokens or subscription pre-authorizations were registered.
 
