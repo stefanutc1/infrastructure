@@ -192,39 +192,39 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
-## 8. Ghid Practic de Securitate: Ce să faceți & Ce să NU faceți (DOs and DON'Ts)
+## 8. Practical Security Guidelines: What to Do & What NOT to Do (DOs and DON'Ts)
 
-Aceste recomandări sunt concepute atât pentru consumatori și victime ale fraudelor de tip phishing e-commerce, cât și pentru analiștii de securitate și familiile acestora.
+These recommendations are designed for consumers and victims of e-commerce phishing schemes, as well as security practitioners, incident responders, and their families.
 
-### 🛡️ CE SĂ FACEȚI (DOs) – Măsuri Imediate de Protecție
+### 🛡️ WHAT TO DO (DOs) – Immediate Protective Actions
 
-| Acțiune Recomandată | Detalii & Procedură Practică |
+| Recommended Action | Detailed Instructions & Practical Procedure |
 | :--- | :--- |
-| **1. Blocați și ștergeți imediat cardul utilizat** | Deschideți instant aplicația bancară (Revolut, George BCR, BT Pay etc.). Dacă ați folosit un card virtual, **ștergeți-l permanent**. Dacă ați folosit un card fizic, **înghețați-l (Freeze)** și solicitați reemiterea pentru a preveni plăți recurente neautorizate. |
-| **2. Inițiați procedura de Chargeback (Contestare plată)** | Sunați imediat la banca emitentă sau mergeți la ghișeu. Cereți expres deschiderea unui dosar de **Refuz de Plată / Chargeback** pe motiv de fraudă informatică și comercială (folosiți scenariul din [`BCR_CHARGEBACK_FRAUD_DISCLOSURE.md`](disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)). Cereți **număr de sesizare**. |
-| **3. Verificați întotdeauna bara de adrese (FQDN)** | Înainte de a introduce orice dată bancară, uitați-vă cu atenție la domeniul din browser. Singurul domeniu legitim este **`mediagalaxy.ro`** sau **`altex.ro`**. Orice combinație cu alte terminații (de exemplu: `mediagalaxy.voetbalshop-nlco.com`, `mediagalaxy-promo.cc`) este o **fraudă 100%**. |
-| **4. Schimbați parolele conturilor asociate** | Dacă ați folosit aceeași parolă pe site-ul fals ca la căsuța de e-mail sau la alte servicii, **schimbați-o de urgență**. Activați autentificarea în doi pași (**2FA**) bazată pe aplicație (Google Authenticator / Bitwarden / YubiKey), nu pe SMS. |
-| **5. Conservați dovezile forensice** | Nu ștergeți e-mailurile primite și nu goliți istoricul browserului. Faceți capturi de ecran ale reclamei, ale tranzacției bancare din aplicație și salvați sursa completă a e-mailurilor (inclusiv header-ele DKIM/SPF) pentru raportarea la poliție. |
-| **6. Raportați incidentul către DNSC și Poliție** | Trimiteți detaliile și indicatorii tehnici către **Directoratul Național de Securitate Cibernetică** ([dnsc.ro](https://dnsc.ro) / `alerte@dnsc.ro`) și depuneți o plângere online sau fizică la Secția de Poliție (Combaterea Criminalității Informatice). |
+| **1. Immediately freeze and terminate the compromised card** | Open your banking application immediately (Revolut, George BCR, BT Pay, etc.). If a virtual card was used, **permanently delete/terminate it**. If a physical card was used, **freeze it immediately** and request a card reissuance to prevent future recurring unauthorized charges. |
+| **2. Initiate an official Chargeback dispute with your bank** | Contact your card-issuing bank or visit a physical branch immediately. Explicitly request the opening of a **Chargeback / Payment Dispute claim** on grounds of commercial and cyber fraud (utilize the structured statement provided in [`BCR_CHARGEBACK_FRAUD_DISCLOSURE.md`](disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)). Always obtain an official **case/incident tracking number**. |
+| **3. Always inspect the address bar and domain (FQDN)** | Before entering any payment or identity credentials, scrutinize the browser's address bar. The only legitimate Romanian domains for this brand are **`mediagalaxy.ro`** and **`altex.ro`**. Any nested subdomain or non-official TLD (e.g., `mediagalaxy.voetbalshop-nlco.com`, `mediagalaxy-promo.cc`) represents a **100% fraudulent phishing operation**. |
+| **4. Rotate compromised credentials & enforce strong 2FA** | If the password entered on the counterfeit site is shared with your email account or other digital services, **change it immediately**. Enforce app-based multi-factor authentication (**MFA/2FA** using Google Authenticator, Bitwarden, or YubiKey); avoid insecure SMS-based verification codes. |
+| **5. Preserve forensic artifacts & evidence** | Do not delete confirmation emails or purge browser cache/history. Capture full-page screenshots of the advertisements, banking transaction records, and export raw RFC 822 email source headers (including SPF, DKIM, and DMARC verification headers) for law enforcement submission. |
+| **6. Report the incident to National CSIRTs and Law Enforcement** | Submit the technical indicators and details to your national cybersecurity agency (e.g., the Romanian National Cyber Security Directorate at [dnsc.ro](https://dnsc.ro) / `alerte@dnsc.ro`) and file a formal cybercrime report with local police authorities (Cybercrime Investigation Division). |
 
 ---
 
-### 🚫 CE SĂ NU FACEȚI (DON'Ts) – Greșeli Critice de Evitat
+### 🚫 WHAT NOT TO DO (DON'Ts) – Critical Mistakes to Avoid
 
-| Greșeală Frecventă | Consecințe & De ce este periculos |
+| Common Critical Mistake | Threat Rationale & Why It Is Hazardous |
 | :--- | :--- |
-| **❌ NU accesați link-uri de „Unsubscribe” din mailuri suspecte** | Link-ul de dezabonare dintr-un e-mail de phishing nu vă dezabonează; dimpotrivă, confirmă atacatorilor că adresa dumneavoastră este **validă și activă**, iar în unele cazuri descarcă fișiere malițioase sau malware de tip info-stealer. |
-| **❌ NU introduceți coduri de verificare (OTP / SMS) primite ulterior** | Dacă primiți SMS-uri sau e-mailuri cu coduri de securitate (cum a fost codul `586571`), **nu le introduceți pe niciun site** și nu le transmiteți nimănui. Atacatorii încearcă să vă preia contul de e-mail sau contul bancar! |
-| **❌ NU răspundeți atacatorilor pe e-mail sau mesagerie** | Nu trimiteți mesaje la adresele indicate în mailurile lor (cum ar fi `brekerfurught@outlook.com` sau `MaryxBeckb96@gmail.com`). Orice interacțiune vă introduce într-o listă de ținte vulnerabile (*suckers list*), expunându-vă la apeluri telefonice false (vishing). |
-| **❌ NU finalizați cumpărături în browserul intern din TikTok / Instagram** | Browserele in-app ascund adesea adresa URL completă și certificatul de securitate. Dacă vedeți o reclamă tentantă, apăsați pe meniul cu trei puncte și alegeți **„Open in Browser” (Deschide în Safari / Chrome)** pentru a inspecta link-ul real. |
-| **❌ NU vă lăsați păcăliți de prețuri absurd de mici** | Niciun comerciant legitim nu vinde detergenți industriali sau produse electrocasnice scumpe la prețul de **4 lei sau 10 lei**. Reducerile de 90-95% sponsorizate pe TikTok și Facebook sunt întotdeauna capcane de colectare a datelor financiare. |
-| **❌ NU folosiți cardul fizic de salariu pentru plăți pe site-uri necunoscute** | Pentru achiziții online pe platforme pe care nu le cunoașteți temeinic, utilizați **exclusiv carduri virtuale de unică folosință** (Single-Use Disposable Cards) cu sold limitat. |
+| **❌ DO NOT click "Unsubscribe" links in suspicious emails** | The unsubscribe link in a phishing email does not remove your address. Instead, it confirms to threat actors that your inbox is **active and responsive**, and may trigger drive-by malware downloads or payload drops (info-stealers). |
+| **❌ DO NOT input secondary verification codes (OTP / SMS)** | If you receive SMS messages or emails containing security codes (such as the observed `586571` OTP), **never enter them on any web form** and do not disclose them to anyone. Attackers often use these out-of-band codes to initiate account takeovers or authorize secondary fraudulent transfers! |
+| **❌ DO NOT reply to threat actor email or drop inboxes** | Never send replies to drop mailboxes or contact addresses listed in scam receipts (such as `brekerfurught@outlook.com` or `MaryxBeckb96@gmail.com`). Any active engagement registers your profile on high-value target lists ("suckers lists") and attracts follow-up social engineering or vishing attacks. |
+| **❌ DO NOT complete checkouts inside social media in-app webviews** | Social media in-app browsers (TikTok, Instagram, Facebook) routinely obscure the full URL string, security padlocks, and SSL/TLS certificate details. Always tap the overflow menu (`...`) and select **"Open in Browser" (Safari / Chrome)** to inspect the genuine domain name. |
+| **❌ DO NOT fall for absurdly discounted prices** | Legitimate e-commerce retailers never sell name-brand household goods or high-value electronics for **4 RON (~$0.85) or 10 RON**. Discounts exceeding 90-95% advertised via sponsored social media feeds are exclusively bait for harvesting financial credentials. |
+| **❌ DO NOT use primary physical debit cards on unverified websites** | For online purchases on unfamiliar platforms, **strictly utilize single-use disposable virtual cards** with strict spending limits rather than exposing primary physical debit or salary accounts. |
 
 ---
 
-### 🇬🇧 Executive Security Takeaways (Summary in English)
+### 📋 Key Incident Response Takeaways
 
-1. **Immediate Containment:** Freeze/terminate the compromised card, dispute the transaction via your bank under official chargeback rules, and preserve raw MBOX headers.
-2. **Zero Trust Browsing:** Never execute transactions within social media in-app webviews; open links externally to inspect the Fully Qualified Domain Name (FQDN).
-3. **No Engagement:** Do not click fake unsubscribe triggers or communicate with drop inboxes (`*@outlook.com`, `*@gmail.com`), as this flags the recipient as an active exploitation candidate.
-4. **Credential Hygiene:** Rotate any shared passwords immediately and enforce hardware/app-based Multi-Factor Authentication (MFA) across primary accounts.
+1. **Immediate Containment:** Freeze/terminate the compromised card, dispute the transaction via your issuing bank under official chargeback protocols, and preserve raw forensic email headers (`.eml`/`.msg`).
+2. **Zero-Trust Browsing:** Never finalize transactions within in-app social media webviews; always break out to external browsers to inspect the Fully Qualified Domain Name (FQDN).
+3. **No Threat Engagement:** Never click fake unsubscribe links or communicate with drop mailboxes (`*@outlook.com`, `*@gmail.com`), as this flags the victim as an active candidate for targeted social engineering.
+4. **Credential Hygiene:** Rotate any compromised or reused passwords immediately and enforce application-based Multi-Factor Authentication (MFA) across all critical accounts.
