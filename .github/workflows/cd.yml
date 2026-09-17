@@ -128,7 +128,7 @@ jobs:
         uses: actions/deploy-pages@v5
 
   sync-readme:
-    name: Sync README
+    name: Sync README Metrics & Currency Conversions
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -141,19 +141,23 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run Sync Script
+      - name: Run Readme Metrics Sync
         run: |
           python3 scripts/sync_readme_metrics.py
 
+      - name: Run Live Currency Conversion Sync
+        run: |
+          python3 scripts/sync_currency_conversions.py
+
       - name: Commit & Push
         run: |
-          if [ -n "$(git status --porcelain README.md)" ]; then
+          if [ -n "$(git status --porcelain)" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "github-actions[bot]"
-            git add README.md
-            git commit -m "docs(readme): update metrics [skip ci]"
+            git add -A
+            git commit -m "chore(sync): auto-update metrics and live currency conversions [skip ci]"
             git push
-            echo "README.md updated."
+            echo "Repository updated with fresh metrics and currency conversions."
           else
-            echo "No changes detected in README.md."
+            echo "No changes detected across repository."
           fi

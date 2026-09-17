@@ -67,6 +67,10 @@ jobs:
         run: |
           npx markdownlint-cli "**/*.md" --ignore node_modules --ignore web/dist || true
 
+      - name: Currency Conversions Check
+        run: |
+          python3 scripts/sync_currency_conversions.py --check || echo "::warning::Currency rates have updated upstream; CD pipeline will synchronize on merge."
+
       - name: Commit Lint
         uses: wagoid/commitlint-github-action@v6
         continue-on-error: true
