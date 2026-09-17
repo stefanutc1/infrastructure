@@ -23,10 +23,17 @@ flowchart TD
 ## 2. Phase 1: Identification & Immediate Triage
 
 1. **Victim Interview & Timeline Reconstruction:**
-   - Exact timestamp of link traversal from TikTok ad.
-   - Exact amount charged: `~21 EUR` (or equivalent in RON on Revolut).
-   - Funding flow: **BCR (Banca Comercială Română)** account -> **Revolut Virtual Card** -> Merchant transaction.
-   - Information disclosed: Full Name (`[REDACTED]`), Email address, Shipping address, Card Number (PAN), Expiration Date, CVV, and SMS/OTP verification code.
+   - `16.09 08:17`: Phishing checkout completed via TikTok sponsored ad on `mediagalaxy.voetbalshop-nlco.com`.
+   - `16.09 20:00`: Compromise identified by analyst/family (~12h detection latency).
+   - `16.09 20:15 - 21:25`: Forensic reverse engineering & technical attribution conducted.
+   - `16.09 21:00 - 21:21`: Abuse takedowns filed to Cloudflare, Google Safe Browsing, and Media Galaxy / Altex legal.
+   - `16.09 21:21`: Formal incident notification dispatched to DNSC (National CSIRT).
+   - `17.09 01:00 - 01:25`: Secondary threat infrastructure and endpoint verification performed.
+   - `17.09 08:22`: Case dossier dispatched to Ciprian Lospa for public awareness.
+   - `17.09 18:00`: Formal phone dispute and chargeback intake with BCR support.
+   - Exact amount charged: `~21 EUR` (descriptor: `morvethemi london`).
+   - Funding flow: **BCR (Banca Comercială Română)** account -> **Revolut Card Rails** -> Merchant transaction.
+   - Information disclosed: Full Name (`[REDACTED]`), Email address, Shipping address, Card Number (PAN), Expiration Date, CVV, and secondary phishing OTP lure (`586571`).
 2. **Determine Compromise Scope:**
    - Since the virtual card was single-use/disposable or virtual multi-use, identify whether persistent recurring tokens or subscription pre-authorizations were registered.
 

@@ -44,7 +44,9 @@ The threat actors impersonated the Romanian retail giant **Media Galaxy** via sp
 
 ---
 
-## 2. Attack Lifecycle & Kill Chain
+## 2. Attack Lifecycle & Incident Response Action Timeline
+
+### 2.1 Technical Attack Kill Chain (Sequence Diagram)
 
 ```mermaid
 sequenceDiagram
@@ -66,6 +68,54 @@ sequenceDiagram
     C2->>Mail: Triggers automated confirmation & ATO lures
     Mail->>Victim: Sends fake order [229942-177457] & reset code 586571
 ```
+
+---
+
+### 2.2 Incident Response Action Lifecycle & Forensic Audit Trail
+
+```mermaid
+flowchart TD
+    subgraph P1["Phase 1: Initial Compromise & Detection"]
+        A["16.09 08:17 - Fraudulent Order Placed<br/>Victim inputs card credentials on spoofed Media Galaxy portal"]
+        B["16.09 20:00 - Incident Discovery<br/>Family notification & initial triage initiated"]
+        A -->|~12h Latency| B
+    end
+
+    subgraph P2["Phase 2: Deep Forensics & Threat Attribution"]
+        C["16.09 20:15 - 21:25 - DFIR & Technical Investigation<br/>DOM inspection, C2 SaaS pivot to yiyangsaas.com, SPF/DKIM header analysis"]
+        B --> C
+    end
+
+    subgraph P3["Phase 3: Immediate Containment & Abuse Filings"]
+        D["16.09 21:00 - 21:21 - Multi-Party Abuse Filings<br/>Cloudflare abuse report, Google Safe Browsing, Media Galaxy brand alert"]
+        E["16.09 21:21 - CSIRT Escalation<br/>Official incident notification filed to Romanian National CSIRT (DNSC)"]
+        C --> D
+        D --> E
+    end
+
+    subgraph P4["Phase 4: Endpoint Auditing & Public Awareness"]
+        F["17.09 01:00 - 01:25 - Secondary Verification<br/>Endpoint re-audit, C2 persistence check & DNS propagation status"]
+        G["17.09 08:22 - Public Awareness Outreach<br/>Investigative case dossier sent to Ciprian Lospa (YouTube)"]
+        E --> F
+        F --> G
+    end
+
+    subgraph P5["Phase 5: Financial Remediation & Bank Dispute"]
+        H["17.09 18:00 - Issuing Bank Call (BCR)<br/>Formal fraud report, card dispute & chargeback claim initiated"]
+        G --> H
+    end
+```
+
+| Timestamp | Incident Lifecycle Phase | Target Entity / Channel | Forensic Action & Milestone |
+| :---: | :--- | :--- | :--- |
+| **16.09 08:17** | **Initial Compromise** | Phishing Subdomain (`voetbalshop-nlco.com`) | Victim interacts with TikTok sponsored lure, completes fake checkout; ~21 EUR charged under descriptor `morvethemi london`. |
+| **16.09 20:00** | **Discovery & Triage** | Family Incident Alert | Unauthorized charge & order confirmation detected; emergency response procedure triggered. |
+| **16.09 20:15 - 21:25** | **Deep DFIR Investigation** | DOM, C2 Infrastructure, Mail Relays | Reverse engineered client-side DOM (`zh-CN` tag), pivoted C2 reverse-proxy to `yiyangsaas.com` (Yunnan, China), extracted raw MBOX/DKIM/SPF headers from `worvixglobal.com`. |
+| **16.09 21:00 - 21:21** | **Infrastructure Abuse Filings** | Cloudflare, Google Safe Browsing, Media Galaxy | Dispatched C2 abuse reports to Cloudflare (`104.16.145.247`), filed Google malicious URL blacklist, notified Altex/Media Galaxy legal & security teams. |
+| **16.09 21:21** | **CSIRT Notification** | Romanian National CSIRT ([DNSC](https://dnsc.ro)) | Dispatched formal CSIRT incident notification with technical IoCs and evidence package to `alerte@dnsc.ro`. |
+| **17.09 01:00 - 01:25** | **Secondary Endpoint Audit** | Threat Infrastructure & Subdomains | Second-wave verification of endpoint responsiveness, C2 persistence, IP redirection, and DNS propagation. |
+| **17.09 08:22** | **Public Awareness Outreach** | Ciprian Lospa (YouTube Cyber Investigator) | Submitted complete investigative pitch and technical forensic dossier for public awareness on scam mechanics. |
+| **17.09 18:00** | **Financial Chargeback Dispute** | BCR (Banca Comercială Română) Support | Contacted bank customer service, reported cyber fraud, and opened formal transaction dispute / chargeback case. |
 
 ---
 
