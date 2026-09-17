@@ -22,7 +22,7 @@ Pentru protejarea utilizatorilor și blocarea infrastructurii atacatorilor, vă 
 - **Infrastructură backend / CDN centralizată:** `yiyangsaas.com` (ascuns în spatele Cloudflare, înregistrat la 12.09.2023).
 
 ### Impact și Mod de Operare:
-Victimele sunt atrase prin prețuri false, introducând datele cardurilor bancare (procesate prin intermediul cardurilor virtuale Revolut/bancare). Pagubele raportate per victimă se ridică la aproximativ 21 de euro, campania vizând colectarea frauduloasă de fonduri și date financiare.
+Victimele sunt atrase prin prețuri false, introducând datele cardurilor bancare (procesate fraudulos prin debitări directe pe carduri de debit/credit bancare). Pagubele raportate per victimă se ridică la aproximativ 21 de euro, campania vizând colectarea frauduloasă de fonduri și date financiare.
 
 Vă transmitem acești indicatori în vederea analizării și emiterii eventualelor avertismente publice specifice pentru protejarea utilizatorilor români în fața acestei rețele de scam.
 
@@ -47,7 +47,7 @@ To facilitate infrastructure takedown and protect internet users, we submit the 
 - **Centralized Backend / CDN Infrastructure:** `yiyangsaas.com` (proxied behind Cloudflare, registered 2023-09-12).
 
 ### Impact and Threat Assessment:
-Victims are lured with counterfeit pricing and enter sensitive debit/credit card credentials (processed against virtual Revolut and conventional bank cards). Direct losses average approximately €21 per victim. The infrastructure is configured for persistent recurring harvesting and account takeover lures.
+Victims are lured with counterfeit pricing and enter sensitive debit/credit card credentials (processed directly against legitimate retail bank debit/credit cards). Direct losses average approximately €21 per victim. The infrastructure is configured for persistent recurring harvesting and account takeover lures.
 
 We submit these findings for ingestion into national threat intelligence feeds and the issuance of public security advisories to safeguard consumers.
 

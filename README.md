@@ -673,12 +673,12 @@ The [`cyber/`](cyber/) directory contains four end-to-end investigative case stu
 
 #### 5. [`mediagalaxy-ecommerce-fraud-forensics/`](cyber/mediagalaxy-ecommerce-fraud-forensics)
 * **Threat Classification**: E-Commerce Brand Spoofing, TikTok Ad In-App Phishing, Chinese SaaS Fraud Infrastructure (`yiyangsaas.com`).
-* **Incident Summary**: In-depth forensic teardown of an e-commerce brand impersonation campaign targeting Romanian consumers via sponsored TikTok ads mimicking national electronics retailer Media Galaxy (Altex România S.A.). Captured card credentials, triggered unauthorized Revolut virtual card charges, and launched secondary account takeover (ATO) lures.
+* **Incident Summary**: In-depth forensic teardown of an e-commerce brand impersonation campaign targeting Romanian consumers via sponsored TikTok ads mimicking national electronics retailer Media Galaxy (Altex România S.A.). Captured card credentials, triggered unauthorized debit charges on a BCR card, and launched secondary account takeover (ATO) lures.
 * **Technical Exploitation & Findings**:
   - **DOM & Chinese Codebase Attribution**: Reverse engineered landing page DOM exposing `<html lang="zh-CN">`, `#module_login.module_login_default`, and `window._CEDDE_ET` execution timers characteristic of turnkey Chinese fraud SaaS platforms.
   - **Direct SSL Probe & C2 Identification**: Probed Cloudflare reverse proxy IP (`104.16.145.247`) on SSL ports 443/8443, leaking Common Name `cn: yiyangsaas.com` registered through eName Technology in Yunnan, China.
   - **Dual-MTA Relay Infrastructure**: Unpacked DKIM-signed dispatching via `info.mailapp-fly.com` and aged domain `worvixglobal.com` (NameSilo / Zoho Mail MX) routing to attacker drop inboxes (`MaryxBeckb96@gmail.com`, `brekerfurught@outlook.com`).
-  - **Financial Flow & Remittance**: Documented payment capture under shell merchant descriptor `morvethemi london` (~21 EUR debit) funded via BCR into a Revolut virtual card.
+  - **Financial Flow & Remittance**: Documented payment capture under shell merchant descriptor `morvethemi london` (~21 EUR debit) debited directly from a BCR debit card.
 * **Repository Deliverables**: Complete evidence analysis with 24 screenshots, MITRE ATT&CK mapping, structured IoC CSV and DNS blocklist, custom Suricata IDS rules, Visa/Mastercard chargeback dispute playbook, and automated ReportLab executive PDF generator.
 
 ---

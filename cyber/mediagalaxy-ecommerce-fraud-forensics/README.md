@@ -14,7 +14,7 @@
 
 This repository contains the complete forensic investigation, evidence analysis, Indicators of Compromise (IoCs), Incident Response (IR) playbooks, and perimeter defense configurations for an e-commerce fraud campaign uncovered in September 2026. 
 
-The threat actors impersonated the Romanian retail giant **Media Galaxy** via sponsored TikTok advertisements, driving traffic to a deceptive sub-domain (`mediagalaxy.voetbalshop-nlco.com`) running a Chinese-engineered phishing SaaS kit (`yiyangsaas.com`). The campaign fraudulently charged ~21 EUR to a Revolut virtual card and subsequently launched secondary account takeover lures.
+The threat actors impersonated the Romanian retail giant **Media Galaxy** via sponsored TikTok advertisements, driving traffic to a deceptive sub-domain (`mediagalaxy.voetbalshop-nlco.com`) running a Chinese-engineered phishing SaaS kit (`yiyangsaas.com`). The campaign fraudulently charged ~21 EUR to a BCR (Banca Comercială Română) debit card and subsequently launched secondary account takeover lures.
 
 ```text
 /incident-analysis-rep/
@@ -55,13 +55,13 @@ sequenceDiagram
     participant TikTok as TikTok Sponsored Ad
     participant Web as Phishing Subdomain (voetbalshop-nlco.com)
     participant C2 as Chinese SaaS Backend (yiyangsaas.com)
-    participant Bank as Revolut / BCR Card Rails
+    participant Bank as BCR Card Rails
     participant Mail as Mail Relays (worvixglobal / mailapp-fly)
 
     Victim->>TikTok: Clicks heavily discounted Media Galaxy tech ad
     TikTok->>Web: Opens in-app browser to mediagalaxy.voetbalshop-nlco.com
     Web->>Victim: Presents cloned Media Galaxy checkout portal
-    Victim->>Web: Inputs PII, address, and Revolut virtual card credentials
+    Victim->>Web: Inputs PII, address, and BCR debit card credentials
     Web->>C2: Exfiltrates credentials via Cloudflare proxy (104.16.145.247)
     C2->>Bank: Charges ~21 EUR under descriptor "morvethemi london"
     Web->>Victim: Displays deceptive "Website is under maintenance" screen
@@ -143,7 +143,7 @@ cat ioc/domains.txt
 ```
 
 ### Reviewing the Chargeback Playbook
-For victims or fraud handlers filing chargeback claims with Revolut or issuing banks, refer to:
+For victims or fraud handlers filing chargeback claims with BCR or issuing banks, refer to:
 [playbooks/ir_playbook.md](playbooks/ir_playbook.md)
 
 ---
@@ -220,7 +220,7 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 | Bank Statement & Merchant Descriptor | Secondary Password Reset / Verification Lure |
 | :---: | :---: |
 | ![Merchant Descriptor](evidence/14_merchant_descriptor_investigation.png) | ![Password Reset Lure](evidence/23_fake_password_reset_lure.png) |
-| *Revolut/BCR statement charge of ~21 EUR under `morvethemi london`* | *Follow-up email attempting secondary account takeover with code `586571`* |
+| *BCR statement charge of ~21 EUR under `morvethemi london`* | *Follow-up email attempting secondary account takeover with code `586571`* |
 
 ---
 
@@ -250,7 +250,7 @@ These recommendations are designed for consumers and victims of e-commerce phish
 
 | Recommended Action | Detailed Instructions & Practical Procedure |
 | :--- | :--- |
-| **1. Immediately freeze and terminate the compromised card** | Open your banking application immediately (Revolut, George BCR, BT Pay, etc.). If a virtual card was used, **permanently delete/terminate it**. If a physical card was used, **freeze it immediately** and request a card reissuance to prevent future recurring unauthorized charges. |
+| **1. Immediately freeze and replace the compromised card** | Open your banking application immediately (George BCR, BT Pay, etc.). **Freeze the compromised card immediately** in the mobile banking app and request an emergency card cancellation and reissuance to prevent future recurring unauthorized charges. |
 | **2. Initiate an official Chargeback dispute with your bank** | Contact your card-issuing bank or visit a physical branch immediately. Explicitly request the opening of a **Chargeback / Payment Dispute claim** on grounds of commercial and cyber fraud (utilize the structured statement provided in [`BCR_CHARGEBACK_FRAUD_DISCLOSURE.md`](disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)). Always obtain an official **case/incident tracking number**. |
 | **3. Always inspect the address bar and domain (FQDN)** | Before entering any payment or identity credentials, scrutinize the browser's address bar. The only legitimate Romanian domains for this brand are **`mediagalaxy.ro`** and **`altex.ro`**. Any nested subdomain or non-official TLD (e.g., `mediagalaxy.voetbalshop-nlco.com`, `mediagalaxy-promo.cc`) represents a **100% fraudulent phishing operation**. |
 | **4. Rotate compromised credentials & enforce strong 2FA** | If the password entered on the counterfeit site is shared with your email account or other digital services, **change it immediately**. Enforce app-based multi-factor authentication (**MFA/2FA** using Google Authenticator, Bitwarden, or YubiKey); avoid insecure SMS-based verification codes. |

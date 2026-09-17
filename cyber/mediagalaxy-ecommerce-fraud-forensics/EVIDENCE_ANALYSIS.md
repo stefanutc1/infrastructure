@@ -2,7 +2,7 @@
 **Case File:** `SEC-2026-ECOM-005`  
 **Target Brand:** Media Galaxy (Altex Romania S.A.)  
 **Threat Category:** Social Engineering / Brand Impersonation / Chinese SaaS Phishing Cluster  
-**Victim Asset Impact:** Revolut Virtual Card (~21 EUR), Personal Identification Information (PII)  
+**Victim Asset Impact:** BCR Debit Card (~21 EUR), Personal Identification Information (PII)  
 **Investigation Date:** 16 September 2026  
 **Classification:** `TLP:CLEAR`  
 **Analyst:** `@stefanutc1`
@@ -16,7 +16,7 @@ On 16 September 2026, an active e-commerce phishing and financial fraud campaign
 The campaign operated on a multi-tier infrastructure:
 1. **Lure & Ingestion:** High-volume sponsored advertisements on TikTok presenting deep discounts on consumer electronics, directing users into the in-app browser to a spoofed subdomain: `https://mediagalaxy.voetbalshop-nlco.com`.
 2. **Landing Page & Credential Harvesting:** A localized clone of the Media Galaxy checkout and login portal. Victims were prompted for contact information, delivery address, and bank payment card credentials.
-3. **Financial Exfiltration:** Payment processing was executed through a merchant descriptor recorded on bank statements as `morvethemi london` (amounting to ~21 EUR / ~105 RON), funded from a **Revolut Virtual Card** which was in turn backed by a **BCR (Banca Comercială Română)** account.
+3. **Financial Exfiltration:** Payment processing was executed through a merchant descriptor recorded on bank statements as `morvethemi london` (amounting to ~21 EUR / ~105 RON), debited directly from a **BCR (Banca Comercială Română)** card.
 4. **Follow-Up Social Engineering & Phishing Lures:** The threat actors deployed automated notifications via SMTP relays using spoofed addresses (`noreply@email.worvixglobal.com`, `noreply@info.mailapp-fly.com`), providing fake purchase order identifiers (`[229942-177457]`) and sending unsolicited password reset validation codes (`586571`) to harvest email account credentials.
 5. **Technical Attribution:** Deep packet inspection, SSL certificate fingerprinting, and DOM inspection revealed that the phishing infrastructure was built upon a compromised foreign domain (`voetbalshop-nlco.com`) fronted by Cloudflare, reverse-proxying into an underlying Chinese-developed e-commerce fraud SaaS backend: **`yiyangsaas.com`** (registered with eName Technology Co. in Yunnan, China).
 
@@ -185,8 +185,8 @@ Active Since: Sept 2023"]
     end
 
     subgraph EXFIL ["Financial & Credential Exfiltration"]
-        LandingCode --> CardCapture["Revolut Virtual Card Harvest
-Funded via BCR Account"]
+        LandingCode --> CardCapture["BCR Debit Card Harvest
+Card-Not-Present Data Theft"]
         CardCapture --> Merchant["Descriptor: 'morvethemi london'
 Charge: ~21 EUR"]
         LandingCode --> MailRelay["Mail Relays

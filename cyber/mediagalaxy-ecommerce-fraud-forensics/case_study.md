@@ -4,8 +4,8 @@
 **Incident Date:** 16 September 2026  
 **Primary Investigators:** `@stefanutc1`  
 **Target Entity:** Media Galaxy (Altex România S.A.)  
-**Financial Loss Impact:** ~21 EUR (~105 RON) via Revolut Virtual Card / BCR (Banca Comercială Română)  
-**Status:** Incident Mitigated, Card Destroyed, Takedown In-Progress  
+**Financial Loss Impact:** ~21 EUR (~105 RON) via BCR (Banca Comercială Română) Debit Card  
+**Status:** Incident Mitigated, Card Blocked, Takedown In-Progress  
 
 ---
 
@@ -31,7 +31,7 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
    - Dispatcher 2: `mediagalaxy-ro <noreply@info.mailapp-fly.com>` (signed by DKIM on `mailapp-fly.com`).
    - Attacker Drop Inboxes: `MaryxBeckb96@gmail.com` and `brekerfurught@outlook.com`.
 5. **Financial Flow:**  
-   - Funding Source: BCR Current Account -> Revolut Virtual Card.
+   - Funding Source: BCR (Banca Comercială Română) Debit Card (Direct).
    - Merchant Descriptor: `morvethemi london` (Unregistered shell billing aggregator).
    - Amount: ~21 EUR.
 
@@ -59,8 +59,8 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
 
 ## 4. Remediation & Incident Response Execution
 
-1. **Virtual Card Elimination:** The victim immediately froze and terminated the compromised Revolut virtual card, issuing a fresh card number to eliminate recurring unauthorized authorizations.
-2. **Chargeback Dispute:** A formal dispute was filed via Revolut under Visa/Mastercard Rule 4853 / Condition 13.1 (Merchant Fraud / Misrepresentation), requesting a complete clawback of the ~21 EUR fee.
+1. **Compromised Card Lockdown:** The victim immediately froze and blocked the compromised card via George BCR, requesting an emergency card cancellation and reissuance to eliminate recurring unauthorized charges.
+2. **Chargeback Dispute:** A formal dispute was initiated with BCR support under Visa/Mastercard Rule 4853 / Condition 13.1 (Merchant Fraud / Misrepresentation), requesting a complete clawback of the ~21 EUR fee.
 3. **Perimeter Hardening on OPNsense (`192.168.1.1`):**
    - Ingested `domains.txt` into Unbound DNS Blocklists.
    - Deployed custom Suricata IDS rules (`sid:1000951-1000956`) on WAN and LAN interfaces.

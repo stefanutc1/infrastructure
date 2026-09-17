@@ -19,7 +19,7 @@ Vă aducem la cunoștință că la nivelul rețelelor sociale (în speță, plat
 - **Backend / infrastructură centralizată:** `yiyangsaas.com` (ascuns în spatele Cloudflare)
 
 ### Impact asupra consumatorilor:
-Utilizatorii care accesează aceste reclame introduc datele cardurilor bancare crezând că achiziționează produse oficiale de la Media Galaxy, suferind pagube financiare (retrageri neautorizate prin carduri Revolut sau bancare).
+Utilizatorii care accesează aceste reclame introduc datele cardurilor bancare crezând că achiziționează produse oficiale de la Media Galaxy, suferind pagube financiare (retrageri neautorizate de pe cardurile bancare).
 
 Vă rugăm să dispuneți verificarea acestei situații de către departamentul juridic sau de securitate informatică și să inițiați demersurile legale necesare pentru blocarea acestor pagube aduse consumatorilor și imaginii brandului dumneavoastră.
 
@@ -43,7 +43,7 @@ We hereby notify you that an active fraud and electronic deception campaign is c
 - **Centralized Backend Infrastructure:** `yiyangsaas.com` (proxied behind Cloudflare)
 
 ### Impact on Consumers:
-Unsuspecting consumers clicking these advertisements input their payment card information believing they are transacting on the official Media Galaxy storefront. This results in direct financial harm via unauthorized debits on their banking and Revolut accounts.
+Unsuspecting consumers clicking these advertisements input their payment card information believing they are transacting on the official Media Galaxy storefront. This results in direct financial harm via unauthorized debits on their personal bank debit and credit cards.
 
 We urge your legal and cybersecurity teams to review this incident promptly and initiate the necessary takedown and legal measures to safeguard your consumers and protect your brand's reputation.
 

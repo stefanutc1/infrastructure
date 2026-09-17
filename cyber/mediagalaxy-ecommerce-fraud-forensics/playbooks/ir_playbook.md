@@ -32,23 +32,23 @@ flowchart TD
    - `17.09 08:22`: Case dossier dispatched to Ciprian Lospa for public awareness.
    - `17.09 18:00`: Formal phone dispute and chargeback intake with BCR support.
    - Exact amount charged: `~21 EUR` (descriptor: `morvethemi london`).
-   - Funding flow: **BCR (Banca Comercială Română)** account -> **Revolut Card Rails** -> Merchant transaction.
+   - Funding flow: **BCR (Banca Comercială Română)** debit card directly -> Merchant transaction.
    - Information disclosed: Full Name (`[REDACTED]`), Email address, Shipping address, Card Number (PAN), Expiration Date, CVV, and secondary phishing OTP lure (`586571`).
 2. **Determine Compromise Scope:**
-   - Since the virtual card was single-use/disposable or virtual multi-use, identify whether persistent recurring tokens or subscription pre-authorizations were registered.
+   - Because physical/digital BCR card credentials (PAN, Expiry, CVV) were harvested by the phishing backend, identify whether persistent recurring tokens or pre-authorizations were registered against the account.
 
 ---
 
 ## 3. Phase 2: Containment & Financial Lockdown
 
-1. **Terminate the Virtual Card on Revolut App:**
-   - Open **Revolut App -> Cards**.
-   - Select the affected card -> Tap **Freeze**.
-   - Immediately tap **Settings -> Terminate Card / Delete**.
-   - Regenerate a new disposable virtual card with a fresh 16-digit PAN.
-2. **Review BCR Funding Source:**
-   - Verify BCR George mobile banking app to ensure no direct unauthorized Open Banking / AISP tokens were authorized.
-   - Confirm the transaction originated strictly from Revolut card payment rails, leaving BCR main credentials intact.
+1. **Freeze and Block the Compromised Card via George BCR:**
+   - Open **George BCR App -> Cards**.
+   - Select the affected debit card -> Tap **Freeze / Block (Blochează card)** immediately.
+   - Request permanent card cancellation and reissuance of a new card with a fresh 16-digit PAN.
+   - Check the George BCR transaction feed for any secondary pending debits or unexpected standing mandates.
+2. **Review Account Security in George BCR:**
+   - Verify that no unauthorized Open Banking tokens, new trusted devices, or e-banking credentials were compromised.
+   - Confirm the exposure was strictly confined to card-not-present (CNP) payment details.
 3. **Change Victim Email Password & Enable Passkeys / Hardware MFA:**
    - Because the attacker sent phishing lures attempting password resets (`Screenshot 2026-09-16 at 20.47.47.png`, code `586571`), revoke all active sessions on the victim's Google/Gmail account.
    - Enable FIDO2 / Passkey or Google Authenticator.
@@ -62,16 +62,18 @@ Under **Visa Dispute Condition 13.1 (Merchandise/Services Not Received)** and **
 - Cardholders are entitled to a full chargeback when merchandise was ordered from a merchant that fails to deliver or represents an impersonated business.
 - Since the merchant descriptor displayed on the statement (`morvethemi london`) does not represent a legitimate retail business and the site disappeared into "maintenance" (`v***L The website is under maintenance`), the transaction qualifies under fraud.
 
-### Revolut Chargeback Filing Procedure
-1. In the **Revolut app**, navigate to **Transactions**.
-2. Tap the unauthorized / fraudulent charge (`~21 EUR` to `morvethemi london` or related entity).
-3. Scroll down and select **Report an issue / Get help**.
-4. Choose **"Fraud or scam"** -> **"I bought something online and it was a scam / I did not receive the item"**.
-5. When prompted for proof, attach:
+### BCR Chargeback & Payment Dispute Filing Procedure
+1. Call **BCR Support** (*2227 / +4021.407.42.00) or visit a local BCR branch.
+2. Formally report an unauthorized commercial transaction resulting from an e-commerce phishing scam.
+3. Cite the exact transaction: `~21 EUR` on 16 September 2026 under merchant descriptor `morvethemi london`.
+4. Submit the formal dispute documentation (using [`disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md`](../disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)).
+5. When submitting proof, attach:
    - Screenshot of the fake confirmation email showing fake order ID `[229942-177457]`.
    - Screenshot of the landing page displaying maintenance (`Screenshot 2026-09-16 at 20.30.18.png`).
-   - Screenshot showing the reply-to address was a personal Gmail account (`MaryxBeckb96@gmail.com`).
-6. Submit the dispute statement:
+   - Screenshot showing the reply-to address was an attacker drop inbox (`brekerfurught@outlook.com` / `MaryxBeckb96@gmail.com`).
+   - Account transaction statement export from George BCR.
+6. Request and record the official claim / case registration number (Număr de înregistrare dosar de refuz la plată).
+7. Submit the dispute statement:
 
 #### Dispute Narrative Template (English):
 ```text

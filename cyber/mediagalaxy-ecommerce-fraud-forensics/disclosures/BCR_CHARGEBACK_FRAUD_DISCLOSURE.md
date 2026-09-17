@@ -28,8 +28,8 @@ Acest document conține declarația și scenariul complet de raportare (la perso
 - **Comerciantul raportat pe tranzacție:** Apare sub un descriptor suspect/neautorizat (de tip *„morvethemi london”*), fără nicio legătură cu entitatea oficială Media Galaxy / Altex România.
 
 #### 3. Arhitectura Plății și Măsurile de Securitate Deja Luate:
-- Fondurile au tranzitat un card asociat ecosistemului Revolut, care este alimentat direct din contul meu principal de la BCR.
-- Vă informez că, pentru a preveni alte pagube sau tranzacții recurente neautorizate, **cardul compromis a fost deja șters și blocat permanent** din aplicație imediat după identificarea incidentului.
+- Tranzacția a fost efectuată direct cu **cardul meu de debit BCR**, emis pe contul curent George.
+- Vă informez că, pentru a preveni alte pagube sau tranzacții recurente neautorizate, **cardul compromis a fost deja blocat** din aplicația George BCR imediat după identificarea incidentului, urmând procedura de reemitere cu date noi.
 
 #### 4. Indicatori Tehnici de Compromis (IoC-uri pentru Dosarul Antifraudă):
 Pentru ca departamentul dumneavoastră antifraudă să poată documenta atacul în rețeaua bancară:
@@ -68,8 +68,8 @@ Pentru ca departamentul dumneavoastră antifraudă să poată documenta atacul �
 - **Billing Descriptor:** Appears under a suspicious shell merchant entry (descriptor *'morvethemi london'*), having zero correlation with the genuine corporate entity of Media Galaxy / Altex Romania.
 
 #### 3. Payment Architecture & Immediate Containment Actions:
-- The payment routed through a card tied to the Revolut ecosystem, which is topped up directly from my primary BCR bank account.
-- Please note that to prevent recurring debits or subsequent account compromise, **the compromised card was immediately deleted and permanently blocked** in the application right after discovering the unauthorized charge.
+- The payment was executed directly using my **primary BCR debit card** linked to my George checking account.
+- Please note that to prevent recurring debits or subsequent account compromise, **the compromised BCR card was immediately frozen/blocked** in the George BCR app right after discovering the unauthorized charge, and is scheduled for emergency reissuance with a new card number.
 
 #### 4. Technical Indicators of Compromise (IoCs for the Antifraud Department):
 To assist your bank's fraud investigations unit and network chargeback routing:

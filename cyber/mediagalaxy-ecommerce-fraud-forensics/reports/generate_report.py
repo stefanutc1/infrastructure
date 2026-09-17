@@ -123,7 +123,7 @@ def create_incident_report(output_pdf_path):
     # Metadata Summary Box
     meta_data = [
         [Paragraph("<b>Incident Type:</b> Social Media Phishing / Brand Impersonation", table_cell), Paragraph("<b>Financial Impact:</b> ~21 EUR (~105 RON)", table_cell)],
-        [Paragraph("<b>Target Lure Platform:</b> TikTok Sponsored In-App Ads", table_cell), Paragraph("<b>Payment Rail:</b> Revolut Virtual Card / BCR Source", table_cell)],
+        [Paragraph("<b>Target Lure Platform:</b> TikTok Sponsored In-App Ads", table_cell), Paragraph("<b>Payment Rail:</b> BCR Debit Card (Direct)", table_cell)],
         [Paragraph("<b>Phishing Landing FQDN:</b> mediagalaxy.voetbalshop-nlco.com", table_cell), Paragraph("<b>Backend C2 SaaS:</b> yiyangsaas.com (Yunnan, CN)", table_cell)],
         [Paragraph("<b>Investigator:</b> @stefanutc1 (Senior Security Engineer)", table_cell), Paragraph("<b>Verification Mode:</b> Airtight Headless Chrome Sandbox", table_cell)],
     ]
@@ -149,7 +149,7 @@ def create_incident_report(output_pdf_path):
     story.append(Paragraph(summary_p1, body_style))
     
     summary_p2 = (
-        "A debit of approximately <b>21 EUR</b> was executed against the victim's Revolut virtual card (funded through BCR - Banca Comercială Română) "
+        "A debit of approximately <b>21 EUR</b> was executed directly against the victim's BCR (Banca Comercială Română) debit card "
         "under the shell merchant descriptor <b>'morvethemi london'</b>. Immediately following payment authorization, the storefront switched to a deceptive "
         "maintenance screen (<code>'The website is under maintenance'</code>). Simultaneously, automated mail relays dispatched confirmation tokens "
         "(<code>[229942-177457]</code>) and password reset verification codes (<code>586571</code>) from spoofed domains (<code>email.worvixglobal.com</code>, "
@@ -237,15 +237,15 @@ def create_incident_report(output_pdf_path):
     # Section 5: Incident Response & Chargeback Action Plan
     story.append(Paragraph("5. Incident Response & Chargeback Playbook", heading2_style))
     ir_p1 = (
-        "<b>Phase 1: Card Termination & Session Invalidation:</b> The compromised Revolut virtual card was immediately frozen and permanently "
-        "deleted through the Revolut application, preventing subsequent recurring billing attempts. All active Google/Gmail sessions for the victim "
-        "were revoked, and FIDO2/Passkey authentication was enforced."
+        "<b>Phase 1: Card Lockdown & Session Invalidation:</b> The compromised debit card was immediately frozen and blocked through the "
+        "George BCR banking application, followed by emergency cancellation and reissuance, preventing subsequent recurring billing attempts. "
+        "All active Google/Gmail sessions for the victim were revoked, and FIDO2/Passkey authentication was enforced."
     )
     story.append(Paragraph(ir_p1, body_style))
     
     ir_p2 = (
         "<b>Phase 2: Bank Dispute Filing (Visa/Mastercard Chargeback):</b> A formal claim under <b>Visa Dispute Condition 13.1 / Mastercard Reason Code 4853 "
-        "(Merchandise Not Received / Fraudulent Merchant)</b> was submitted via Revolut in-app support. Documentation including the deceptive order token "
+        "(Merchandise Not Received / Fraudulent Merchant)</b> was initiated through BCR customer support. Documentation including the deceptive order token "
         "<code>[229942-177457]</code>, offline maintenance status, and personal Gmail reply-to headers were attached to secure a full refund of the ~21 EUR transaction."
     )
     story.append(Paragraph(ir_p2, body_style))
