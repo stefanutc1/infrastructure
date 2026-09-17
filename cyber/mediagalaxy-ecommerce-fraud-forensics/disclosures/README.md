@@ -8,6 +8,7 @@ This directory consolidates all formal disclosure notices, regulatory incident f
 
 | File | Recipient | Scope / Objective | Languages |
 | :--- | :--- | :--- | :--- |
+| **[`BCR_CHARGEBACK_FRAUD_DISCLOSURE.md`](./BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)** | Banca Comercială Română (BCR) Cards & Fraud Support | First-person statement script to open a chargeback dispute & claim registration number. | 🇷🇴 RO / 🇬🇧 EN |
 | **[`MEDIA_GALAXY_DISCLOSURE.md`](./MEDIA_GALAXY_DISCLOSURE.md)** | Media Galaxy / Altex Legal & SecOps | Direct brand abuse alert, trademark violation, consumer harm warning. | 🇷🇴 RO / 🇬🇧 EN |
 | **[`DNSC_INCIDENT_NOTIFICATION.md`](./DNSC_INCIDENT_NOTIFICATION.md)** | Romanian National Cyber Security Directorate (DNSC) | Formal CSIRT incident report for threat intel ingestion & public advisory. | 🇷🇴 RO / 🇬🇧 EN |
 | **[`CIPRIAN_LOSPA_PROPOSAL.md`](./CIPRIAN_LOSPA_PROPOSAL.md)** | Ciprian Lospa (YouTube Cybercrime Investigator) | Public awareness outreach & investigative video proposal with technical case study. | 🇷🇴 RO / 🇬🇧 EN |
