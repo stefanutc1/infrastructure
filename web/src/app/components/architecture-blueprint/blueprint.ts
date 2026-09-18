@@ -418,7 +418,7 @@ export interface ForensicCase {
               </div>
               <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-750 space-y-1">
                 <span class="text-slate-300 font-bold">{{ ts.isRomanian ? 'Pasul 3: VM-uri Core' : 'Step 3: Core VMs' }}</span>
-                <p class="text-slate-300 text-[11px] font-sans">{{ ts.isRomanian ? 'Oprire Controlată Windows Server 2025 Datacenter & OPNsense' : 'Gracefully stop Windows Server 2025 Datacenter & OPNsense' }}</p>
+                <p class="text-slate-300 text-[11px] font-sans">{{ ts.isRomanian ? 'Oprire Controlată Windows Server 2022 (ad2022) & OPNsense' : 'Gracefully stop Windows Server 2022 (ad2022) & OPNsense' }}</p>
               </div>
               <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-750 space-y-1">
                 <span class="text-slate-300 font-bold">{{ ts.isRomanian ? 'Pasul 4: Oprire Gazdă' : 'Step 4: Host Poweroff' }}</span>
@@ -665,7 +665,7 @@ export interface ForensicCase {
                     <span>{{ ts.isRomanian ? '2. Evaluare Vulnerabilități Critice Windows & Impact Homelab (CVE 2026)' : '2. Critical Windows CVE Assessments & Homelab Threat Impact (2026)' }}</span>
                   </h4>
                   <p class="text-xs sm:text-sm text-slate-400 font-sans font-normal leading-relaxed">
-                    {{ ts.isRomanian ? 'Analiză tehnică aprofundată a celor 5 vulnerabilități critice Windows (Hyper-V Escape, DNS Server RCE, DHCP Server RCE), corelate cu Domain Controllerele noastre (ad2025_vm, ad2022_vm) și hypervisorul fizic.' : 'In-depth technical analysis of 5 critical Windows CVEs (Hyper-V Escape, DNS Server RCE, DHCP Server RCE) mapped directly to our Domain Controllers (ad2025_vm, ad2022_vm) and physical hypervisor host.' }}
+                    {{ ts.isRomanian ? 'Analiză tehnică aprofundată a celor 5 vulnerabilități critice Windows (Hyper-V Escape, DNS Server RCE, DHCP Server RCE), corelate cu Domain Controllerele noastre (ad2022, ad2016) și hypervisorul fizic.' : 'In-depth technical analysis of 5 critical Windows CVEs (Hyper-V Escape, DNS Server RCE, DHCP Server RCE) mapped directly to our Domain Controllers (ad2022, ad2016) and physical hypervisor host.' }}
                   </p>
                 </div>
                 <span class="text-xs font-sans text-rose-400 font-semibold px-2.5 py-1 rounded-lg bg-rose-500/10 border border-rose-500/20">
@@ -2179,7 +2179,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       name: 'IoT & Physical Edge Devices',
       subnet: '192.168.50.0/24',
       gateway: '192.168.1.134',
-      nodes: 'ESP32 mmWave Radar, ESP32 Irrigation Relays, Zigbee Gateway',
+      nodes: 'Smart Home Sensors, IoT Relays, Zigbee Gateway',
       firewallPolicy: 'MQTT communication strictly restricted to Home Assistant (CT 100)'
     }
   ];
@@ -2222,7 +2222,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       name: 'IoT & Dispozitive Fizice Edge',
       subnet: '192.168.50.0/24',
       gateway: '192.168.1.134',
-      nodes: 'Radar mmWave ESP32, Relee Irigații ESP32, Gateway Zigbee',
+      nodes: 'Senzori Smart Home, Relee IoT, Gateway Zigbee',
       firewallPolicy: 'Comunicație MQTT restricționată strict la Home Assistant (CT 100)'
     }
   ];

@@ -1,8 +1,0 @@
-# Red Hat Enterprise Linux 9.4 (VM 202)
-# Enterprise Workload: SELinux Enforcing, Podman Container Pods, Systemd Automation
-services:
-  enterprise-app:
-    image: registry.access.redhat.com/ubi9/ubi:latest
-    container_name: rhel-workload
-    restart: always
-    command: sleep infinity

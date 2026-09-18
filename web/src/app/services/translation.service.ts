@@ -133,11 +133,11 @@ const EN_TRANSLATIONS: Translations = {
   
   metricVirtTitle: 'VIRTUALIZATION',
   metricVirtCount: '1 Hypervisor',
-  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Parrot Security OS (VM 300), and 7 active production LXC containers (100–106).',
+  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Parrot (VM 300), Active Directory lab (VMs 400–405), and 7 production LXCs (100–106).',
   
   metricServicesTitle: 'ACTIVE SERVICES',
-  metricServicesCount: '12 Core Services',
-  metricServicesDesc: 'Production microservices, SIEM telemetry, local GPU AI, and network infrastructure.',
+  metricServicesCount: '22 Workloads',
+  metricServicesDesc: 'Production microservices, Active Directory forest, SIEM telemetry, local GPU AI, and network infrastructure.',
   
   metricCyberTitle: 'SECURITY & DFIR',
   metricCyberCount: 'SOC · Wazuh SIEM',

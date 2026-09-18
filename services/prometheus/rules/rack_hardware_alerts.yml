@@ -28,5 +28,5 @@ groups:
           severity: warning
           category: hardware
         annotations:
-          summary: "Frequent ESP32 I2C Bus Recoveries Detected"
-          description: "The ESP32 I2C hardware bus recovery triggered multiple times in the last 5 minutes."
+          summary: "Frequent Hardware I2C Bus Recoveries Detected"
+          description: "The hardware I2C bus recovery triggered multiple times in the last 5 minutes."

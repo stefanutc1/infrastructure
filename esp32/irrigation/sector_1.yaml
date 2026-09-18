@@ -1,5 +1,0 @@
-zone:
-  - id: "sector_1"
-    pin_gpio: 17
-    tip_releu: "active_low"
-    prag_umiditate: 35

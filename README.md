@@ -7,7 +7,7 @@
 [![License: AGPL-3.0](https://img.shields.io/badge/License-GNU%20AGPLv3-blue.svg)](LICENSE)
 
 <!-- AUTO-METRICS-START -->
-[![Active Workloads](https://img.shields.io/badge/Workloads-12%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
+[![Active Workloads](https://img.shields.io/badge/Workloads-22%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
 [![CI Pipeline](https://img.shields.io/badge/CI%20Pipeline-Passed%20(100%25)-brightgreen?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/ci.yml)
 [![CD Pipeline](https://img.shields.io/badge/CD%20Pipeline-Active-blue?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/cd.yml)
 [![Last Sync](https://img.shields.io/badge/Last%20Auto--Sync-2026--09--18-informational?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions)
@@ -20,7 +20,7 @@
 Personal homelab infrastructure repository. It contains Terraform configurations, Ansible playbooks, network setup notes, and security investigation writeups.
 
 The setup consists of:
-- **Node 1 (Proxmox VE)**: Primary hypervisor hosting LXC containers and security virtual machines.
+- **Node 1 (Proxmox VE)**: Primary hypervisor hosting LXC containers, security virtual machines, and the Active Directory lab.
 - **Node 2 (OpenMediaVault)**: NAS for storage and backups on an older ASUS laptop.
 - **Node 4 (k3s worker)**: Dedicated worker for lightweight container experiments.
 - **OPNsense**: Perimeter router and firewall with Unbound DNS sinkholing.
@@ -33,7 +33,7 @@ flowchart TB
         direction TB
         subgraph LXC["LXC Containers (100–106)"]
             HA["100: Home Assistant (192.168.1.10)"]
-            SCR["101: Scrutiny (192.168.1.108)"]
+            SCR["101: Scrutiny (192.168.1.18)"]
             OLL["102: Ollama GPU AI (192.168.1.110)"]
             UK["103: Uptime Kuma (192.168.1.119)"]
             MON["104: Monitoring Stack (192.168.1.121)"]
@@ -41,8 +41,28 @@ flowchart TB
             WAZ["106: Wazuh SIEM (192.168.1.240)"]
         end
 
-        subgraph VMS["Virtual Machines"]
+        subgraph VMS["Core & Security VMs"]
+            OPNVM["VM 200: OPNsense (192.168.1.134)"]
+            OSTACK["VM 201: OpenStack Dev"]
             PARROT["VM 300: Parrot Security OS (192.168.1.30)"]
+            MS2["VM 301: Metasploitable 2"]
+            MALW["VM 303: Windows Malware Sandbox"]
+            REMNUX["VM 304: REMnux Analysis"]
+        end
+
+        subgraph ADLAB["Active Directory Lab (VMs 400–405)"]
+            AD22["VM 400: ad2022 (PDC / FSMO / DNS)"]
+            AD16["VM 401: ad2016 (SDC / Replica / GC)"]
+            AD12["VM 402: ad2012 (CDC / Enterprise CA)"]
+            WIN10["VM 403: adwin10 (Domain Workstation / GPO)"]
+            WIN7["VM 404: adwin7 (Legacy SMBv1 Client)"]
+            RHEL["VM 405: adrhel (RHEL 9 SSSD / Kerberos Realm)"]
+
+            AD22 <-->|AD DS Replication| AD16
+            AD22 -->|Child Trust| AD12
+            AD22 -->|GPO & Kerberos| WIN10
+            AD22 -->|Legacy Auth| WIN7
+            AD22 -->|SSSD / krb5| RHEL
         end
     end
 
@@ -65,7 +85,7 @@ flowchart TB
 
 | Node | Machine / Chassis | CPU | GPU | RAM | Storage | Role |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`pve` (Node 1)** | Desktop Tower | Intel Core i3-10100F (4C/8T @ 4.30 GHz) | NVIDIA GeForce GTX 1050 Ti (4GB) | 12 GB DDR4 | 512 GB NVMe SSD | Hypervisor: LXC 100–106, VM 300 |
+| **`pve` (Node 1)** | Desktop Tower | Intel Core i3-10100F (4C/8T @ 4.30 GHz) | NVIDIA GeForce GTX 1050 Ti (4GB) | 12 GB DDR4 | 512 GB NVMe SSD | Hypervisor: LXCs (100–106), VMs (200, 201, 300, 301, 303, 304, 400–405) |
 | **`omv` (Node 2)** | ASUS X451MA | Intel Celeron N2830 (2C/2T @ 2.41 GHz) | Intel HD Graphics | 2 GB DDR3 | 500 GB HDD | OpenMediaVault NAS (SMB / NFS shares) |
 | **`k8s-node-04` (Node 4)** | Desktop ATX | AMD Athlon II X2 220 (2C/2T @ 2.80 GHz) | NVIDIA GeForce GTS 250 (1GB) | 4 GB DDR3 | 80 GB HDD | k3s agent worker node |
 
@@ -76,20 +96,45 @@ flowchart TB
 ### LXC Containers (100–106)
 
 | VMID | Hostname | Base OS | Cores | Memory | Disk | IP Address | Service |
-| :---: | :--- | :--- | :---: | :---: | :--- | :--- | :--- |
-| **100** | `homeassistant` | Debian 13 | 2 | 384 MB | 16 GB | `192.168.1.10` | Home Assistant (smart home hub) |
-| **101** | `scrutiny` | Debian 13 | 1 | 128 MB | 4 GB | `192.168.1.108` | Scrutiny (disk health & S.M.A.R.T.) |
-| **102** | `ollama` | Debian 13 | 4 | 2048 MB | 16 GB | `192.168.1.110` | Ollama LLM (GTX 1050 Ti passthrough) |
-| **103** | `uptimekuma` | Alpine 3.24 | 1 | 128 MB | 2 GB | `192.168.1.119` | Uptime Kuma (service status monitor) |
-| **104** | `monitoring` | Alpine 3.24 | 1 | 256 MB | 4 GB | `192.168.1.121` | Prometheus & Grafana |
-| **105** | `owasp` | Alpine 3.24 | 2 | 512 MB | 8 GB | `192.168.1.175` | OWASP Juice Shop test environment |
-| **106** | `wazuh` | Ubuntu 24.04 | 4 | 6144 MB | 35 GB | `192.168.1.240` | Wazuh SIEM manager, indexer & dashboard |
-
-### Virtual Machines
-
-| VMID | Name | OS | Cores | Memory | Disk | IP Address | Purpose |
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- | :--- |
-| **300** | `parrot` | Parrot Security OS | 2 | 2048 MB | 30 GB | `192.168.1.30` | Security testing and network tools workstation |
+| **100** | `homeassistant` | Alpine 3.24 | 1 | 128 MB | 16 GB | `192.168.1.10` | Home Assistant (smart home hub & telemetry) |
+| **101** | `scrutiny` | Alpine 3.24 | 1 | 96 MB | 3 GB | `192.168.1.18` | Scrutiny (disk health & S.M.A.R.T.) |
+| **102** | `ollama` | Debian 13 | 1 | 2048 MB | 16 GB | `192.168.1.110` | Ollama LLM (GTX 1050 Ti PCIe passthrough) |
+| **103** | `uptimekuma` | Alpine 3.24 | 1 | 128 MB | 2 GB | `192.168.1.119` | Uptime Kuma (service availability monitoring) |
+| **104** | `monitoring` | Alpine 3.24 | 1 | 256 MB | 4 GB | `192.168.1.121` | Prometheus TSDB & Grafana dashboards |
+| **105** | `owasp` | Alpine 3.24 | 2 | 512 MB | 8 GB | `192.168.1.175` | OWASP Juice Shop test environment |
+| **106** | `wazuh` | Ubuntu 24.04 | 4 | 6144 MB | 35 GB | `192.168.1.240` | Wazuh SIEM manager, OpenSearch indexer & dashboard |
+
+### Core & Security Virtual Machines
+
+| VMID | Name | OS | Cores | Memory | Disk | IP Address / Bridge | Purpose |
+| :---: | :--- | :--- | :---: | :---: | :---: | :--- | :--- |
+| **200** | `opnsense` | FreeBSD 14 | 1 | 1024 MB | 16 GB | `192.168.1.134` (vmbr0/1/2) | Perimeter firewall, Suricata IDS/IPS, WireGuard mesh |
+| **201** | `openstack` | Linux | 2 | 4096 MB | 32 GB | `vmbr0` (DHCP) | Single-node OpenStack dev / Kolla-Ansible sandbox |
+| **300** | `parrot` | Parrot Security OS | 1 | 1536 MB | 65 GB | `192.168.1.30` (vmbr0) | Security testing and network tools workstation |
+| **301** | `metasploitable2` | Linux 2.6 | 1 | 512 MB | 8 GB | `vmbr0` (Isolated) | Intentionally vulnerable Linux target for exploits |
+| **303** | `malware` | Windows 10 | 2 | 2560 MB | 50 GB | `vmbr0` (Sandboxed) | Dynamic malware analysis sandbox (Flare-VM) |
+| **304** | `remnux` | REMnux Linux | 2 | 4096 MB | 40 GB | `vmbr0` (Analysis) | Reverse engineering and malware triage toolkit |
+
+### Active Directory Lab Ecosystem (VMs 400–405)
+
+The Windows Active Directory lab simulates a multi-tier enterprise forest for testing identity management, Group Policy distribution, authentication security, and cross-platform domain integration:
+
+| VMID | Name | OS | Cores | Memory | Disk | Role in AD Ecosystem |
+| :---: | :--- | :--- | :---: | :---: | :---: | :--- |
+| **400** | `ad2022` | Windows Server 2022 | 2 | 4096 MB | 60 GB | **Forest Root Domain Controller (PDC)**: FSMO role holder, authoritative DNS, Kerberos Key Distribution Center (KDC). |
+| **401** | `ad2016` | Windows Server 2016 | 2 | 3072 MB | 50 GB | **Secondary Domain Controller (SDC)**: Active Directory Domain Services (AD DS) multi-master replication partner, Global Catalog (GC). |
+| **402** | `ad2012` | Windows Server 2012 R2 | 2 | 1024 MB | 50 GB | **Child Domain Controller / PKI CA**: Enterprise Root Certificate Authority (AD CS), legacy trust and NTLM compatibility testing. |
+| **403** | `adwin10` | Windows 10 Enterprise | 2 | 2560 MB | 50 GB | **Modern Domain Workstation**: Domain-joined client enforcing Group Policy Objects (GPOs), Sysmon telemetry forwarding to Wazuh. |
+| **404** | `adwin7` | Windows 7 SP1 | 2 | 2048 MB | 50 GB | **Legacy Client Workstation**: Domain-joined legacy client for legacy protocol analysis (SMBv1, NTLMv1/v2 relay drills). |
+| **405** | `adrhel` | RHEL 9 (Enterprise Linux) | 2 | 1536 MB | 50 GB | **Enterprise Linux Domain Member**: Domain joined via `realmd` / SSSD and Kerberos for centralized Linux identity and PAM auth. |
+
+#### Ecosystem Interactions
+- **Multi-Master Directory Replication**: Bidirectional RPC/IP replication between `ad2022` (VM 400) and `ad2016` (VM 401) ensures consistent state for schema, partition, and domain configuration.
+- **Enterprise Public Key Infrastructure (AD CS)**: `ad2012` (VM 402) operates the certificate authority, issuing certificates for LDAPS, client authentication, and internal services.
+- **Group Policy & Hardening Baseline**: Centralized GPOs deployed from `ad2022` govern password policies, audit logging, and firewall rules on `adwin10` (VM 403) and `adwin7` (VM 404).
+- **Heterogeneous Authentication**: `adrhel` (VM 405) queries Active Directory LDAP and verifies Kerberos tickets via SSSD, proving identity federation across mixed Linux/Windows infrastructure.
+- **SIEM Telemetry Ingestion**: Sysmon and Windows Security Event logs from domain members are forwarded to Wazuh (LXC 106) for real-time threat detection and credential dumping alerts.
 
 ---
 
@@ -149,11 +194,11 @@ ansible-playbook -i inventories/homelab/hosts.yml playbook.yml
 ```text
 .
 ├── ansible/              # Playbooks and inventory files
+├── configuration.nix     # NixOS host system configuration
 ├── cyber/                # Investigation writeups, CTF, and domain blocklists
-├── docs/                 # Additional lab documentation
-├── hardware/             # Host specifications
 ├── kubernetes/           # k3s manifests and configs
 ├── scripts/              # Validation scripts and blocklist sync tools
-├── services/             # Service configuration templates
-└── terraform/            # Proxmox IaC configurations
+├── services/             # Service configuration templates and Proxmox definitions
+├── terraform/            # Proxmox IaC configurations
+└── web/                  # Angular 19 architecture visualization dashboard
 ```
