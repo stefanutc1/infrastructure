@@ -145,7 +145,7 @@ flowchart TD
 
 - **OPNsense Gateway (`192.168.1.1`):** Sinkholing newly registered domains (NRDs) under `.top` and `.com` containing gaming keywords (`cs2`, `tournament`, `steam`, `league`).
 - **Suricata IDS:** Detection signatures flagging HTTP POST traffic directed to `/api/v2/auth/steam_callback`.
-- **Wazuh SIEM (LXC 107):** Alerting on high-volume Discord desktop client DNS queries resolving to unranked external tournament domains.
+- **Wazuh SIEM (LXC 106):** Alerting on high-volume Discord desktop client DNS queries resolving to unranked external tournament domains.
 
 ---
 

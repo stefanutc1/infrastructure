@@ -133,10 +133,10 @@ const EN_TRANSLATIONS: Translations = {
   
   metricVirtTitle: 'VIRTUALIZATION',
   metricVirtCount: '1 Hypervisor',
-  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Parrot Security OS (VM 300), and 8 active production LXC containers (100–107).',
+  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Parrot Security OS (VM 300), and 7 active production LXC containers (100–106).',
   
   metricServicesTitle: 'ACTIVE SERVICES',
-  metricServicesCount: '13 Core Services',
+  metricServicesCount: '12 Core Services',
   metricServicesDesc: 'Production microservices, SIEM telemetry, local GPU AI, and network infrastructure.',
   
   metricCyberTitle: 'SECURITY & DFIR',

@@ -173,7 +173,7 @@ The web client executes aggressive fingerprinting stored in browser `localStorag
 
 - **OPNsense Gateway (`192.168.1.1`):** Ingress DNS sinkholing of disposable Task Scam domains and TRON node API endpoints used by the scam kits.
 - **Suricata IDS:** Alerting on unencrypted HTTP requests matching pattern `/api/v1/site/config` containing `withdrawMethodBank: false`.
-- **Wazuh SIEM (LXC 107):** Correlation of endpoint browser logs connecting to high-risk task domains and tracking UUID exfiltration.
+- **Wazuh SIEM (LXC 106):** Correlation of endpoint browser logs connecting to high-risk task domains and tracking UUID exfiltration.
 
 ---
 

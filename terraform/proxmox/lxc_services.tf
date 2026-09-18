@@ -1,6 +1,6 @@
 # ==============================================================================
 # PROXMOX CORE LXC CONTAINERS (NODE 1 — Intel Core i3-10100F)
-# Active Containers: 100 to 107
+# Active Containers: 100 to 106
 # ==============================================================================
 
 module "lxc_homeassistant" {
@@ -21,28 +21,10 @@ module "lxc_homeassistant" {
   tags         = ["automation", "iot", "smart-home", "zigbee", "terraform", "node1"]
 }
 
-module "lxc_n8n" {
-  source       = "../modules/proxmox_lxc"
-  target_node  = var.primary_node
-  vmid         = 101
-  hostname     = "n8n"
-  ostemplate   = var.debian_template
-  ostype       = "debian"
-  cores        = 2
-  memory       = 384
-  disk_size    = "8G"
-  ip_address   = "192.168.1.107/24"
-  gateway      = var.gateway_ip
-  nameserver   = var.nameserver_ip
-  vlan_tag     = 20
-  unprivileged = true
-  tags         = ["automation", "workflows", "soar", "webhooks", "terraform", "node1"]
-}
-
 module "lxc_scrutiny" {
   source       = "../modules/proxmox_lxc"
   target_node  = var.primary_node
-  vmid         = 102
+  vmid         = 101
   hostname     = "scrutiny"
   ostemplate   = var.debian_template
   ostype       = "debian"
@@ -60,7 +42,7 @@ module "lxc_scrutiny" {
 module "lxc_ollama" {
   source                 = "../modules/proxmox_lxc"
   target_node            = var.primary_node
-  vmid                   = 103
+  vmid                   = 102
   hostname               = "ollama"
   ostemplate             = var.debian_template
   ostype                 = "debian"
@@ -79,7 +61,7 @@ module "lxc_ollama" {
 module "lxc_uptimekuma" {
   source       = "../modules/proxmox_lxc"
   target_node  = var.primary_node
-  vmid         = 104
+  vmid         = 103
   hostname     = "uptimekuma"
   ostemplate   = var.alpine_template
   ostype       = "alpine"
@@ -97,7 +79,7 @@ module "lxc_uptimekuma" {
 module "lxc_monitoring" {
   source       = "../modules/proxmox_lxc"
   target_node  = var.primary_node
-  vmid         = 105
+  vmid         = 104
   hostname     = "monitoring"
   ostemplate   = var.alpine_template
   ostype       = "alpine"
@@ -115,7 +97,7 @@ module "lxc_monitoring" {
 module "lxc_owasp" {
   source       = "../modules/proxmox_lxc"
   target_node  = var.primary_node
-  vmid         = 106
+  vmid         = 105
   hostname     = "owasp"
   ostemplate   = var.alpine_template
   ostype       = "alpine"
@@ -133,7 +115,7 @@ module "lxc_owasp" {
 module "lxc_wazuh" {
   source       = "../modules/proxmox_lxc"
   target_node  = var.primary_node
-  vmid         = 107
+  vmid         = 106
   hostname     = "wazuh"
   ostemplate   = var.debian_template
   ostype       = "ubuntu"

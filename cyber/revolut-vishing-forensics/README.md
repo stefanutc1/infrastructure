@@ -194,7 +194,7 @@ Following our formal disclosure report, Revolut provided official acknowledgemen
 This investigation directly feeds detection engineering rules across the homelab infrastructure:
 - **OPNsense Gateway (`192.168.1.1`):** Unbound DNS sinkholing (`0.0.0.0`) of all identified phishing domains and newly registered `.xyz` / `.top` FinTech typosquatting patterns.
 - **Suricata IDS/IPS:** Ingress packet inspection for known WebSocket credential-relay signatures and suspicious HTTP redirection headers.
-- **Wazuh SIEM (LXC 107):** Automated alerting on mobile device DNS queries resolving against high-risk disposable TLDs.
+- **Wazuh SIEM (LXC 106):** Automated alerting on mobile device DNS queries resolving against high-risk disposable TLDs.
 
 ---
 

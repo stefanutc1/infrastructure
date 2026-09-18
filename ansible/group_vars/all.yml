@@ -15,7 +15,6 @@ homelab_services:
   - filebrowser
   - grafana
   - homeassistant
-  - n8n
   - nginx
   - pi-hole
   - prometheus

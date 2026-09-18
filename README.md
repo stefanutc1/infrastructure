@@ -7,7 +7,7 @@
 [![License: AGPL-3.0](https://img.shields.io/badge/License-GNU%20AGPLv3-blue.svg)](LICENSE)
 
 <!-- AUTO-METRICS-START -->
-[![Active Workloads](https://img.shields.io/badge/Workloads-13%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
+[![Active Workloads](https://img.shields.io/badge/Workloads-12%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
 [![CI Pipeline](https://img.shields.io/badge/CI%20Pipeline-Passed%20(100%25)-brightgreen?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/ci.yml)
 [![CD Pipeline](https://img.shields.io/badge/CD%20Pipeline-Active-blue?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/cd.yml)
 [![Last Sync](https://img.shields.io/badge/Last%20Auto--Sync-2026--09--18-informational?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions)
@@ -31,15 +31,14 @@ flowchart TB
 
     subgraph PVE["Proxmox VE Node 1 (192.168.1.132)"]
         direction TB
-        subgraph LXC["LXC Containers (100–107)"]
+        subgraph LXC["LXC Containers (100–106)"]
             HA["100: Home Assistant (192.168.1.10)"]
-            N8N["101: n8n Workflows (192.168.1.107)"]
-            SCR["102: Scrutiny (192.168.1.108)"]
-            OLL["103: Ollama GPU AI (192.168.1.110)"]
-            UK["104: Uptime Kuma (192.168.1.119)"]
-            MON["105: Monitoring Stack (192.168.1.121)"]
-            OWASP["106: OWASP Lab (192.168.1.175)"]
-            WAZ["107: Wazuh SIEM (192.168.1.240)"]
+            SCR["101: Scrutiny (192.168.1.108)"]
+            OLL["102: Ollama GPU AI (192.168.1.110)"]
+            UK["103: Uptime Kuma (192.168.1.119)"]
+            MON["104: Monitoring Stack (192.168.1.121)"]
+            OWASP["105: OWASP Lab (192.168.1.175)"]
+            WAZ["106: Wazuh SIEM (192.168.1.240)"]
         end
 
         subgraph VMS["Virtual Machines"]
@@ -66,7 +65,7 @@ flowchart TB
 
 | Node | Machine / Chassis | CPU | GPU | RAM | Storage | Role |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **`pve` (Node 1)** | Desktop Tower | Intel Core i3-10100F (4C/8T @ 4.30 GHz) | NVIDIA GeForce GTX 1050 Ti (4GB) | 12 GB DDR4 | 512 GB NVMe SSD | Hypervisor: LXC 100–107, VM 300 |
+| **`pve` (Node 1)** | Desktop Tower | Intel Core i3-10100F (4C/8T @ 4.30 GHz) | NVIDIA GeForce GTX 1050 Ti (4GB) | 12 GB DDR4 | 512 GB NVMe SSD | Hypervisor: LXC 100–106, VM 300 |
 | **`omv` (Node 2)** | ASUS X451MA | Intel Celeron N2830 (2C/2T @ 2.41 GHz) | Intel HD Graphics | 2 GB DDR3 | 500 GB HDD | OpenMediaVault NAS (SMB / NFS shares) |
 | **`k8s-node-04` (Node 4)** | Desktop ATX | AMD Athlon II X2 220 (2C/2T @ 2.80 GHz) | NVIDIA GeForce GTS 250 (1GB) | 4 GB DDR3 | 80 GB HDD | k3s agent worker node |
 
@@ -74,18 +73,17 @@ flowchart TB
 
 ## 3. Services & Workloads
 
-### LXC Containers (100–107)
+### LXC Containers (100–106)
 
 | VMID | Hostname | Base OS | Cores | Memory | Disk | IP Address | Service |
-| :---: | :--- | :--- | :---: | :---: | :---: | :--- | :--- |
+| :---: | :--- | :--- | :---: | :---: | :--- | :--- | :--- |
 | **100** | `homeassistant` | Debian 13 | 2 | 384 MB | 16 GB | `192.168.1.10` | Home Assistant (smart home hub) |
-| **101** | `n8n` | Debian 13 | 2 | 384 MB | 8 GB | `192.168.1.107` | n8n workflow automation |
-| **102** | `scrutiny` | Debian 13 | 1 | 128 MB | 4 GB | `192.168.1.108` | Scrutiny (disk health & S.M.A.R.T.) |
-| **103** | `ollama` | Debian 13 | 4 | 2048 MB | 16 GB | `192.168.1.110` | Ollama LLM (GTX 1050 Ti passthrough) |
-| **104** | `uptimekuma` | Alpine 3.24 | 1 | 128 MB | 2 GB | `192.168.1.119` | Uptime Kuma (service status monitor) |
-| **105** | `monitoring` | Alpine 3.24 | 1 | 256 MB | 4 GB | `192.168.1.121` | Prometheus & Grafana |
-| **106** | `owasp` | Alpine 3.24 | 2 | 512 MB | 8 GB | `192.168.1.175` | OWASP Juice Shop test environment |
-| **107** | `wazuh` | Ubuntu 24.04 | 4 | 6144 MB | 35 GB | `192.168.1.240` | Wazuh SIEM manager, indexer & dashboard |
+| **101** | `scrutiny` | Debian 13 | 1 | 128 MB | 4 GB | `192.168.1.108` | Scrutiny (disk health & S.M.A.R.T.) |
+| **102** | `ollama` | Debian 13 | 4 | 2048 MB | 16 GB | `192.168.1.110` | Ollama LLM (GTX 1050 Ti passthrough) |
+| **103** | `uptimekuma` | Alpine 3.24 | 1 | 128 MB | 2 GB | `192.168.1.119` | Uptime Kuma (service status monitor) |
+| **104** | `monitoring` | Alpine 3.24 | 1 | 256 MB | 4 GB | `192.168.1.121` | Prometheus & Grafana |
+| **105** | `owasp` | Alpine 3.24 | 2 | 512 MB | 8 GB | `192.168.1.175` | OWASP Juice Shop test environment |
+| **106** | `wazuh` | Ubuntu 24.04 | 4 | 6144 MB | 35 GB | `192.168.1.240` | Wazuh SIEM manager, indexer & dashboard |
 
 ### Virtual Machines
 

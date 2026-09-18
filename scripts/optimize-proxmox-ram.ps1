@@ -17,27 +17,19 @@ function Write-Log {
     Write-Host "[$timestamp] $Message" -ForegroundColor Green
 }
 
-Write-Log "🚀 [PROXMOX RAM OPTIMIZATION] Starting Aggressive Memory Tuning..."
+Write-Log "[PROXMOX RAM OPTIMIZATION] Starting Memory Tuning..."
 
 $memMap = @{
-    "100" = @{ Memory = 896;  Swap = 256; Name = "Immich Photos + ML" }
-    "101" = @{ Memory = 96;   Swap = 64;  Name = "Nextcloud" }
-    "102" = @{ Memory = 384;  Swap = 128; Name = "Home Assistant Core" }
-    "103" = @{ Memory = 384;  Swap = 128; Name = "n8n Automations" }
-    "104" = @{ Memory = 96;   Swap = 32;  Name = "Scrutiny S.M.A.R.T." }
-    "105" = @{ Memory = 896;  Swap = 256; Name = "Media Suite (Jellyfin)" }
-    "106" = @{ Memory = 2048; Swap = 1024; Name = "Ollama GPU LLM" }
-    "107" = @{ Memory = 512;  Swap = 256; Name = "Open-WebUI" }
-    "108" = @{ Memory = 1024; Swap = 512; Name = "Whisper CUDA" }
-    "109" = @{ Memory = 512;  Swap = 256; Name = "Flowise" }
-    "110" = @{ Memory = 64;   Swap = 64;  Name = "Paperless-AI" }
-    "111" = @{ Memory = 512;  Swap = 256; Name = "Code-Server" }
-    "112" = @{ Memory = 512;  Swap = 256; Name = "PBS" }
-    "113" = @{ Memory = 512;  Swap = 256; Name = "PDM" }
-    "114" = @{ Memory = 512;  Swap = 256; Name = "Woodpecker k0s" }
+    "100" = @{ Memory = 384;  Swap = 128;  Name = "Home Assistant Core" }
+    "101" = @{ Memory = 128;  Swap = 64;   Name = "Scrutiny S.M.A.R.T." }
+    "102" = @{ Memory = 2048; Swap = 1024; Name = "Ollama GPU LLM" }
+    "103" = @{ Memory = 128;  Swap = 64;   Name = "Uptime Kuma" }
+    "104" = @{ Memory = 256;  Swap = 128;  Name = "Monitoring Stack" }
+    "105" = @{ Memory = 512;  Swap = 256;  Name = "OWASP Pentest Lab" }
+    "106" = @{ Memory = 6144; Swap = 2048; Name = "Wazuh SIEM / XDR" }
 }
 
-Write-Log "📦 Applying container memory allocations..."
+Write-Log "Applying container memory allocations..."
 foreach ($ctid in $memMap.Keys) {
     $entry = $memMap[$ctid]
     $m = $entry.Memory

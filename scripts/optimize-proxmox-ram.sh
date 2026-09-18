@@ -44,24 +44,16 @@ for ctid in $(pct list | awk "NR>1 {print \$1}"); do
     fi
 done
 
-# 4. Apply Ultra-Lean Razor-Sharp Memory Allocations (RAM:SWAP in MB)
-log " [4/5] Applying ultra-lean container RAM limits..."
+# 4. Apply Memory Allocations (RAM:SWAP in MB)
+log " [4/5] Applying container RAM limits..."
 declare -A MEM_MAP=(
-    [100]="896:256"   # Immich Photos + ML
-    [101]="96:64"     # Nextcloud
-    [102]="384:128"   # Home Assistant Core
-    [103]="384:128"   # n8n Automations
-    [104]="96:32"     # Scrutiny S.M.A.R.T.
-    [105]="896:256"   # Media Suite (Jellyfin)
-    [106]="2048:1024" # Ollama GPU LLM
-    [107]="512:256"   # Open-WebUI
-    [108]="1024:512"  # Whisper CUDA
-    [109]="512:256"   # Flowise
-    [110]="64:64"     # Paperless-AI
-    [111]="512:256"   # Code-Server
-    [112]="512:256"   # PBS
-    [113]="512:256"   # PDM
-    [114]="512:256"   # Woodpecker k0s
+    [100]="384:128"   # Home Assistant Core
+    [101]="128:64"    # Scrutiny S.M.A.R.T.
+    [102]="2048:1024" # Ollama GPU LLM
+    [103]="128:64"    # Uptime Kuma
+    [104]="256:128"   # Monitoring Stack (Prometheus/Grafana)
+    [105]="512:256"   # OWASP Pentest Lab
+    [106]="6144:2048" # Wazuh SIEM / XDR Manager
 )
 
 for ctid in "${!MEM_MAP[@]}"; do

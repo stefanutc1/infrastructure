@@ -20,8 +20,8 @@ This file describes hardware and host-level virtualization only. Service definit
 
 **Capacity notes:**
 
-* 12 GB of RAM is sufficient for running the active LXC containers (100–107) alongside Wazuh (LXC 107) and Ollama (LXC 103).
-* The GTX 1050 Ti's 4 GB VRAM is passed through to LXC 103 for local Ollama LLM execution.
+* 12 GB of RAM is sufficient for running the active LXC containers (100–106) alongside Wazuh (LXC 106) and Ollama (LXC 102).
+* The GTX 1050 Ti's 4 GB VRAM is passed through to LXC 102 for local Ollama LLM execution.
 * 512 GB SSD is the single local storage pool (`local-lvm`) for container and VM root disks.
 
 ### Software & Infrastructure
@@ -30,7 +30,7 @@ This file describes hardware and host-level virtualization only. Service definit
 | --- | --- |
 | Hypervisor OS | Proxmox VE 9.2 (Debian 13 base) |
 | Kernel | Linux 7.0 pve |
-| Security Monitoring | Wazuh Manager 4.14 (LXC 107) |
+| Security Monitoring | Wazuh Manager 4.14 (LXC 106) |
 | Networking | Tailscale mesh VPN |
 | Virtualization | LXC containers & QEMU VMs |
 
@@ -38,15 +38,14 @@ This file describes hardware and host-level virtualization only. Service definit
 
 This host runs the primary homelab workloads:
 
-1. **Core Containers (LXC 100–107)**:
+1. **Core Containers (LXC 100–106)**:
    - **LXC 100**: `homeassistant` (smart home integration)
-   - **LXC 101**: `n8n` (automation workflows)
-   - **LXC 102**: `scrutiny` (drive S.M.A.R.T. monitoring)
-   - **LXC 103**: `ollama` (local LLM inference with GPU passthrough)
-   - **LXC 104**: `uptimekuma` (uptime and health checks)
-   - **LXC 105**: `monitoring` (Prometheus & Grafana)
-   - **LXC 106**: `owasp` (OWASP Juice Shop testing)
-   - **LXC 107**: `wazuh` (Wazuh SIEM manager, indexer & dashboard)
+   - **LXC 101**: `scrutiny` (drive S.M.A.R.T. monitoring)
+   - **LXC 102**: `ollama` (local LLM inference with GPU passthrough)
+   - **LXC 103**: `uptimekuma` (uptime and health checks)
+   - **LXC 104**: `monitoring` (Prometheus & Grafana)
+   - **LXC 105**: `owasp` (OWASP Juice Shop testing)
+   - **LXC 106**: `wazuh` (Wazuh SIEM manager, indexer & dashboard)
 
 2. **Virtual Machines**:
    - **VM 200**: `opnsense` (perimeter firewall & routing)

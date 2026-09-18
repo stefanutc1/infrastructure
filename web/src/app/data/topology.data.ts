@@ -85,8 +85,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     icon: 'proxmox',
     hardware: { node: 'Intel Core i3-10100F', ram: '12,288 MB DDR4', storage: '512 GB NVMe' },
     tags: ['Primary Hypervisor', 'x86_64 Bare-Metal', 'GTX 1050 Ti', 'ZRAM lz4', 'Proxmox VE 9.2'],
-    role: 'Bare-metal virtualization hypervisor hosting active LXCs (100–107) and Parrot Security VM 300.',
-    connections: ['homeassistant', 'n8n', 'scrutiny', 'ollama', 'uptimekuma', 'monitoring', 'owasp', 'wazuh', 'parrot']
+    role: 'Bare-metal virtualization hypervisor hosting active LXCs (100–106) and Parrot Security VM 300.',
+    connections: ['homeassistant', 'scrutiny', 'ollama', 'uptimekuma', 'monitoring', 'owasp', 'wazuh', 'parrot']
   },
   {
     id: 'node2-omv',
@@ -127,7 +127,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     connections: ['node1-pve']
   },
 
-  // 3. Active Production LXC Containers (100–107) & VM 300
+  // 3. Active Production LXC Containers (100–106) & VM 300
   {
     id: 'homeassistant',
     name: 'Home Assistant',
@@ -148,28 +148,9 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     connections: ['monitoring']
   },
   {
-    id: 'n8n',
-    name: 'n8n Automation',
-    sublabel: 'CT 101 · SOAR Engine',
-    ip: '192.168.1.107',
-    port: 5678,
-    category: 'services',
-    tier: 2,
-    status: 'OPERATIONAL',
-    x: -50,
-    y: 65,
-    z: 40,
-    color: '#ea580c',
-    icon: 'n8n',
-    hardware: { node: 'Node 1 (PVE CT 101)', ram: '384 MB', storage: '8 GB LVM' },
-    tags: ['Workflows', 'Webhooks', 'SOAR', 'Integrations', 'Automation'],
-    role: 'Low-code workflow automation orchestrating incident triage and event webhooks.',
-    connections: ['wazuh']
-  },
-  {
     id: 'scrutiny',
     name: 'Scrutiny SMART',
-    sublabel: 'CT 102 · Drive Health',
+    sublabel: 'CT 101 · Drive Health',
     ip: '192.168.1.108',
     port: 8080,
     category: 'storage',
@@ -180,7 +161,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     z: 50,
     color: '#0d9488',
     icon: 'scrutiny',
-    hardware: { node: 'Node 1 (PVE CT 102)', ram: '128 MB', storage: '4 GB LVM' },
+    hardware: { node: 'Node 1 (PVE CT 101)', ram: '128 MB', storage: '4 GB LVM' },
     tags: ['Storage', 'SMART', 'Telemetry', 'Drive Health', 'Monitoring'],
     role: 'Hard drive S.M.A.R.T. telemetry collector and disk failure warning daemon.',
     connections: ['monitoring']
@@ -188,7 +169,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'ollama',
     name: 'Ollama GPU AI',
-    sublabel: 'CT 103 · GTX 1050 Ti',
+    sublabel: 'CT 102 · GTX 1050 Ti',
     ip: '192.168.1.110',
     port: 11434,
     category: 'elo',
@@ -199,15 +180,15 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     z: 50,
     color: '#8b5cf6',
     icon: 'python',
-    hardware: { node: 'Node 1 (PVE CT 103)', ram: '2,048 MB', storage: '16 GB LVM' },
+    hardware: { node: 'Node 1 (PVE CT 102)', ram: '2,048 MB', storage: '16 GB LVM' },
     tags: ['Local LLM', 'CUDA', 'GTX 1050 Ti', 'Inference', 'AI Runtime'],
     role: 'GPU-accelerated LLM runtime providing local AI generation and code assistant capabilities.',
-    connections: ['n8n']
+    connections: ['monitoring']
   },
   {
     id: 'uptimekuma',
     name: 'Uptime Kuma',
-    sublabel: 'CT 104 · Status Engine',
+    sublabel: 'CT 103 · Status Engine',
     ip: '192.168.1.119',
     port: 3001,
     category: 'services',
@@ -218,7 +199,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     z: 40,
     color: '#10b981',
     icon: 'uptime-kuma',
-    hardware: { node: 'Node 1 (PVE CT 104)', ram: '128 MB', storage: '2 GB LVM' },
+    hardware: { node: 'Node 1 (PVE CT 103)', ram: '128 MB', storage: '2 GB LVM' },
     tags: ['Healthchecks', 'Monitoring', 'Uptime', 'Status Page', 'Alerts'],
     role: 'High-frequency service availability monitor probing HTTP/TCP endpoints.',
     connections: ['monitoring']
@@ -226,7 +207,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'monitoring',
     name: 'Monitoring Stack',
-    sublabel: 'CT 105 · Prom & Grafana',
+    sublabel: 'CT 104 · Prom & Grafana',
     ip: '192.168.1.121',
     port: 3000,
     category: 'services',
@@ -237,7 +218,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     z: 30,
     color: '#f97316',
     icon: 'grafana',
-    hardware: { node: 'Node 1 (PVE CT 105)', ram: '256 MB', storage: '4 GB LVM' },
+    hardware: { node: 'Node 1 (PVE CT 104)', ram: '256 MB', storage: '4 GB LVM' },
     tags: ['Prometheus', 'Grafana', 'TSDB', 'Observability', 'Dashboards'],
     role: 'Centralized cluster observability scraping system metrics and rendering visual dashboards.',
     connections: ['wazuh']
@@ -245,7 +226,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'owasp',
     name: 'OWASP Pentest Lab',
-    sublabel: 'CT 106 · Juice Shop',
+    sublabel: 'CT 105 · Juice Shop',
     ip: '192.168.1.175',
     port: 3000,
     category: 'security',
@@ -256,7 +237,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     z: 20,
     color: '#e11d48',
     icon: 'shield',
-    hardware: { node: 'Node 1 (PVE CT 106)', ram: '512 MB', storage: '8 GB LVM' },
+    hardware: { node: 'Node 1 (PVE CT 105)', ram: '512 MB', storage: '8 GB LVM' },
     tags: ['OWASP', 'Juice Shop', 'Pentest Target', 'CyberLab', 'Web Security'],
     role: 'Intentionally vulnerable web application target for offensive penetration testing.',
     connections: ['parrot']
@@ -264,7 +245,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
   {
     id: 'wazuh',
     name: 'Wazuh SIEM / XDR',
-    sublabel: 'CT 107 · OpenSearch',
+    sublabel: 'CT 106 · OpenSearch',
     ip: '192.168.1.240',
     port: 443,
     category: 'security',
@@ -275,7 +256,7 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     z: 60,
     color: '#0284c7',
     icon: 'wazuh',
-    hardware: { node: 'Node 1 (PVE CT 107)', ram: '6,144 MB (4GB Heap)', storage: '35 GB LVM' },
+    hardware: { node: 'Node 1 (PVE CT 106)', ram: '6,144 MB (4GB Heap)', storage: '35 GB LVM' },
     tags: ['SIEM', 'XDR', 'Wazuh Manager', 'OpenSearch Indexer', 'Compliance'],
     role: 'Enterprise SIEM ingesting host logs, Suricata EVE-JSON events, and firewall drops.',
     connections: ['opnsense-gw']
@@ -312,7 +293,6 @@ export const TOPOLOGY_LINKS: TopologyLink[] = [
 
   // Node 1 Hypervisor -> Hosted LXCs
   { from: 'node1-pve', to: 'homeassistant', protocol: 'veth / Bridge', color: 'rgba(2, 132, 199, 0.5)' },
-  { from: 'node1-pve', to: 'n8n', protocol: 'veth / Bridge', color: 'rgba(234, 88, 12, 0.5)' },
   { from: 'node1-pve', to: 'scrutiny', protocol: 'veth / Bridge', color: 'rgba(13, 148, 136, 0.5)' },
   { from: 'node1-pve', to: 'ollama', protocol: 'PCIe Passthrough', color: 'rgba(139, 92, 246, 0.7)' },
   { from: 'node1-pve', to: 'uptimekuma', protocol: 'veth / Bridge', color: 'rgba(16, 185, 129, 0.5)' },
@@ -325,8 +305,6 @@ export const TOPOLOGY_LINKS: TopologyLink[] = [
   { from: 'homeassistant', to: 'monitoring', protocol: 'Prometheus Metrics', color: 'rgba(249, 115, 22, 0.4)' },
   { from: 'scrutiny', to: 'monitoring', protocol: 'SMART Telemetry', color: 'rgba(13, 148, 136, 0.4)' },
   { from: 'uptimekuma', to: 'monitoring', protocol: 'HTTP Scrapes', color: 'rgba(16, 185, 129, 0.4)' },
-  { from: 'n8n', to: 'ollama', protocol: 'REST Inference API', color: 'rgba(139, 92, 246, 0.5)' },
-  { from: 'n8n', to: 'wazuh', protocol: 'SOAR Active Response', color: 'rgba(2, 132, 199, 0.5)' },
   { from: 'opnsense-gw', to: 'wazuh', protocol: 'Syslog 514/UDP', color: 'rgba(217, 119, 6, 0.6)' },
   { from: 'parrot', to: 'owasp', protocol: 'Security Audit / HTTP', color: 'rgba(225, 29, 72, 0.5)' }
 ];

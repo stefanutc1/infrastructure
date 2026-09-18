@@ -22,10 +22,9 @@ output "vm_inventory" {
 }
 
 output "lxc_x64_summary" {
-  description = "Summary of Node 1 x86_64 LXC containers (CT 100 to 107)"
+  description = "Summary of Node 1 x86_64 LXC containers (CT 100 to 106)"
   value = {
     homeassistant = { vmid = module.lxc_homeassistant.vm_id, ip = module.lxc_homeassistant.ip_address, node = module.lxc_homeassistant.node }
-    n8n           = { vmid = module.lxc_n8n.vm_id, ip = module.lxc_n8n.ip_address, node = module.lxc_n8n.node }
     scrutiny      = { vmid = module.lxc_scrutiny.vm_id, ip = module.lxc_scrutiny.ip_address, node = module.lxc_scrutiny.node }
     ollama        = { vmid = module.lxc_ollama.vm_id, ip = module.lxc_ollama.ip_address, node = module.lxc_ollama.node }
     uptimekuma    = { vmid = module.lxc_uptimekuma.vm_id, ip = module.lxc_uptimekuma.ip_address, node = module.lxc_uptimekuma.node }

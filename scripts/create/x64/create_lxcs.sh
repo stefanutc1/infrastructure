@@ -148,23 +148,6 @@ create_or_skip_lxc 102 "homeassistant" \
   --tags "alpine;automation;community-script;smarthome"
 
 
-# ------------------------------------------------------------------------------
-# CT 103: n8n
-# ------------------------------------------------------------------------------
-create_or_skip_lxc 103 "n8n" \
-  "$ALPINE_TMPL" \
-  --hostname "n8n" \
-  --cores 2 \
-  --memory 256 \
-  --swap 512 \
-  --rootfs "$STORAGE:8G" \
-  --net0 "name=eth0,bridge=$BRIDGE,gw=$GATEWAY,ip=192.168.1.13/24,type=veth" \
-  --features "nesting=1" \
-  --unprivileged 1 \
-  --ostype "alpine" \
-  --onboot 0 \
-  --tags "alpine;automation;community-script;workflows"
-
 
 # ------------------------------------------------------------------------------
 # CT 104: scrutiny

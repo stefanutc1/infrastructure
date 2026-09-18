@@ -114,7 +114,7 @@ IoCs from these investigations are used directly in the homelab:
 
 1. **OPNsense DNS Sinkhole (`192.168.1.1`)**: Malicious domains are compiled into blocklists and resolved to `0.0.0.0` in Unbound DNS.
 2. **Suricata IDS**: Custom HTTP/DNS inspection signatures deployed on the OPNsense router.
-3. **Wazuh SIEM (LXC 107 - `192.168.1.240`)**: Collects OPNsense firewall logs (`filterlog`) and system alerts over syslog.
+3. **Wazuh SIEM (LXC 106 - `192.168.1.240`)**: Collects OPNsense firewall logs (`filterlog`) and system alerts over syslog.
 
 ---
 

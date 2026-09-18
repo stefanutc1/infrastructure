@@ -410,7 +410,7 @@ export interface ForensicCase {
             <div class="grid grid-cols-1 md:grid-cols-4 gap-3 font-sans text-xs">
               <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-750 space-y-1">
                 <span class="text-slate-300 font-bold">{{ ts.isRomanian ? 'Pasul 1: Non-Critic' : 'Step 1: Non-Critical' }}</span>
-                <p class="text-slate-300 text-[11px] font-sans">{{ ts.isRomanian ? 'Oprire Media (Jellyfin CT 105) & Nextcloud' : 'Stop Media (Jellyfin CT 105) & Nextcloud' }}</p>
+                <p class="text-slate-300 text-[11px] font-sans">{{ ts.isRomanian ? 'Oprire Servicii Secundare (OWASP, Uptime Kuma)' : 'Stop Secondary Services (OWASP, Uptime Kuma)' }}</p>
               </div>
               <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-750 space-y-1">
                 <span class="text-slate-300 font-bold">{{ ts.isRomanian ? 'Pasul 2: Baze de Date' : 'Step 2: Databases' }}</span>
@@ -2155,7 +2155,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       name: 'Core Microservices & Applications',
       subnet: '192.168.1.0/24',
       gateway: '192.168.1.134 (OPNsense)',
-      nodes: 'Home Assistant (CT 100), n8n (CT 101), Scrutiny (CT 102), Ollama GPU (CT 103), Uptime Kuma (CT 104), Monitoring (CT 105)',
+      nodes: 'Home Assistant (CT 100), Scrutiny (CT 101), Ollama GPU (CT 102), Uptime Kuma (CT 103), Monitoring (CT 104)',
       firewallPolicy: 'Restricted inter-VLAN access; stateful egress inspection'
     },
     {
@@ -2163,7 +2163,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       name: 'Cyber Security & Sandboxes (CyberLab)',
       subnet: '192.168.30.0/24',
       gateway: '192.168.1.134:8443',
-      nodes: 'Wazuh SIEM/XDR (CT 107), Suricata IDS, OWASP Lab (CT 106), Parrot Security OS (VM 300)',
+      nodes: 'Wazuh SIEM/XDR (CT 106), Suricata IDS, OWASP Lab (CT 105), Parrot Security OS (VM 300)',
       firewallPolicy: 'Promiscuous SPAN mirror port, no outbound WAN access for sandboxes'
     },
     {
@@ -2198,7 +2198,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       name: 'Microservicii Core & Aplicații',
       subnet: '192.168.1.0/24',
       gateway: '192.168.1.134 (OPNsense)',
-      nodes: 'Home Assistant (CT 100), n8n (CT 101), Scrutiny (CT 102), Ollama GPU (CT 103), Uptime Kuma (CT 104), Monitoring (CT 105)',
+      nodes: 'Home Assistant (CT 100), Scrutiny (CT 101), Ollama GPU (CT 102), Uptime Kuma (CT 103), Monitoring (CT 104)',
       firewallPolicy: 'Acces inter-VLAN restricționat; inspecție de securitate de ieșire'
     },
     {
@@ -2206,7 +2206,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       name: 'Securitate Cibernetică & Sandboxes (CyberLab)',
       subnet: '192.168.30.0/24',
       gateway: '192.168.1.134:8443',
-      nodes: 'Wazuh SIEM/XDR (CT 107), Suricata IDS, Laborator OWASP (CT 106), Parrot Security OS (VM 300)',
+      nodes: 'Wazuh SIEM/XDR (CT 106), Suricata IDS, Laborator OWASP (CT 105), Parrot Security OS (VM 300)',
       firewallPolicy: 'Port mirror SPAN promiscuu, fără acces WAN outbound pentru sandbox-uri'
     },
     {
@@ -2274,7 +2274,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       title: 'Automation, Scripting & SCM',
       badge: 'SecOps & DevSecOps',
       description: 'Automated threat hunting agents, incident response playbooks, triage collectors, and version-controlled configuration.',
-      tools: ['PowerShell Core', 'Python 3.12 (FastAPI / Scapy)', 'Git', 'Ansible Hardening Playbooks', 'Woodpecker CI', 'Shuffle / n8n SOAR']
+      tools: ['PowerShell Core', 'Python 3.12 (FastAPI / Scapy)', 'Git', 'Ansible Hardening Playbooks', 'Woodpecker CI', 'Shuffle SOAR']
     }
   ];
 
@@ -2325,7 +2325,7 @@ export class ArchitectureBlueprintComponent implements OnInit {
       title: 'Automatizare, Scripting & SCM',
       badge: 'SecOps & DevSecOps',
       description: 'Agenți automați de threat hunting, playbook-uri de răspuns la incidente, colectoare de triaj și configurație versionată prin Git.',
-      tools: ['PowerShell Core', 'Python 3.12 (FastAPI / Scapy)', 'Git', 'Playbook-uri Ansible Hardening', 'Woodpecker CI', 'Shuffle / n8n SOAR']
+      tools: ['PowerShell Core', 'Python 3.12 (FastAPI / Scapy)', 'Git', 'Playbook-uri Ansible Hardening', 'Woodpecker CI', 'Shuffle SOAR']
     }
   ];
 

@@ -5,5 +5,5 @@
   tasks:
     - name: Verify core services status
       command: docker ps
-      when: inventory_hostname in ['homeassistant', 'n8n']
+      when: inventory_hostname in ['homeassistant']
       changed_when: false
