@@ -71,6 +71,10 @@ jobs:
         run: |
           python3 scripts/sync_currency_conversions.py --check || echo "::warning::Currency rates have updated upstream; CD pipeline will synchronize on merge."
 
+      - name: Forbidden Domains & DNSC Blacklist Check
+        run: |
+          python3 scripts/sync_forbidden_domains.py --check || echo "::warning::DNSC blacklist or local forbidden domains have updated upstream; CD pipeline will synchronize on merge."
+
       - name: Commit Lint
         uses: wagoid/commitlint-github-action@v6
         continue-on-error: true

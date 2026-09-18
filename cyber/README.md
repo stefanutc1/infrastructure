@@ -20,6 +20,9 @@ All forensic dossiers housed within this repository are backed by raw cryptograp
 ```text
 /cyber/
 ├── README.md                                 # Master threat intelligence catalog and operational matrix
+├── forbidden_domains.txt                     # Master forbidden domain list (Local Forensics + DNSC Blacklist)
+├── lista_interzisa.txt                       # Romanian alias for forbidden domains list
+├── dnsc_blacklist.json                       # Cumulative DNSC threat intelligence cache (with metadata)
 ├── mediagalaxy-ecommerce-fraud-forensics/    # SEC-2026-ECOM-005: E-Commerce phishing & Chinese SaaS kit
 ├── revolut-vishing-forensics/                # SEC-2026-VISH-002: Voice phishing & real-time credential relay
 ├── task-scam-infrastructure-analysis/        # SEC-2026-TASK-003: Pig butchering & crypto drain kill-switch
@@ -176,7 +179,42 @@ flowchart LR
 
 ---
 
-## 7. MITRE ATT&CK Enterprise Matrix Correlation
+## 7. Unified Forbidden Domains & DNSC Threat Intelligence Feed
+
+The centralized forbidden domain lists ([`cyber/forbidden_domains.txt`](forbidden_domains.txt) and its Romanian alias [`cyber/lista_interzisa.txt`](lista_interzisa.txt)) aggregate all malicious infrastructure cataloged across the repository's forensic investigations and merge them in real time with the official Romanian National Cyber Security Directorate ([DNSC](https://dnsc.ro)) Blacklist Gateway ([`https://blacklist.dnsc.ro/`](https://blacklist.dnsc.ro/)).
+
+```mermaid
+flowchart LR
+    subgraph INTAKE["Threat Intelligence Ingestion"]
+        LOC["Local Forensic Dossiers<br/>(Media Galaxy, Revolut, Task Scam, Steam OpenID)"]
+        DNSC["DNSC Blacklist Gateway<br/>(https://blacklist.dnsc.ro/)"]
+    end
+
+    subgraph ENGINE["Automated CI/CD Engine (Every 24h at 05:00 AM)"]
+        SYNC["scripts/sync_forbidden_domains.py<br/>Deduplication, Sanitization & Telemetry Caching"]
+        CACHE["cyber/dnsc_blacklist.json<br/>(Cumulative Threat Intelligence Store)"]
+        SYNC <--> CACHE
+    end
+
+    subgraph OUTPUT["Unified Network Blocklists"]
+        OUT1["cyber/forbidden_domains.txt<br/>(Primary Unbound / DNS Blocklist)"]
+        OUT2["cyber/lista_interzisa.txt<br/>(Romanian Mirror Blocklist)"]
+        SYNC --> OUT1
+        SYNC --> OUT2
+    end
+
+    LOC --> SYNC
+    DNSC --> SYNC
+```
+
+### Automation & Synchronization Mechanism:
+- **Daily Automated 24h Polling:** Integrated directly into the CD pipeline (`.github/workflows/cd.yml`) executing daily at **05:00 AM Europe/Bucharest** (and on every `push` to `main`).
+- **Cumulative Telemetry ([`cyber/dnsc_blacklist.json`](dnsc_blacklist.json)):** Automatically preserves historical DNSC entries, discovery timestamps, classification types (`Domain`, `Subdomain`, `IP`), and attack motivations (`Scam`, `Phishing`, `Impersonation`, `SMiShing`).
+- **Ready for Perimeter Defense:** Formatted as single-line Fully Qualified Domain Names (FQDNs), ready for automated consumption by OPNsense Unbound DNS, Pi-hole, AdGuard Home, and network firewalls.
+
+---
+
+## 8. MITRE ATT&CK Enterprise Matrix Correlation
 
 | MITRE ATT&CK Tactic | Technique ID | Technique Name | Mapped Investigations |
 | :--- | :--- | :--- | :--- |

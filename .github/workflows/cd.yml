@@ -128,7 +128,7 @@ jobs:
         uses: actions/deploy-pages@v5
 
   sync-readme:
-    name: Sync README Metrics & Currency Conversions
+    name: Sync Metrics, Currency Conversions & Cyber Blacklist
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -141,23 +141,43 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Check Schedule Window (05:00 Europe/Bucharest)
+        id: check_schedule
+        run: |
+          BUCHAREST_HOUR=$(TZ="Europe/Bucharest" date +%H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$BUCHAREST_HOUR" != "05" ]; then
+            echo "should_run=false" >> $GITHUB_OUTPUT
+            echo "Scheduled trigger received at hour ${BUCHAREST_HOUR}; waiting for 05:00 Europe/Bucharest. Skipping."
+          else
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "Proceeding with synchronization (Bucharest hour: ${BUCHAREST_HOUR})."
+          fi
+
       - name: Run Readme Metrics Sync
+        if: steps.check_schedule.outputs.should_run == 'true'
         run: |
           python3 scripts/sync_readme_metrics.py
 
       - name: Run Live Currency Conversion Sync
+        if: steps.check_schedule.outputs.should_run == 'true'
         run: |
           python3 scripts/sync_currency_conversions.py
 
+      - name: Run Cyber Forbidden Domains & DNSC Blacklist Sync
+        if: steps.check_schedule.outputs.should_run == 'true'
+        run: |
+          python3 scripts/sync_forbidden_domains.py
+
       - name: Commit & Push
+        if: steps.check_schedule.outputs.should_run == 'true'
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "github-actions[bot]"
             git add -A
-            git commit -m "chore(sync): auto-update metrics and live currency conversions [skip ci]"
+            git commit -m "chore(sync): auto-update metrics, live currency conversions and DNSC blacklist [skip ci]"
             git push
-            echo "Repository updated with fresh metrics and currency conversions."
+            echo "Repository updated with fresh metrics, currency conversions, and DNSC blacklist."
           else
             echo "No changes detected across repository."
           fi
