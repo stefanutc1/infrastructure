@@ -75,6 +75,23 @@ jobs:
         run: |
           python3 scripts/sync_forbidden_domains.py --check || echo "::warning::DNSC blacklist or local forbidden domains have updated upstream; CD pipeline will synchronize on merge."
 
+      - name: IoC List Hygiene & Format Check
+        run: |
+          python3 scripts/verify_ioc_hygiene.py
+
+      - name: Suricata Rules Syntax Gate
+        run: |
+          python3 scripts/verify_suricata_rules.py
+
+      - name: DFIR PDF Report Smoke-Test
+        run: |
+          python3 -m pip install reportlab
+          TMP_REPORT="/tmp/dfir_smoke_test_$(date +%s).pdf"
+          python3 cyber/mediagalaxy-ecommerce-fraud-forensics/reports/generate_report.py "$TMP_REPORT"
+          test -s "$TMP_REPORT"
+          head -c 5 "$TMP_REPORT" | grep -q "%PDF-"
+          echo "DFIR PDF Report generation verified successfully ($TMP_REPORT)."
+
       - name: Commit Lint
         uses: wagoid/commitlint-github-action@v6
         continue-on-error: true
@@ -239,3 +256,42 @@ jobs:
         run: |
           test -f web/dist/index.html
           echo "Frontend build completed."
+
+  backend-jvm-tests:
+    name: Backend Test Suite (JVM)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Detect JVM Projects & Run Tests
+        run: |
+          echo "Scanning for Maven / Gradle backend microservices..."
+          GRADLE_PROJECTS=$(find . -maxdepth 3 \( -name "build.gradle" -o -name "build.gradle.kts" \) -not -path "*/.*" -not -path "*/node_modules/*")
+          MAVEN_PROJECTS=$(find . -maxdepth 3 -name "pom.xml" -not -path "*/.*" -not -path "*/node_modules/*")
+
+          if [ -z "$GRADLE_PROJECTS" ] && [ -z "$MAVEN_PROJECTS" ]; then
+            echo "No Java/Kotlin/JVM microservices detected in repository. JVM gate completed (noop)."
+            exit 0
+          fi
+
+          echo "Detected JVM microservices. Configuring JDK Temurin 21..."
+          if [ -n "$GRADLE_PROJECTS" ]; then
+            for proj in $GRADLE_PROJECTS; do
+              PROJ_DIR=$(dirname "$proj")
+              echo "Executing Gradle test suite in $PROJ_DIR..."
+              if [ -f "$PROJ_DIR/gradlew" ]; then
+                (cd "$PROJ_DIR" && chmod +x ./gradlew && ./gradlew test --no-daemon)
+              else
+                gradle -p "$PROJ_DIR" test
+              fi
+            done
+          fi
+
+          if [ -n "$MAVEN_PROJECTS" ]; then
+            for proj in $MAVEN_PROJECTS; do
+              PROJ_DIR=$(dirname "$proj")
+              echo "Executing Maven test suite in $PROJ_DIR..."
+              mvn -B test -f "$proj"
+            done
+          fi
