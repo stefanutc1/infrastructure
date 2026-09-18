@@ -88,7 +88,7 @@ flowchart TD
 
     subgraph DEFENSE["Unified Homelab Defense & Escalation"]
         D1["OPNsense Gateway (192.168.1.1)<br/>Unbound DNS Sinkholing & Suricata IDS"]
-        D2["Wazuh SIEM (LXC 150)<br/>Log correlation & anomalous endpoint alerting"]
+        D2["Wazuh SIEM (LXC 107)<br/>Log correlation & anomalous endpoint alerting"]
         D3["National CSIRT (DNSC)<br/>Formal incident reporting & takedown coordination"]
         D4["Banking Chargeback Playbooks<br/>Mastercard 4853 & Visa 13.3 disputes"]
         E1 --> D1 & D3 & D4
@@ -161,7 +161,7 @@ flowchart LR
         OPN --- SURICATA
     end
 
-    subgraph SIEM["Monitoring & Triage (LXC 150)"]
+    subgraph SIEM["Monitoring & Triage (LXC 107)"]
         WAZUH["Wazuh SIEM Manager"]
         DASH["Wazuh Security Dashboard"]
         WAZUH --- DASH
@@ -175,7 +175,7 @@ flowchart LR
 
 1. **OPNsense Unbound DNS Sinkhole (`192.168.1.1`)**: Automated sync script (`antigravity/opnsense_dns_sinkhole.py`) consumes compiled domain blocklists (`romania_scam_blocklist.txt`, `extended_network_blocklist.txt`) to sinkhole malicious traffic at the gateway.
 2. **Suricata IDS/IPS & Complete Traffic Ingestion**: Inspects egress traffic for HTTP signatures matching scam API patterns. All firewall traffic logs (`filterlog`) and system telemetry are streamed live via Syslog-ng (`192.168.1.240:514` UDP) to Wazuh SIEM.
-3. **Wazuh SIEM / XDR Manager (LXC 121 - `192.168.1.240`)**: Scaled with a **4GB JVM Heap** (`-Xms4096m -Xmx4096m`) on 6GB RAM. Ingests all OPNsense traffic with full JSON audit archiving (`<logall_json>yes</logall_json>`), correlating endpoint DNS queries, firewall block/pass decisions, and Suricata telemetry.
+3. **Wazuh SIEM / XDR Manager (LXC 107 - `192.168.1.240`)**: Scaled with a **4GB JVM Heap** (`-Xms4096m -Xmx4096m`) on 6GB RAM. Ingests all OPNsense traffic with full JSON audit archiving (`<logall_json>yes</logall_json>`), correlating endpoint DNS queries, firewall block/pass decisions, and Suricata telemetry.
 
 ---
 

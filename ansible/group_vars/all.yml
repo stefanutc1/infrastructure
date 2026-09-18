@@ -13,13 +13,9 @@ homelab_services:
   - changedetection.io
   - crowdsec
   - filebrowser
-  - gitea
   - grafana
   - homeassistant
-  - immich
-  - it-tools
   - n8n
-  - nextcloud
   - nginx
   - pi-hole
   - prometheus
@@ -27,6 +23,5 @@ homelab_services:
   - trillium-notes
   - uptime-kuma
   - vaultwarden
-  - woodpecker-ci
 
 deploy_user: "root"

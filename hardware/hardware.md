@@ -20,9 +20,9 @@ This file describes hardware and host-level virtualization only. Service definit
 
 **Capacity notes:**
 
-* 12 GB of RAM provides expanded headroom on this host, allowing concurrent operation of enterprise VMs (OpenStack, Metasploitable 2, T-Pot Honeypot, Windows Malware Sandbox, REMnux, OPNsense, Kali Linux VM 300, and the Active Directory Enterprise Lab 400-405) alongside native Wazuh 4.14 SIEM/XDR and GPU-accelerated ML workloads (Ollama, Faster-Whisper) with active VirtIO ballooning and ZRAM swap compression.
-* The GTX 1050 Ti's 4 GB VRAM provides hardware acceleration for local AI inference (Ollama, Faster-Whisper) and compute workloads.
-* 512 GB SSD is the single storage tier — there is currently no separate fast/slow tier, so backup jobs, Frigate's recording retention, and VM/container disk growth all draw from the same pool. Worth tracking usage per-workload if any one of them starts growing unpredictably (Frigate recordings are the most likely culprit).
+* 12 GB of RAM provides expanded headroom on this host, allowing concurrent operation of enterprise VMs alongside Wazuh 4.14 SIEM/XDR (CT 107) and GPU-accelerated ML workloads (Ollama CT 103) with active VirtIO ballooning and ZRAM swap compression.
+* The GTX 1050 Ti's 4 GB VRAM provides hardware acceleration for local AI inference (Ollama CT 103) and compute workloads.
+* 512 GB SSD is the single storage tier — there is currently no separate fast/slow tier, so backup jobs and VM/container disk growth all draw from the same pool.
 
 ### Software & Infrastructure
 
@@ -30,7 +30,7 @@ This file describes hardware and host-level virtualization only. Service definit
 | --- | --- |
 | Hypervisor OS | Proxmox VE 9.2 (Debian 13 Trixie base) |
 | Kernel | Linux 7.0 version pve |
-| Native Host Security | Wazuh Manager 4.14 SIEM / XDR (Ports 1514, 1515, 55000) |
+| Security Operations | Wazuh Manager 4.14 SIEM / XDR (LXC 107: Ports 1514, 1515, 55000) |
 | Networking | Tailscale (mesh VPN) |
 | Virtualization | LXC containers & QEMU VMs |
 
