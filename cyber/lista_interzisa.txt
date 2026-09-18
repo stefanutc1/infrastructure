@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 11:27:03 UTC
-# Total Forbidden Domains: 2632
+# Last Updated: 2026-09-18 14:43:11 UTC
+# Total Forbidden Domains: 2660
 # Breakdown:
 #   - Local Forensics:               430
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 413
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1781
+#   - European Union (CERT-EU/URLh): 416
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1806
 # ==============================================================================
 007tg.vip
 02eiya9o.xn--ndux-kza.store
@@ -43,6 +43,7 @@
 1connect.pl
 1g5uv0u1.wisma138eula.org
 1stchoicestaffing.co.uk
+1xbitios.com
 22qq-client.com
 248labs.ch
 33hb26ve.usa--flashburn.com
@@ -73,6 +74,7 @@
 8mbpoymu.sigosa.store
 9032terrible.workers.dev
 9arwza9k.zenfa.store
+9li95l5d.en-us-cardioslimtea.us
 9si5pybc.pastinaikwisma.org
 a.wv2022.com
 a07uacwz.smity.store
@@ -145,6 +147,7 @@ alcohol.4b3a91fd1b35ab2d023f5d71713a6c00.workers.dev
 aleh.org
 alfabit.hr
 alfuhin.com
+alibabasport.ir
 alineeleuterio.com.br
 allc.asia
 allendostmen.com
@@ -296,6 +299,7 @@ badjojo.com
 baidenfree.com
 baidengop.com
 baidu-cdn-10.com
+bajvati.ba
 balanced-red-emhnkdfj-dp7g2kvqxx8n.edgeone.dev
 balenciaga-sale-ro.online
 bam.csmq.workers.dev
@@ -319,6 +323,7 @@ beeg.com
 belly--flush.us
 benaditahd.duckdns.org
 berjimek.com
+betandyou90.com
 bgh7fgpgvk.workers.dev
 billiebates.com
 binance-airdrop-claim.top
@@ -351,6 +356,7 @@ blockchainstartups-crypto.com
 blogs.sokun.jp
 bloodhorn8123.icu
 blopik.com
+bluesdrummer.com
 bluetechsupply.com
 bmdcompany.com
 bnet-api.playm8ru.win
@@ -519,11 +525,13 @@ chrioseedoflifechurch.org
 christinegrauer.com
 christophburgstedt.de
 chuguadventures.co.tz
+churchoflife.io
 cid.gov.so
 citizenhomecares.com
 citrixseruritys.com
 citymine.co.in
 citysuitsjersey.co.uk
+ciu2swv9.alibabasport.ir
 ck.erloro.com
 ckquilting.com
 cl.ssouy.com
@@ -610,6 +618,7 @@ cs.xcb.one
 cs2-tournament-bracket.top
 cs2.acsdomaindsadas.click
 csgo-skins-roll.vip
+csjr0p6y.www-bellyflush.com
 csou.link
 cstest.mucfc.store
 csxv.sec.cm
@@ -681,6 +690,7 @@ dheya.dheya.workers.dev
 dhowcruiseadventures.com
 dhzuadd.hellothere.sbs
 diabet-remediu.online
+diabetir.online
 dianqi1.dianqi2.jiayongdianqi.xyz
 dianqi1.jiayongdianqi.xyz
 dianqi2.dianqi1.jiayongdianqi.xyz
@@ -873,6 +883,7 @@ extranetserver.com
 eyefinancemonitor.com
 f168s.best
 f2z84wi9.usa-enerflow.us
+f3e33vzn.nurvesoothe.com
 f5tech.in
 f8bet-k2.buzz
 faceupfinder.com
@@ -916,6 +927,7 @@ fifa55n.com
 fifacud.com
 filaspo.com
 file.blackint3.com
+file.uhsea.com
 filerit.com
 fileupdates.blob.core.windows.net
 fincheck.site
@@ -1267,6 +1279,7 @@ khavar.com
 khtshop.com
 ki-museum.de
 kikk69fvi2.workers.dev
+kiln-skioi-c29ap.com
 kimyen.net
 kinderopvangdopey.com
 kindmindsociety.com
@@ -1400,6 +1413,7 @@ mail-my-account.com
 mail.tamiltotamil.com
 mail.wiwgf.workers.dev
 mailapp-fly.com
+majithiamasala.co.in
 make.thbwi.workers.dev
 makerman.in
 malrok.com
@@ -1421,6 +1435,7 @@ matrimoniale-bucuresti.com
 matrimoniale-ro.com
 matrimoniale-romania.cc
 matrimoniale-timisoara.ro
+mauritaalright.workers.dev
 maxbillionaires.com
 maxbillionaires.top
 maximtubes.com
@@ -1475,6 +1490,7 @@ midwestfreefall.com
 mikosmtmiaomu.ddns.net
 milanvar.com
 millionpi66.website
+mimhq25218.workers.dev
 mindful-karrierecoaching.de
 mingw.icu
 miracle-cur.top
@@ -1605,6 +1621,7 @@ nsfdfdfdf.xyz
 nuclearelectrica-profit.cc
 nuesro.com
 nukewatch.org
+nurvesoothe.com
 nusatoyota.co.id
 nutricaocomjo.com
 nutritionsecureindy.com
@@ -1859,6 +1876,7 @@ rally.wiwgf.workers.dev
 ramirex.ro
 rapidfinact.com
 rapjuve.com
+rarufusi.workers.dev
 rasimy.workers.dev
 ratu88hoki.com
 rawocav.com
@@ -1939,6 +1957,7 @@ roviniete-verificare.cc
 royalfluffyfrenchies.com
 royalindiancurryclub.com
 rr88-link.com
+rsmze54782.workers.dev
 rss.top-business-blog.com
 runningwithj.com
 ruplearben.com
@@ -2030,6 +2049,7 @@ shein-outlet-vip.shop
 shermango.com
 shiyicaster.com
 shizij.com
+shop-bellyflush.com
 shop-genesis-revival.com
 shop-geniusbrainsignal.com
 shop-glpro.com
@@ -2054,6 +2074,7 @@ siteborg.com
 siteinsights.icu
 situotech.com
 sk-comtel.com
+skibshipping.com
 skill-cert.com
 skraddarnshus.se
 skyblock-addons.com
@@ -2157,6 +2178,7 @@ swiftfusion.tech
 syloziwu.workers.dev
 synadentics.com
 syncorporation.com
+synton.ch
 szendryk-partner.de
 t.vwgze.workers.dev
 taazaproducts.com
@@ -2286,6 +2308,7 @@ tvrepair.ae
 tw77v76h.wisma138diluc.net
 twistys.com
 twitch.tj
+twu-hwt.org
 txxx.com
 ty.199cuan.org
 ty.zk89.net
@@ -2315,6 +2338,7 @@ up3c3qqw.shop-zensulin.us
 upaicdn.xinmei365.com
 upchemicals.co.in
 update.cg100iii.com
+update.googlecert.help
 update.microsoftapply.com
 update.mloadspring.com
 update04.microsoft-essentials.com
@@ -2334,6 +2358,7 @@ urlaubsdomizil-binz.de
 us189-hpgsgae5dva9fzch.z01.azurefd.net
 usa--flashburn.com
 usa-enerflow.us
+usa-gutlite.us
 usadevgroup.com
 usalo.store
 userhotels.org
@@ -2484,6 +2509,7 @@ www.darlingtonstudios.com
 www.donneandgo.com
 www.drgenov.com
 www.dyshop.online
+www.ecorgysolutions.com
 www.edge-chrome.com
 www.eliterisk.com
 www.fairmounthomestaging.com
@@ -2542,6 +2568,7 @@ www.salesf0rce.club
 www.salonmarketing.ca
 www.service1app.com
 www.sgeseducation.com
+www.shanefoods.com
 www.silver-hubdachwohnwagen.de
 www.smartlc.it
 www.snmechanicalhvac.com
@@ -2619,6 +2646,7 @@ youtube-brand-deal.cc
 ytec.store
 yuwajeni.com
 yw2204.shop
+yw8bvcf7.betandyou90.com
 zadiguser.com
 zahnschirm.de
 zambeziz.com
