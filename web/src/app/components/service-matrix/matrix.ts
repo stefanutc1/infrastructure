@@ -21,9 +21,7 @@ import { TranslationService } from '../../services/translation.service';
       {{ ts.t.srvTitle }}
      </h2>
      <p class="text-sm text-slate-300 max-w-2xl font-sans font-normal leading-relaxed">
-      {{ ts.isRomanian 
-       ? 'Catalogul complet cu toate cele 88 de microservicii și componente de infrastructură. Fiecare serviciu include captură HD de interfață, telemetrie în timp real și alocare hardware.' 
-       : 'Complete catalog of all 88 active homelab microservices and infrastructure components with dedicated HD screenshots, real-time telemetry, and hardware ceilings.' }}
+      {{ ts.t.srvDesc }}
      </p>
     </div>
 

@@ -117,7 +117,7 @@ export interface Translations {
 const EN_TRANSLATIONS: Translations = {
   navOverview: 'Overview',
   navTopology: '3D Topology',
-  navServices: 'Services (90)',
+  navServices: 'Services',
   navHardware: 'Hardware Fleet',
   navBlueprint: 'Architecture & Cyber',
   statusClusterActive: '3 nodes online',
@@ -125,7 +125,7 @@ const EN_TRANSLATIONS: Translations = {
 
   heroTag: 'SYSTEM ARCHITECTURE & OVERVIEW',
   heroTitle: 'A heterogeneous bare-metal compute cluster, private cloud, and security testing lab.',
-  heroDescription: 'Technical documentation and interactive overview of the datacenter infrastructure: Proxmox VE virtualization on Intel x86_64, Windows Server Active Directory, ZFS storage, OPNsense firewall segmentation, local GPU LLMs, and automation.',
+  heroDescription: 'Technical documentation and interactive overview of the datacenter infrastructure: Proxmox VE virtualization on Intel x86_64, ZFS storage, OPNsense firewall segmentation, local GPU LLMs, and automation.',
   
   metricComputeTitle: 'PHYSICAL COMPUTE',
   metricComputeCount: '3 Nodes',
@@ -133,15 +133,15 @@ const EN_TRANSLATIONS: Translations = {
   
   metricVirtTitle: 'VIRTUALIZATION',
   metricVirtCount: '1 Hypervisor',
-  metricVirtDesc: 'Proxmox VE x86_64 hosting OPNsense, OpenStack, cyber fleet (VM 200-205), Bachelor Thesis research lab (VM 301-302, CT 303), Active Directory lab fleet (VM 400-409), and 76 LXC containers.',
+  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Parrot Security OS (VM 300), and 8 active production LXC containers (100–107).',
   
-  metricServicesTitle: 'ACTIVE SERVICES & MULTI-CLOUD',
-  metricServicesCount: '90 Services · 3 Clouds',
-  metricServicesDesc: '90 active on-prem microservices and KVM enterprise VMs federated with Azure Key Vault, GCP WORM Storage & AWS Glacier.',
+  metricServicesTitle: 'ACTIVE SERVICES',
+  metricServicesCount: '13 Core Services',
+  metricServicesDesc: 'Production microservices, SIEM telemetry, local GPU AI, and network infrastructure.',
   
-  metricCyberTitle: 'SECURITY, DFIR & CI/CD',
-  metricCyberCount: 'SOC · 9 CI/CD Workflows',
-  metricCyberDesc: 'Wazuh SIEM, T-Pot DMZ + Enterprise CI/CD Matrix featuring 9 automated workflows with 36+ parallel quality checks.',
+  metricCyberTitle: 'SECURITY & DFIR',
+  metricCyberCount: 'SOC · Wazuh SIEM',
+  metricCyberDesc: 'Wazuh SIEM / XDR (4GB Heap), Suricata IDS/IPS, OPNsense firewall, and 5 digital forensics investigations.',
 
   topologyTag: 'NETWORK TOPOLOGY',
   topologyTitle: 'Spatial 3D Topology Visualization',
@@ -176,8 +176,8 @@ const EN_TRANSLATIONS: Translations = {
   btnLocate3D: 'LOCATE IN 3D',
 
   srvTag: 'SERVICES CATALOG',
-  srvTitle: 'Active Services & Workloads (95)',
-  srvDesc: 'Complete catalog of all 95 active datacenter microservices and infrastructure components with dedicated HD screenshots, real-time telemetry, and hardware ceilings.',
+  srvTitle: 'Active Services & Workloads',
+  srvDesc: 'Catalog of active datacenter microservices and infrastructure components with real-time telemetry and resource allocations.',
   srvSearchPlaceholder: 'Search service, port, host, category...',
   srvRamCeiling: 'RAM Ceiling',
   srvStoragePool: 'Storage Pool',
@@ -194,11 +194,11 @@ const EN_TRANSLATIONS: Translations = {
 
   bpTag: 'TECHNICAL BLUEPRINT',
   bpTitle: 'System Architecture & Blueprint',
-  bpDesc: 'Technical specifications for VLAN isolation, cybersecurity tooling, T-Pot honeypots, digital forensics (DFIR), ZFS storage, and UPS telemetry.',
+  bpDesc: 'Technical specifications for VLAN isolation, cybersecurity tooling, digital forensics (DFIR), ZFS storage, and UPS telemetry.',
   tabVlan: 'VLAN Segmentation Matrix',
-  tabCyber: 'Cybersecurity, DFIR & Honeypots',
+  tabCyber: 'Cybersecurity & DFIR',
   tabMemory: 'RAM Allocation Budgets',
-  tabAi: 'AI Routing Cascade (ELO & Ollama)',
+  tabAi: 'AI Routing & Ollama GPU',
   tabDevSecOps: 'DevSecOps & Immutability',
 
   inspectorSpec: 'SPECIFICATION',
@@ -217,7 +217,7 @@ const EN_TRANSLATIONS: Translations = {
   inspectorCopySpec: 'COPY SPEC',
   inspectorCopied: 'COPIED!',
 
-  footerSub: '— Proxmox VE · Windows Server AD · WireGuard · Wazuh XDR · DFIR · Ollama LLM',
+  footerSub: '— Proxmox VE · OPNsense · Wazuh SIEM/XDR · DFIR · Ollama LLM',
   footerTop: 'TOP ↑',
   footerGithub: 'GITHUB REPO'
 };
