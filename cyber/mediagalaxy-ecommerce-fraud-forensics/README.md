@@ -25,6 +25,7 @@ The threat actors impersonated the Romanian retail giant **Media Galaxy** via sp
 │   ├── BCR_CHARGEBACK_FRAUD_DISCLOSURE.md # First-person chargeback dispute statement for BCR (RO / EN)
 │   ├── MEDIA_GALAXY_DISCLOSURE.md     # Brand abuse notice to Media Galaxy / Altex (RO / EN)
 │   ├── DNSC_INCIDENT_NOTIFICATION.md  # Official CSIRT incident notification to DNSC (RO / EN)
+│   ├── DNSC_RESPONSE_178465.md        # Official CSIRT resolution & response from DNSC [Ticket #178465] (RO / EN)
 │   ├── CIPRIAN_LOSPA_PROPOSAL.md      # YouTube investigative proposal to Ciprian Lospa (RO / EN)
 │   ├── GOOGLE_SAFE_BROWSING_REPORT.md # Malicious URL & phishing submission to Google
 │   └── CLOUDFLARE_ABUSE_REPORT.md     # Infrastructure abuse report to Cloudflare (yiyangsaas.com)
@@ -104,6 +105,11 @@ flowchart TD
         H["September 17, 18:00 - Issuing Bank Call (BCR)<br/>Formal fraud report, card dispute & chargeback claim initiated"]
         G --> H
     end
+
+    subgraph P6["Phase 6: Regulatory Authority Resolution (DNSC)"]
+        I["September 18, 11:22 - Official DNSC Resolution & Response<br/>Ticket #178465: Investigation opened, domain slated for PNRISC Blacklist"]
+        H --> I
+    end
 ```
 
 | Timestamp | Incident Lifecycle Phase | Target Entity / Channel | Forensic Action & Milestone |
@@ -116,6 +122,7 @@ flowchart TD
 | **September 17, 01:00 - 01:25** | **Secondary Endpoint Audit** | Threat Infrastructure & Subdomains | Second-wave verification of endpoint responsiveness, C2 persistence, IP redirection, and DNS propagation. |
 | **September 17, 08:22** | **Public Awareness Outreach** | Ciprian Lospa (YouTube Cyber Investigator) | Submitted complete investigative pitch and technical forensic dossier for public awareness on scam mechanics. |
 | **September 17, 18:00** | **Financial Chargeback Dispute** | BCR (Banca Comercială Română) Support | Contacted bank customer service, reported cyber fraud, and opened formal transaction dispute / chargeback case. |
+| **September 18, 11:22** | **Authority Response** | Romanian National CSIRT ([DNSC](https://dnsc.ro)) | Official ticket response received under `[D.N.S.C. #178465]`: formal investigation launched, reported domain evaluated for inclusion in the national PNRISC Blacklist (`https://blacklist.dnsc.ro/`). |
 
 ---
 
@@ -177,6 +184,7 @@ All external incident notifications, abuse filings, and public advocacy disclosu
 - **BCR Chargeback Dispute & Fraud Statement ([RO / EN](disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)):** First-person script for phone/branch reporting to BCR to initiate the chargeback dispute and obtain a claim number.
 - **Media Galaxy Official Brand Disclosure ([RO / EN](disclosures/MEDIA_GALAXY_DISCLOSURE.md)):** Notification to Altex/Media Galaxy legal and security teams.
 - **DNSC Incident Notification ([RO / EN](disclosures/DNSC_INCIDENT_NOTIFICATION.md)):** Formal filing to the Romanian National Cyber Security Directorate.
+- **DNSC Official Response & Resolution ([RO / EN](disclosures/DNSC_RESPONSE_178465.md)):** Official response under Ticket `[D.N.S.C. #178465]` confirming active investigation and evaluation for the national PNRISC Blacklist.
 - **Ciprian Lospa Investigation Pitch ([RO / EN](disclosures/CIPRIAN_LOSPA_PROPOSAL.md)):** Public awareness and YouTube case study pitch.
 - **Google Safe Browsing Report ([EN](disclosures/GOOGLE_SAFE_BROWSING_REPORT.md)):** Domain blacklisting request for `mediagalaxy.voetbalshop-nlco.com`.
 - **Cloudflare Abuse Report ([EN](disclosures/CLOUDFLARE_ABUSE_REPORT.md)):** Infrastructure takedown request targeting `yiyangsaas.com`.

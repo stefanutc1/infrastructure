@@ -5,7 +5,7 @@
 **Primary Investigators:** `@stefanutc1`  
 **Target Entity:** Media Galaxy (Altex România S.A.)  
 **Financial Loss Impact:** ~21 EUR (~110 RON) via BCR (Banca Comercială Română) Debit Card  
-**Status:** Incident Mitigated, Card Blocked, Takedown In-Progress  
+**Status:** Incident Mitigated, Card Blocked, Official DNSC Investigation Opened (`[D.N.S.C. #178465]`) / Takedown In-Progress  
 
 ---
 
@@ -65,4 +65,4 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
    - Ingested `domains.txt` into Unbound DNS Blocklists.
    - Deployed custom Suricata IDS rules (`sid:1000951-1000956`) on WAN and LAN interfaces.
    - Created Floating firewall reject rules for C2 proxy IPs.
-4. **Takedown Submissions:** Abuse reports submitted to Cloudflare, NameSilo, eName Technology, Zoho Mail, Google, and the Romanian National Cyber Security Directorate (DNSC - `alerts@dnsc.ro`).
+4. **Takedown Submissions & Authority Response:** Abuse reports submitted to Cloudflare, NameSilo, eName Technology, Zoho Mail, Google, and the Romanian National Cyber Security Directorate (DNSC - `alerts@dnsc.ro`). On September 18, 11:22, DNSC officially confirmed Ticket **`[D.N.S.C. #178465]`**, initiating a formal investigation and scheduling the domain for inclusion in the national PNRISC Blacklist.

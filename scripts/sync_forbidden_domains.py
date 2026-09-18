@@ -24,6 +24,7 @@ import re
 import sys
 import csv
 import io
+import time
 import json
 import argparse
 import datetime
@@ -38,6 +39,7 @@ FORBIDDEN_TXT = CYBER_DIR / "forbidden_domains.txt"
 LISTA_INTERZISA_TXT = CYBER_DIR / "lista_interzisa.txt"
 DNSC_JSON = CYBER_DIR / "dnsc_blacklist.json"
 CSIRT_JSON = CYBER_DIR / "csirt_telemetry.json"
+CSIRT_CACHE_JSON = CYBER_DIR / "csirt_cache.json"
 
 DNSC_URL = "https://blacklist.dnsc.ro/"
 URLHAUS_URL = "https://urlhaus.abuse.ch/downloads/hostfile/"
@@ -148,17 +150,51 @@ def is_valid_domain(d: str) -> bool:
     return True
 
 
-def fetch_url(url: str, timeout: int = 15) -> str:
-    """Fetches URL content with standard browser user-agent."""
-    req = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-            "Accept": "*/*",
-        },
-    )
-    with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read().decode("utf-8", errors="ignore")
+def fetch_url(url: str, timeout: int = 15, retries: int = 2) -> str:
+    """Fetches URL content with standard browser user-agent and retries on transient network errors."""
+    for attempt in range(retries + 1):
+        try:
+            req = urllib.request.Request(
+                url,
+                headers={
+                    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+                    "Accept": "*/*",
+                },
+            )
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                return resp.read().decode("utf-8", errors="ignore")
+        except Exception as e:
+            if attempt < retries:
+                time.sleep(1.5 * (attempt + 1))
+                continue
+            raise e
+
+
+def load_csirt_feed_cache() -> dict[str, list[str]]:
+    """Loads cached EU and Five Eyes domains if external feeds are unavailable."""
+    if not CSIRT_CACHE_JSON.exists():
+        return {"eu": [], "five_eyes": []}
+    try:
+        data = json.loads(CSIRT_CACHE_JSON.read_text(encoding="utf-8"))
+        return {
+            "eu": data.get("eu", []),
+            "five_eyes": data.get("five_eyes", []),
+        }
+    except Exception:
+        return {"eu": [], "five_eyes": []}
+
+
+def save_csirt_feed_cache(eu_domains: set[str], five_eyes_domains: set[str]) -> None:
+    """Saves active EU and Five Eyes domains for resilient fallback."""
+    cache = load_csirt_feed_cache()
+    if eu_domains:
+        cache["eu"] = sorted(list(eu_domains))
+    if five_eyes_domains:
+        cache["five_eyes"] = sorted(list(five_eyes_domains))
+    try:
+        CSIRT_CACHE_JSON.write_text(json.dumps(cache, indent=2) + "\n", encoding="utf-8")
+    except Exception as e:
+        print(f"[WARNING] Could not save CSIRT cache: {e}")
 
 
 def fetch_dnsc_blacklist() -> list[dict]:
@@ -191,7 +227,11 @@ def fetch_eu_urlhaus() -> set[str]:
                         domains.add(d)
         print(f"        -> Extracted {len(domains)} domains from EU / CERT-EU aligned feed.")
     except Exception as e:
-        print(f"        -> [WARNING] URLhaus query failed ({e}).")
+        print(f"        -> [WARNING] URLhaus query failed ({e}). Fallback to cache.")
+        cached = load_csirt_feed_cache().get("eu", [])
+        if cached:
+            print(f"        -> [FALLBACK] Restored {len(cached)} domains from local cache.")
+            return set(cached)
     return domains
 
 
@@ -211,7 +251,11 @@ def fetch_five_eyes_threatfox() -> set[str]:
                     domains.add(d)
         print(f"        -> Extracted {len(domains)} domains from Five Eyes CSIRT coalition feed.")
     except Exception as e:
-        print(f"        -> [WARNING] ThreatFox query failed ({e}).")
+        print(f"        -> [WARNING] ThreatFox query failed ({e}). Fallback to cache.")
+        cached = load_csirt_feed_cache().get("five_eyes", [])
+        if cached:
+            print(f"        -> [FALLBACK] Restored {len(cached)} domains from local cache.")
+            return set(cached)
     return domains
 
 
@@ -387,7 +431,10 @@ def main():
     }
     DNSC_JSON.write_text(json.dumps(dnsc_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    # 7. Save CSIRT multi-national telemetry metadata
+    # 7. Save CSIRT resilient feed cache
+    save_csirt_feed_cache(eu_domains, five_eyes_domains)
+
+    # 8. Save CSIRT multi-national telemetry metadata
     csirt_payload = {
         "metadata": {
             "description": "Multi-National CSIRT Threat Intelligence Breakdown (Romania, EU, US, UK, CA, AU, NZ)",

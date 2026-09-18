@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 09:26:36 UTC
-# Total Forbidden Domains: 2614
+# Last Updated: 2026-09-18 09:46:00 UTC
+# Total Forbidden Domains: 2613
 # Breakdown:
 #   - Local Forensics:               430
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 405
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1771
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1770
 # ==============================================================================
 007tg.vip
 02eiya9o.xn--ndux-kza.store
@@ -809,6 +809,7 @@ endpoint.project0.cc
 energie-economie.site
 energo-invest.cc
 eng--cardioslim.com
+eng--enerflow.com
 eng--neurowave.us
 eng-eng--glucore.com
 engage.aeafh.workers.dev
@@ -1011,7 +1012,6 @@ getcardfly.com
 getsafeblog.com
 gfcbm.xyz
 gfsert.com
-ghadi.store
 ghisaul.ro
 ghiseal.ro
 ghiseul-autentificare.cc
@@ -1283,7 +1283,6 @@ ksplsoft.com
 kubetvip.asia
 kucoin-giveaway.vip
 kuy88.xyz
-kvoxeozq.ghadi.store
 l0jpgk5p.tapl.store
 lab.google-analytcis.com
 labubu-figures.cc

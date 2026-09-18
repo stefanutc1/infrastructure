@@ -53,3 +53,14 @@ We submit these findings for ingestion into national threat intelligence feeds a
 
 Respectfully,  
 **Incident Analysis & Response Team**
+
+---
+
+## 📬 Official Resolution & Response / Rezoluție Oficială
+
+- **Ticket ID:** `[D.N.S.C. #178465]`  
+- **Received:** September 18, 2026, 11:22 EEST  
+- **Authority:** Directoratul Național de Securitate Cibernetică (DNSC) – Direcția Generală Operațiuni Tehnice  
+- **Status:** Investigation Opened / Domain under evaluation for the national PNRISC Blacklist ([`blacklist.dnsc.ro`](https://blacklist.dnsc.ro/)).  
+- **Full Dossier (RO / EN):** See [`DNSC_RESPONSE_178465.md`](./DNSC_RESPONSE_178465.md).
+
