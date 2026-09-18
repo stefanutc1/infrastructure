@@ -39,8 +39,13 @@ The threat actors impersonated the Romanian retail giant **Media Galaxy** via sp
 │   └── cybersecurity_report_final.pdf # Executive PDF incident report
 ├── /playbooks/
 │   └── ir_playbook.md                 # Incident Response playbook for financial fraud & chargebacks
-└── /configs/
-    └── opnsense_blocklist_guide.md    # Gateway (192.168.1.1) integration runbook
+├── /configs/
+│   └── opnsense_blocklist_guide.md    # Gateway (192.168.1.1) integration runbook
+├── forbidden_domains.txt              # Synchronized master forbidden domain list (DNSC, EU, Five Eyes, Local)
+├── lista_interzisa.txt                # Romanian naming mirror for network sinkholing
+├── dnsc_blacklist.json                # Structured DNSC PNRISC blacklist database
+├── csirt_telemetry.json               # Multi-national CSIRT telemetry & jurisdictional breakdown
+└── csirt_cache.json                   # Resilient fallback cache for upstream threat feeds
 ```
 
 ---

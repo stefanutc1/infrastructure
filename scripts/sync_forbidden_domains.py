@@ -41,6 +41,13 @@ DNSC_JSON = CYBER_DIR / "dnsc_blacklist.json"
 CSIRT_JSON = CYBER_DIR / "csirt_telemetry.json"
 CSIRT_CACHE_JSON = CYBER_DIR / "csirt_cache.json"
 
+MEDIAGALAXY_DIR = CYBER_DIR / "mediagalaxy-ecommerce-fraud-forensics"
+MG_FORBIDDEN_TXT = MEDIAGALAXY_DIR / "forbidden_domains.txt"
+MG_LISTA_INTERZISA_TXT = MEDIAGALAXY_DIR / "lista_interzisa.txt"
+MG_DNSC_JSON = MEDIAGALAXY_DIR / "dnsc_blacklist.json"
+MG_CSIRT_JSON = MEDIAGALAXY_DIR / "csirt_telemetry.json"
+MG_CSIRT_CACHE_JSON = MEDIAGALAXY_DIR / "csirt_cache.json"
+
 DNSC_URL = "https://blacklist.dnsc.ro/"
 URLHAUS_URL = "https://urlhaus.abuse.ch/downloads/hostfile/"
 THREATFOX_URL = "https://threatfox.abuse.ch/export/csv/recent/"
@@ -192,7 +199,10 @@ def save_csirt_feed_cache(eu_domains: set[str], five_eyes_domains: set[str]) -> 
     cache["eu"] = sorted(list(merged_eu))
     cache["five_eyes"] = sorted(list(merged_five_eyes))
     try:
-        CSIRT_CACHE_JSON.write_text(json.dumps(cache, indent=2) + "\n", encoding="utf-8")
+        cache_raw = json.dumps(cache, indent=2) + "\n"
+        CSIRT_CACHE_JSON.write_text(cache_raw, encoding="utf-8")
+        if MG_CSIRT_CACHE_JSON.parent.exists():
+            MG_CSIRT_CACHE_JSON.write_text(cache_raw, encoding="utf-8")
     except Exception as e:
         print(f"[WARNING] Could not save CSIRT cache: {e}")
 
@@ -431,7 +441,10 @@ def main():
         },
         "entries": sorted(list(updated_dnsc_cache.values()), key=lambda x: x["address"]),
     }
-    DNSC_JSON.write_text(json.dumps(dnsc_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    dnsc_raw = json.dumps(dnsc_payload, indent=2, ensure_ascii=False) + "\n"
+    DNSC_JSON.write_text(dnsc_raw, encoding="utf-8")
+    if MG_DNSC_JSON.parent.exists():
+        MG_DNSC_JSON.write_text(dnsc_raw, encoding="utf-8")
 
     # 7. Save CSIRT resilient feed cache
     save_csirt_feed_cache(eu_domains, five_eyes_domains)
@@ -453,12 +466,19 @@ def main():
             "metrics": breakdown,
         }
     }
-    CSIRT_JSON.write_text(json.dumps(csirt_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    csirt_raw = json.dumps(csirt_payload, indent=2, ensure_ascii=False) + "\n"
+    CSIRT_JSON.write_text(csirt_raw, encoding="utf-8")
+    if MG_CSIRT_JSON.parent.exists():
+        MG_CSIRT_JSON.write_text(csirt_raw, encoding="utf-8")
 
-    # 8. Save forbidden_domains.txt & lista_interzisa.txt
+    # 9. Save forbidden_domains.txt & lista_interzisa.txt
     content = generate_forbidden_list_content(all_forbidden, breakdown)
     FORBIDDEN_TXT.write_text(content, encoding="utf-8")
     LISTA_INTERZISA_TXT.write_text(content, encoding="utf-8")
+    if MG_FORBIDDEN_TXT.parent.exists():
+        MG_FORBIDDEN_TXT.write_text(content, encoding="utf-8")
+    if MG_LISTA_INTERZISA_TXT.parent.exists():
+        MG_LISTA_INTERZISA_TXT.write_text(content, encoding="utf-8")
 
     print(f"[SAVED] Saved DNSC cache:        {DNSC_JSON.relative_to(REPO_ROOT)} ({len(updated_dnsc_cache)} records)")
     print(f"[SAVED] Saved CSIRT telemetry:   {CSIRT_JSON.relative_to(REPO_ROOT)}")
