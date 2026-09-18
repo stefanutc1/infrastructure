@@ -2,9 +2,9 @@
   "metadata": {
     "source": "https://blacklist.dnsc.ro/",
     "description": "National Cyber Security Directorate (DNSC) Blacklist Threat Feed",
-    "last_synced": "2026-09-18T09:47:14.538100+00:00",
+    "last_synced": "2026-09-18T11:26:30.910423+00:00",
     "total_entries": 10,
-    "new_entries_this_run": 0
+    "new_entries_this_run": 10
   },
   "entries": [
     {
@@ -13,8 +13,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Scam",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -23,8 +23,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Impersonation",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -33,8 +33,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Impersonation",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -43,8 +43,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Phishing",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -53,8 +53,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Phishing",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -63,8 +63,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Phishing",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -73,8 +73,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "SMiShing",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -83,8 +83,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Scam",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -93,8 +93,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Impersonation",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     },
     {
@@ -103,8 +103,8 @@
       "date_added": "Sept. 17, 2026",
       "status": "Blacklisted",
       "reason": "Phishing",
-      "first_seen": "2026-09-18T09:46:00.708180+00:00",
-      "last_seen": "2026-09-18T09:46:00.708180+00:00",
+      "first_seen": "2026-09-18T11:26:30.905315+00:00",
+      "last_seen": "2026-09-18T11:26:30.905315+00:00",
       "source": "https://blacklist.dnsc.ro/"
     }
   ]

@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 09:47:14 UTC
-# Total Forbidden Domains: 2613
+# Last Updated: 2026-09-18 11:26:30 UTC
+# Total Forbidden Domains: 2632
 # Breakdown:
 #   - Local Forensics:               430
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 405
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1770
+#   - European Union (CERT-EU/URLh): 413
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1781
 # ==============================================================================
 007tg.vip
 02eiya9o.xn--ndux-kza.store
@@ -322,6 +322,7 @@ berjimek.com
 bgh7fgpgvk.workers.dev
 billiebates.com
 binance-airdrop-claim.top
+biodentix.us.com
 biohazzzard.com
 bioscolombia.com.co
 biserica-ortodoxa-ajutor.top
@@ -428,6 +429,7 @@ c2.hyperluxe.gg
 c2.j-88.co
 c2.j88viet.com
 c2.kubetvip.asia
+c2.mc-live.online
 c2.mtoto-wa-kuwinda.de
 c2.news27.co.in
 c2.ok365.org
@@ -570,6 +572,7 @@ connect.mcfind.workers.dev
 containerhomesbc.ca
 contemporaryto.com
 contididit.conti.pk
+continentalgroup.net.in
 cookieholder.com
 coolairesgroup.com
 coomer.party
@@ -620,6 +623,7 @@ cyy.turbo88ml.top
 czechav.com
 d.14yaa.com
 d.wanyouxi7.com
+d83fvnq4f0.workers.dev
 daftsex.com
 daibaodan.com
 dailyushistory.com
@@ -802,7 +806,9 @@ empflix.com
 emphasis.co.in
 emsaluminium.fr
 en-prosta-fense.com
+en-us-cardioslimtea.us
 en-us-nurvealive.com
+en-us-slimsplitsmethod.com
 en.taichuan.com
 endorse8767.lrndn.workers.dev
 endpoint.project0.cc
@@ -966,12 +972,15 @@ funnymap.net
 fuq.com
 furfen.com
 fv1hcoo0.neuro-neurosharp.com
+fvrfq4s8.us-slimsplitsmethod.com
 fx-alexandru.top
 fxalexandru.site
+fz.tiansys.cn
 fziomerof.com
 ga888.icu
 ga888vnd.com
 gabfixhomesolutions.com
+gaezskoynbrisk.com
 gagymo.workers.dev
 galerisenimutiara.com
 galspost.com
@@ -979,6 +988,7 @@ gama-casino-rzb.buzz
 gamblerigmod.org
 ganyangwisma.com
 gapo.rako9jabus1.com
+garogradba.mk
 gas-profit-app.com
 gasienda.com
 gasstationgourmet.com
@@ -991,6 +1001,7 @@ gentlemensmechanical.com
 geoxsecurity.ro
 gepcash.com
 gestionycobranzas.com
+gestroom.it
 get-music-online.com
 get-smartbuyer.com
 get-topservice.com
@@ -1283,6 +1294,8 @@ ksplsoft.com
 kubetvip.asia
 kucoin-giveaway.vip
 kuy88.xyz
+kz.199cuan.org
+kz.zk89.net
 l0jpgk5p.tapl.store
 lab.google-analytcis.com
 labubu-figures.cc
@@ -1796,6 +1809,7 @@ prostafene.com
 prostata-sanatoasa.cc
 prostata-vindecare.top
 proswpppstg.wpenginepowered.com
+protherapycenter.com
 protramal.com
 prozakx.com
 ps2csrcvxlbc5rn7gw3vnncyue0lgpsx.lambda-url.ap-south-1.on.aws
@@ -1932,6 +1946,7 @@ rw1.sentrysource.com
 rx.fabiankorte.net
 rxquickpay.com
 ryjywa.workers.dev
+s48bo9y4.en-en--enerflow.com
 s666hp.com
 s8-games.ink
 s8.coach
@@ -1945,6 +1960,7 @@ sagsblog.telinduslab.lu
 saigont-shirt.com
 sajij.com
 sales.ifree.page
+sallowcloister.co
 samara2026.duckdns.org
 sameday-colet.cc
 sameday-curier.cc
@@ -2020,6 +2036,7 @@ shop-glpro.com
 shop-zensulin.us
 shop.tarela.lt
 shopichain.com
+shqdown.ggzuhao.com
 shrekf.art
 siammusicclub.com
 sifang.buzz
@@ -2391,6 +2408,7 @@ web-analyzer-serv32.com
 web-news-blog.com
 web8kbetchinhthuc.buzz
 webcammodelle.com
+webcstore.pw
 webpulsedata.icu
 website.mypetapp.co.za
 webtracelab.icu
@@ -2555,6 +2573,7 @@ www.zamilgroups.com
 www.zhikey.com
 www.zominoz.com
 wxtencent.com
+xalexo.workers.dev
 xamayojir.com
 xcafe.com
 xcat.store

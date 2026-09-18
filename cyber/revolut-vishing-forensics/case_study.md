@@ -100,8 +100,21 @@ Immediate API Injection into Bank"]
 
 ---
 
-## 6. Incident Response & Defensive Guidelines
+## 6. Upstream Breach Correlation & Vishing Persistence (September 2026)
+
+On September 12, 2026, investigative reports ([Financiarul.ro](https://financiarul.ro/tehnologie/revolut-a-divulgat-date-sensibile-ale-unor-clienti-dupa-solicitari/), citing [TechCrunch](https://techcrunch.com/2026/09/12/revolut-confirms-customer-data-breach-through-fake-government-requests/)) confirmed that **Revolut suffered a significant customer data breach**. An unauthorized third party impersonating a legitimate government law enforcement agency submitted fraudulent legal requests for information, causing Revolut to disclose sensitive KYC files and personal records.
+
+### Key Factors Driving Persistent Vishing Attacks:
+- **Exfiltrated PII & Contact Records:** Attackers obtained verified phone numbers, residential addresses, dates of birth, and email addresses.
+- **Compromised KYC & Financial Metadata:** High-resolution scans of passports, driving licenses, verification selfies, and bank transaction statements were exfiltrated.
+- **Targeting High-Net-Worth Individuals (HNWI):** Crypto threat intelligence researcher **ZachXBT** highlighted that high-net-worth customers were specifically targeted.
+- **Spear-Vishing Transformation:** This breach transforms vishing from random robo-dialing into lethal, targeted spear-vishing. Attackers can call verified numbers, recite the victim's full name, birth date, address, and recent transaction history, creating an overwhelming appearance of authenticity that lures victims into authorizing 3DS OTP challenges or in-app transfers.
+
+---
+
+## 7. Incident Response & Defensive Guidelines
 
 1. **Bank Verification Policy**: Legitimate financial institutions will never instruct clients over the phone to disclose their CVV, transfer funds to "safety accounts", or read back SMS authorization codes.
 2. **In-App Verification**: Users must verify all fraud inquiries exclusively through the authenticated in-app chat channel.
 3. **Telephony Hardening**: Telecommunications carriers must enforce STIR/SHAKEN protocol standards to invalidate unauthenticated international SIP Caller ID spoofing.
+4. **Assume Contact Data Is Compromised**: Due to upstream data disclosures, treat any inbound call citing your real name, birth date, or Revolut transaction details with extreme skepticism. Always hang up and verify in-app.

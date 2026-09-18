@@ -41,7 +41,7 @@ All forensic dossiers housed within this repository are backed by raw cryptograp
 | Case ID | Incident Name & Target | Threat Origin & Stack | Ingress Vector | Primary Impact | Status & Defense |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | [`SEC-2026-ECOM-005`](mediagalaxy-ecommerce-fraud-forensics/README.md) | **Media Galaxy Brand Impersonation** | Yunnan, China (`yiyangsaas.com`) | Sponsored TikTok Ad Campaigns | Debit card theft (~21 EUR), secondary ATO lures | Mitigated; DNSC investigation opened (#178465); PNRISC queued; OPNsense sinkhole |
-| [`SEC-2026-VISH-002`](revolut-vishing-forensics/README.md) | **Revolut FinTech Vishing & Smishing** | Offshore VoIP Trunk (`0749-XXX`) | Spoofed SIP Caller ID + SMS links | Real-time 3DS OTP interception, SEPA Instant cashout | Takedown confirmed; Revolut official response filed |
+| [`SEC-2026-VISH-002`](revolut-vishing-forensics/README.md) | **Revolut FinTech Vishing & Smishing** | Offshore VoIP Trunk (`0749-XXX`) | Spoofed SIP Caller ID + SMS links | Real-time 3DS OTP interception, SEPA Instant cashout | Takedown confirmed; Revolut breach persistence noted (Sept 2026) |
 | [`SEC-2026-TASK-003`](task-scam-infrastructure-analysis/README.md) | **Task Scam & Pig Butchering Platform** | Russian white-label kit (Vue/Laravel) | WhatsApp / Telegram job recruitment | Hardcoded fiat withdrawal kill-switch, USDT TRC-20 theft | Analyzed; SQLi & API exposure exposed; TRON tracing |
 | [`SEC-2025-MRR-001`](tiktok-mrr-scam-infrastructure/README.md) | **Recursive Master Resell Rights (MRR)** | Deceptive Digital Funnels (Stan.store) | TikTok algorithmic lifestyle hooks | Predatory $497 course purchases, recursive MLM lock-in | Reported; Stan.store, Stripe Legal & FTC escalated |
 | [`SEC-2025-AITM-004`](openid-mitm-phishing-forensics/README.md) | **Steam OpenID 2.0 AiTM & BitM Phishing** | Reverse Proxy C2 (Offshore VPS) | Discord tournament voting lures | Session cookie theft, Family View lockout, API skin theft | Mitigated; Valve advisory filed; API audit playbook |
@@ -111,7 +111,7 @@ flowchart TD
 ### 📞 2. [Revolut FinTech Vishing & Credential Relay](revolut-vishing-forensics/README.md)
 - **Reference:** `SEC-2026-VISH-002`
 - **Focus:** Vishing campaign utilizing international SIP trunk injection to spoof Romanian mobile caller IDs (`0749-XXX-XXX`). Real-time WebSocket relay mirrored 3DS verification prompts in $<3$ seconds.
-- **Key Artifacts:** Telephony sequence analysis, official response and safety advisory issued by Revolut security, infrastructure takedown report.
+- **Key Artifacts:** Telephony sequence analysis, official response and safety advisory issued by Revolut security, infrastructure takedown report, upstream government-spoofing data breach correlation (Sept 2026).
 
 ### 💼 3. [Task Scam Platform & Crypto Drainage](task-scam-infrastructure-analysis/README.md)
 - **Reference:** `SEC-2026-TASK-003`

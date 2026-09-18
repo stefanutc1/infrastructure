@@ -185,12 +185,12 @@ def load_csirt_feed_cache() -> dict[str, list[str]]:
 
 
 def save_csirt_feed_cache(eu_domains: set[str], five_eyes_domains: set[str]) -> None:
-    """Saves active EU and Five Eyes domains for resilient fallback."""
+    """Saves active EU and Five Eyes domains cumulatively for resilient retention and fallback."""
     cache = load_csirt_feed_cache()
-    if eu_domains:
-        cache["eu"] = sorted(list(eu_domains))
-    if five_eyes_domains:
-        cache["five_eyes"] = sorted(list(five_eyes_domains))
+    merged_eu = set(cache.get("eu", [])) | eu_domains
+    merged_five_eyes = set(cache.get("five_eyes", [])) | five_eyes_domains
+    cache["eu"] = sorted(list(merged_eu))
+    cache["five_eyes"] = sorted(list(merged_five_eyes))
     try:
         CSIRT_CACHE_JSON.write_text(json.dumps(cache, indent=2) + "\n", encoding="utf-8")
     except Exception as e:
@@ -212,7 +212,7 @@ def fetch_dnsc_blacklist() -> list[dict]:
 
 
 def fetch_eu_urlhaus() -> set[str]:
-    """Fetches active EU / CERT-EU aligned malware domains from URLhaus."""
+    """Fetches active EU / CERT-EU aligned malware domains from URLhaus, merging cumulatively with cache."""
     print(f"[FETCH] [EU - CERT-EU / CSIRTs] Querying URLhaus hostfile...")
     domains = set()
     try:
@@ -225,18 +225,19 @@ def fetch_eu_urlhaus() -> set[str]:
                     d = clean_domain(parts[1])
                     if is_valid_domain(d):
                         domains.add(d)
-        print(f"        -> Extracted {len(domains)} domains from EU / CERT-EU aligned feed.")
+        print(f"        -> Extracted {len(domains)} domains from live EU / CERT-EU aligned feed.")
     except Exception as e:
         print(f"        -> [WARNING] URLhaus query failed ({e}). Fallback to cache.")
-        cached = load_csirt_feed_cache().get("eu", [])
-        if cached:
-            print(f"        -> [FALLBACK] Restored {len(cached)} domains from local cache.")
-            return set(cached)
-    return domains
+
+    cached = set(load_csirt_feed_cache().get("eu", []))
+    total_eu = cached | domains
+    if cached and not domains:
+        print(f"        -> [FALLBACK] Restored {len(cached)} domains from local cache.")
+    return total_eu
 
 
 def fetch_five_eyes_threatfox() -> set[str]:
-    """Fetches malicious domains shared across US, UK, Canada, Australia, NZ CSIRTs."""
+    """Fetches malicious domains shared across US, UK, Canada, Australia, NZ CSIRTs, merging cumulatively with cache."""
     print(f"[FETCH] [Five Eyes - US CISA, UK NCSC, CA CCCS, AU ACSC, NZ CERT] Querying ThreatFox CSIRT feed...")
     domains = set()
     try:
@@ -249,14 +250,15 @@ def fetch_five_eyes_threatfox() -> set[str]:
                 d = clean_domain(row[2])
                 if is_valid_domain(d):
                     domains.add(d)
-        print(f"        -> Extracted {len(domains)} domains from Five Eyes CSIRT coalition feed.")
+        print(f"        -> Extracted {len(domains)} domains from live Five Eyes CSIRT coalition feed.")
     except Exception as e:
         print(f"        -> [WARNING] ThreatFox query failed ({e}). Fallback to cache.")
-        cached = load_csirt_feed_cache().get("five_eyes", [])
-        if cached:
-            print(f"        -> [FALLBACK] Restored {len(cached)} domains from local cache.")
-            return set(cached)
-    return domains
+
+    cached = set(load_csirt_feed_cache().get("five_eyes", []))
+    total_fe = cached | domains
+    if cached and not domains:
+        print(f"        -> [FALLBACK] Restored {len(cached)} domains from local cache.")
+    return total_fe
 
 
 def load_cumulative_dnsc_cache() -> dict[str, dict]:
