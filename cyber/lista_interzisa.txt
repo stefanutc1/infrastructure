@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 14:43:11 UTC
-# Total Forbidden Domains: 2660
+# Last Updated: 2026-09-18 16:51:44 UTC
+# Total Forbidden Domains: 2677
 # Breakdown:
-#   - Local Forensics:               430
+#   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 416
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1806
+#   - European Union (CERT-EU/URLh): 418
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1821
 # ==============================================================================
 007tg.vip
 02eiya9o.xn--ndux-kza.store
@@ -49,13 +49,16 @@
 33hb26ve.usa--flashburn.com
 360careeradvice.com
 360safeupdate.com
+38chocolate.workers.dev
 3jrj8nat.americaeaglependant.com
 3w9goh27.ummes.store
+47wv110r.mosbatsms.ir
 48ex7rbv.moren.store
 4clablx7.wisma138chiori.net
 4eclient.com
 4f77ejby0y.workers.dev
 4i1yrtc2.shop-genesis-revival.com
+4m67cltgrp.workers.dev
 4tube.com
 563f1gxt.spom.store
 5o1lb12w.toxyk.store
@@ -109,6 +112,7 @@ ad-gateway-cloud.cc
 ad-traffic-flow.vip
 adaptx.ca
 addurltogoogle.com
+adeelameerbrothers.com
 adenpanel.xyz
 adidas-clearance-sale.online
 admin.byte.in.ua
@@ -164,6 +168,7 @@ alsa-sicherheitsdienst.de
 altcoin-trader.vip
 alternativas.ru
 altex-lichidari.top
+altrarunningromania.com
 altreeservicellc.com
 amaamn.com
 amaladin.com
@@ -334,7 +339,6 @@ biserica-ortodoxa-ajutor.top
 bitcoin-era-official.com
 bitiq-platform.site
 bito.com.pk
-bitozex.com
 bizinsight.us
 bj38-top.online
 bj38.jpn.com
@@ -369,6 +373,7 @@ bongacams.ro
 bonsaitheme.com
 book.rollingvideogames.com
 booking.captcha-message-extranet.com
+booking.vibra2026.live
 bookingsupport.online
 booohop.shop
 borizhog.com
@@ -376,7 +381,6 @@ bornilob43.life
 bornometa.com
 boronab.com
 borrow.vuulh.workers.dev
-boshishow.com
 brainstorm-events.de
 brandscollectionbyrizwan.com
 brazzers.com
@@ -412,6 +416,7 @@ bvvaladares.com
 bwyb.love
 bxx2rghe05kng.cfc-execute.bj.baidubce.com
 bybit-bonus-romania.cc
+byredo.ro
 bytefootage.com
 bytetixa.workers.dev
 bz-wobi.de
@@ -470,6 +475,7 @@ capitalmanagementdata.com
 care-more-plus.de
 caresalonservices.com
 carfellas.ch
+carinehutsebaut.com
 carwowk872.life
 casasmediterraneas.com
 casevor.com
@@ -666,7 +672,6 @@ degebi.workers.dev
 dehikz.com
 delp-heizungsbau.de
 delta-grafica.com
-demapro.shop
 democrazzy.net
 demyras.nexastrive.uk
 dentalmora.com
@@ -718,6 +723,7 @@ divvanews.com
 dl.1003b.56a.com
 dl.dzqzd.com
 dl.natgo.cn
+dm.voetbalshop-nlco.com
 dnqj.my
 dns.n1u89dhs.xyz
 dns1.dreamls.com
@@ -758,10 +764,10 @@ drakr.icu
 drbeat.icu
 dreamkoks.com
 dreamwatchevent.com
+driearquitetos.com
 drimzis.com
 drip.mwbwu.workers.dev
 drminaataei.com
-drnsromania.com
 drporno.com
 drumfluence.com
 duansungrouphanam.com.vn
@@ -817,6 +823,7 @@ emphasis.co.in
 emsaluminium.fr
 en-prosta-fense.com
 en-us-cardioslimtea.us
+en-us-easybatteryfixed.com
 en-us-nurvealive.com
 en-us-slimsplitsmethod.com
 en.taichuan.com
@@ -829,7 +836,6 @@ eng--enerflow.com
 eng--neurowave.us
 eng-eng--glucore.com
 engage.aeafh.workers.dev
-engie.ro-serviciirambursare.net
 engine.commdistinc.com
 entertainok.com
 enus-beastforce.com
@@ -1005,6 +1011,7 @@ gas-profit-app.com
 gasienda.com
 gasstationgourmet.com
 gaswert.com
+gazetacivica.com
 gboutros.howto.rocks
 gcif61zz.belly--flush.com
 gearlipi72.life
@@ -1069,6 +1076,7 @@ glossysquid.pro
 goinstudios.com
 goksearch.com
 goldenprowrestling.com
+gonser.voetbalshop-nlco.com
 gonzaskid-1.paiza-user-free.cloud
 goodsport2023.win
 googlanalitlcs.icu
@@ -1104,6 +1112,7 @@ gusto.brothbridge.space
 guswisma.net
 gyadazs.shop
 h3tnyjph.vuhw.store
+habibventure.com
 hadujaza.com
 halcyonresource.com
 hallettsvilleculturaleventcenter.org
@@ -1159,9 +1168,9 @@ hyperluxe.gg
 iaap.iscte-iul.pt
 iac-dueren.de
 icicxv0c.guswisma.net
+iclcyezy.mosbatsms.ir
 icoffeecloud.com
 iconiq-capitel.com
-idsromania.com
 ieee-ecce.info
 ignetwork.us
 igo0gle.com
@@ -1178,6 +1187,7 @@ imvcatool.com
 incomefolios.com
 indonesias.me
 indusenterprises.co
+info.gazetacivica.com
 info.mailapp-fly.com
 information.baby
 ing-actualizare-clienti.top
@@ -1274,6 +1284,7 @@ kenwillzltd.com
 kesaria.com
 key-melody.com
 keycloud.live
+kfea.reducere.sbs
 kgv-eintracht.de
 khavar.com
 khtshop.com
@@ -1343,6 +1354,7 @@ learningworld.in
 lebenslaudatio.de
 lectricelfuel.com
 lego-clearance-store.com
+lelaboromania.com
 lerecept.fr
 lgbtqplusfriendlydomain.com
 lh3wghxa.belly--flush.com
@@ -1359,7 +1371,6 @@ little.vwgze.workers.dev
 littlebitcleaning.com
 livejasmin.com
 livejasmin.ro
-livrare-directa.com
 lls-rs.org
 lms-teckpia.com
 lnuch69247.workers.dev
@@ -1397,6 +1408,8 @@ lz4.tiktok123.life
 m.jkoa.co.kr
 m.meta-dm.com
 m7r4r2i2.stackpathcdn.com
+ma.199cuan.org
+ma.zk89.net
 maasleather.com
 maboloud.com
 machine.ncsgo.workers.dev
@@ -1645,7 +1658,6 @@ ok8368.io
 ok8386.video
 ok9.rip
 ok99.io
-okaqecd.com
 okhan.net
 oklahoma-occitania.com
 oknoplastik.sk
@@ -1660,8 +1672,6 @@ olx-primire.top
 olx-ro.cc
 olx-romania.cc
 olx-siguranta.cc
-olx.boshishow.com
-olx.flow-system.cyou
 olympic.wiwgf.workers.dev
 omegle-adult.com
 omrents.com
@@ -1800,6 +1810,7 @@ postaspen18.com
 postelnini.mk
 postofficeltdc.com
 powerfactor-saver.online
+powershell-storage.vg
 ppew.au
 pr2.codetohaven.com
 practisingcertificateprotection.com
@@ -1849,6 +1860,7 @@ qh88.es
 qiniuyunxz.yxflzs.com
 qiwuxi.workers.dev
 qs-work.com-info.bid
+qt85eiy6.en-us-easybatteryfixed.com
 quantum-ai-romania.site
 quantum-ai-trading.top
 quantum-trade-app.com
@@ -2006,6 +2018,7 @@ scoala1gherla.ro
 screenconnect.pro
 scrroeder.com
 sddfgdqw45tj-35300.portmap.host
+sdufkghdfshds.cfd
 se.199cuan.org
 se.zk89.net
 sealfit.com
@@ -2047,6 +2060,7 @@ shaltaypi.life
 sheersdesigns.com
 shein-outlet-vip.shop
 shermango.com
+shiningmooncare.com.au
 shiyicaster.com
 shizij.com
 shop-bellyflush.com
@@ -2388,6 +2402,7 @@ video-earner.vip
 videochat-bucuresti.com
 vindecator-parinte.site
 vinergil.com
+vinmartfoundation.org
 vinted-colet.top
 vinted-incasare.cc
 vinted-pay.cc
@@ -2527,6 +2542,7 @@ www.idn15r69vh3fwhzclfoeuaoy.today
 www.immobiliarecatalanotto.it
 www.intelligradeeducation.vicentecisnerospub.com
 www.itscostruzioni.it
+www.jeffersontomaz1749157674000.construtoraeverest.com.br
 www.jozefinskiatelje.si
 www.kenwillzltd.com
 www.khavar.com
@@ -2589,6 +2605,7 @@ www.test.peperoncinochepassione.it
 www.transitionplus.com
 www.vmware.rest
 www.vuelaviajero.com
+www.website-256db78e.sct.lof.mybluehost.me
 www.website.mypetapp.co.za
 www.weilaizhijiao.com
 www.widewingstiles.co.uk

@@ -6,7 +6,7 @@
 
 [![Threat Level](https://img.shields.io/badge/Threat%20Level-CRITICAL-red.svg)](#)
 [![MITRE ATT&CK](https://img.shields.io/badge/MITRE-T1566%20%7C%20T1056%20%7C%20T1657-blue.svg)](#)
-[![Status](https://img.shields.io/badge/Status-Mitigated%20%26%20Documented-brightgreen.svg)](#)
+[![Status](https://img.shields.io/badge/Status-Mitigated%20%26%20DNSC%20Enforced-brightgreen.svg)](#)
 
 ---
 
@@ -29,7 +29,7 @@ The threat actors impersonated the Romanian retail giant **Media Galaxy** via sp
 │   ├── CIPRIAN_LOSPA_PROPOSAL.md      # YouTube investigative proposal to Ciprian Lospa (RO / EN)
 │   ├── GOOGLE_SAFE_BROWSING_REPORT.md # Malicious URL & phishing submission to Google
 │   └── CLOUDFLARE_ABUSE_REPORT.md     # Infrastructure abuse report to Cloudflare (yiyangsaas.com)
-├── /evidence/                         # 24 raw and cataloged evidence screenshots
+├── /evidence/                         # 25 raw and cataloged evidence screenshots (including DNSC PNRISC block)
 ├── /ioc/
 │   ├── indicators.csv                 # Structured CSV listing all extracted IoCs
 │   ├── domains.txt                    # Plaintext list of domains ready for Unbound DNS
@@ -106,9 +106,11 @@ flowchart TD
         G --> H
     end
 
-    subgraph P6["Phase 6: Regulatory Authority Resolution (DNSC)"]
-        I["September 18, 11:22 - Official DNSC Resolution & Response<br/>Ticket #178465: Investigation opened, domain slated for PNRISC Blacklist"]
+    subgraph P6["Phase 6: Regulatory Authority Resolution & Enforcement (DNSC)"]
+        I["September 18, 11:22 - Official DNSC Resolution<br/>Ticket #178465: Investigation opened by General Directorate of Technical Operations"]
+        J["September 18, ~18:00 - PNRISC National Blacklist Enforcement<br/>DNSC officially publishes & blocks voetbalshop-nlco.com infrastructure on blacklist.dnsc.ro"]
         H --> I
+        I --> J
     end
 ```
 
@@ -123,6 +125,7 @@ flowchart TD
 | **September 17, 08:22** | **Public Awareness Outreach** | Ciprian Lospa (YouTube Cyber Investigator) | Submitted complete investigative pitch and technical forensic dossier for public awareness on scam mechanics. |
 | **September 17, 18:00** | **Financial Chargeback Dispute** | BCR (Banca Comercială Română) Support | Contacted bank customer service, reported cyber fraud, and opened formal transaction dispute / chargeback case. |
 | **September 18, 11:22** | **Authority Response** | Romanian National CSIRT ([DNSC](https://dnsc.ro)) | Official ticket response received under `[D.N.S.C. #178465]`: formal investigation launched, reported domain evaluated for inclusion in the national PNRISC Blacklist (`https://blacklist.dnsc.ro/`). |
+| **September 18, ~18:00** | **National Blacklist Enforcement** | DNSC PNRISC Blacklist Gateway (`https://blacklist.dnsc.ro/`) | **CONFIRMED & ENFORCED**: DNSC officially lists and blocks the `voetbalshop-nlco.com` threat infrastructure (`dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com`) under classification **Impersonation**; threat pushed live to national browser extension database and our automated CI/CD blocklist. |
 
 ---
 
@@ -159,6 +162,7 @@ For victims or fraud handlers filing chargeback claims with BCR or issuing banks
 
 - **Phishing FQDN:** `mediagalaxy.voetbalshop-nlco.com`
 - **Compromised Base Domain:** `voetbalshop-nlco.com`
+- **DNSC PNRISC Blacklisted Subdomains:** `dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com` *(Added September 18, 2026 under 'Impersonation')*
 - **Backend C2 SaaS:** `yiyangsaas.com` (Yunnan, China)
 - **Email Infrastructure:** `worvixglobal.com`, `email.worvixglobal.com`, `mailapp-fly.com`, `info.mailapp-fly.com`
 - **Attacker Drop Inboxes:** `MaryxBeckb96@gmail.com`, `brekerfurught@outlook.com`
@@ -184,7 +188,7 @@ All external incident notifications, abuse filings, and public advocacy disclosu
 - **BCR Chargeback Dispute & Fraud Statement ([RO / EN](disclosures/BCR_CHARGEBACK_FRAUD_DISCLOSURE.md)):** First-person script for phone/branch reporting to BCR to initiate the chargeback dispute and obtain a claim number.
 - **Media Galaxy Official Brand Disclosure ([RO / EN](disclosures/MEDIA_GALAXY_DISCLOSURE.md)):** Notification to Altex/Media Galaxy legal and security teams.
 - **DNSC Incident Notification ([RO / EN](disclosures/DNSC_INCIDENT_NOTIFICATION.md)):** Formal filing to the Romanian National Cyber Security Directorate.
-- **DNSC Official Response & Resolution ([RO / EN](disclosures/DNSC_RESPONSE_178465.md)):** Official response under Ticket `[D.N.S.C. #178465]` confirming active investigation and evaluation for the national PNRISC Blacklist.
+- **DNSC Official Response & Resolution ([RO / EN](disclosures/DNSC_RESPONSE_178465.md)):** Official response under Ticket `[D.N.S.C. #178465]` confirming active investigation, followed by immediate publication and enforcement on the national PNRISC Blacklist (`https://blacklist.dnsc.ro/`).
 - **Ciprian Lospa Investigation Pitch ([RO / EN](disclosures/CIPRIAN_LOSPA_PROPOSAL.md)):** Public awareness and YouTube case study pitch.
 - **Google Safe Browsing Report ([EN](disclosures/GOOGLE_SAFE_BROWSING_REPORT.md)):** Domain blacklisting request for `mediagalaxy.voetbalshop-nlco.com`.
 - **Cloudflare Abuse Report ([EN](disclosures/CLOUDFLARE_ABUSE_REPORT.md)):** Infrastructure takedown request targeting `yiyangsaas.com`.
@@ -247,6 +251,14 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 | :---: | :---: |
 | ![China Registrant](evidence/21_whois_yiyangsaas_china_registrant.png) | ![eName Registrar](evidence/22_whois_yiyangsaas_ename_registrar.png) |
 | *Attribution of `yiyangsaas.com` to threat actors in Yunnan, China* | *Domain registered via eName Technology Co. on 12.09.2023* |
+
+---
+
+### Phase 6: Regulatory Authority Resolution & National PNRISC Blacklisting
+| DNSC Official PNRISC Blacklist Confirmation |
+| :---: |
+| ![DNSC Blacklist Confirmation](evidence/25_dnsc_blacklist_voetbalshop_block.png) |
+| *Official DNSC Blacklist Gateway (`https://blacklist.dnsc.ro/`) confirming `dm.voetbalshop-nlco.com` & `gonser.voetbalshop-nlco.com` published and blacklisted under Impersonation* |
 
 ---
 

@@ -679,7 +679,7 @@ The [`cyber/`](cyber/) directory contains four end-to-end investigative case stu
   - **Direct SSL Probe & C2 Identification**: Probed Cloudflare reverse proxy IP (`104.16.145.247`) on SSL ports 443/8443, leaking Common Name `cn: yiyangsaas.com` registered through eName Technology in Yunnan, China.
   - **Dual-MTA Relay Infrastructure**: Unpacked DKIM-signed dispatching via `info.mailapp-fly.com` and aged domain `worvixglobal.com` (NameSilo / Zoho Mail MX) routing to attacker drop inboxes (`MaryxBeckb96@gmail.com`, `brekerfurught@outlook.com`).
   - **Financial Flow & Remittance**: Documented payment capture under shell merchant descriptor `morvethemi london` (~21 EUR debit) debited directly from a BCR debit card.
-* **Repository Deliverables**: Complete evidence analysis with 24 screenshots, MITRE ATT&CK mapping, structured IoC CSV and DNS blocklist, custom Suricata IDS rules, Visa/Mastercard chargeback dispute playbook, and automated ReportLab executive PDF generator.
+* **Repository Deliverables**: Complete evidence analysis with 25 screenshots, MITRE ATT&CK mapping, structured IoC CSV and DNS blocklist, custom Suricata IDS rules, Visa/Mastercard chargeback dispute playbook, official DNSC response ticket (#178465) & PNRISC blacklist enforcement confirmation, and automated ReportLab executive PDF generator.
 
 ---
 

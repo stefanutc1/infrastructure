@@ -212,6 +212,7 @@ def create_incident_report(output_pdf_path):
     ioc_rows = [
         [Paragraph("<b>Indicator</b>", table_header), Paragraph("<b>Type</b>", table_header), Paragraph("<b>Threat Role</b>", table_header), Paragraph("<b>Enforcement Action</b>", table_header)],
         [Paragraph("mediagalaxy.voetbalshop-nlco.com", table_cell), Paragraph("FQDN", table_cell), Paragraph("Phishing Landing Subdomain", table_cell), Paragraph("DNS Sinkhole (0.0.0.0)", table_cell)],
+        [Paragraph("dm / gonser.voetbalshop-nlco.com", table_cell), Paragraph("FQDN", table_cell), Paragraph("DNSC Blacklisted Infrastructure", table_cell), Paragraph("PNRISC Blacklist / Unbound Drop", table_cell)],
         [Paragraph("voetbalshop-nlco.com", table_cell), Paragraph("Domain", table_cell), Paragraph("Base Infrastructure", table_cell), Paragraph("Gateway Unbound Block", table_cell)],
         [Paragraph("yiyangsaas.com", table_cell), Paragraph("Domain", table_cell), Paragraph("Backend C2 / Phishing SaaS", table_cell), Paragraph("Outbound Egress Drop", table_cell)],
         [Paragraph("worvixglobal.com", table_cell), Paragraph("Domain", table_cell), Paragraph("Attacker Shell & Mail Domain", table_cell), Paragraph("DNS Sinkhole & Mail Filter", table_cell)],
@@ -260,15 +261,18 @@ def create_incident_report(output_pdf_path):
     
     ir_p4 = (
         "<b>Phase 4: Takedown & External Escalation:</b> Abuse notices were filed with Cloudflare Trust & Safety, NameSilo Abuse, eName Technology, "
-        "and the Romanian National Cyber Security Directorate (<b>DNSC</b> - <code>alerts@dnsc.ro</code>)."
+        "and the Romanian National Cyber Security Directorate (<b>DNSC</b> - <code>alerts@dnsc.ro</code>). "
+        "Under formal ticket <b>[D.N.S.C. #178465]</b>, DNSC validated the threat and officially published and blocked the infrastructure "
+        "(<code>dm.voetbalshop-nlco.com</code>, <code>gonser.voetbalshop-nlco.com</code>) on the national <b>PNRISC Blacklist</b> "
+        "(<code>https://blacklist.dnsc.ro/</code>) on September 18, 2026."
     )
     story.append(Paragraph(ir_p4, body_style))
     
     # Footer Signoff Box
     signoff_data = [
         [
-            Paragraph("<b>Incident Status:</b> MITIGATED & SINKHOLED", table_cell),
-            Paragraph("<b>Report Generated:</b> 16 September 2026", table_cell),
+            Paragraph("<b>Incident Status:</b> MITIGATED & DNSC ENFORCED", table_cell),
+            Paragraph("<b>Report Generated:</b> 18 September 2026", table_cell),
             Paragraph("<b>Approved By:</b> @stefanutc1 (Lead IR)", table_cell),
         ]
     ]

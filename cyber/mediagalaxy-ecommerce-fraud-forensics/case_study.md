@@ -5,7 +5,7 @@
 **Primary Investigators:** `@stefanutc1`  
 **Target Entity:** Media Galaxy (Altex România S.A.)  
 **Financial Loss Impact:** ~21 EUR (~110 RON) via BCR (Banca Comercială Română) Debit Card  
-**Status:** Incident Mitigated, Card Blocked, Official DNSC Investigation Opened (`[D.N.S.C. #178465]`) / Takedown In-Progress  
+**Status:** Incident Mitigated, Card Blocked, Confirmed & Enforced on National DNSC PNRISC Blacklist (`[D.N.S.C. #178465]`)  
 
 ---
 
@@ -42,6 +42,8 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
 | Indicator | Type | Threat Role | Action |
 | :--- | :--- | :--- | :--- |
 | `mediagalaxy.voetbalshop-nlco.com` | FQDN | Phishing Landing Subdomain | DNS Sinkhole (0.0.0.0) |
+| `dm.voetbalshop-nlco.com` | FQDN | Impersonation Infrastructure | DNSC PNRISC Blacklisted |
+| `gonser.voetbalshop-nlco.com` | FQDN | Impersonation Infrastructure | DNSC PNRISC Blacklisted |
 | `voetbalshop-nlco.com` | Domain | Base Infrastructure | OPNsense Blocklist |
 | `yiyangsaas.com` | Domain | C2 & SaaS Management Backend | Global Egress Block |
 | `worvixglobal.com` | Domain | Attacker Shell Front & Mail Domain | Mail Gateway Filter & Sinkhole |
@@ -65,4 +67,4 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
    - Ingested `domains.txt` into Unbound DNS Blocklists.
    - Deployed custom Suricata IDS rules (`sid:1000951-1000956`) on WAN and LAN interfaces.
    - Created Floating firewall reject rules for C2 proxy IPs.
-4. **Takedown Submissions & Authority Response:** Abuse reports submitted to Cloudflare, NameSilo, eName Technology, Zoho Mail, Google, and the Romanian National Cyber Security Directorate (DNSC - `alerts@dnsc.ro`). On September 18, 11:22, DNSC officially confirmed Ticket **`[D.N.S.C. #178465]`**, initiating a formal investigation and scheduling the domain for inclusion in the national PNRISC Blacklist.
+4. **Takedown Submissions & Authority Enforcement:** Abuse reports submitted to Cloudflare, NameSilo, eName Technology, Zoho Mail, Google, and the Romanian National Cyber Security Directorate (DNSC - `alerts@dnsc.ro`). Following formal ticket confirmation **`[D.N.S.C. #178465]`**, the Directorate completed technical validation on **September 18, 2026** and officially published the malicious campaign infrastructure (`dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com`) to the national **PNRISC Blacklist** (`https://blacklist.dnsc.ro/`) under classification *Impersonation*, triggering blocking nationwide.

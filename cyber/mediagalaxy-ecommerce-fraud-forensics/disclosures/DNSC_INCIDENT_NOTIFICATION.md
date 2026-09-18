@@ -61,6 +61,6 @@ Respectfully,
 - **Ticket ID:** `[D.N.S.C. #178465]`  
 - **Received:** September 18, 2026, 11:22 EEST  
 - **Authority:** Directoratul Național de Securitate Cibernetică (DNSC) – Direcția Generală Operațiuni Tehnice  
-- **Status:** Investigation Opened / Domain under evaluation for the national PNRISC Blacklist ([`blacklist.dnsc.ro`](https://blacklist.dnsc.ro/)).  
+- **Status:** Investigation Completed & Enforced – Threat infrastructure officially published and blacklisted on the national PNRISC Blacklist ([`blacklist.dnsc.ro`](https://blacklist.dnsc.ro/)) on September 18, 2026 under classification *Impersonation* (`dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com`).  
 - **Full Dossier (RO / EN):** See [`DNSC_RESPONSE_178465.md`](./DNSC_RESPONSE_178465.md).
 

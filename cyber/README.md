@@ -40,7 +40,7 @@ All forensic dossiers housed within this repository are backed by raw cryptograp
 
 | Case ID | Incident Name & Target | Threat Origin & Stack | Ingress Vector | Primary Impact | Status & Defense |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| [`SEC-2026-ECOM-005`](mediagalaxy-ecommerce-fraud-forensics/README.md) | **Media Galaxy Brand Impersonation** | Yunnan, China (`yiyangsaas.com`) | Sponsored TikTok Ad Campaigns | Debit card theft (~21 EUR), secondary ATO lures | Mitigated; DNSC investigation opened (#178465); PNRISC queued; OPNsense sinkhole |
+| [`SEC-2026-ECOM-005`](mediagalaxy-ecommerce-fraud-forensics/README.md) | **Media Galaxy Brand Impersonation** | Yunnan, China (`yiyangsaas.com`) | Sponsored TikTok Ad Campaigns | Debit card theft (~21 EUR), secondary ATO lures | Mitigated; Confirmed & Blocked on DNSC PNRISC (#178465); OPNsense sinkhole |
 | [`SEC-2026-VISH-002`](revolut-vishing-forensics/README.md) | **Revolut FinTech Vishing & Smishing** | Offshore VoIP Trunk (`0749-XXX`) | Spoofed SIP Caller ID + SMS links | Real-time 3DS OTP interception, SEPA Instant cashout | Takedown confirmed; Revolut breach persistence noted (Sept 2026) |
 | [`SEC-2026-TASK-003`](task-scam-infrastructure-analysis/README.md) | **Task Scam & Pig Butchering Platform** | Russian white-label kit (Vue/Laravel) | WhatsApp / Telegram job recruitment | Hardcoded fiat withdrawal kill-switch, USDT TRC-20 theft | Analyzed; SQLi & API exposure exposed; TRON tracing |
 | [`SEC-2025-MRR-001`](tiktok-mrr-scam-infrastructure/README.md) | **Recursive Master Resell Rights (MRR)** | Deceptive Digital Funnels (Stan.store) | TikTok algorithmic lifestyle hooks | Predatory $497 course purchases, recursive MLM lock-in | Reported; Stan.store, Stripe Legal & FTC escalated |
@@ -106,7 +106,7 @@ flowchart TD
 ### 🛒 1. [Media Galaxy E-Commerce Brand Spoofing](mediagalaxy-ecommerce-fraud-forensics/README.md)
 - **Reference:** `SEC-2026-ECOM-005`
 - **Focus:** Threat actors cloned the Romanian retail giant Media Galaxy via TikTok ads and a hijacked Dutch domain (`mediagalaxy.voetbalshop-nlco.com`). Backed by a Chinese-hosted phishing SaaS engine (`yiyangsaas.com`) in Yunnan, China.
-- **Key Artifacts:** 24 forensic screenshots, ReportLab PDF generation script, Suricata IDS rules, multi-agency disclosure filings, official DNSC response ticket (#178465).
+- **Key Artifacts:** 25 forensic screenshots, ReportLab PDF generation script, Suricata IDS rules, multi-agency disclosure filings, official DNSC response ticket (#178465) & PNRISC blacklist confirmation.
 
 ### 📞 2. [Revolut FinTech Vishing & Credential Relay](revolut-vishing-forensics/README.md)
 - **Reference:** `SEC-2026-VISH-002`

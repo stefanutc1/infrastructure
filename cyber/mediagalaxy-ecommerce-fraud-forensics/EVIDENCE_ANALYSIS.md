@@ -141,6 +141,15 @@ The campaign operated on a multi-tier infrastructure:
 - **Verification Code:** `586571`
 - **Forensic Assessment:** Hours after capturing the payment, the automated infrastructure initiated secondary credential harvesting, prompting the victim to input their password or two-factor authentication code under the guise of an account recovery procedure.
 
+### Evidence Item 25: Official DNSC PNRISC Blacklist Enforcement & Takedown
+- **File:** `evidence/25_dnsc_blacklist_voetbalshop_block.png`
+- **Source:** DNSC Official Blacklist Gateway (`https://blacklist.dnsc.ro/`)
+- **Date Added:** 18 September 2026
+- **Status:** `Blacklisted`
+- **Threat Reason:** `Impersonation`
+- **Confirmed Assets:** `dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com` (associated with the `voetbalshop-nlco.com` phishing cluster)
+- **Forensic Assessment:** Following our technical incident filing under Ticket `[D.N.S.C. #178465]`, the Romanian National Cyber Security Directorate validated the campaign and officially listed the malicious infrastructure on the national PNRISC Blacklist. This feeds directly into the national DNSC browser extension, proactively blocking access for all protected Romanian consumers and triggering automated ingestion into our perimeter blocklists.
+
 ---
 
 ### Section 2.5: Live Airtight Browser Sandbox Probing & Discoveries

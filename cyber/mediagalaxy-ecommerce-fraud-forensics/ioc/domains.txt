@@ -4,6 +4,8 @@
 # Generated: 2026-09-16 | Classification: TLP:CLEAR
 # ==============================================================================
 mediagalaxy.voetbalshop-nlco.com
+dm.voetbalshop-nlco.com
+gonser.voetbalshop-nlco.com
 voetbalshop-nlco.com
 *.voetbalshop-nlco.com
 yiyangsaas.com

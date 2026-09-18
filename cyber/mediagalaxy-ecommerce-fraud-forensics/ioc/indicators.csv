@@ -1,5 +1,7 @@
 indicator,type,role,risk_level,first_seen,registrar_or_asn,ip_resolution,confidence,mitre_attck_technique,action
 mediagalaxy.voetbalshop-nlco.com,FQDN,Phishing Landing Subdomain (Media Galaxy Spoof),CRITICAL,2026-03-12,Cloudflare Inc. (AS13335),104.16.145.247,HIGH,T1566.002 / T1056.003,Block / Sinkhole via Unbound DNS
+dm.voetbalshop-nlco.com,FQDN,Brand Impersonation Subdomain (DNSC Blacklisted),CRITICAL,2026-09-18,Cloudflare Inc. (AS13335),104.16.145.247,HIGH,T1566.002,National DNSC Blacklist / Unbound Block
+gonser.voetbalshop-nlco.com,FQDN,Brand Impersonation Subdomain (DNSC Blacklisted),CRITICAL,2026-09-18,Cloudflare Inc. (AS13335),104.16.145.247,HIGH,T1566.002,National DNSC Blacklist / Unbound Block
 voetbalshop-nlco.com,Domain,Compromised Base Domain / Host Infrastructure,HIGH,2026-03-12,Cloudflare Inc. (AS13335),104.16.145.247,HIGH,T1584.001,Block at Gateway / DNS Sinkhole
 yiyangsaas.com,Domain,Backend C2 & Phishing SaaS Management Platform,CRITICAL,2023-09-12,eName Technology Co. Ltd. (AS13335),104.16.145.247,HIGH,T1071.001 / T1583.003,Block across all outbound egress
 worvixglobal.com,Domain,Attacker Shell Front & Email Domain,CRITICAL,2025-02-08,NameSilo LLC / Cloudflare (AS13335),104.21.14.99,HIGH,T1583.001,Block / DNS Sinkhole
