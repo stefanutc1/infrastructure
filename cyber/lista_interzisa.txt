@@ -12,7 +12,7 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 17:04:16 UTC
+# Last Updated: 2026-09-18 17:04:39 UTC
 # Total Forbidden Domains: 2679
 # Breakdown:
 #   - Local Forensics:               432
