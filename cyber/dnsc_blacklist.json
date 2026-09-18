@@ -2,9 +2,9 @@
   "metadata": {
     "source": "https://blacklist.dnsc.ro/",
     "description": "National Cyber Security Directorate (DNSC) Blacklist Threat Feed",
-    "last_synced": "2026-09-18T09:46:00.713970+00:00",
+    "last_synced": "2026-09-18T09:47:14.538100+00:00",
     "total_entries": 10,
-    "new_entries_this_run": 10
+    "new_entries_this_run": 0
   },
   "entries": [
     {
