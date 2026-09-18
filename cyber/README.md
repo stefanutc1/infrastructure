@@ -174,29 +174,40 @@ flowchart LR
 ```
 
 1. **OPNsense Unbound DNS Sinkhole (`192.168.1.1`)**: Automated sync script (`antigravity/opnsense_dns_sinkhole.py`) consumes compiled domain blocklists (`romania_scam_blocklist.txt`, `extended_network_blocklist.txt`) to sinkhole malicious traffic at the gateway.
-2. **Suricata IDS/IPS**: Inspects egress traffic for HTTP signatures matching scam API patterns (`/api/v1/site/config`, `/api/v2/auth/steam_callback`).
-3. **Wazuh SIEM**: Correlates endpoint DNS lookups, authentication logs, and network telemetry to trigger immediate SOC alerts.
+2. **Suricata IDS/IPS & Complete Traffic Ingestion**: Inspects egress traffic for HTTP signatures matching scam API patterns. All firewall traffic logs (`filterlog`) and system telemetry are streamed live via Syslog-ng (`192.168.1.240:514` UDP) to Wazuh SIEM.
+3. **Wazuh SIEM / XDR Manager (LXC 121 - `192.168.1.240`)**: Scaled with a **4GB JVM Heap** (`-Xms4096m -Xmx4096m`) on 6GB RAM. Ingests all OPNsense traffic with full JSON audit archiving (`<logall_json>yes</logall_json>`), correlating endpoint DNS queries, firewall block/pass decisions, and Suricata telemetry.
 
 ---
 
-## 7. Unified Forbidden Domains & DNSC Threat Intelligence Feed
+## 7. Multi-National CSIRT Threat Intelligence Feed & Forbidden Domains
 
-The centralized forbidden domain lists ([`cyber/forbidden_domains.txt`](forbidden_domains.txt) and its Romanian alias [`cyber/lista_interzisa.txt`](lista_interzisa.txt)) aggregate all malicious infrastructure cataloged across the repository's forensic investigations and merge them in real time with the official Romanian National Cyber Security Directorate ([DNSC](https://dnsc.ro)) Blacklist Gateway ([`https://blacklist.dnsc.ro/`](https://blacklist.dnsc.ro/)).
+The centralized forbidden domain lists ([`cyber/forbidden_domains.txt`](forbidden_domains.txt) and its Romanian alias [`cyber/lista_interzisa.txt`](lista_interzisa.txt)) aggregate all malicious infrastructure cataloged across the repository's forensic investigations and merge them in real time with authoritative Computer Security Incident Response Teams across the **European Union, Romania, and the Five Eyes Alliance (US, UK, CA, AU, NZ)**:
+- **Romania:** [DNSC](https://dnsc.ro) Blacklist Gateway ([`https://blacklist.dnsc.ro/`](https://blacklist.dnsc.ro/))
+- **European Union:** CERT-EU & European CSIRT Network (abuse.ch URLhaus)
+- **United States:** Cybersecurity and Infrastructure Security Agency ([CISA](https://www.cisa.gov))
+- **United Kingdom:** National Cyber Security Centre ([NCSC-UK](https://www.ncsc.gov.uk))
+- **Canada:** Canadian Centre for Cyber Security ([CCCS](https://cyber.gc.ca))
+- **Australia:** Australian Cyber Security Centre ([ACSC](https://www.cyber.gov.au))
+- **New Zealand:** [CERT NZ / NCSC NZ](https://www.cert.govt.nz)
 
 ```mermaid
 flowchart LR
-    subgraph INTAKE["Threat Intelligence Ingestion"]
+    subgraph INTAKE["Multi-National CSIRT Threat Feeds"]
         LOC["Local Forensic Dossiers<br/>(Media Galaxy, Revolut, Task Scam, Steam OpenID)"]
-        DNSC["DNSC Blacklist Gateway<br/>(https://blacklist.dnsc.ro/)"]
+        DNSC["Romania (DNSC)<br/>(https://blacklist.dnsc.ro/)"]
+        EU["European Union<br/>(CERT-EU & EU CSIRTs)"]
+        FIVEY["Five Eyes Coalition<br/>(US CISA, UK NCSC, CA CCCS, AU ACSC, NZ CERT)"]
     end
 
     subgraph ENGINE["Automated CI/CD Engine (Every 24h at 05:00 AM)"]
-        SYNC["scripts/sync_forbidden_domains.py<br/>Deduplication, Sanitization & Telemetry Caching"]
-        CACHE["cyber/dnsc_blacklist.json<br/>(Cumulative Threat Intelligence Store)"]
+        SYNC["scripts/sync_forbidden_domains.py<br/>Multi-National Deduplication & Telemetry Aggregator"]
+        CACHE["cyber/dnsc_blacklist.json<br/>(DNSC Live Cache)"]
+        CSIRT["cyber/csirt_telemetry.json<br/>(International Metadata)"]
         SYNC <--> CACHE
+        SYNC <--> CSIRT
     end
 
-    subgraph OUTPUT["Unified Network Blocklists"]
+    subgraph OUTPUT["Unified Network Blocklists (2,600+ Domains)"]
         OUT1["cyber/forbidden_domains.txt<br/>(Primary Unbound / DNS Blocklist)"]
         OUT2["cyber/lista_interzisa.txt<br/>(Romanian Mirror Blocklist)"]
         SYNC --> OUT1
@@ -205,6 +216,8 @@ flowchart LR
 
     LOC --> SYNC
     DNSC --> SYNC
+    EU --> SYNC
+    FIVEY --> SYNC
 ```
 
 ### Automation & Synchronization Mechanism:

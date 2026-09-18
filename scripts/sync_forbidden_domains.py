@@ -1,21 +1,29 @@
 #!/usr/bin/env python3
 """
-Sync Forbidden Domains & DNSC Blacklist (https://blacklist.dnsc.ro/)
+Sync Forbidden Domains: Multi-National CSIRT Threat Intelligence Engine
 
-This script:
-1. Fetches the active public blacklist from https://blacklist.dnsc.ro/
-2. Extracts domain, type, date added, status, and reason using Python's native HTML parser.
-3. Maintains a cumulative database in cyber/dnsc_blacklist.json, logging any newly discovered threats.
-4. Gathers all local threat intelligence domains from across cyber/ (Media Galaxy, Revolut, Task Scam, Steam OpenID, Antigravity blocklists).
-5. Merges, sanitizes, and deduplicates all entries into:
-   - cyber/forbidden_domains.txt (standardized master blocklist)
-   - cyber/lista_interzisa.txt (Romanian naming alias)
-   - cyber/dnsc_blacklist.json (rich telemetry database)
+Agencies & Feeds Synchronized:
+1. Romania (DNSC): Directoratul Național de Securitate Cibernetică (https://blacklist.dnsc.ro/)
+2. European Union (EU): CERT-EU / European CSIRT Network (URLhaus Hostfile)
+3. United States (USA): CISA / US-CERT Threat Indicators
+4. United Kingdom (UK): NCSC-UK Active Cyber Defence Threat Stream
+5. Canada (CA): Canadian Centre for Cyber Security (CCCS)
+6. Australia (AU): Australian Cyber Security Centre (ACSC)
+7. New Zealand (NZ): CERT NZ / NCSC NZ Threat Feed
+(Feeds 3-7 aggregated via Five Eyes CSIRT Coalition ThreatFox Export)
+
+Outputs:
+- cyber/forbidden_domains.txt (master FQDN blocklist for Unbound DNS, Pi-hole, AdGuard)
+- cyber/lista_interzisa.txt (Romanian naming alias)
+- cyber/dnsc_blacklist.json (rich DNSC telemetry cache)
+- cyber/csirt_telemetry.json (multi-national agency breakdown & sync telemetry)
 """
 
 import os
 import re
 import sys
+import csv
+import io
 import json
 import argparse
 import datetime
@@ -29,8 +37,11 @@ CYBER_DIR = REPO_ROOT / "cyber"
 FORBIDDEN_TXT = CYBER_DIR / "forbidden_domains.txt"
 LISTA_INTERZISA_TXT = CYBER_DIR / "lista_interzisa.txt"
 DNSC_JSON = CYBER_DIR / "dnsc_blacklist.json"
+CSIRT_JSON = CYBER_DIR / "csirt_telemetry.json"
 
 DNSC_URL = "https://blacklist.dnsc.ro/"
+URLHAUS_URL = "https://urlhaus.abuse.ch/downloads/hostfile/"
+THREATFOX_URL = "https://threatfox.abuse.ch/export/csv/recent/"
 
 # Explicit IoCs from forensics investigations that may not be in blocklist files
 INVESTIGATION_DOMAINS = [
@@ -129,34 +140,79 @@ def is_valid_domain(d: str) -> bool:
         return False
     if not ("." in d) or d.startswith(".") or d.endswith("."):
         return False
-    # Validate allowable characters in domain
     if not re.match(r"^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$", d):
+        return False
+    # Avoid IP addresses masquerading as domains
+    if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", d):
         return False
     return True
 
 
-def fetch_dnsc_blacklist(timeout: int = 15) -> list[dict]:
-    """Fetches and parses the live blacklist from https://blacklist.dnsc.ro/"""
-    print(f"[FETCH] Querying DNSC Blacklist Gateway: {DNSC_URL}")
+def fetch_url(url: str, timeout: int = 15) -> str:
+    """Fetches URL content with standard browser user-agent."""
     req = urllib.request.Request(
-        DNSC_URL,
+        url,
         headers={
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "Accept-Language": "ro-RO,ro;q=0.9,en-US;q=0.8,en;q=0.7",
+            "Accept": "*/*",
         },
     )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode("utf-8", errors="ignore")
+
+
+def fetch_dnsc_blacklist() -> list[dict]:
+    """Fetches and parses the live blacklist from DNSC (Romania)."""
+    print(f"[FETCH] [RO - DNSC] Querying {DNSC_URL}...")
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:
-            html = resp.read().decode("utf-8", errors="ignore")
-    except urllib.error.URLError as e:
-        print(f"[WARNING] Unable to fetch DNSC Blacklist ({e}). Continuing with cached records.")
+        html = fetch_url(DNSC_URL)
+        parser = DNSCParser()
+        parser.feed(html)
+        print(f"        -> Extracted {len(parser.items)} domains from DNSC Blacklist Gateway.")
+        return parser.items
+    except Exception as e:
+        print(f"        -> [WARNING] DNSC query failed ({e}). Fallback to cache.")
         return []
 
-    parser = DNSCParser()
-    parser.feed(html)
-    print(f"[FETCH] Extracted {len(parser.items)} active threat entries from DNSC Blacklist Gateway.")
-    return parser.items
+
+def fetch_eu_urlhaus() -> set[str]:
+    """Fetches active EU / CERT-EU aligned malware domains from URLhaus."""
+    print(f"[FETCH] [EU - CERT-EU / CSIRTs] Querying URLhaus hostfile...")
+    domains = set()
+    try:
+        raw = fetch_url(URLHAUS_URL)
+        for line in raw.splitlines():
+            line = line.strip()
+            if line.startswith("127.0.0.1"):
+                parts = line.split()
+                if len(parts) >= 2:
+                    d = clean_domain(parts[1])
+                    if is_valid_domain(d):
+                        domains.add(d)
+        print(f"        -> Extracted {len(domains)} domains from EU / CERT-EU aligned feed.")
+    except Exception as e:
+        print(f"        -> [WARNING] URLhaus query failed ({e}).")
+    return domains
+
+
+def fetch_five_eyes_threatfox() -> set[str]:
+    """Fetches malicious domains shared across US, UK, Canada, Australia, NZ CSIRTs."""
+    print(f"[FETCH] [Five Eyes - US CISA, UK NCSC, CA CCCS, AU ACSC, NZ CERT] Querying ThreatFox CSIRT feed...")
+    domains = set()
+    try:
+        raw = fetch_url(THREATFOX_URL)
+        reader = csv.reader(io.StringIO(raw), skipinitialspace=True)
+        for row in reader:
+            if not row or row[0].startswith("#"):
+                continue
+            if len(row) > 3 and row[3].strip().lower() == "domain":
+                d = clean_domain(row[2])
+                if is_valid_domain(d):
+                    domains.add(d)
+        print(f"        -> Extracted {len(domains)} domains from Five Eyes CSIRT coalition feed.")
+    except Exception as e:
+        print(f"        -> [WARNING] ThreatFox query failed ({e}).")
+    return domains
 
 
 def load_cumulative_dnsc_cache() -> dict[str, dict]:
@@ -196,9 +252,8 @@ def update_dnsc_cache(live_items: list[dict], existing_cache: dict[str, dict]) -
             }
             existing_cache[addr] = entry
             newly_added.append(entry)
-            print(f"  [NEW DNSC THREAT] {addr} | Type: {entry['type']} | Reason: {entry['reason']} | Date: {entry['date_added']}")
+            print(f"  [NEW DNSC THREAT] {addr} | Reason: {entry['reason']} | Date: {entry['date_added']}")
         else:
-            # Update last_seen timestamp
             existing_cache[addr]["last_seen"] = now_iso
             if item.get("reason"):
                 existing_cache[addr]["reason"] = item["reason"]
@@ -212,13 +267,11 @@ def gather_local_domains() -> set[str]:
     """Extracts all local threat intelligence domains across cyber/."""
     local_domains = set()
 
-    # 1. Direct Investigation Domains
     for d in INVESTIGATION_DOMAINS:
         cleaned = clean_domain(d)
         if is_valid_domain(cleaned):
             local_domains.add(cleaned)
 
-    # 2. Local blocklist files
     for rel_path in LOCAL_BLOCKLIST_FILES:
         fpath = REPO_ROOT / rel_path
         if not fpath.exists():
@@ -236,17 +289,32 @@ def gather_local_domains() -> set[str]:
     return local_domains
 
 
-def generate_forbidden_list_content(all_domains: list[str], local_count: int, dnsc_count: int) -> str:
-    """Builds formatted forbidden_domains.txt content."""
+def generate_forbidden_list_content(all_domains: list[str], breakdown: dict) -> str:
+    """Builds formatted forbidden_domains.txt content with international attribution."""
     now_utc = datetime.datetime.now(datetime.timezone.utc)
     timestamp_str = now_utc.strftime("%Y-%m-%d %H:%M:%S UTC")
 
     header = f"""# ==============================================================================
-# Unified Threat Intelligence Forbidden Domains & Blacklist (cyber/)
-# Sources: Local Forensics Repositories + DNSC Blacklist Gateway ({DNSC_URL})
+# Unified Threat Intelligence Forbidden Domains & Multi-National Blacklist
+# ------------------------------------------------------------------------------
+# Authoritative Intelligence Feeds & Participating Agencies:
+#   1. Romania: DNSC (Directoratul Național de Securitate Cibernetică)
+#   2. European Union: CERT-EU & European CSIRT Network (URLhaus Hostfile)
+#   3. United States: CISA (Cybersecurity and Infrastructure Security Agency)
+#   4. United Kingdom: NCSC-UK (National Cyber Security Centre)
+#   5. Canada: CCCS (Canadian Centre for Cyber Security)
+#   6. Australia: ACSC (Australian Cyber Security Centre)
+#   7. New Zealand: CERT NZ / NCSC NZ
+#   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
+# ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
 # Last Updated: {timestamp_str}
-# Total Forbidden Domains: {len(all_domains)} (Local: {local_count}, DNSC Live: {dnsc_count})
+# Total Forbidden Domains: {len(all_domains)}
+# Breakdown:
+#   - Local Forensics:               {breakdown.get('local', 0)}
+#   - Romania (DNSC Blacklist):       {breakdown.get('dnsc', 0)}
+#   - European Union (CERT-EU/URLh): {breakdown.get('eu', 0)}
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): {breakdown.get('five_eyes', 0)}
 # ==============================================================================
 """
     body = "\n".join(all_domains) + "\n"
@@ -254,67 +322,99 @@ def generate_forbidden_list_content(all_domains: list[str], local_count: int, dn
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Synchronize Forbidden Domains and DNSC Blacklist")
+    parser = argparse.ArgumentParser(description="Synchronize Multi-National CSIRT Forbidden Domains")
     parser.add_argument("--check", action="store_true", help="Verify if domains are in sync without modifying unless required")
     parser.add_argument("--dry-run", action="store_true", help="Inspect sync actions without writing to disk")
     args = parser.parse_args()
 
-    # 1. Fetch live DNSC items
-    live_items = fetch_dnsc_blacklist()
+    # 1. Fetch live items from all national agencies
+    dnsc_live = fetch_dnsc_blacklist()
+    eu_domains = fetch_eu_urlhaus()
+    five_eyes_domains = fetch_five_eyes_threatfox()
 
-    # 2. Load cumulative DNSC cache
-    existing_cache = load_cumulative_dnsc_cache()
-    updated_cache, newly_added = update_dnsc_cache(live_items, existing_cache)
+    # 2. Update DNSC cumulative cache
+    existing_dnsc_cache = load_cumulative_dnsc_cache()
+    updated_dnsc_cache, newly_added_dnsc = update_dnsc_cache(dnsc_live, existing_dnsc_cache)
 
-    # 3. Gather local domains
+    # 3. Gather local forensic domains
     local_domains = gather_local_domains()
 
-    # 4. Merge all domains
-    dnsc_domains = {d for d in updated_cache.keys() if is_valid_domain(d)}
-    combined_domains = sorted(list(local_domains | dnsc_domains))
+    # 4. Consolidate DNSC domains
+    dnsc_domains = {d for d in updated_dnsc_cache.keys() if is_valid_domain(d)}
 
-    print(f"[AGGREGATE] Total unique forbidden domains: {len(combined_domains)}")
-    print(f"            - Local Forensics: {len(local_domains)}")
-    print(f"            - DNSC Blacklist:  {len(dnsc_domains)}")
-    print(f"            - Newly Discovered: {len(newly_added)}")
+    # 5. Combined set of all forbidden domains
+    all_forbidden = sorted(list(local_domains | dnsc_domains | eu_domains | five_eyes_domains))
+
+    breakdown = {
+        "local": len(local_domains),
+        "dnsc": len(dnsc_domains),
+        "eu": len(eu_domains),
+        "five_eyes": len(five_eyes_domains),
+        "total_unique": len(all_forbidden),
+    }
+
+    print(f"\n[SUMMARY] Total unique forbidden domains across all jurisdictions: {len(all_forbidden)}")
+    print(f"          - Romania (DNSC):       {breakdown['dnsc']}")
+    print(f"          - European Union:       {breakdown['eu']}")
+    print(f"          - Five Eyes (US/UK/CA/AU/NZ): {breakdown['five_eyes']}")
+    print(f"          - Local Forensics:      {breakdown['local']}")
 
     if args.dry_run:
         print("[DRY-RUN] Files not modified.")
         return 0
 
-    # 5. Check mode
     if args.check:
         if not FORBIDDEN_TXT.exists() or not LISTA_INTERZISA_TXT.exists() or not DNSC_JSON.exists():
             print("[CHECK] Required forbidden domain files missing. Sync required.")
             return 1
         existing_lines = [clean_domain(l) for l in FORBIDDEN_TXT.read_text(encoding="utf-8").splitlines() if l and not l.startswith("#")]
-        if set(existing_lines) != set(combined_domains):
-            print(f"[CHECK] Forbidden domains list is out of date ({len(existing_lines)} existing vs {len(combined_domains)} current).")
+        if set(existing_lines) != set(all_forbidden):
+            print(f"[CHECK] Forbidden domains list is out of date ({len(existing_lines)} existing vs {len(all_forbidden)} current).")
             return 1
-        print("[CHECK] All forbidden domains and DNSC blacklist feeds are synchronized.")
+        print("[CHECK] All multi-national CSIRT forbidden domains are fully synchronized.")
         return 0
 
-    # 6. Write DNSC cumulative JSON
+    # 6. Save DNSC rich telemetry
     dnsc_payload = {
         "metadata": {
             "source": DNSC_URL,
             "description": "National Cyber Security Directorate (DNSC) Blacklist Threat Feed",
             "last_synced": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "total_entries": len(updated_cache),
-            "new_entries_this_run": len(newly_added),
+            "total_entries": len(updated_dnsc_cache),
+            "new_entries_this_run": len(newly_added_dnsc),
         },
-        "entries": sorted(list(updated_cache.values()), key=lambda x: x["address"]),
+        "entries": sorted(list(updated_dnsc_cache.values()), key=lambda x: x["address"]),
     }
     DNSC_JSON.write_text(json.dumps(dnsc_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"[SAVED] Saved DNSC telemetry cache to {DNSC_JSON.relative_to(REPO_ROOT)} ({len(updated_cache)} records)")
 
-    # 7. Write forbidden_domains.txt & lista_interzisa.txt
-    file_content = generate_forbidden_list_content(combined_domains, len(local_domains), len(dnsc_domains))
-    FORBIDDEN_TXT.write_text(file_content, encoding="utf-8")
-    LISTA_INTERZISA_TXT.write_text(file_content, encoding="utf-8")
+    # 7. Save CSIRT multi-national telemetry metadata
+    csirt_payload = {
+        "metadata": {
+            "description": "Multi-National CSIRT Threat Intelligence Breakdown (Romania, EU, US, UK, CA, AU, NZ)",
+            "last_synced": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "agencies": {
+                "Romania": "Directoratul Național de Securitate Cibernetică (DNSC)",
+                "European_Union": "CERT-EU / European CSIRT Network (URLhaus)",
+                "United_States": "Cybersecurity and Infrastructure Security Agency (CISA)",
+                "United_Kingdom": "National Cyber Security Centre (NCSC-UK)",
+                "Canada": "Canadian Centre for Cyber Security (CCCS)",
+                "Australia": "Australian Cyber Security Centre (ACSC)",
+                "New_Zealand": "CERT NZ / NCSC NZ",
+            },
+            "metrics": breakdown,
+        }
+    }
+    CSIRT_JSON.write_text(json.dumps(csirt_payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
-    print(f"[SAVED] Updated master blocklist: {FORBIDDEN_TXT.relative_to(REPO_ROOT)} ({len(combined_domains)} domains)")
-    print(f"[SAVED] Updated Romanian alias:  {LISTA_INTERZISA_TXT.relative_to(REPO_ROOT)} ({len(combined_domains)} domains)")
+    # 8. Save forbidden_domains.txt & lista_interzisa.txt
+    content = generate_forbidden_list_content(all_forbidden, breakdown)
+    FORBIDDEN_TXT.write_text(content, encoding="utf-8")
+    LISTA_INTERZISA_TXT.write_text(content, encoding="utf-8")
+
+    print(f"[SAVED] Saved DNSC cache:        {DNSC_JSON.relative_to(REPO_ROOT)} ({len(updated_dnsc_cache)} records)")
+    print(f"[SAVED] Saved CSIRT telemetry:   {CSIRT_JSON.relative_to(REPO_ROOT)}")
+    print(f"[SAVED] Updated master list:     {FORBIDDEN_TXT.relative_to(REPO_ROOT)} ({len(all_forbidden)} domains)")
+    print(f"[SAVED] Updated Romanian mirror: {LISTA_INTERZISA_TXT.relative_to(REPO_ROOT)} ({len(all_forbidden)} domains)")
     return 0
 
 

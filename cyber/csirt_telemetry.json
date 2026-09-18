@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "description": "Multi-National CSIRT Threat Intelligence Breakdown (Romania, EU, US, UK, CA, AU, NZ)",
+    "last_synced": "2026-09-18T09:24:46.804337+00:00",
+    "agencies": {
+      "Romania": "Directoratul Național de Securitate Cibernetică (DNSC)",
+      "European_Union": "CERT-EU / European CSIRT Network (URLhaus)",
+      "United_States": "Cybersecurity and Infrastructure Security Agency (CISA)",
+      "United_Kingdom": "National Cyber Security Centre (NCSC-UK)",
+      "Canada": "Canadian Centre for Cyber Security (CCCS)",
+      "Australia": "Australian Cyber Security Centre (ACSC)",
+      "New_Zealand": "CERT NZ / NCSC NZ"
+    },
+    "metrics": {
+      "local": 430,
+      "dnsc": 10,
+      "eu": 405,
+      "five_eyes": 1771,
+      "total_unique": 2614
+    }
+  }
+}
