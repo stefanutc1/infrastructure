@@ -2,7 +2,7 @@
 # Unified Threat Intelligence Forbidden Domains & Blacklist (cyber/)
 # Sources: Local Forensics Repositories + DNSC Blacklist Gateway (https://blacklist.dnsc.ro/)
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 08:38:34 UTC
+# Last Updated: 2026-09-18 08:44:37 UTC
 # Total Forbidden Domains: 440 (Local: 430, DNSC Live: 10)
 # ==============================================================================
 4tube.com
