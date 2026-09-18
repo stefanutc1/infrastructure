@@ -145,13 +145,13 @@ flowchart TD
 
 - **OPNsense Gateway (`192.168.1.1`):** Sinkholing newly registered domains (NRDs) under `.top` and `.com` containing gaming keywords (`cs2`, `tournament`, `steam`, `league`).
 - **Suricata IDS:** Detection signatures flagging HTTP POST traffic directed to `/api/v2/auth/steam_callback`.
-- **Wazuh SIEM (LXC 150):** Alerting on high-volume Discord desktop client DNS queries resolving to unranked external tournament domains.
+- **Wazuh SIEM (LXC 107):** Alerting on high-volume Discord desktop client DNS queries resolving to unranked external tournament domains.
 
 ---
 
 ## 7. Practical Security Guidelines: DOs and DON'Ts
 
-### 🛡️ WHAT TO DO (DOs) – Immediate Defensive Actions
+### WHAT TO DO (DOs) - Immediate Defensive Actions
 
 | Recommended Action | Detailed Instructions |
 | :--- | :--- |
@@ -163,11 +163,11 @@ flowchart TD
 
 ---
 
-### 🚫 WHAT NOT TO DO (DON'Ts) – Critical Traps to Avoid
+### WHAT NOT TO DO (DON'Ts) - Critical Traps to Avoid
 
 | Critical Trap | Threat Impact |
 | :--- | :--- |
-| **❌ DO NOT enter credentials on tournament voting pages** | Esports tournaments never require community members to vote by authenticating their full Steam credentials on third-party sites. |
-| **❌ DO NOT trust visual browser padlocks inside webpages** | Web developers can render fake padlock icons and address bars with simple CSS/SVG. Only trust the OS-level address bar provided by Safari, Chrome, or Firefox. |
-| **❌ DO NOT accept trades without checking Steam Guard confirmation details** | When confirming trades in the Steam Mobile App, verify the account creation date and registration details of the trade partner. If the original trade was canceled and a new one appeared, you are being API-scammed! |
-| **❌ DO NOT share Steam Guard SMS or Mobile Authenticator codes** | Valve support staff will never ask for Steam Guard codes under any circumstances. |
+| **DO NOT enter credentials on tournament voting pages** | Esports tournaments never require community members to vote by authenticating their full Steam credentials on third-party sites. |
+| **DO NOT trust visual browser padlocks inside webpages** | Web developers can render fake padlock icons and address bars with simple CSS/SVG. Only trust the OS-level address bar provided by Safari, Chrome, or Firefox. |
+| **DO NOT accept trades without checking Steam Guard confirmation details** | When confirming trades in the Steam Mobile App, verify the account creation date and registration details of the trade partner. If the original trade was canceled and a new one appeared, you are being API-scammed! |
+| **DO NOT share Steam Guard SMS or Mobile Authenticator codes** | Valve support staff will never ask for Steam Guard codes under any circumstances. |

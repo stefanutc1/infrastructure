@@ -6,7 +6,7 @@
 
 ---
 
-## 🇷🇴 Versiunea în Limba Română (Original)
+## Versiunea in Limba Romana (Original)
 
 **Subiect:** Propunere material YouTube (analiză material de phishing prin impersonarea Media Galaxy)  
 **De la:** Ștefănuț `<boostcroyale18@gmail.com>`  
@@ -24,7 +24,7 @@ Spor și o zi frumoasă să ai!
 
 ---
 
-## 🇬🇧 English Translation
+## English Translation
 
 **Subject:** YouTube Investigation Proposal: Technical Teardown of Media Galaxy Phishing Campaign  
 **From:** Ștefănuț `<boostcroyale18@gmail.com>`  

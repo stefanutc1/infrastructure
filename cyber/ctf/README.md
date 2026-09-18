@@ -1,20 +1,20 @@
-# 🚩 CTF Speedrun Toolkit & Workspace (InvataCyber / AlgoCyber)
+# CTF Speedrun Toolkit & Workspace (InvataCyber / AlgoCyber)
 
-Repository privat conceput special pentru pregătirea și rularea speedrun-ului (țintă: **10 ore**) la **Mini CTF-ul Jeopardy** găzduit de **InvataCyber.ro** pe platforma **AlgoCyber / Algolymp** (creat cu implicarea lui *coxterman*).
+Repository conceput pentru pregătirea și rularea speedrun-ului (țintă: 10 ore) la Mini CTF-ul Jeopardy găzduit de InvataCyber.ro pe platforma AlgoCyber / Algolymp.
 
 ---
 
-## 🎯 Despre Eveniment
+## Despre Eveniment
 
 - **Tip:** Jeopardy CTF (Entry-level / Medium-Easy), focus pe învățare și colaborare.
 - **Dată & Durată:** 19 Septembrie 2026, ora 09:00 – 20 Septembrie 2026, ora 21:00 (36 ore în total).
 - **Discord:** Canale de voce și text active pentru schimb de idei și indicii (regula de aur: *nu se distribuie flag-ul direct*).
-- **Scoring:** Dynamic Scoring (valoarea provocării scade odată cu numărul de rezolvări) + Bonusuri de **First Blood**.
-- **Tombolă:** 1 Flag validat = 1 Bilet de tombolă la tragerea la sorți pentru **2x vouchere Hack The Box Labs de 25$** (oferite de InvataCyber.ro & CybrOps).
+- **Scoring:** Dynamic Scoring (valoarea provocării scade odată cu numărul de rezolvări) + Bonusuri de First Blood.
+- **Tombolă:** 1 Flag validat = 1 Bilet de tombolă la tragerea la sorți pentru 2x vouchere Hack The Box Labs de 25$ (oferite de InvataCyber.ro & CybrOps).
 
 ---
 
-## 📁 Structura Repository-ului
+## Structura Repository-ului
 
 ```text
 ctf/
@@ -31,7 +31,7 @@ ctf/
 │   ├── socket_template.py         # Template interacțiune TCP/netcat pentru provocări de viteză
 │   └── writeup_template.md        # Șablon standardizat pentru notat rezolvările și flag-urile
 │
-├── web/                           # Automatizări și testări pentru categoria Web (Grosul CTF-ului)
+├── web/                           # Automatizări și testări pentru categoria Web
 │   ├── requester.py               # Fuzzer HTTP custom, header spoofing & detectare automată flag
 │   ├── path_discovery.py          # Scanare rapidă de directoare și fișiere tipice (.git, .env, robots)
 │   ├── sqli_helper.py             # Verificator auth-bypass & extractor binar blind SQLi
@@ -50,7 +50,7 @@ ctf/
 
 ---
 
-## ⚡ Strategia de Speedrun (Planul de 10 Ore)
+## Strategia de Speedrun (Planul de 10 Ore)
 
 | Interval | Etapă | Focus & Obiective | Unelte Recomandate |
 |---|---|---|---|
@@ -61,13 +61,13 @@ ctf/
 
 ---
 
-## 🛠️ Instalare și Pornire Rapidă
+## Instalare și Pornire Rapidă
 
 ```bash
-# 1. Clonează/accesează directorul
-cd /Users/s3nnnzzzatyeeee/.gemini/antigravity/scratch/ctf
+# 1. Accesează directorul
+cd cyber/ctf
 
-# 2. Rulează scriptul de inițializare (creează venv și instalează pachetele)
+# 2. Rulează scriptul de inițializare
 ./setup.sh
 
 # 3. Activează mediul virtual
@@ -76,7 +76,7 @@ source venv/bin/activate
 
 ---
 
-## 🧰 Ghid Rapid de Utilizare a Scripturilor
+## Ghid Rapid de Utilizare a Scripturilor
 
 ### 1. Urmărirea Progresului (`tracker/flag_tracker.py`)
 ```bash
@@ -121,10 +121,10 @@ python3 forensics_misc/rapid_solver.py challenge.algocyber.ro 1337
 
 ---
 
-## 🌐 Extensii de Browser Recomandate pentru Speedrun
+## Extensii de Browser Recomandate
 
 - **Cookie-Editor:** Modificare și injectare rapidă de cookie-uri (admin=1, role=superadmin).
 - **Hack-Tools:** Cheat sheets, SQLi payloads, reverse shells și encoders direct în tab-ul DevTools.
 - **Wappalyzer:** Identificarea instantanee a tehnologiilor folosite (Flask, PHP, Express, Apache, Nginx).
 - **FoxyProxy:** Rutarea rapidă a traficului către Burp Suite sau Caido (`127.0.0.1:8080`).
-- **CyberChef (offline sau web):** Pentru rețete complexe de transformare a datelor.
+- **CyberChef (offline sau web):** Pentru transformări și decodări complexe de date.

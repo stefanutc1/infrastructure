@@ -4,7 +4,7 @@ Acest document conține declarația și scenariul complet de raportare (la perso
 
 ---
 
-## 🇷🇴 Versiunea în Limba Română (Declarație la Persoana I)
+## Versiunea in Limba Romana (Declaratie la Persoana I)
 
 **Către:** Banca Comercială Română (BCR) – Departamentul Carduri, Fraude și Relații Clienți  
 **Subiect:** Notificare de fraudă informatică (phishing) și solicitare deschidere procedură de Chargeback  
@@ -44,7 +44,7 @@ Pentru ca departamentul dumneavoastră antifraudă să poată documenta atacul �
 
 ---
 
-## 🇬🇧 English Translation (First-Person Statement)
+## English Translation (First-Person Statement)
 
 **To:** Banca Comercială Română (BCR) – Fraud Prevention, Cards & Dispute Department  
 **Subject:** Cyber Fraud Notification (Phishing) & Formal Request to Open a Chargeback Dispute  

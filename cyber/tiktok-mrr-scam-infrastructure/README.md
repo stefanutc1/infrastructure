@@ -130,7 +130,7 @@ For consumers seeking financial recovery after purchasing deceptive Master Resel
 
 ## 6. Practical Guidelines: DOs and DON'Ts
 
-### 🛡️ WHAT TO DO (DOs) – Protective Heuristics
+### WHAT TO DO (DOs) - Protective Heuristics
 
 | Recommended Action | Operational Guidance |
 | :--- | :--- |
@@ -141,11 +141,11 @@ For consumers seeking financial recovery after purchasing deceptive Master Resel
 
 ---
 
-### 🚫 WHAT NOT TO DO (DON'Ts) – Critical Traps
+### WHAT NOT TO DO (DON'Ts) - Critical Traps
 
 | Critical Trap | Threat Rationale |
 | :--- | :--- |
-| **❌ DO NOT believe social media revenue screenshots** | Screenshots of Stripe or PayPal dashboards are trivial to fabricate in seconds using browser developer tools (`F12 Inspect Element`). |
-| **❌ DO NOT buy "faceless / done-for-you" income promises** | Real enterprise marketing requires capital, technical domain knowledge, and constant iteration. No legitimate business runs on autopilot using free AI templates. |
-| **❌ DO NOT become a downstream reseller** | Promoting an MRR course to recover your initial losses exposes you to legal liabilities under national anti-pyramid legislation and platform banning. |
-| **❌ DO NOT accept "No Refund" excuses for fraudulent goods** | Statutory consumer rights under EU Directive 2005/29/EC and common-law fraud doctrines supersede one-sided website disclaimers. |
+| **DO NOT believe social media revenue screenshots** | Screenshots of Stripe or PayPal dashboards are trivial to fabricate in seconds using browser developer tools (`F12 Inspect Element`). |
+| **DO NOT buy "faceless / done-for-you" income promises** | Legitimate marketing requires capital, technical domain knowledge, and constant iteration. No legitimate business runs on autopilot using free AI templates. |
+| **DO NOT become a downstream reseller** | Promoting an MRR course to recover your initial losses exposes you to legal liabilities under national anti-pyramid legislation and platform banning. |
+| **DO NOT accept "No Refund" excuses for fraudulent goods** | Statutory consumer rights under EU Directive 2005/29/EC and common-law fraud doctrines supersede one-sided website disclaimers. |

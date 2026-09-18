@@ -173,13 +173,13 @@ The web client executes aggressive fingerprinting stored in browser `localStorag
 
 - **OPNsense Gateway (`192.168.1.1`):** Ingress DNS sinkholing of disposable Task Scam domains and TRON node API endpoints used by the scam kits.
 - **Suricata IDS:** Alerting on unencrypted HTTP requests matching pattern `/api/v1/site/config` containing `withdrawMethodBank: false`.
-- **Wazuh SIEM (LXC 150):** Correlation of endpoint browser logs connecting to high-risk task domains and tracking UUID exfiltration.
+- **Wazuh SIEM (LXC 107):** Correlation of endpoint browser logs connecting to high-risk task domains and tracking UUID exfiltration.
 
 ---
 
 ## 7. Practical Security Guidelines: DOs and DON'Ts
 
-### 🛡️ WHAT TO DO (DOs) – Protective Actions
+### WHAT TO DO (DOs) - Protective Actions
 
 | Recommended Action | Detailed Instructions |
 | :--- | :--- |
@@ -191,11 +191,11 @@ The web client executes aggressive fingerprinting stored in browser `localStorag
 
 ---
 
-### 🚫 WHAT NOT TO DO (DON'Ts) – Critical Traps to Avoid
+### WHAT NOT TO DO (DON'Ts) - Critical Traps to Avoid
 
 | Critical Trap | Threat Rationale |
 | :--- | :--- |
-| **❌ DO NOT pay "taxes", "security deposits", or "audit fees"** | Scammers will claim your balance is "under review" and require a 30% fee to release it. This is a secondary extortion attempt. |
-| **❌ DO NOT trust "recovery agents" on social media** | Anyone contacting you on Telegram, Instagram, or Reddit claiming they can "hack into the blockchain" or "recover your lost USDT" is a secondary recovery scammer. Blockchain transactions cannot be reversed by third parties. |
-| **❌ DO NOT believe initial micro-withdrawals** | Fraudsters intentionally allow a tiny initial withdrawal (e.g. $10 - $20) to build false trust and convince victims to deposit thousands later. |
-| **❌ DO NOT provide personal identification (KYC) documents** | Do not upload ID cards, passports, or driver's licenses to task scam sites. They will be harvested and used to open fraudulent bank accounts or register new scam domains. |
+| **DO NOT pay "taxes", "security deposits", or "audit fees"** | Scammers will claim your balance is "under review" and require a 30% fee to release it. This is a secondary extortion attempt. |
+| **DO NOT trust "recovery agents" on social media** | Anyone contacting you on Telegram, Instagram, or Reddit claiming they can "hack into the blockchain" or "recover your lost USDT" is a secondary recovery scammer. Blockchain transactions cannot be reversed by third parties. |
+| **DO NOT believe initial micro-withdrawals** | Fraudsters intentionally allow a tiny initial withdrawal (e.g. $10 - $20) to build false trust and convince victims to deposit thousands later. |
+| **DO NOT provide personal identification (KYC) documents** | Do not upload ID cards, passports, or driver's licenses to task scam sites. They will be harvested and used to open fraudulent bank accounts or register new scam domains. |

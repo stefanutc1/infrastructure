@@ -4,7 +4,7 @@ This document contains the official incident notification sent to the Media Gala
 
 ---
 
-## 🇷🇴 Versiunea în Limba Română (Original)
+## Versiunea in Limba Romana (Original)
 
 **Către:** Departamentul Juridic & Echipa de Securitate Informatică – Media Galaxy / Altex România  
 **Subiect:** Notificare privind o campanie activă de fraudă electronică și uzurpare de identitate de brand (Phishing Media Galaxy pe TikTok)  
@@ -28,7 +28,7 @@ Cu stimă,
 
 ---
 
-## 🇬🇧 English Translation
+## English Translation
 
 **To:** Legal Department & Information Security Team – Media Galaxy / Altex Romania  
 **Subject:** Urgent Notification: Active E-Commerce Brand Impersonation and Phishing Campaign (Media Galaxy Spoofing on TikTok)  

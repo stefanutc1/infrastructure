@@ -271,7 +271,7 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 These recommendations are designed for consumers and victims of e-commerce phishing schemes, as well as security practitioners, incident responders, and their families.
 
-### 🛡️ WHAT TO DO (DOs) – Immediate Protective Actions
+### WHAT TO DO (DOs) - Immediate Protective Actions
 
 | Recommended Action | Detailed Instructions & Practical Procedure |
 | :--- | :--- |
@@ -284,22 +284,23 @@ These recommendations are designed for consumers and victims of e-commerce phish
 
 ---
 
-### 🚫 WHAT NOT TO DO (DON'Ts) – Critical Mistakes to Avoid
+### WHAT NOT TO DO (DON'Ts) - Critical Mistakes to Avoid
 
 | Common Critical Mistake | Threat Rationale & Why It Is Hazardous |
 | :--- | :--- |
-| **❌ DO NOT click "Unsubscribe" links in suspicious emails** | The unsubscribe link in a phishing email does not remove your address. Instead, it confirms to threat actors that your inbox is **active and responsive**, and may trigger drive-by malware downloads or payload drops (info-stealers). |
-| **❌ DO NOT input secondary verification codes (OTP / SMS)** | If you receive SMS messages or emails containing security codes (such as the observed `586571` OTP), **never enter them on any web form** and do not disclose them to anyone. Attackers often use these out-of-band codes to initiate account takeovers or authorize secondary fraudulent transfers! |
-| **❌ DO NOT reply to threat actor email or drop inboxes** | Never send replies to drop mailboxes or contact addresses listed in scam receipts (such as `brekerfurught@outlook.com` or `MaryxBeckb96@gmail.com`). Any active engagement registers your profile on high-value target lists ("suckers lists") and attracts follow-up social engineering or vishing attacks. |
-| **❌ DO NOT complete checkouts inside social media in-app webviews** | Social media in-app browsers (TikTok, Instagram, Facebook) routinely obscure the full URL string, security padlocks, and SSL/TLS certificate details. Always tap the overflow menu (`...`) and select **"Open in Browser" (Safari / Chrome)** to inspect the genuine domain name. |
-| **❌ DO NOT fall for absurdly discounted prices** | Legitimate e-commerce retailers never sell name-brand household goods or high-value electronics for **4 RON (~$0.87) or 10 RON**. Discounts exceeding 90-95% advertised via sponsored social media feeds are exclusively bait for harvesting financial credentials. |
-| **❌ DO NOT use primary physical debit cards on unverified websites** | For online purchases on unfamiliar platforms, **strictly utilize single-use disposable virtual cards** with strict spending limits rather than exposing primary physical debit or salary accounts. |
+| **DO NOT click "Unsubscribe" links in suspicious emails** | The unsubscribe link in a phishing email does not remove your address. Instead, it confirms to threat actors that your inbox is **active and responsive**, and may trigger drive-by malware downloads or payload drops (info-stealers). |
+| **DO NOT input secondary verification codes (OTP / SMS)** | If you receive SMS messages or emails containing security codes (such as the observed `586571` OTP), **never enter them on any web form** and do not disclose them to anyone. Attackers often use these out-of-band codes to initiate account takeovers or authorize secondary fraudulent transfers! |
+| **DO NOT reply to threat actor email or drop inboxes** | Never send replies to drop mailboxes or contact addresses listed in scam receipts (such as `brekerfurught@outlook.com` or `MaryxBeckb96@gmail.com`). Any active engagement registers your profile on high-value target lists ("suckers lists") and attracts follow-up social engineering or vishing attacks. |
+| **DO NOT complete checkouts inside social media in-app webviews** | Social media in-app browsers (TikTok, Instagram, Facebook) routinely obscure the full URL string, security padlocks, and SSL/TLS certificate details. Always tap the overflow menu (`...`) and select **"Open in Browser" (Safari / Chrome)** to inspect the genuine domain name. |
+| **DO NOT fall for absurdly discounted prices** | Legitimate e-commerce retailers never sell name-brand household goods or high-value electronics for **4 RON (~$0.87) or 10 RON**. Discounts exceeding 90-95% advertised via sponsored social media feeds are exclusively bait for harvesting financial credentials. |
+| **DO NOT use primary physical debit cards on unverified websites** | For online purchases on unfamiliar platforms, **strictly utilize single-use disposable virtual cards** with strict spending limits rather than exposing primary physical debit or salary accounts. |
 
 ---
 
-### 📋 Key Incident Response Takeaways
+### Key Incident Response Takeaways
 
 1. **Immediate Containment:** Freeze/terminate the compromised card, dispute the transaction via your issuing bank under official chargeback protocols, and preserve raw forensic email headers (`.eml`/`.msg`).
 2. **Zero-Trust Browsing:** Never finalize transactions within in-app social media webviews; always break out to external browsers to inspect the Fully Qualified Domain Name (FQDN).
 3. **No Threat Engagement:** Never click fake unsubscribe links or communicate with drop mailboxes (`*@outlook.com`, `*@gmail.com`), as this flags the victim as an active candidate for targeted social engineering.
 4. **Credential Hygiene:** Rotate any compromised or reused passwords immediately and enforce application-based Multi-Factor Authentication (MFA) across all critical accounts.
+

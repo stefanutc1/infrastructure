@@ -20,43 +20,40 @@ This file describes hardware and host-level virtualization only. Service definit
 
 **Capacity notes:**
 
-* 12 GB of RAM provides expanded headroom on this host, allowing concurrent operation of enterprise VMs alongside Wazuh 4.14 SIEM/XDR (CT 107) and GPU-accelerated ML workloads (Ollama CT 103) with active VirtIO ballooning and ZRAM swap compression.
-* The GTX 1050 Ti's 4 GB VRAM provides hardware acceleration for local AI inference (Ollama CT 103) and compute workloads.
-* 512 GB SSD is the single storage tier — there is currently no separate fast/slow tier, so backup jobs and VM/container disk growth all draw from the same pool.
+* 12 GB of RAM is sufficient for running the active LXC containers (100–107) alongside Wazuh (LXC 107) and Ollama (LXC 103).
+* The GTX 1050 Ti's 4 GB VRAM is passed through to LXC 103 for local Ollama LLM execution.
+* 512 GB SSD is the single local storage pool (`local-lvm`) for container and VM root disks.
 
 ### Software & Infrastructure
 
 | Layer | Detail |
 | --- | --- |
-| Hypervisor OS | Proxmox VE 9.2 (Debian 13 Trixie base) |
-| Kernel | Linux 7.0 version pve |
-| Security Operations | Wazuh Manager 4.14 SIEM / XDR (LXC 107: Ports 1514, 1515, 55000) |
-| Networking | Tailscale (mesh VPN) |
+| Hypervisor OS | Proxmox VE 9.2 (Debian 13 base) |
+| Kernel | Linux 7.0 pve |
+| Security Monitoring | Wazuh Manager 4.14 (LXC 107) |
+| Networking | Tailscale mesh VPN |
 | Virtualization | LXC containers & QEMU VMs |
 
 ### Usage Profile
 
-This host currently serves three primary virtualization tiers:
+This host runs the primary homelab workloads:
 
-1. **Perimeter Firewall & Core Cloud Infrastructure (VM 200–201)**:
-   - **VM 200**: OPNsense perimeter firewall, Zenarmor L7, CrowdSec IPS, and Unbound DNS.
-   - **VM 201**: OpenStack 2024.1 Caracal IaaS compute (Nova), SDN (Neutron), and Horizon Web Dashboard.
-2. **Cyber Security Lab & Bachelor Thesis CyberLab (VM 300–304 & CT 117)**:
-   - **VM 300**: Kali Linux Rolling offensive security and red teaming workstation on isolated bridge `vmbr1` (VLAN 30).
-   - **VM 301**: Metasploitable 2 intentionally vulnerable Linux target for penetration testing and detection calibration.
-   - **VM 302**: T-Pot 24.04 multi-honeypot threat intelligence decoy platform (Cowrie, Dionaea, Honeytrap, Elastic, Kibana, Suricata).
-   - **VM 303**: Windows Malware Analysis Sandbox (Windows 10 Enterprise x64 on isolated bridge `vmbr3`).
-   - **VM 304**: REMnux v7 Noble malware analysis, memory forensics (Volatility), and Ghidra reverse engineering.
-   - **CT 117**: OWASP Juice Shop vulnerable web application container.
-3. **Active Directory Enterprise Lab (VM 400–405)**:
-   - **VM 400**: Windows Server 2022 Standard Primary Domain Controller & DNS/DHCP infrastructure.
-   - **VM 401**: Windows Server 2016 Standard Domain Controller & Cross-Forest Trust.
-   - **VM 402**: Windows Server 2012 R2 Standard Legacy Functional Level Domain Controller.
-   - **VM 403**: Windows 10 Enterprise Domain Member Client Workstation (GPO Target).
-   - **VM 404**: Windows 7 Ultimate SP1 Legacy Client Workstation (NTLMv2 / SMBv1 Testing).
-   - **VM 405**: Red Hat Enterprise Linux 9.8 Enterprise Domain Workload (SSSD, Realmd, Kerberos Keytab).
+1. **Core Containers (LXC 100–107)**:
+   - **LXC 100**: `homeassistant` (smart home integration)
+   - **LXC 101**: `n8n` (automation workflows)
+   - **LXC 102**: `scrutiny` (drive S.M.A.R.T. monitoring)
+   - **LXC 103**: `ollama` (local LLM inference with GPU passthrough)
+   - **LXC 104**: `uptimekuma` (uptime and health checks)
+   - **LXC 105**: `monitoring` (Prometheus & Grafana)
+   - **LXC 106**: `owasp` (OWASP Juice Shop testing)
+   - **LXC 107**: `wazuh` (Wazuh SIEM manager, indexer & dashboard)
+
+2. **Virtual Machines**:
+   - **VM 200**: `opnsense` (perimeter firewall & routing)
+   - **VM 300**: `parrot` (Parrot Security OS workstation for testing and network utilities)
 
 ---
+
 
 ## Host: `openmediavault` (Node 2 — Storage NAS)
 

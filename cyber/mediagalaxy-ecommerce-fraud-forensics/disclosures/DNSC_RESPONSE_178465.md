@@ -13,7 +13,7 @@
 
 ---
 
-## 🇷🇴 Versiunea în Limba Română (Text Oficial Primit)
+## Versiunea in Limba Romana (Text Oficial Primit)
 
 **De la:** DNSC `<alerts@dnsc.ro>`  
 **Data:** 18 Septembrie 2026, 11:22  
@@ -48,7 +48,7 @@
 
 ---
 
-## 🇬🇧 English Translation (Official Incident Response)
+## English Translation (Official Incident Response)
 
 **From:** DNSC `<alerts@dnsc.ro>`  
 **Date:** September 18, 2026, 11:22 EEST  
@@ -83,7 +83,7 @@
 
 ---
 
-## 🛡️ Technical Assessment & Closed-Loop Integration
+## Technical Assessment & Integration
 
 1. **Incident Validation & Ticketing:**
    - The filing submitted on September 16, 21:21 EEST was officially accepted, assigned Ticket ID **`[D.N.S.C. #178465]`**, and escalated to the *General Directorate of Technical Operations*.
@@ -97,7 +97,7 @@
 
 ---
 
-## 🎯 Verificare & Confirmare Blocare Oficială PNRISC (18 Septembrie 2026)
+## Verificare & Confirmare Blocare Oficială PNRISC (18 Septembrie 2026)
 
 În cursul serii de 18 Septembrie 2026, specialiștii Directoratului Național de Securitate Cibernetică (DNSC) au finalizat analiza și au adăugat oficial infrastructura de fraudă semnalată în baza națională de date **PNRISC Blacklist** ([`https://blacklist.dnsc.ro/`](https://blacklist.dnsc.ro/)):
 

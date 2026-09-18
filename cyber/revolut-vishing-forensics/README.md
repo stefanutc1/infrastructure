@@ -17,7 +17,7 @@ This repository documents the forensic teardown, telephony infrastructure analys
 Threat actors leveraged international **SIP VoIP Caller ID spoofing** to inject legitimate-looking Romanian national mobile numbers (`0749-XXX-XXX`) into caller identification headers. Victims were subjected to high-urgency psychological coercion (fabricated unauthorized transactions, pending account liquidation fees, or negative balance penalties), directing them to disposable cloned banking portals that intercepted primary card credentials and real-time One-Time Passwords (OTP / 3D Secure).
 
 > [!CAUTION]
-> ### ⚠️ Threat Intelligence Alert: Upstream Revolut Data Exposure & Vishing Persistence (September 2026)
+> ### Threat Intelligence Note: Upstream Revolut Data Exposure & Vishing Persistence (September 2026)
 > Following investigative disclosures reported by [Financiarul.ro](https://financiarul.ro/tehnologie/revolut-a-divulgat-date-sensibile-ale-unor-clienti-dupa-solicitari/) and [TechCrunch](https://techcrunch.com/2026/09/12/revolut-confirms-customer-data-breach-through-fake-government-requests/), Revolut confirmed that sensitive customer dossiers and KYC records were disclosed to an unauthorized third party following fraudulent requests sent from a compromised government agency domain.
 > 
 > **Why Vishing Will Persist & Escalate:** Threat rings now possess verified user phone numbers, full names, dates of birth, residential addresses, transaction histories, and government ID scans (passports/licenses). Rather than untargeted spray-and-pray robocalls, attackers can stage **hyper-personalized spear-vishing calls**, citing real balance amounts, past merchants, and identity details to deceive even technically literate users into authorizing 3DS prompts or transfer approvals.
@@ -194,13 +194,13 @@ Following our formal disclosure report, Revolut provided official acknowledgemen
 This investigation directly feeds detection engineering rules across the homelab infrastructure:
 - **OPNsense Gateway (`192.168.1.1`):** Unbound DNS sinkholing (`0.0.0.0`) of all identified phishing domains and newly registered `.xyz` / `.top` FinTech typosquatting patterns.
 - **Suricata IDS/IPS:** Ingress packet inspection for known WebSocket credential-relay signatures and suspicious HTTP redirection headers.
-- **Wazuh SIEM (LXC 150):** Automated alerting on mobile device DNS queries resolving against high-risk disposable TLDs.
+- **Wazuh SIEM (LXC 107):** Automated alerting on mobile device DNS queries resolving against high-risk disposable TLDs.
 
 ---
 
 ## 9. Practical Security Guidelines: DOs and DON'Ts
 
-### 🛡️ WHAT TO DO (DOs) – Immediate Defensive Actions
+### WHAT TO DO (DOs) - Immediate Defensive Actions
 
 | Recommended Action | Detailed Operational Procedure |
 | :--- | :--- |
@@ -212,12 +212,12 @@ This investigation directly feeds detection engineering rules across the homelab
 
 ---
 
-### 🚫 WHAT NOT TO DO (DON'Ts) – Critical Mistakes to Avoid
+### WHAT NOT TO DO (DON'Ts) - Critical Mistakes to Avoid
 
 | Critical Mistake | Threat Impact & Hazard |
 | :--- | :--- |
-| **❌ DO NOT read back SMS OTPs or verification codes** | An SMS verification code is meant exclusively for authorizing transactions. Reading it to a caller grants them immediate execution power over your funds. |
-| **❌ DO NOT approve unsolicited in-app push notifications** | Threat actors attempt transactions that trigger legitimate mobile push notifications. Approving a prompt during a phone call finalizes the theft. |
-| **❌ DO NOT click links received via SMS from unknown senders** | Banks do not distribute password reset or card verification links via unauthenticated SMS shortlinks. |
-| **❌ DO NOT transfer money to "secure holding accounts"** | The concept of a "safe transitional account" is a 100% fraudulent social engineering construct. Money sent to an external IBAN is permanently lost. |
-| **❌ DO NOT install remote support tools on your phone or PC** | Never install TeamViewer, AnyDesk, or screen-sharing software when instructed by an incoming caller. |
+| **DO NOT read back SMS OTPs or verification codes** | An SMS verification code is meant exclusively for authorizing transactions. Reading it to a caller grants them immediate execution power over your funds. |
+| **DO NOT approve unsolicited in-app push notifications** | Threat actors attempt transactions that trigger legitimate mobile push notifications. Approving a prompt during a phone call finalizes the theft. |
+| **DO NOT click links received via SMS from unknown senders** | Banks do not distribute password reset or card verification links via unauthenticated SMS shortlinks. |
+| **DO NOT transfer money to "secure holding accounts"** | The concept of a "safe transitional account" is a 100% fraudulent social engineering construct. Money sent to an external IBAN is permanently lost. |
+| **DO NOT install remote support tools on your phone or PC** | Never install TeamViewer, AnyDesk, or screen-sharing software when instructed by an incoming caller. |

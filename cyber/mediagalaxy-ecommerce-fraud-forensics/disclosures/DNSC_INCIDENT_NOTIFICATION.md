@@ -6,7 +6,7 @@
 
 ---
 
-## 🇷🇴 Versiunea în Limba Română (Original)
+## Versiunea in Limba Romana (Original)
 
 **Subiect:** Notificare Incident de Securitate Cibernetică / Phishing și Fraudă E-Commerce – Fals Media Galaxy  
 **Prioritate:** Urgentă / Risc Ridicat  
@@ -31,7 +31,7 @@ Cu stimă,
 
 ---
 
-## 🇬🇧 English Translation
+## English Translation
 
 **Subject:** Cybersecurity Incident Notification / Phishing and E-Commerce Fraud – Media Galaxy Brand Impersonation  
 **Priority:** Urgent / High Risk  
@@ -56,7 +56,7 @@ Respectfully,
 
 ---
 
-## 📬 Official Resolution & Response / Rezoluție Oficială
+## Official Resolution & Response / Rezolutie Oficiala
 
 - **Ticket ID:** `[D.N.S.C. #178465]`  
 - **Received:** September 18, 2026, 11:22 EEST  

@@ -13,12 +13,12 @@ def count_services() -> int:
     """Counts cataloged services from services.data.ts or falls back to docker compose scanning."""
     if SERVICES_DATA_PATH.exists():
         content = SERVICES_DATA_PATH.read_text(encoding="utf-8")
-        matches = re.findall(r'"id":\s*"[^"]+"', content)
+        matches = re.findall(r'^\s*["\']?id["\']?:\s*[\'"][^\'"]+[\'"]', content, flags=re.MULTILINE)
         if matches:
             return len(matches)
     # Fallback to scanning docker-compose services
     compose_files = list(REPO_ROOT.glob("services/**/docker-compose*.yml"))
-    return len(compose_files) if compose_files else 89
+    return len(compose_files) if compose_files else 13
 
 
 def update_readme():
