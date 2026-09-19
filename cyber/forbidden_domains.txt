@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-19 12:02:04 UTC
-# Total Forbidden Domains: 2899
+# Last Updated: 2026-09-19 12:49:54 UTC
+# Total Forbidden Domains: 2903
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 431
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 2033
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 2037
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -1692,6 +1692,7 @@ multiculturalpartners.com
 multiplay.at
 munihuacho.gob.pe
 muninn.nl
+munz2.moovent.ch
 mvnetworking.com
 mwg-update.cloud
 my-accounts-gooogle.com
@@ -1798,6 +1799,7 @@ offer-vault.net
 office36o.online
 official-ol.gl.at.ply.gg
 ofilopex.com
+ohztowdn.burn--flow.com
 oil-profit-system.net
 oim.doganltd.com.tr
 ojang.pe.kr
@@ -2533,6 +2535,7 @@ uaetripservices.com
 uasputnik.com
 uat.edu.course.movest.co
 ug8828.com
+uhfao75u.usa--burnflow.com
 uktyl.com
 ummes.store
 underthebooth.com
@@ -2566,6 +2569,7 @@ upsolutservice.de
 uptime.com.br
 uranustechsolution.com
 urlaubsdomizil-binz.de
+urzsxn.usa--burnflow.com
 us-en-pegasus.com
 us189-hpgsgae5dva9fzch.z01.azurefd.net
 usa--flashburn.com

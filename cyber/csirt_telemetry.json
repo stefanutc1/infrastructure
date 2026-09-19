@@ -1,7 +1,7 @@
 {
   "metadata": {
     "description": "Multi-National CSIRT Threat Intelligence Breakdown (Romania, EU, US, UK, CA, AU, NZ)",
-    "last_synced": "2026-09-19T12:02:04.405221+00:00",
+    "last_synced": "2026-09-19T12:49:54.780188+00:00",
     "agencies": {
       "Romania": "Directoratul Național de Securitate Cibernetică (DNSC)",
       "European_Union": "CERT-EU / European CSIRT Network (URLhaus)",
@@ -15,8 +15,8 @@
       "local": 432,
       "dnsc": 10,
       "eu": 431,
-      "five_eyes": 2033,
-      "total_unique": 2899
+      "five_eyes": 2037,
+      "total_unique": 2903
     }
   }
 }
