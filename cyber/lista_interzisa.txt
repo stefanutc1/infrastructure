@@ -12,15 +12,16 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-19 02:12:54 UTC
-# Total Forbidden Domains: 2837
+# Last Updated: 2026-09-19 11:26:00 UTC
+# Total Forbidden Domains: 2898
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 429
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1973
+#   - European Union (CERT-EU/URLh): 431
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 2032
 # ==============================================================================
 007tg.vip
+00rr59n2.en-pegasus.com
 02eiya9o.xn--ndux-kza.store
 086bn6e3.prostafene.com
 09xadksl.wismajoko.net
@@ -51,12 +52,16 @@
 22qq-client.com
 23win.net.im
 248labs.ch
+29inappropriate.workers.dev
+2gp421dm.en-us-en-smartwaterbox.com
 33hb26ve.usa--flashburn.com
 360careeradvice.com
 360safeupdate.com
 38chocolate.workers.dev
 3bjguds4.eng--glycofree.com
+3ed27xfd.libertytokan.com
 3jrj8nat.americaeaglependant.com
+3nblpdw2.enus-flashburn.com
 3w9goh27.ummes.store
 47wv110r.mosbatsms.ir
 48ex7rbv.moren.store
@@ -91,6 +96,7 @@
 8chicharrara.sa.com
 8ik02ax8.en-belly--flush.com
 8mbpoymu.sigosa.store
+8p11s24hza.workers.dev
 9032terrible.workers.dev
 9arwza9k.zenfa.store
 9li95l5d.en-us-cardioslimtea.us
@@ -309,6 +315,7 @@ avdev.net
 avecaume.com
 avenix.lol
 averroes.pk
+awilli.co.uk
 axelkim.com
 ayyappantemplekknagar.org
 azimurs.com
@@ -353,6 +360,7 @@ benaditahd.duckdns.org
 berjimek.com
 betandyou90.com
 bgh7fgpgvk.workers.dev
+bidd0t2b.enus-tupitea.com
 billiebates.com
 binance-airdrop-claim.top
 biodentix.us.com
@@ -385,12 +393,14 @@ blockchainstartups-crypto.com
 blogs.sokun.jp
 bloodhorn8123.icu
 blopik.com
+blueprint-71.com
 bluesdrummer.com
 bluetechsupply.com
 bmdcompany.com
 bnet-api.playm8ru.win
 bnet.playm8ru.win
 boloviuledjima.rs
+bomurily.workers.dev
 bonas.nl
 bonga-cams.com
 bongacams.com
@@ -421,6 +431,7 @@ brilliant-deductions.net
 britsygomez90901002.duckdns.org
 brittner.net
 browngreeer.com
+bsdsvltx.libertytokan.com
 bserail.com
 bsv-dinslaken.de
 bt24-autentificare.cc
@@ -438,6 +449,7 @@ businessservicesolution.com
 buwolo.workers.dev
 buy1walmart.com
 buynet.digital
+buysypi831.life
 bvisualmedia.com.au
 bvvaladares.com
 bwyb.love
@@ -700,6 +712,7 @@ dataspoiler.com
 davariyabrothers.com
 dawn.ssybd.workers.dev
 dbx.formsift.io
+dc48r0dup9.workers.dev
 dcfpp.com
 dcrun.co.uk
 dcwblida.dz
@@ -877,6 +890,7 @@ en-prosta-fense.com
 en-theslimsplitsmethod.com
 en-us-cardioslimtea.us
 en-us-easybatteryfixed.com
+en-us-en-smartwaterbox.com
 en-us-nurvealive.com
 en-us-slimsplitsmethod.com
 en.taichuan.com
@@ -888,10 +902,13 @@ eng--cardioslim.com
 eng--enerflow.com
 eng--neurowave.us
 eng-eng--glucore.com
+eng-us-glycofree.com
+eng-usa-menbalancepro.com
 engage.aeafh.workers.dev
 engine.commdistinc.com
 entertainok.com
 enus-beastforce.com
+enus-flashburn.com
 envs.sh
 eonline-cdn.com
 epanpano.com
@@ -963,6 +980,8 @@ fapdungeon.com
 faphouse.com
 fapvid.com
 farm.aeafh.workers.dev
+farmanywhere.ag
+farmtasticdoggy.com.au
 farschid.de
 fast-lead-generator.top
 fast-redirect.me
@@ -998,6 +1017,7 @@ find.csmq.workers.dev
 firewallwithadvancedserurity.com
 firmwarekey.com
 first-security-verden.de
+fiscalltraining.com.br
 fit.wiwgf.workers.dev
 fito.food
 fivepointschiro.com
@@ -1136,6 +1156,7 @@ globalrenovation.ch
 globalsteamclub.com
 globe.aeafh.workers.dev
 glossysquid.pro
+glucotrust-bites.us.com
 go99com.blue
 goinstudios.com
 goksearch.com
@@ -1222,6 +1243,7 @@ hoshizouen.co.jp
 hp-bacher.com
 hpfile.cyou
 hqporner.com
+hqqpi58b.en-xenburn.com
 hrconsulting.com.pl
 hrwsflkxka.workers.dev
 hsdxm.buzz
@@ -1244,7 +1266,9 @@ ignetwork.us
 igo0gle.com
 igra123.com
 ijdo-ydo.nl
+iloveuevenifudontlovemeback.is
 imap.usslimsounds.com
+img2.aixpirts.com
 imlive.com
 immediate-connect.online
 immediate-edge-app.com
@@ -1255,6 +1279,7 @@ implantdentistrytx.com
 imstil.de
 imvcatool.com
 incomefolios.com
+indeanapolice.cc
 index.gentle-weekly.lol
 indonesias.me
 indusenterprises.co
@@ -1291,6 +1316,7 @@ isiore.com.co
 isyapp.de
 item.ikevbhm-gitch.workers.dev
 itssprout.com
+iwonderifulovemeaswell.vg
 j-88.co
 j2zz03ut.belly-flush.us
 j88.cellardoorchocolates.online
@@ -1351,6 +1377,7 @@ kairostksc.com
 kalpapharm.net
 kanissaimmo.com
 kannada.online
+kanokyhy.workers.dev
 kapuleti.com
 katarijewelry.com
 kauzalvip.com
@@ -1372,6 +1399,7 @@ khtshop.com
 ki-museum.de
 kikk69fvi2.workers.dev
 kiln-skioi-c29ap.com
+kiln-skioi-c29up.com
 kimyen.net
 kinderopvangdopey.com
 kindmindsociety.com
@@ -1386,6 +1414,7 @@ klineloghomes.com
 klycnmik.com
 kmjzholdings.com
 knoxvol.com
+kodg0fih.palmdriverv.com
 kolaybet.club
 konshenglass.com
 konsor.ru
@@ -1403,6 +1432,7 @@ kubetvip.asia
 kucoin-giveaway.vip
 kuwin686.com
 kuy88.xyz
+kyb5zwcp.en-us--xenburn.com
 kyvow16277.workers.dev
 kz.199cuan.org
 kz.zk89.net
@@ -1463,6 +1493,7 @@ lls-rs.org
 lms-teckpia.com
 lnuch69247.workers.dev
 loanhelp.support
+lobby09.co.il
 lobster.aeafh.workers.dev
 lobstertube.com
 local-update.com
@@ -1481,6 +1512,7 @@ loop-lumen.com
 lot204.com
 louisvuitton-promo.top
 louvree.abudhabe.info
+lovefromallareas.at
 ltcor72282.workers.dev
 luck8.webcam
 lucrari-licenta-rapide.site
@@ -1494,6 +1526,7 @@ luxury-discount-store.cc
 lwf168.com
 lyncdiscoverinternal.fpspoznan.pl
 lyph0k3g.enus-beastforce.com
+lyric-8.com
 lz4.tiktok123.life
 m.jkoa.co.kr
 m.meta-dm.com
@@ -1591,6 +1624,7 @@ metricvault.icu
 metrix-getrix.icu
 mfoguyg.josephmichaelnh.com
 mfv28o7o.get-cardioslim.com
+mgbkbp4b.enus-tupitea.com
 micorsoft.cloud
 microcloud.live
 microcloud.pro
@@ -1709,12 +1743,14 @@ nike-factory-vip.top
 nimfomane.com
 niqini.workers.dev
 nlco.com
+nld9qz8u.en-us-glycofree.com
 noamaddons.com
 noithaticon.vn
 nokevohoh.com
 nongxinyin.xyz
 nordicqlobal.com
 norkapi41.icu
+norrykilu231.digital
 nova-client.com
 npgbuilders.com
 ns.1.3.0o0.foo
@@ -1772,6 +1808,7 @@ ok99.io
 ok9a.co.com
 ok9vip.club
 okhan.net
+okiloveyoupleasedonttouchme.net
 oklahoma-occitania.com
 oknoplastik.sk
 okr768ai.theslimsplitsmethod.com
@@ -1872,6 +1909,7 @@ pir.rapidphonebuyer.co.uk
 pixel-tracker-cloud.site
 pixelinsights.xyz
 pixelmetrics.live
+pjilctsx.enus-metabodrops.com
 pjw2jloy.synadentics.com
 plain-wood-6829.aasya.workers.dev
 planetariumobil.ro
@@ -1883,6 +1921,7 @@ plata-amenzi.top
 playstation5-reducere.cc
 pluyk.com
 pn2.skfilmsint.com
+podywan.pl
 pokogili.workers.dev
 polarclient.net
 polinexclient.org
@@ -1940,6 +1979,7 @@ preokcriix.live
 prephiv.my
 prestige-client.org
 pretunz.com
+prguru.pk
 primobolan.org
 prismlogic.cfd
 processdec.com
@@ -1975,7 +2015,9 @@ pv8jpfri.alldayslimtea.uk
 pvsa.gxfugy.cn
 pylabe.workers.dev
 pytacie.pl
+qa6yskm1.en-us-xenburn.com
 qb51hxxp.burn--flow.com
+qfbmigz.palmdriverv.com
 qh88.es
 qiniuyunxz.yxflzs.com
 qiwuxi.workers.dev
@@ -1999,6 +2041,7 @@ qw.svcrencst.com
 qw.svcshosvt.com
 qw.sveexec.com
 r0zdk1ik4t.workers.dev
+r7qaivk5.shop-burnflow.com
 r9zhnj8a.palso.store
 rabihino.com
 radium-client.org
@@ -2024,6 +2067,7 @@ rc.xlit.top
 rc.zpix.info
 rccgcrownofglory.com
 rcf.co.mz
+rd6k97w3.shop-burnflow.com
 rdm.91yunma.cn
 realfunsolutions.com
 realitykings.com
@@ -2100,6 +2144,7 @@ ruplearben.com
 rw1.sentrysource.com
 rx.fabiankorte.net
 rxquickpay.com
+rycupadi.workers.dev
 ryjywa.workers.dev
 s48bo9y4.en-en--enerflow.com
 s666hp.com
@@ -2108,6 +2153,7 @@ s8-games.ink
 s8.coach
 s8.moda
 s8net3.live
+s8yeyqet.enus-metabodrops.com
 sabersaude.com.pt
 sablayan.seasonshotelmindoro.com
 sable-orbit-wren-fiayn.live
@@ -2144,6 +2190,7 @@ school.ncsgo.workers.dev
 sciencelifedata.com
 scientologyschweiz.ch
 scoala1gherla.ro
+scottcurdiephotography.com
 screenconnect.pro
 scrroeder.com
 sddfgdqw45tj-35300.portmap.host
@@ -2172,6 +2219,7 @@ sensa138pg.it.com
 seolink.in.net
 seputartuban.com
 serenespheresph.com
+service-iphone.com.ua
 service-rchqbzvz-1301033415.sh.tencentapigw.com
 serviceapp1.com
 servicioremotoempresas.info
@@ -2442,6 +2490,7 @@ transfercloud.net
 transparenciacanaa.com.br
 travelwithme.in.net
 trcasinobets.com
+trilliot6776.icu
 trip2balkan.com
 trokuni412.icu
 trombler312.life
@@ -2454,10 +2503,13 @@ trwehop.shop
 tube8.com
 tubegalore.com
 tudfpifq.shop-glpro.com
+tumyveqy.workers.dev
 tunewuso.workers.dev
 turquoiseardys.workers.dev
 tuuik.com
 tvcasino.co
+tvdeschefs.com
+tvpmutf0em.workers.dev
 tvrepair.ae
 tw77v76h.wisma138diluc.net
 twistys.com
@@ -2478,6 +2530,7 @@ u888vn.co
 u88bet.us
 uaetripservices.com
 uasputnik.com
+uat.edu.course.movest.co
 ug8828.com
 uktyl.com
 ummes.store
@@ -2517,6 +2570,7 @@ us189-hpgsgae5dva9fzch.z01.azurefd.net
 usa--flashburn.com
 usa-enerflow.us
 usa-gutlite.us
+usa-neurovera.us
 usadevgroup.com
 usalo.store
 userhotels.org
@@ -2526,6 +2580,7 @@ ut28h0im.americaeaglependant.com
 uu88.com.mx
 uu888.eu.com
 uwc26lb6.wisma138cyno.net
+uxahadmx.kaarenorge.com
 vagovizo.workers.dev
 vailora231.life
 vangshares.com
@@ -2629,6 +2684,7 @@ wittenhorst.eu
 witudeju.workers.dev
 wlc.v-panel.asia
 wlcm.v-panel.asia
+wmicconfidance.info
 wordpresslogin.kinsta.cloud
 worker.ivoryboard.lol
 workerstats.net
@@ -2713,6 +2769,7 @@ www.loveabowlpets.com
 www.mb6623.com
 www.medises.co.kr
 www.microsofer.top
+www.minecraft-cheats.com
 www.msbedachungen.de
 www.msindreni.co.za
 www.myvcart.com
@@ -2739,6 +2796,7 @@ www.saf-oil.ru
 www.salesf0rce.club
 www.salonmarketing.ca
 www.service1app.com
+www.sestitoedilservice.it
 www.sgeseducation.com
 www.shanefoods.com
 www.silver-hubdachwohnwagen.de
@@ -2773,8 +2831,10 @@ www.zamilgroups.com
 www.zhikey.com
 www.zominoz.com
 wxtencent.com
+x1m07e7w.enus-metabodrops.com
 xalexo.workers.dev
 xamayojir.com
+xaztwb.redcanoerealestate.com
 xcafe.com
 xcat.store
 xenon.studio
@@ -2852,6 +2912,7 @@ zomerax.top
 zoyza.store
 zqvoz45553.workers.dev
 zuexz.buzz
+zunynoco.workers.dev
 zuyonijobo.com
 zwergennest-ulm.de
 zx.jacollans.com
