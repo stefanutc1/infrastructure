@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-18 21:30:02 UTC
-# Total Forbidden Domains: 2812
+# Last Updated: 2026-09-19 02:12:54 UTC
+# Total Forbidden Domains: 2837
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 423
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1952
+#   - European Union (CERT-EU/URLh): 429
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 1973
 # ==============================================================================
 007tg.vip
 02eiya9o.xn--ndux-kza.store
@@ -348,6 +348,7 @@ beak.in
 bedrijfswagensschijndel.nl
 beeg.com
 belly--flush.us
+belser-immo.ch
 benaditahd.duckdns.org
 berjimek.com
 betandyou90.com
@@ -431,6 +432,7 @@ build-asdasd.4b3a91fd1b35ab2d023f5d71713a6c00.workers.dev
 bulb.aeafh.workers.dev
 bunnybathco.com
 burden.aeafh.workers.dev
+burn-flow.com
 burnpeak.us.com
 businessservicesolution.com
 buwolo.workers.dev
@@ -447,6 +449,7 @@ bytefootage.com
 bytetixa.workers.dev
 bz-wobi.de
 c-proxy-xjmkjgbsdn.cn-hangzhou.fcapp.run
+c1.dstatbots.win
 c168c.net
 c168nee.com
 c168vip.com
@@ -485,6 +488,7 @@ c2.w88saba13.com
 c2.w88thethao26.com
 c2.web8kbetchinhthuc.buzz
 c2.zuexz.buzz
+c5kwvkoh.greenestreetchurch.com
 cagohufe.com
 caitlinandcamera.com
 caixas.link
@@ -804,6 +808,7 @@ drakr.icu
 drbeat.icu
 dreamkoks.com
 dreamwatchevent.com
+dredibrainy.workers.dev
 driearquitetos.com
 drimzis.com
 drip.mwbwu.workers.dev
@@ -829,6 +834,7 @@ e-servicesolutions.com
 e2bet.technology
 e9po0d3brl.workers.dev
 eaglehardwares.com
+eaiylp.jackpot88.de.com
 earn-daily.vip
 ebet188.co
 ec2-3-22-66-152.us-east-2.compute.amazonaws.com
@@ -866,7 +872,9 @@ emergeno.com
 empflix.com
 emphasis.co.in
 emsaluminium.fr
+en-en--xenburn.com
 en-prosta-fense.com
+en-theslimsplitsmethod.com
 en-us-cardioslimtea.us
 en-us-easybatteryfixed.com
 en-us-nurvealive.com
@@ -1151,6 +1159,7 @@ gowiteji.workers.dev
 gpixx.xyz
 gpsmarocpro.com
 grace.aeafh.workers.dev
+gracefulhermia-e2c.workers.dev
 grand-atlas.ch
 gravyblicus.com
 gre.syslicense.net
@@ -1242,6 +1251,7 @@ immediate-edge-app.com
 immediate-matrix.cc
 immediate-vortex.site
 impectorinternational.com
+implantdentistrytx.com
 imstil.de
 imvcatool.com
 incomefolios.com
@@ -1299,6 +1309,7 @@ jatafatuna.com
 javhd.com
 jawaratekno.com
 jdnsquare.com
+jefecuje.workers.dev
 jenevabaiden.com
 jenniferloeffler.com
 jerichohair.com
@@ -1384,6 +1395,7 @@ krbookstore.com
 kristal777.com.co
 kronebo.dk
 kryptonclient-cracked.com
+kryptonclient-donutsmp.com
 kryptonclient.vip
 ksplsoft.com
 kubet.okinawa
@@ -1430,6 +1442,7 @@ lebenslaudatio.de
 lectricelfuel.com
 lego-clearance-store.com
 lelaboromania.com
+lelejefa.workers.dev
 lerecept.fr
 lgbtqplusfriendlydomain.com
 lh3wghxa.belly--flush.com
@@ -1484,6 +1497,7 @@ lyph0k3g.enus-beastforce.com
 lz4.tiktok123.life
 m.jkoa.co.kr
 m.meta-dm.com
+m2jml0yu.en-xenburn.com
 m7r4r2i2.stackpathcdn.com
 ma.199cuan.org
 ma.zk89.net
@@ -1564,6 +1578,7 @@ mega-lichidari.top
 megumin.tech
 melanie-altbuerger.de
 melkbrouwerij.nl
+membres.encouplesimone.com
 mensvitalitycenter.com
 mesa-seen-dcjcj.live
 message.uljhs.workers.dev
@@ -1574,6 +1589,7 @@ metrics.gocloudmaps.com
 metricspixel.live
 metricvault.icu
 metrix-getrix.icu
+mfoguyg.josephmichaelnh.com
 mfv28o7o.get-cardioslim.com
 micorsoft.cloud
 microcloud.live
@@ -1680,8 +1696,10 @@ newstamagavk.com
 newstonerealtygroup.com
 newvistastudios.com
 newyearbalance.com
+nfbjoi.greenestreetchurch.com
 ngo999.com
 ngrety.com
+ngso2pi7en.workers.dev
 nguyenthanhluong.com
 nick-metry.icu
 nickylody124.life
@@ -1756,6 +1774,7 @@ ok9vip.club
 okhan.net
 oklahoma-occitania.com
 oknoplastik.sk
+okr768ai.theslimsplitsmethod.com
 olx-acceptare.site
 olx-bani.pw
 olx-card.live
@@ -1956,6 +1975,7 @@ pv8jpfri.alldayslimtea.uk
 pvsa.gxfugy.cn
 pylabe.workers.dev
 pytacie.pl
+qb51hxxp.burn--flow.com
 qh88.es
 qiniuyunxz.yxflzs.com
 qiwuxi.workers.dev
@@ -1978,8 +1998,10 @@ qw.stakcl.com
 qw.svcrencst.com
 qw.svcshosvt.com
 qw.sveexec.com
+r0zdk1ik4t.workers.dev
 r9zhnj8a.palso.store
 rabihino.com
+radium-client.org
 raiffeisen-autentificare.site
 raiffeisen-profit-app.online
 raiffeisen-securitate.cc
@@ -2490,6 +2512,7 @@ upsolutservice.de
 uptime.com.br
 uranustechsolution.com
 urlaubsdomizil-binz.de
+us-en-pegasus.com
 us189-hpgsgae5dva9fzch.z01.azurefd.net
 usa--flashburn.com
 usa-enerflow.us
@@ -2556,6 +2579,7 @@ voyag413.xyz
 vpnupdaters.com
 vrajras.com
 vuhw.store
+vy2f0f2a.josephmichaelnh.com
 w88chinhthuc11.com
 wagahattourist.com
 wagners123.duckdns.org
@@ -2668,6 +2692,7 @@ www.hellomrsone.com
 www.hostingcloud.science
 www.hqsblog.com
 www.hseda.com
+www.icalicenseuk.freebusinessdebtrecovery.com
 www.idn15r69vh3fwhzclfoeuaoy.today
 www.immobiliarecatalanotto.it
 www.intelligradeeducation.vicentecisnerospub.com

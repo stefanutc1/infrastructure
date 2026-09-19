@@ -4,7 +4,7 @@
 **Incident Date:** 16 September 2026  
 **Primary Investigators:** `@stefanutc1`  
 **Target Entity:** Media Galaxy (Altex România S.A.)  
-**Financial Loss Impact:** ~21 EUR (~110 RON) via BCR (Banca Comercială Română) Debit Card  
+**Financial Loss Impact:** ~21 EUR (~111 RON) via BCR (Banca Comercială Română) Debit Card  
 **Status:** Incident Mitigated, Card Blocked, Confirmed & Enforced on National DNSC PNRISC Blacklist (`[D.N.S.C. #178465]`)  
 
 ---
