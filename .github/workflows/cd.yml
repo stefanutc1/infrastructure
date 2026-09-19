@@ -5,6 +5,13 @@ on:
     branches: [main, master]
     tags:
       - 'v*'
+    paths-ignore:
+      - 'cyber/csirt_cache.json'
+      - 'cyber/csirt_telemetry.json'
+      - 'cyber/dnsc_blacklist.json'
+      - 'cyber/forbidden_domains.txt'
+      - 'cyber/lista_interzisa.txt'
+      - 'cyber/mediagalaxy-ecommerce-fraud-forensics/**'
   schedule:
     - cron: '0 2 * * *' # Daily at 05:00 AM Europe/Bucharest (EEST, UTC+3)
     - cron: '0 3 * * *' # Daily at 05:00 AM Europe/Bucharest (EET, UTC+2)
@@ -162,9 +169,20 @@ jobs:
         id: check_schedule
         run: |
           BUCHAREST_HOUR=$(TZ="Europe/Bucharest" date +%H)
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$BUCHAREST_HOUR" != "05" ]; then
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            if [ "$BUCHAREST_HOUR" != "05" ]; then
+              echo "should_run=false" >> $GITHUB_OUTPUT
+              echo "Scheduled trigger received at hour ${BUCHAREST_HOUR}; waiting for 05:00 Europe/Bucharest. Skipping."
+            else
+              echo "should_run=true" >> $GITHUB_OUTPUT
+              echo "Proceeding with scheduled synchronization at 05:00 Europe/Bucharest."
+            fi
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "Proceeding with manual synchronization."
+          elif [ "${{ github.actor }}" = "github-actions[bot]" ]; then
             echo "should_run=false" >> $GITHUB_OUTPUT
-            echo "Scheduled trigger received at hour ${BUCHAREST_HOUR}; waiting for 05:00 Europe/Bucharest. Skipping."
+            echo "Automated bot commit detected. Skipping synchronization to prevent loops."
           else
             echo "should_run=true" >> $GITHUB_OUTPUT
             echo "Proceeding with synchronization (Bucharest hour: ${BUCHAREST_HOUR})."
@@ -189,12 +207,19 @@ jobs:
         if: steps.check_schedule.outputs.should_run == 'true'
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            git config --local user.email "action@github.com"
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             git add -A
             git commit -m "chore(sync): auto-update metrics, live currency conversions and DNSC blacklist [skip ci]"
-            git push
-            echo "Repository updated with fresh metrics, currency conversions, and DNSC blacklist."
+            for attempt in 1 2 3; do
+              git pull --rebase origin "${GITHUB_REF_NAME:-main}" || true
+              if git push origin "HEAD:${GITHUB_REF_NAME:-main}"; then
+                echo "Repository updated with fresh metrics, currency conversions, and DNSC blacklist."
+                break
+              fi
+              echo "Push attempt ${attempt} failed; retrying in 3s..."
+              sleep 3
+            done
           else
             echo "No changes detected across repository."
           fi
