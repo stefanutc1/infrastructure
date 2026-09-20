@@ -653,6 +653,11 @@ create_or_skip_lxc 174 "grocy"   "$ALPINE_TMPL"   --hostname "grocy"   --cores 1
 # ------------------------------------------------------------------------------
 create_or_skip_lxc 175 "owasp"   "$ALPINE_TMPL"   --hostname "owasp"   --cores 2   --memory 512   --swap 256   --rootfs "$STORAGE:8G"   --net0 "name=eth0,bridge=$BRIDGE,gw=$GATEWAY,ip=192.168.1.175/24,type=veth"   --features "nesting=1"   --unprivileged 1   --ostype "alpine"   --onboot 0   --tags "alpine;cyber;docker;juice-shop;owasp;security;web"   --description "OWASP Juice Shop Vulnerable Web App Container (Alpine LXC + Docker)"
 
+# ------------------------------------------------------------------------------
+# CT 312: payment-gateway-licenta (Bachelor Thesis / Lucrare de Licenta)
+# ------------------------------------------------------------------------------
+create_or_skip_lxc 312 "payment-gateway-licenta"   "$ALPINE_TMPL"   --hostname "payment-gateway-licenta"   --cores 1   --memory 1024   --swap 512   --rootfs "$STORAGE:10G"   --net0 "name=eth0,bridge=vmbr1,firewall=1,gw=192.168.20.1,ip=192.168.20.52/24,tag=20,type=veth"   --features "nesting=1"   --unprivileged 1   --ostype "alpine"   --onboot 0   --tags "cyber;licenta;bachelor-thesis;payment-gateway;swift;iso20022;fastapi;ct312"   --description "Bachelor Thesis Lab (Lucrare de Licenta) - Payment Gateway & SWIFT Settlement Simulator (FastAPI LXC)"
+
 echo ""
 echo -e "======================================================================"
 echo -e "  All 76 Containers (100-175) Processed Successfully on Node 1 (x86)! "

@@ -205,6 +205,63 @@ create_or_skip_vm 302 "kali-licenta" \
   --ostype l26 \
   --tags "cyber;licenta;bachelor-thesis;kali;pentest;red-team;vm302"
 
+# ------------------------------------------------------------------------------
+# VM 310: core-banking-licenta (Bachelor Thesis / Lucrare de Licenta)
+# ------------------------------------------------------------------------------
+create_or_skip_vm 310 "core-banking-licenta" \
+  --name "core-banking-licenta" \
+  --description "Bachelor Thesis Lab (Lucrare de Licenta) - Core-Banking System (Apache Fineract / Mifos X Engine, Double-Entry Ledger, VLAN 20 Services)" \
+  --memory 4096 \
+  --balloon 2048 \
+  --cores 2 \
+  --cpu host \
+  --scsihw virtio-scsi-single \
+  --scsi0 "$STORAGE:40,discard=on,ssd=1" \
+  --ide2 "$ISO_STORAGE/debian-netinst.iso,media=cdrom" \
+  --net0 "virtio,bridge=vmbr1,firewall=1,tag=20" \
+  --boot "order=scsi0;ide2;net0" \
+  --ostype l26 \
+  --onboot 0 \
+  --tags "cyber;licenta;bachelor-thesis;core-banking;fineract;vlan20;vm310"
+
+# ------------------------------------------------------------------------------
+# VM 311: fin-db-licenta (Bachelor Thesis / Lucrare de Licenta)
+# ------------------------------------------------------------------------------
+create_or_skip_vm 311 "fin-db-licenta" \
+  --name "fin-db-licenta" \
+  --description "Bachelor Thesis Lab (Lucrare de Licenta) - Financial Database Server (PostgreSQL Isolated Ledger DB & Wazuh HIDS/SIEM Audit)" \
+  --memory 4096 \
+  --balloon 2048 \
+  --cores 2 \
+  --cpu host \
+  --scsihw virtio-scsi-single \
+  --scsi0 "$STORAGE:50,discard=on,ssd=1" \
+  --ide2 "$ISO_STORAGE/debian-netinst.iso,media=cdrom" \
+  --net0 "virtio,bridge=vmbr1,firewall=1,tag=20" \
+  --boot "order=scsi0;ide2;net0" \
+  --ostype l26 \
+  --onboot 0 \
+  --tags "cyber;licenta;bachelor-thesis;database;postgresql;wazuh-audit;vlan20;vm311"
+
+# ------------------------------------------------------------------------------
+# VM 313: swift-jumpbox-licenta (Bachelor Thesis / Lucrare de Licenta)
+# ------------------------------------------------------------------------------
+create_or_skip_vm 313 "swift-jumpbox-licenta" \
+  --name "swift-jumpbox-licenta" \
+  --description "Bachelor Thesis Lab (Lucrare de Licenta) - Hardened Bastion Host / Jump-Box (SSH ed25519 & MFA, Central Audit, Credential Isolation)" \
+  --memory 2048 \
+  --balloon 1024 \
+  --cores 2 \
+  --cpu host \
+  --scsihw virtio-scsi-single \
+  --scsi0 "$STORAGE:25,discard=on,ssd=1" \
+  --ide2 "$ISO_STORAGE/debian-netinst.iso,media=cdrom" \
+  --net0 "virtio,bridge=vmbr1,firewall=1,tag=10" \
+  --boot "order=scsi0;ide2;net0" \
+  --ostype l26 \
+  --onboot 0 \
+  --tags "cyber;licenta;bachelor-thesis;bastion;jump-box;ssh-mfa;hardened;vm313"
+
 # ==============================================================================
 # ACTIVE DIRECTORY ENTERPRISE LAB FLEET (400 - 408)
 # Massgrave Genuine Media · Multi-Generation Windows Active Directory Domain Lab
