@@ -2,6 +2,8 @@
 
 Directorul `cyber/ctf` centralizează writeup-urile tehnice și scripturile de exploatare dezvoltate pentru provocările din cadrul platformei InvataCyber.ro.
 
+* **Raport Tehnic Complet (Centralizat):** [`WRITEUP.md`](WRITEUP.md)
+
 ---
 
 ## 1. Index Write-Ups
@@ -11,6 +13,7 @@ Directorul `cyber/ctf` centralizează writeup-urile tehnice și scripturile de e
 | **The Blog** | Web / Client-Side | Stored XSS | Formular contact nesanitizat $\rightarrow$ Exfiltrare date din contextul editorului | [`writeup_01_the_blog_xss.md`](writeup_01_the_blog_xss.md) |
 | **Portal InvataCyber.ro** | Web / Database | Blind Boolean SQLi | Cookie `TrackingId` $\rightarrow$ SQLite inference $\rightarrow$ Preluare consolă `/console` | [`writeup_02_portal_lockdown_sqli.md`](writeup_02_portal_lockdown_sqli.md) |
 | **Redacția CMS** | Web / Server-Side | Broken Access Control & SSTI | Panou editor neautentificat $\rightarrow$ Jinja2 SSTI $\rightarrow$ RCE `/flag.txt` | [`writeup_03_cms_editor_ssti.md`](writeup_03_cms_editor_ssti.md) |
+
 
 ---
 
