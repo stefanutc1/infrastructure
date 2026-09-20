@@ -1,7 +1,7 @@
 # InvataCyber.ro · Centralized CTF Write-Up
 
 **Eveniment:** InvataCyber.ro CTF  
-**Autor:** Moanță Ștefănuț-Cornel  
+**Autor:** Moană Ștefănuț-Cornel  
 **Domeniu:** Web Application Security & Penetration Testing  
 **Categorii Acoperite:** Client-Side Exploitation (XSS), Database Inference (Blind SQLi), Server-Side Code Execution (SSTI)  
 **Format Flag:** `InvataCyber{...}`  
