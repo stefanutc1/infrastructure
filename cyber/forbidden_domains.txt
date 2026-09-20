@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-20 16:19:42 UTC
-# Total Forbidden Domains: 3504
+# Last Updated: 2026-09-20 16:56:55 UTC
+# Total Forbidden Domains: 3508
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 446
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 2624
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 2628
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -85,6 +85,7 @@
 5x6qtzvz.shop-geniusbrainsignal.com
 5xr9f8xc.en-us-glycofree.com
 60aahn1v.nurvealive.com
+60yjiqtp.gorgeousgrowlersgrooming.com
 64nsw308x6.workers.dev
 666621.xyz
 688vbet.pro
@@ -632,6 +633,7 @@ catukltd.co.uk
 cavendish.co
 caxoxc.com
 cazari-brasov.ro
+cbjahpiu.us-theslimsplitsmethod.com
 ccm888.com
 ccz.us.com
 cdaonline.com.ar
@@ -1391,6 +1393,7 @@ googlanalitlcs.xyz
 googlecontentuser.com
 googlesupportacc.top
 gor.emiraride.com
+gorgeousgrowlersgrooming.com
 gorillagaz.com
 gotporn.com
 gotroops.online
@@ -2416,6 +2419,7 @@ qw.svcshosvt.com
 qw.sveexec.com
 qwenchjuice.ca
 r0zdk1ik4t.workers.dev
+r214gfd5.theslimsplitsmethod.com
 r7qaivk5.shop-burnflow.com
 r9zhnj8a.palso.store
 rabihino.com
