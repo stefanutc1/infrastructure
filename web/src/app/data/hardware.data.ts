@@ -155,6 +155,33 @@ export const HARDWARE_NODES: HardwareNode[] = [
         balloonMinMb: 1024, 
         purpose: 'Enterprise Linux AD Realm Member via SSSD & Kerberos',
         purposeRo: 'Client Linux Enterprise integrat în AD via SSSD și Kerberos'
+      },
+      { 
+        vmid: 310, 
+        name: 'core-banking-licenta', 
+        os: 'Debian 12 (Apache Fineract)', 
+        allocatedMb: 4096, 
+        balloonMinMb: 2048, 
+        purpose: 'Core-Banking Ledger Engine, Double-Entry Accounting & KYC',
+        purposeRo: 'Motor Core-Banking, contabilitate în partidă dublă și verificare KYC'
+      },
+      { 
+        vmid: 311, 
+        name: 'fin-db-licenta', 
+        os: 'PostgreSQL 16 (Debian 12)', 
+        allocatedMb: 4096, 
+        balloonMinMb: 2048, 
+        purpose: 'Financial Database, ACID Ledger & Wazuh HIDS Tamper Audit',
+        purposeRo: 'Bază de date financiară, ledger ACID și audit anti-fraudă Wazuh HIDS'
+      },
+      { 
+        vmid: 313, 
+        name: 'swift-jumpbox-licenta', 
+        os: 'Hardened Linux (Bastion)', 
+        allocatedMb: 2048, 
+        balloonMinMb: 1024, 
+        purpose: 'Hardened Administrative Jump-Box, SSH ed25519 & MFA Isolation',
+        purposeRo: 'Bastion administrativ securizat, izolare prin SSH ed25519 și MFA'
       }
     ],
     workloads: [
@@ -164,6 +191,10 @@ export const HARDWARE_NODES: HardwareNode[] = [
       'VM 301: Metasploitable 2 Target (512 MB · Vulnerable Exploit Target)',
       'VM 303: Windows Malware Sandbox (2560 MB · Flare-VM Dynamic Analysis Sandbox)',
       'VM 304: REMnux Forensic Toolkit (4096 MB · Reverse Engineering & Static Analysis)',
+      'VM 310: Core-Banking Engine (4096 MB · Apache Fineract, Double-Entry Ledger, VLAN 20)',
+      'VM 311: Financial Database Server (4096 MB · PostgreSQL 16 ACID, pgAudit, Wazuh HIDS)',
+      'CT 312: Payment Gateway & SWIFT API (1024 MB · FastAPI Simulator, ISO 20022 pacs.008)',
+      'VM 313: Hardened Bastion Jump-Box (2048 MB · SSH ed25519, MFA TOTP, Credential Isolation)',
       'VM 400: Active Directory PDC ad2022 (4096 MB · Windows Server 2022 FSMO & DNS)',
       'VM 401: Active Directory SDC ad2016 (3072 MB · Windows Server 2016 Replica & GC)',
       'VM 402: Active Directory Child DC & CA ad2012 (1024 MB · Windows Server 2012 R2 & AD CS)',

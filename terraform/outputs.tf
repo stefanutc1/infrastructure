@@ -9,6 +9,9 @@ output "vm_inventory" {
     remnux                 = { vmid = module.vm_remnux_205.vm_id, name = module.vm_remnux_205.name, node = module.vm_remnux_205.node }
     metasploitable_licenta = { vmid = module.vm_metasploitable_licenta_301.vm_id, name = module.vm_metasploitable_licenta_301.name, node = module.vm_metasploitable_licenta_301.node }
     kali_licenta           = { vmid = module.vm_kali_licenta_302.vm_id, name = module.vm_kali_licenta_302.name, node = module.vm_kali_licenta_302.node }
+    corebanking_licenta    = { vmid = module.vm_corebanking_licenta_310.vm_id, name = module.vm_corebanking_licenta_310.name, node = module.vm_corebanking_licenta_310.node }
+    findb_licenta          = { vmid = module.vm_findb_licenta_311.vm_id, name = module.vm_findb_licenta_311.name, node = module.vm_findb_licenta_311.node }
+    swift_jumpbox_licenta  = { vmid = module.vm_swift_jumpbox_licenta_313.vm_id, name = module.vm_swift_jumpbox_licenta_313.name, node = module.vm_swift_jumpbox_licenta_313.node }
     ad2025                 = { vmid = module.vm_ad2025.vm_id, name = module.vm_ad2025.name, node = module.vm_ad2025.node }
     ad2022                 = { vmid = module.vm_ad2022.vm_id, name = module.vm_ad2022.name, node = module.vm_ad2022.node }
     ad2019                 = { vmid = module.vm_ad2019.vm_id, name = module.vm_ad2019.name, node = module.vm_ad2019.node }
@@ -38,9 +41,13 @@ output "lxc_x64_summary" {
 output "licenta_lab_summary" {
   description = "Summary of Bachelor Thesis (Lucrare de Licență) CyberLab Targets (VLAN 30 & vmbr1)"
   value = {
-    metasploitable_licenta = { vmid = module.vm_metasploitable_licenta_301.vm_id, name = module.vm_metasploitable_licenta_301.name, node = module.vm_metasploitable_licenta_301.node }
-    kali_linux_licenta     = { vmid = module.vm_kali_licenta_302.vm_id, name = module.vm_kali_licenta_302.name, node = module.vm_kali_licenta_302.node }
-    owasp_licenta          = { vmid = module.lxc_juiceshop_licenta_303.vm_id, hostname = module.lxc_juiceshop_licenta_303.hostname, ip = module.lxc_juiceshop_licenta_303.ip_address, node = module.lxc_juiceshop_licenta_303.node }
+    metasploitable_licenta  = { vmid = module.vm_metasploitable_licenta_301.vm_id, name = module.vm_metasploitable_licenta_301.name, node = module.vm_metasploitable_licenta_301.node }
+    kali_linux_licenta      = { vmid = module.vm_kali_licenta_302.vm_id, name = module.vm_kali_licenta_302.name, node = module.vm_kali_licenta_302.node }
+    owasp_licenta           = { vmid = module.lxc_juiceshop_licenta_303.vm_id, hostname = module.lxc_juiceshop_licenta_303.hostname, ip = module.lxc_juiceshop_licenta_303.ip_address, node = module.lxc_juiceshop_licenta_303.node }
+    corebanking_licenta     = { vmid = module.vm_corebanking_licenta_310.vm_id, name = module.vm_corebanking_licenta_310.name, node = module.vm_corebanking_licenta_310.node }
+    findb_licenta           = { vmid = module.vm_findb_licenta_311.vm_id, name = module.vm_findb_licenta_311.name, node = module.vm_findb_licenta_311.node }
+    payment_gateway_licenta = { vmid = module.lxc_paymentgateway_licenta_312.vm_id, hostname = module.lxc_paymentgateway_licenta_312.hostname, ip = module.lxc_paymentgateway_licenta_312.ip_address, node = module.lxc_paymentgateway_licenta_312.node }
+    swift_jumpbox_licenta   = { vmid = module.vm_swift_jumpbox_licenta_313.vm_id, name = module.vm_swift_jumpbox_licenta_313.name, node = module.vm_swift_jumpbox_licenta_313.node }
   }
 }
 

@@ -1,0 +1,12 @@
+services:
+  payment-gateway:
+    image: python:3.11-alpine
+    container_name: payment-gateway-licenta
+    restart: unless-stopped
+    ports:
+      - '8000:8000'
+    environment:
+      - ENVIRONMENT=production
+      - RATE_LIMIT_PER_MINUTE=5
+      - SWIFT_BIC=BTRLRO22
+    command: python3 -m uvicorn payment_gateway_simulator:app --host 0.0.0.0 --port 8000

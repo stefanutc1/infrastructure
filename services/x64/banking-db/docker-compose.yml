@@ -1,0 +1,17 @@
+services:
+  postgres-financial:
+    image: postgres:16-alpine
+    container_name: fin-db-licenta
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=fineract_tenants
+      - POSTGRES_USER=fineract
+      - POSTGRES_PASSWORD=SecureBankingLedger2026!
+      - POSTGRES_INITDB_ARGS=--data-checksums
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

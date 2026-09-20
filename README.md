@@ -138,6 +138,26 @@ The Windows Active Directory lab simulates a multi-tier enterprise forest for te
 
 ---
 
+### 3.4 Bachelor Thesis: Banking Core Infrastructure (Lucrare de Licență FEAA Craiova)
+
+Infrastructură dedicată lucrării de licență (*Arhitectura și Securitatea Sistemelor Informatice Bancare*, Absolvent Moanță Ștefănuț-Cornel, Informatică Economică FEAA UCV). Aceasta recreează nucleul tehnologic al unei instituții de credit, respectând principiile de partiționare de rețea, integritate a bazelor de date și audit continuu:
+
+| VMID | Hostname / Nume | Tip | Cores | RAM | Disc | Rețea / IP | Rol Arhitectural & Standarde |
+| :---: | :--- | :---: | :---: | :---: | :---: | :--- | :--- |
+| **310** | `core-banking-licenta` | VM | 2 | 4096 MB | 40 GB | VLAN 20 (`192.168.20.50`) | **Sistem Central Core-Banking**: Motor bazat pe Apache Fineract / Mifos X. Implementează contabilitatea în partidă dublă (General Ledger), verificarea identității (KYC) și gestiunea soldurilor. Accesul este limitat prin OPNsense exclusiv la casieri autorizați și terminalul Kiosk (`192.168.20.100` / VM 205). |
+| **311** | `fin-db-licenta` | VM | 2 | 4096 MB | 50 GB | VLAN 20 (`192.168.20.51`) | **Server Bază de Date Financiară**: Instanță izolată PostgreSQL cu audit avansat pgAudit și agent Wazuh HIDS. Monitorizează și blochează tentativele de SQL Injection și discrepanțele de sold neacoperite de înregistrări în cartea mare (Balance Tampering Detection). |
+| **312** | `payment-gateway-licenta`| CT | 1 | 1024 MB | 10 GB | VLAN 20 (`192.168.20.52`) | **Payment Gateway & Simulator SWIFT**: Microserviciu FastAPI pentru procesare plăți electronice (Visa/Mastercard) cu algoritm Luhn, protecție anti-fraudă la viteză (Card Stuffing) și mesagerie interbancară ISO 20022 / SWIFT MT103 cu identificatori unici UETR. |
+| **313** | `swift-jumpbox-licenta` | VM | 2 | 2048 MB | 25 GB | VLAN 10 (`192.168.10.50`) | **Hardened Bastion Host / Jump-Box**: Punct unic de intrare administrativă pentru operatorii financiari. Securizat prin chei criptografice ed25519 și MFA (TOTP), prevenind compromiterea rețelei interne de către malware de tip infostealer. |
+
+#### Fluxuri de Securitate și Scenarii de Atac Validate:
+1. **Nominal Kiosk Workflow**: Tranzacții legitime executate de terminalul clientului cu validare token hardware și actualizare atomică în partidă dublă.
+2. **Database Integrity & SQLi Blocking**: Wazuh HIDS interceptează semnăturile SQLi și emite alertă de Nivel 14 în cazul oricărei discrepanțe între sold și registrul tranzacțiilor.
+3. **Card-Stuffing / Velocity Defense**: Payment Gateway respinge rafalele automate de autorizare peste pragul admisibil (HTTP 429).
+4. **Bastion Lateral Movement Prevention**: OPNsense respinge orice conexiune directă din VLAN 30 către Core-Banking care nu tranzitează Jump-Box-ul autentificat.
+5. **SWIFT Payload Verification**: Validarea strictă a formatelor BIC (ISO 9362) și a semnăturilor UETR respinge mesajele financiare corupte.
+
+---
+
 ## 4. Network & VLANs
 
 VLAN configuration handled through OPNsense:

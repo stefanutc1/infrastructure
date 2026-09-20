@@ -85,8 +85,8 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     icon: 'proxmox',
     hardware: { node: 'Intel Core i3-10100F', ram: '12,288 MB DDR4', storage: '512 GB NVMe' },
     tags: ['Primary Hypervisor', 'x86_64 Bare-Metal', 'GTX 1050 Ti', 'ZRAM lz4', 'Proxmox VE 9.2'],
-    role: 'Bare-metal virtualization hypervisor hosting active LXCs (100–106), security VMs, and the Windows AD lab (400–405).',
-    connections: ['homeassistant', 'scrutiny', 'ollama', 'uptimekuma', 'monitoring', 'owasp', 'wazuh', 'parrot', 'ad2022', 'ad2016', 'ad2012', 'adwin10', 'adwin7', 'adrhel']
+    role: 'Bare-metal virtualization hypervisor hosting active LXCs (100–106), security VMs, the Windows AD lab (400–405), and Banking Core (310–313).',
+    connections: ['homeassistant', 'scrutiny', 'ollama', 'uptimekuma', 'monitoring', 'owasp', 'wazuh', 'parrot', 'ad2022', 'ad2016', 'ad2012', 'adwin10', 'adwin7', 'adrhel', 'core-banking', 'banking-db', 'payment-gateway', 'swift-jumpbox']
   },
   {
     id: 'node2-omv',
@@ -395,6 +395,82 @@ export const TOPOLOGY_NODES: TopologyNode[] = [
     tags: ['RHEL 9', 'SSSD', 'Kerberos', 'Realmd', 'Linux Realm'],
     role: 'Red Hat Enterprise Linux client joined to AD realm via SSSD and Kerberos.',
     connections: ['ad2022']
+  },
+  {
+    id: 'core-banking',
+    name: 'Core-Banking Engine',
+    sublabel: 'VM 310 · Apache Fineract',
+    ip: '192.168.20.50',
+    port: 8443,
+    category: 'services',
+    tier: 2,
+    status: 'OPERATIONAL',
+    x: 25,
+    y: 65,
+    z: 80,
+    color: '#0ea5e9',
+    icon: 'linux',
+    hardware: { node: 'Node 1 (PVE VM 310)', ram: '4,096 MB', storage: '40 GB LVM' },
+    tags: ['Core Banking', 'Apache Fineract', 'Double-Entry', 'VLAN 20', 'Licenta'],
+    role: 'Central core banking transaction engine managing accounts, balances, and ledger entries.',
+    connections: ['banking-db', 'payment-gateway']
+  },
+  {
+    id: 'banking-db',
+    name: 'Financial Ledger DB',
+    sublabel: 'VM 311 · PostgreSQL 16',
+    ip: '192.168.20.51',
+    port: 5432,
+    category: 'storage',
+    tier: 2,
+    status: 'OPERATIONAL',
+    x: -25,
+    y: 65,
+    z: 80,
+    color: '#336791',
+    icon: 'linux',
+    hardware: { node: 'Node 1 (PVE VM 311)', ram: '4,096 MB', storage: '50 GB LVM' },
+    tags: ['PostgreSQL', 'Financial DB', 'ACID', 'Wazuh Audit', 'Licenta'],
+    role: 'Isolated relational ledger database monitored by Wazuh HIDS for balance tampering and SQL injection.',
+    connections: ['wazuh']
+  },
+  {
+    id: 'payment-gateway',
+    name: 'Payment & SWIFT Gateway',
+    sublabel: 'CT 312 · FastAPI LXC',
+    ip: '192.168.20.52',
+    port: 8000,
+    category: 'services',
+    tier: 2,
+    status: 'OPERATIONAL',
+    x: 50,
+    y: 40,
+    z: 80,
+    color: '#10b981',
+    icon: 'python',
+    hardware: { node: 'Node 1 (PVE CT 312)', ram: '1,024 MB', storage: '10 GB LVM' },
+    tags: ['Payment Gateway', 'SWIFT', 'ISO 20022', 'FastAPI', 'Luhn', 'Licenta'],
+    role: 'Card authorization and interbank messaging simulator blocked by Suricata IDS upon fraud or velocity spikes.',
+    connections: ['core-banking']
+  },
+  {
+    id: 'swift-jumpbox',
+    name: 'Hardened Bastion Jump-Box',
+    sublabel: 'VM 313 · SSH ed25519 & MFA',
+    ip: '192.168.10.50',
+    port: 22,
+    category: 'security',
+    tier: 2,
+    status: 'OPERATIONAL',
+    x: 0,
+    y: 35,
+    z: 90,
+    color: '#f59e0b',
+    icon: 'linux',
+    hardware: { node: 'Node 1 (PVE VM 313)', ram: '2,048 MB', storage: '25 GB LVM' },
+    tags: ['Bastion', 'Jump-Box', 'SSH-MFA', 'ed25519', 'Hardened', 'Licenta'],
+    role: 'Single hardened administrative jump-box shielding banking servers from infostealers and untrusted subnets.',
+    connections: ['core-banking', 'banking-db']
   }
 ];
 
@@ -438,5 +514,18 @@ export const TOPOLOGY_LINKS: TopologyLink[] = [
   { from: 'scrutiny', to: 'monitoring', protocol: 'SMART Telemetry', color: 'rgba(13, 148, 136, 0.4)' },
   { from: 'uptimekuma', to: 'monitoring', protocol: 'HTTP Scrapes', color: 'rgba(16, 185, 129, 0.4)' },
   { from: 'opnsense-gw', to: 'wazuh', protocol: 'Syslog 514/UDP', color: 'rgba(217, 119, 6, 0.6)' },
-  { from: 'parrot', to: 'owasp', protocol: 'Security Audit / HTTP', color: 'rgba(225, 29, 72, 0.5)' }
+  { from: 'parrot', to: 'owasp', protocol: 'Security Audit / HTTP', color: 'rgba(225, 29, 72, 0.5)' },
+
+  // Node 1 Hypervisor -> Hosted Banking Thesis VMs/LXCs
+  { from: 'node1-pve', to: 'core-banking', protocol: 'VirtIO SCSI', color: 'rgba(14, 165, 233, 0.6)' },
+  { from: 'node1-pve', to: 'banking-db', protocol: 'VirtIO SCSI', color: 'rgba(51, 103, 145, 0.6)' },
+  { from: 'node1-pve', to: 'payment-gateway', protocol: 'veth / Bridge', color: 'rgba(16, 185, 129, 0.5)' },
+  { from: 'node1-pve', to: 'swift-jumpbox', protocol: 'VirtIO SCSI', color: 'rgba(245, 158, 11, 0.6)' },
+
+  // Banking Ecosystem Interconnects
+  { from: 'swift-jumpbox', to: 'core-banking', protocol: 'SSH Tunnel / MFA', color: 'rgba(245, 158, 11, 0.7)' },
+  { from: 'swift-jumpbox', to: 'banking-db', protocol: 'Admin SQL / TLS', color: 'rgba(245, 158, 11, 0.6)' },
+  { from: 'core-banking', to: 'banking-db', protocol: 'PostgreSQL TCP 5432', color: 'rgba(14, 165, 233, 0.7)' },
+  { from: 'payment-gateway', to: 'core-banking', protocol: 'REST / Double-Entry', color: 'rgba(16, 185, 129, 0.7)' },
+  { from: 'banking-db', to: 'wazuh', protocol: 'pgAudit / Wazuh Agent', color: 'rgba(2, 132, 199, 0.8)' }
 ];
