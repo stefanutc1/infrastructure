@@ -9,7 +9,9 @@
 **Subiect:** `[D.N.S.C. #178465] Răspuns sesizare`  
 **Referință Dosar:** `SEC-2026-ECOM-005` (Media Galaxy Brand Impersonation & E-Commerce Phishing)  
 **Clasificare:** `TLP:CLEAR`  
-**Stare:** CONFIRMAT & BLOCAT – Inclus în PNRISC Blacklist (18 Septembrie 2026)  
+**Stare Inițială:** CONFIRMAT & BLOCAT – Inclus în PNRISC Blacklist (18 Septembrie 2026)  
+**Stare Finală:** **REZOLVAT / DEZAFECTAT (TAKEDOWN CONFIRMED)** – Domeniul nu mai este funcțional; sesizare închisă oficial (21 Septembrie 2026)  
+
 
 ---
 
@@ -109,4 +111,13 @@
 - **Dovadă Vizuală**: Înregistrată ca [`evidence/25_dnsc_blacklist_voetbalshop_block.png`](../evidence/25_dnsc_blacklist_voetbalshop_block.png).
 - **Efect Operativ**: Extensia oficială de browser DNSC blochează în timp real tentativele de acces la nivel național.
 - **Sincronizare Automată Depozit**: Scriptul nostru de sincronizare zilnică ([`scripts/sync_forbidden_domains.py`](../../scripts/sync_forbidden_domains.py)) a extras noile intrări direct din portalul DNSC, actualizând [`cyber/dnsc_blacklist.json`](../dnsc_blacklist.json) și lista de blocare [`cyber/forbidden_domains.txt`](../forbidden_domains.txt).
+
+---
+
+## 6. Rezoluție Finală: Confirmare Dezafectare Domeniu & Închidere Sesizare (21 Septembrie 2026)
+
+La data de **21 Septembrie 2026, ora 06:29 EEST**, DNSC a transmis confirmarea oficială a finalizării demersurilor operative și închiderea tichetului `[D.N.S.C. #178465]`:
+* **Concluzie Oficială:** Domeniul apex `voetbalshop-nlco[.]com` nu mai este funcțional (neutralizat/takedown complet).
+* **Documentație Dedicată:** Textul complet în română și engleză este documentat în [`DNSC_TAKEDOWN_CONFIRMATION_178465.md`](./DNSC_TAKEDOWN_CONFIRMATION_178465.md).
+
 
