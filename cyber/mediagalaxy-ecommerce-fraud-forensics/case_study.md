@@ -35,6 +35,8 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
    - Funding Source: BCR (Banca Comercială Română) Debit Card (Direct).
    - Merchant Descriptor: `morvethemi london` (Unregistered shell billing aggregator).
    - Amount: ~21 EUR.
+6. **Cross-Platform Facebook Lure & Infrastructure Correlation (`dreamwardrobe.online`):**  
+   Additional forensic intelligence linked the campaign to earlier social engineering lures deployed on Facebook advertising espresso / coffee machines at a fake promotional price of "49 lei" (~9.99 EUR / 49.72 RON). The victim's card was charged under the descriptor `dreamwardrobe.online` (categorized as apparel/fashion) on **7–8 February 2025** — aligning to the exact calendar date on which the threat actor registered the core infrastructure and mail domain `worvixglobal.com` (08.02.2025).
 
 ---
 
@@ -46,7 +48,9 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
 | `dm.voetbalshop-nlco.com` | FQDN | Impersonation Infrastructure | DNSC PNRISC Blacklisted |
 | `gonser.voetbalshop-nlco.com` | FQDN | Impersonation Infrastructure | DNSC PNRISC Blacklisted |
 | `voetbalshop-nlco.com` | Domain | Base Infrastructure | OPNsense Blocklist |
+| `dreamwardrobe.online` | Domain | Shell Merchant / Facebook Scam Descriptor | Payment Fraud Aggregator |
 | `yiyangsaas.com` | Domain | C2 & SaaS Management Backend | Global Egress Block |
+
 | `worvixglobal.com` | Domain | Attacker Shell Front & Mail Domain | Mail Gateway Filter & Sinkhole |
 | `email.worvixglobal.com` | FQDN | Phishing Order Dispatcher | Mail Reject |
 | `info.mailapp-fly.com` | FQDN | Phishing Code Dispatcher | Mail Reject |

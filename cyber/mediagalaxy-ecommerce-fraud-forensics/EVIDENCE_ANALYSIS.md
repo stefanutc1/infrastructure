@@ -150,7 +150,20 @@ The campaign operated on a multi-tier infrastructure:
 - **Confirmed Assets:** `dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com` (associated with the `voetbalshop-nlco.com` phishing cluster)
 - **Forensic Assessment:** Following our technical incident filing under Ticket `[D.N.S.C. #178465]`, the Romanian National Cyber Security Directorate validated the campaign and officially listed the malicious infrastructure on the national PNRISC Blacklist. This feeds directly into the national DNSC browser extension, proactively blocking access for all protected Romanian consumers and triggering automated ingestion into our perimeter blocklists.
 
+### Evidence Item 26: Facebook Lure & Cross-Platform Campaign Link (Dreamwardrobe.online)
+- **File:** `evidence/26_facebook_victim_dreamwardrobe_coffee_machine_fraud.png`
+- **Source:** Victim Bank Transaction Screenshot (George BCR Mobile Banking)
+- **Billing Entity / Descriptor:** `dreamwardrobe.online`
+- **Amount Debited:** `-49,72 RON` (`9,99 EUR`)
+- **Category Tag:** `Moda` (Fashion hanger icon)
+- **Card Transaction Timestamp:** 7 February 2025 at 13:49 (Settled: 8 February 2025)
+- **Forensic Correlation & Significance:**
+  1. **Cross-Platform Social Engineering (Facebook):** A victim was lured through a sponsored advertisement on Facebook advertising an espresso / coffee machine at an absurd clearance price of "49 lei" (~9.99 EUR / 49.72 RON), mirroring the promotional pricing lures seen in the TikTok Media Galaxy campaign.
+  2. **Direct Correlation with Infrastructure Registration Date:** The payment was executed on **7 February 2025** and settled on **8 February 2025** — **the exact day on which the campaign domain `worvixglobal.com` was registered** at NameSilo (Evidence Item 02).
+  3. **Shell Merchant Camouflage:** The billing descriptor `dreamwardrobe.online` categorized under fashion/apparel (`Moda`) reveals the threat actor's modus operandi of spinning up shell e-commerce storefronts to acquire payment merchant accounts, subsequently reusing those accounts to charge victims recruited across multiple social media channels (Facebook and TikTok).
+
 ---
+
 
 ### Section 2.5: Live Airtight Browser Sandbox Probing & Discoveries
 In addition to the historical screenshots provided on the Desktop, active forensic probing was conducted using an isolated Google Chrome headless sandbox (`--headless=new --incognito --user-data-dir=/tmp/isolated_chrome_sandbox`) with ephemeral profiles to prevent any client fingerprint leakage.

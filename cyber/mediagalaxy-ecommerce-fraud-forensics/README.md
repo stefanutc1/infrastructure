@@ -267,6 +267,15 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+### Phase 7: Cross-Platform Campaign Link (Facebook Coffee Machine Lure)
+| Facebook Victim Transaction: Dreamwardrobe.online (-49.72 RON) |
+| :---: |
+| ![Facebook Victim Dreamwardrobe](evidence/26_facebook_victim_dreamwardrobe_coffee_machine_fraud.png) |
+| *Victim lured on Facebook by a sponsored ad promoting an espresso / coffee machine at "49 lei" (~9.99 EUR / 49.72 RON), billed as `dreamwardrobe.online` on 07/08.02.2025 — exact creation date of the campaign domain `worvixglobal.com`* |
+
+---
+
+
 ## 8. Practical Security Guidelines: What to Do & What NOT to Do (DOs and DON'Ts)
 
 These recommendations are designed for consumers and victims of e-commerce phishing schemes, as well as security practitioners, incident responders, and their families.
