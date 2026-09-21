@@ -267,11 +267,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
-### Phase 7: Cross-Platform Campaign Link (Facebook Coffee Machine Lure)
-| Facebook Victim Transaction: Dreamwardrobe.online (-49.72 RON) |
-| :---: |
-| ![Facebook Victim Dreamwardrobe](evidence/26_facebook_victim_dreamwardrobe_coffee_machine_fraud.png) |
-| *Victim lured on Facebook by a sponsored ad promoting an espresso / coffee machine at "49 lei" (~9.99 EUR / 49.72 RON), billed as `dreamwardrobe.online` on 07/08.02.2025 — exact creation date of the campaign domain `worvixglobal.com`* |
+### Phase 7: Cross-Platform Campaign Link (Facebook Sponsored Ad Lure & Banking Fraud)
+| Facebook Sponsored Ad Lure: Philips LatteGO 4300 (51 lei) | Facebook Victim Transaction: Dreamwardrobe.online (-49.72 RON) |
+| :---: | :---: |
+| ![Facebook Sponsored Ad Lure](evidence/27_facebook_sponsored_ad_mediagalaxy_coffee_machine_51lei.png) | ![Facebook Victim Dreamwardrobe](evidence/26_facebook_victim_dreamwardrobe_coffee_machine_fraud.png) |
+| *Deceptive sponsored ad in Facebook feed impersonating Media Galaxy with a fake warehouse closure pretext ("închiderea depozitelor noastre din România"), advertising a Philips LatteGO 4300 for only 51 lei (~10 EUR) with a spoofed yellow shelf price tag and "Aflați mai multe" CTA.* | *Victim lured on Facebook by the coffee machine clearance ad, resulting in an unauthorized payment debited as `dreamwardrobe.online` (-49.72 RON / 9.99 EUR) on 07/08.02.2025 — the exact calendar date on which campaign domain `worvixglobal.com` was created.* |
 
 ---
 

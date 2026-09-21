@@ -162,6 +162,22 @@ The campaign operated on a multi-tier infrastructure:
   2. **Direct Correlation with Infrastructure Registration Date:** The payment was executed on **7 February 2025** and settled on **8 February 2025** — **the exact day on which the campaign domain `worvixglobal.com` was registered** at NameSilo (Evidence Item 02).
   3. **Shell Merchant Camouflage:** The billing descriptor `dreamwardrobe.online` categorized under fashion/apparel (`Moda`) reveals the threat actor's modus operandi of spinning up shell e-commerce storefronts to acquire payment merchant accounts, subsequently reusing those accounts to charge victims recruited across multiple social media channels (Facebook and TikTok).
 
+### Evidence Item 27: Facebook Sponsored Ad Lure (Philips LatteGO 4300 at 51 lei)
+- **File:** `evidence/27_facebook_sponsored_ad_mediagalaxy_coffee_machine_51lei.png`
+- **Source:** Facebook Mobile Application (Sponsored Feed Ad / Post Sponsorizat)
+- **Spoofed Brand / Page:** `Media Galaxy` (official brand identity & logo avatar co-opted)
+- **Ad Headline & Copy:**
+  > *"Espressor Philips LatteGO 4300 la doar 51 lei 😱*  
+  > *Datorită închiderii depozitelor noastre din România, lansăm o vânzare online prin care toată lumea poate cumpăra Philips LatteGO 4300 la un preț incredibil 🇷🇴*  
+  > *Faceți clic pe butonul „Aflați mai multe” de sub post pentru a participa la vânzarea noastră ⤵️"*
+- **Visual Staging & Asset:** Premium Philips LatteGO 4300 coffee machine showcased on a retail display shelf with a counterfeit yellow shelf price tag: `MEDIA GALAXY | PHILIPS LATTEGO 4300 | 51 lei`.
+- **Forensic Assessment & Social Engineering Mechanics:**
+  1. **Warehouse Liquidation Pretext:** The attackers exploit artificial scarcity and urgency by fabricating a warehouse closure narrative (*"Datorită închiderii depozitelor noastre din România"*) to rationalize a 97%+ price collapse on a ~2,000+ RON appliance down to 51 lei (~10 EUR).
+  2. **Direct Operational Correlation with Evidence Item 26:** This ad copy is the exact visual lure that captured the victim in Evidence Item 26, culminating in the unauthorized debit of `-49,72 RON` (`9,99 EUR`) via shell merchant `dreamwardrobe.online`.
+  3. **Multi-Channel Syndication (Meta & ByteDance):** Confirms the threat syndicate does not rely exclusively on TikTok; they actively syndicate identical promotional hooks across Meta platforms (Facebook / Instagram Feed) targeting Romanian demographics.
+  4. **In-App WebView Hijack:** The "Aflați mai multe" CTA funnels users directly into Facebook's embedded browser (In-App WebView), obscuring the full FQDN URL bar, bypassing traditional desktop browser security extensions, and lowering victim skepticism.
+
+
 ---
 
 

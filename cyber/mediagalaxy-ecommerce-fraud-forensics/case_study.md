@@ -35,8 +35,8 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
    - Funding Source: BCR (Banca Comercială Română) Debit Card (Direct).
    - Merchant Descriptor: `morvethemi london` (Unregistered shell billing aggregator).
    - Amount: ~21 EUR.
-6. **Cross-Platform Facebook Lure & Infrastructure Correlation (`dreamwardrobe.online`):**  
-   Additional forensic intelligence linked the campaign to earlier social engineering lures deployed on Facebook advertising espresso / coffee machines at a fake promotional price of "49 lei" (~9.99 EUR / 49.72 RON). The victim's card was charged under the descriptor `dreamwardrobe.online` (categorized as apparel/fashion) on **7–8 February 2025** — aligning to the exact calendar date on which the threat actor registered the core infrastructure and mail domain `worvixglobal.com` (08.02.2025).
+6. **Cross-Platform Facebook Lure & Infrastructure Correlation (`dreamwardrobe.online` / Media Galaxy Espresso Machine Ad):**  
+   Additional forensic intelligence captured the exact deceptive ad creative deployed on Facebook (Evidence Item 27) and the corresponding banking charge (Evidence Item 26). Threat actors ran sponsored ads on Facebook impersonating Media Galaxy, claiming that due to *"warehouse closures in Romania"* (*"închiderea depozitelor noastre din România"*), a Philips LatteGO 4300 espresso machine was on clearance for only "51 lei". When victims clicked *"Aflați mai multe"*, they were routed through Facebook's in-app webview to a phishing checkout. One victim's card was charged ~9.99 EUR / 49.72 RON under shell descriptor `dreamwardrobe.online` (categorized as apparel/fashion) on **7–8 February 2025** — aligning to the exact calendar date on which the threat actor registered the core infrastructure and mail domain `worvixglobal.com` (08.02.2025).
 
 ---
 
