@@ -10,7 +10,7 @@
 [![Active Workloads](https://img.shields.io/badge/Workloads-26%20Services-blue?style=flat&logo=docker)](https://stefanutc1.github.io/infrastructure/)
 [![CI Pipeline](https://img.shields.io/badge/CI%20Pipeline-Passed%20(100%25)-brightgreen?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/ci.yml)
 [![CD Pipeline](https://img.shields.io/badge/CD%20Pipeline-Active-blue?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions/workflows/cd.yml)
-[![Last Sync](https://img.shields.io/badge/Last%20Auto--Sync-2026--09--20-informational?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions)
+[![Last Sync](https://img.shields.io/badge/Last%20Auto--Sync-2026--09--21-informational?style=flat&logo=githubactions)](https://github.com/stefanutc1/infrastructure/actions)
 <!-- AUTO-METRICS-END -->
 
 ---
