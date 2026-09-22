@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-22 20:38:17 UTC
-# Total Forbidden Domains: 4290
+# Last Updated: 2026-09-22 21:01:12 UTC
+# Total Forbidden Domains: 4299
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 496
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 3364
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 3373
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -237,10 +237,12 @@ afluix.com
 afrivee.co.za
 afrocaribbeanforward.com
 afspd.com
+aftanalisis.com
 aftelecom.com.br
 agapehomechoice.com
 agas.com.co
 agazud.com
+agenciaciis.com.br
 agenfor.com.ar
 agentrecovery.com
 agerianllc.com
@@ -1859,6 +1861,7 @@ ijdo-ydo.nl
 iloveuevenifudontlovemeback.is
 imap.usslimsounds.com
 img2.aixpirts.com
+imgonehq.com
 imlive.com
 immediate-connect.online
 immediate-edge-app.com
@@ -2467,6 +2470,7 @@ musclecarrental.cz
 mvnetworking.com
 mwg-update.cloud
 my-accounts-gooogle.com
+my.v-panel.asia
 mychartradyschildrens.org
 myckafe.cz
 myfreecams.com
@@ -2911,6 +2915,7 @@ puwqx93041.workers.dev
 pv8jpfri.alldayslimtea.uk
 pvsa.gxfugy.cn
 px1i9fym.aerentaldecor.com
+pycujomy.workers.dev
 pylabe.workers.dev
 pytacie.pl
 qa6yskm1.en-us-xenburn.com
@@ -3344,6 +3349,7 @@ srsorvete.com.br
 srtydnnc.beer
 srv.conti.pk
 sscimails.com
+ssobeampro.net
 ssoinfolink.com
 sspurie.com.tw
 star.zcnet.net
@@ -3668,6 +3674,7 @@ uasputnik.com
 uat.edu.course.movest.co
 uckvj18869.workers.dev
 udef.org.tr
+uedhk08583.workers.dev
 uesma.edu.ec
 ug8828.com
 uhcjxoth.infinityjoespizzaclearwater.com
@@ -3760,6 +3767,7 @@ vd-ntds.com
 vdsina.vg
 veilig-holtenbroek.nl
 vektorex.com
+velnoderic.com
 veloperformance.cc
 velvetcanyonline.xyz
 venom.summertunnel.shop
@@ -3851,6 +3859,7 @@ web-news-blog.com
 web8kbetchinhthuc.buzz
 webcammodelle.com
 webcstore.pw
+webfeedonline.com
 webpulsedata.icu
 website.mypetapp.co.za
 websitesuccessguy.com
