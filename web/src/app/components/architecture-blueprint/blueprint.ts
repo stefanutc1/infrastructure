@@ -260,7 +260,7 @@ export interface ForensicCase {
             <h3 class="text-base font-sans font-bold text-slate-100 flex items-center justify-between">
               <span class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-                {{ ts.isRomanian ? 'Matrice CI/CD Enterprise (9 Fluxuri Automate · 36+ Verificări Paralele)' : 'Enterprise CI/CD Matrix (9 Automated Workflows · 36+ Parallel Checks)' }}
+                {{ ts.isRomanian ? 'Matrice CI/CD Enterprise (2 Fluxuri Automate · ci.yml & cd.yml)' : 'Enterprise CI/CD Matrix (2 Automated Workflows · ci.yml & cd.yml)' }}
               </span>
               <span class="text-xs font-mono text-slate-300">GitHub Actions CI/CD</span>
             </h3>
@@ -278,58 +278,16 @@ export interface ForensicCase {
                   </thead>
                   <tbody class="divide-y divide-obsidian-750/70">
                     <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">homelab-ci-cd-matrix.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Matrice Calitate' : 'Quality Matrix' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Terraform Fmt & Validate, Checkov IaC, Trivy, Docker Compose, ShellCheck, Secret Leakage, Angular Build' : 'Terraform Fmt & Validate, Checkov IaC, Trivy, Docker Compose, ShellCheck, Secret Leakage, Angular Build' }}</td>
-                      <td class="p-4 text-slate-400">Push / PR / Dispatch</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
                       <td class="p-4 font-bold text-slate-300 whitespace-nowrap">ci.yml</td>
                       <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Pipeline CI Central' : 'Core CI Pipeline' }}</td>
                       <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Gitleaks & TruffleHog Secrets, Ruff Lint, MyPy Types, Bandit SAST, Semgrep, Sintaxă Ansible, Kubeconform' : 'Gitleaks & TruffleHog Secrets, Ruff Lint, MyPy Types, Bandit SAST, Semgrep, Ansible Syntax, Kubeconform' }}</td>
-                      <td class="p-4 text-slate-400">Push / PR</td>
+                      <td class="p-4 text-slate-400">Push / PR / Dispatch</td>
                     </tr>
                     <tr class="hover:bg-obsidian-750/40 transition-colors">
                       <td class="p-4 font-bold text-slate-300 whitespace-nowrap">cd.yml</td>
                       <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Livrare Continuă' : 'Continuous Deploy' }}</td>
                       <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Sincronizare GitOps, Împachetare Imagini Container (GHCR), Verificare Rollback' : 'GitOps Synchronization, Container Image Packaging (GHCR), Rollback Verification' }}</td>
-                      <td class="p-4 text-slate-400">Push to main</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">container-scan.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Securitate / CVE' : 'Security / CVE' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Scanare Vulnerabilități Imagini Containere Trivy & Conformitate CIS Dockle' : 'Trivy & Dockle Container Image Vulnerability & CIS Benchmark Scanning' }}</td>
-                      <td class="p-4 text-slate-400">Push / Scheduled</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">security-scan.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Securitate SAST' : 'SAST Security' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Motor GitHub CodeQL, Analiză Statică Avansată a Vulnerabilităților (Python & TypeScript)' : 'GitHub CodeQL Engine, Advanced Security Static Analysis (Python & TypeScript)' }}</td>
-                      <td class="p-4 text-slate-400">Weekly / Push</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">security-scheduled.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Audit Nocturn' : 'Nightly Audit' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Audit Programat Nocturn pentru Dependențe (Pip-Audit, NPM Audit, Trivy FS)' : 'Nightly Dependency Vulnerability Audits (Pip-Audit, NPM Audit, Trivy FS)' }}</td>
-                      <td class="p-4 text-slate-400">Cron (02:00 UTC)</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">deploy-pages.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'CD Pagini Statice' : 'Static Pages CD' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Build Producție Angular 19 & Publicare Zero-Downtime pe GitHub Pages' : 'Angular 19 Production Build & GitHub Pages Zero-Downtime Deployment' }}</td>
-                      <td class="p-4 text-slate-400">Push to main</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">desktop-macos-release.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Lansare Binare' : 'Binary Release' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Compilare Universală C# .NET 10 macOS, Semnare Binară & Împachetare DMG' : 'C# .NET 10 Native macOS Universal App Compilation, Signing & DMG Packaging' }}</td>
-                      <td class="p-4 text-slate-400">Tag / Release</td>
-                    </tr>
-                    <tr class="hover:bg-obsidian-750/40 transition-colors">
-                      <td class="p-4 font-bold text-slate-300 whitespace-nowrap">readme-sync.yml</td>
-                      <td class="p-4 text-slate-200">{{ ts.isRomanian ? 'Automatizare Documentație' : 'Docs Automation' }}</td>
-                      <td class="p-4 text-slate-300">{{ ts.isRomanian ? 'Sincronizare Automată a Documentației și Verificare Badge-uri în 5 Limbi' : 'Multilingual Documentation Sync & Badge Verification across 5 Languages' }}</td>
-                      <td class="p-4 text-slate-400">Push to main</td>
+                      <td class="p-4 text-slate-400">Push to main / Schedule / Dispatch</td>
                     </tr>
                   </tbody>
                 </table>
