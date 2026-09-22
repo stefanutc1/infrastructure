@@ -82,7 +82,7 @@ import { CYBER_CASES_DATA, CyberInvestigation } from '../../data/infrastructure.
                   {{ c.title }}
                 </h3>
                 <div class="text-xs text-slate-400 font-mono">
-                  Author: <span class="text-slate-200">{{ c.author }}</span> · Date: <span class="text-slate-200">{{ c.date }}</span> · Evidence: <code class="text-slate-300">{{ c.evidenceDir }}</code>
+                  <span class="text-cyan-400 font-medium">{{ c.author }}</span> · Date: <span class="text-slate-200">{{ c.date }}</span> · Evidence: <code class="text-slate-300">{{ c.evidenceDir }}</code>
                 </div>
               </div>
 

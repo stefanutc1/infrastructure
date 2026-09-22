@@ -27,7 +27,7 @@ import {
           </span>
         </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-normal text-slate-50 tracking-tight">
-          Arhitectura și Securitatea Sistemelor Informatice Bancare
+          {{ ts.currentLang() === 'ro' ? 'Arhitectura și Securitatea Sistemelor Informatice Bancare' : 'Architecture and Security of Banking Information Systems' }}
         </h2>
         <p class="text-sm sm:text-base text-slate-300 max-w-4xl font-sans font-normal leading-relaxed">
           High-assurance banking simulation environment reproducing multi-tier financial computing:

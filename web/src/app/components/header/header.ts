@@ -10,12 +10,6 @@ import { TranslationService } from '../../services/translation.service';
     <header class="w-full border-b border-obsidian-750 bg-[#0c0e11]/90 backdrop-blur-xl sticky top-0 z-40 font-sans">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between relative overflow-x-auto no-scrollbar">
         
-        <!-- Logo / Brand -->
-        <a href="#overview" class="flex items-center gap-2 text-slate-100 font-bold text-sm tracking-tight shrink-0 mr-4">
-          <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
-          <span>INFRASTRUCTURE</span>
-        </a>
-
         <!-- Navigation Links -->
         <nav class="flex items-center gap-4 sm:gap-6 font-sans text-xs font-medium text-slate-300 shrink-0">
           <a href="#overview" class="hover:text-slate-100 transition-colors">{{ ts.t.navOverview }}</a>
