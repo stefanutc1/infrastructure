@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-22 21:01:12 UTC
-# Total Forbidden Domains: 4299
+# Last Updated: 2026-09-22 21:14:38 UTC
+# Total Forbidden Domains: 4304
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 496
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 3373
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 3378
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -55,6 +55,7 @@
 1connect.pl
 1f168.com
 1g5uv0u1.wisma138eula.org
+1slpcrcm.risk.com.sg
 1stchoicecleaning.co.nz
 1stchoicestaffing.co.uk
 1xbitios.com
@@ -234,6 +235,7 @@ affiliate.bwa.id
 affinm.com
 afindisc.xyz
 afluix.com
+africanaustraliannetwork.org.au
 afrivee.co.za
 afrocaribbeanforward.com
 afspd.com
@@ -242,6 +244,7 @@ aftelecom.com.br
 agapehomechoice.com
 agas.com.co
 agazud.com
+agence-teambuilding-rennes.fr
 agenciaciis.com.br
 agenfor.com.ar
 agentrecovery.com
@@ -3058,6 +3061,7 @@ ridge-ciosktai.site
 right.4b3a91fd1b35ab2d023f5d71713a6c00.workers.dev
 rijschoolpegasus.nl
 risepaint.com.au
+risk.com.sg
 rivachocolate.ca
 rkdesign.shop
 rmm.smartscreen.lifestyle
@@ -3951,6 +3955,7 @@ www.8andc.com
 www.911onlinecasino.com
 www.abc-network.it
 www.abikasrl.com
+www.ablecasinos.com
 www.adamsanglingbooks.com
 www.adelaidebooksellers.com.au
 www.agence-immobiliere-nanterre.com
