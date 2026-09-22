@@ -58,21 +58,27 @@ interface PhotoItem {
         : 'Passionate about distributed systems, zero-trust perimeter defense, multi-architecture virtualization (x86_64 with 12 GB DDR4-2133 and Apple Silicon ARM64), and GitOps automation. This datacenter powers live microservices, bare-metal telemetry, and real-time observability.' }}
       </p>
       <div class="flex flex-wrap gap-2 pt-2">
-       <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Proxmox VE 9.2 (12GB x64)</span>
-       <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">OPNsense 24.7 Hardened</span>
-       <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Grafana Enterprise & Prometheus</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Windows Server 2025 Datacenter (VM 400)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">OpenStack Cloud (VM 201)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Metasploitable 2 (VM 202)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">T-Pot Honeypot (VM 203)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Security Onion SIEM (VM 204)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">REMnux DFIR (VM 205)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Windows Server 2019 (VM 402)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Windows 7 SP1 (VM 408)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">RHEL 9.8 Enterprise (VM 409)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Bachelor Thesis: Metasploitable Lab (VM 301)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Bachelor Thesis: Kali Linux (VM 302)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-700">Wazuh SIEM / XDR (Native PVE)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Proxmox VE 9.2 (12GB x64 · i3-10100F)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">OPNsense 24.7 Firewall (VM 200)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Wazuh SIEM / XDR (CT 106 · 6GB OpenSearch)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Ollama GPU LLM (CT 102 · GTX 1050 Ti)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Apache Fineract (VM 310)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Financial DB (VM 311)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Payment Gateway (CT 312)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Bastion MFA (VM 313)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD PDC: Windows Server 2022 (VM 400)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD SDC: Windows Server 2016 (VM 401)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD CA: Windows Server 2012 R2 (VM 402)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD Client: Windows 10 Sysmon (VM 403)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD Legacy: Windows 7 SMBv1 (VM 404)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD Linux: RHEL 9 SSSD Realm (VM 405)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">OpenStack Sandbox (VM 201)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Parrot Security OS (VM 300)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Metasploitable 2 Target (VM 301)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Malware Flare-VM Sandbox (VM 303)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">REMnux Forensic Toolkit (VM 304)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">OpenMediaVault NAS (Node 2)</span>
+        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Kubernetes k3s Worker (Node 4)</span>
       </div>
      </div>
 
@@ -82,31 +88,39 @@ interface PhotoItem {
        {{ ts.isRomanian ? 'Acces Rapid Panouri Web' : 'Quick Access Web Dashboards' }}
       </div>
       <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Grafana:</span>
-       <a href="http://192.168.1.132:3000" target="_blank" class="text-slate-300 hover:underline">192.168.1.132:3000</a>
+       <span class="text-slate-400">Grafana (CT 104):</span>
+       <a href="http://192.168.1.121:3000" target="_blank" class="text-slate-300 hover:underline">192.168.1.121:3000</a>
       </div>
       <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">PVE x86_64 (12GB):</span>
+       <span class="text-slate-400">PVE x86_64 (Node 1):</span>
        <a href="https://192.168.1.132:8006" target="_blank" class="text-slate-300 hover:underline">192.168.1.132:8006</a>
       </div>
       <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">OPNsense:</span>
+       <span class="text-slate-400">OPNsense (VM 200):</span>
        <a href="https://192.168.1.134:8443" target="_blank" class="text-slate-300 hover:underline">192.168.1.134:8443</a>
       </div>
       <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Pi-hole:</span>
-       <a href="http://192.168.1.4:8080" target="_blank" class="text-slate-300 hover:underline">192.168.1.4:8080</a>
+       <span class="text-slate-400">Wazuh SIEM (CT 106):</span>
+       <a href="https://192.168.1.240:443" target="_blank" class="text-slate-300 hover:underline">192.168.1.240:443</a>
       </div>
       <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Home Assistant:</span>
+       <span class="text-slate-400">Uptime Kuma (CT 103):</span>
+       <a href="http://192.168.1.119:3001" target="_blank" class="text-slate-300 hover:underline">192.168.1.119:3001</a>
+      </div>
+      <div class="flex justify-between items-center text-slate-300">
+       <span class="text-slate-400">Home Assistant (CT 100):</span>
        <a href="http://192.168.1.10:8123" target="_blank" class="text-slate-300 hover:underline">192.168.1.10:8123</a>
+      </div>
+      <div class="flex justify-between items-center text-slate-300">
+       <span class="text-slate-400">Scrutiny SMART (CT 101):</span>
+       <a href="http://192.168.1.108:8080" target="_blank" class="text-slate-300 hover:underline">192.168.1.108:8080</a>
       </div>
      </div>
 
     </div>
    </div>
 
-   <!-- Tab Switcher: Core Panels (17) vs All Services (83) -->
+   <!-- Tab Switcher: Core Live Panels vs All Active Services (26) -->
    <div class="flex items-center justify-between gap-4 mb-8">
     <div class="flex items-center gap-2 font-sans text-xs">
      <button
@@ -308,124 +322,88 @@ export class AboutGalleryComponent {
    badgeRo: 'PVE 12GB RAM'
   },
   {
-   src: 'photos/services/vm-windows.png',
-   title: 'Windows Server 2025 Datacenter · Active Directory & GPU (VM 201)',
-   titleRo: 'Windows Server 2025 Datacenter · Active Directory & GPU (VM 201)',
-   category: 'ENTERPRISE VIRTUALIZATION & KVM',
-   categoryRo: 'VIRTUALIZARE ENTERPRISE & KVM',
-   description: 'Windows Server 2025 Datacenter running Server Manager Dashboard with Active Directory Domain Services, Group Policies, and GTX 1050 Ti PCIe Passthrough acceleration (Ballooning: 4-8 GB).',
-   descriptionRo: 'Windows Server 2025 Datacenter rulând Server Manager Dashboard cu Active Directory Domain Services, Group Policies și accelerare GTX 1050 Ti prin PCIe Passthrough (Ballooning: 4-8 GB).',
-   endpoint: '192.168.1.201 (RDP 3389 / KVM)',
-   badge: 'WIN SERVER 2025',
-   badgeRo: 'WIN SERVER 2025'
-  },
-  {
-   src: 'photos/services/vm-rhel.png',
-   title: 'Red Hat Enterprise Linux 9.8 · SELinux & Podman (VM 202)',
-   titleRo: 'Red Hat Enterprise Linux 9.8 · SELinux & Podman (VM 202)',
-   category: 'ENTERPRISE VIRTUALIZATION & LINUX',
-   categoryRo: 'VIRTUALIZARE ENTERPRISE & LINUX',
-   description: 'RHEL 9.8 running in SELinux Enforcing mode with Podman quadlet containers and enterprise workload isolation under VirtIO ballooning memory optimization (1-2 GB).',
-   descriptionRo: 'RHEL 9.8 rulând în mod SELinux Enforcing cu containere Podman quadlet și izolare a serviciilor enterprise sub optimizare de memorie prin VirtIO ballooning (1-2 GB).',
-   endpoint: '192.168.1.202 (SSH 22 / KVM)',
-   badge: 'RHEL 9.8',
-   badgeRo: 'RHEL 9.8'
-  },
-  {
-   src: 'photos/services/wazuh.png',
-   title: 'Wazuh 4.14 · Enterprise SIEM & XDR Security Platform',
-   titleRo: 'Wazuh 4.14 · Platformă Enterprise SIEM & XDR',
-   category: 'CYBERSECURITY & SIEM PLATFORM',
-   categoryRo: 'SECURITATE CIBERNETICĂ & PLATFORMĂ SIEM',
-   description: 'Wazuh Manager running natively on Proxmox VE hypervisor host providing real-time log analysis, file integrity monitoring (FIM), rootkit detection, vulnerability assessment, and active response.',
-   descriptionRo: 'Wazuh Manager rulat nativ pe host-ul hypervisor Proxmox VE asigurând analiză de loguri în timp real, monitorizare a integrității fișierelor (FIM), detecție de rootkit-uri și răspuns activ la incidente.',
-   endpoint: '192.168.1.132:55000 / 1514 (Wazuh API & Agent Listener)',
-   badge: 'WAZUH SIEM / XDR',
-   badgeRo: 'WAZUH SIEM / XDR'
-  },
-  {
     src: 'photos/services/vm-windows.png',
-    title: 'Active Directory · Windows Server 2025 · PDC & GPU Lab (VM 400)',
-    titleRo: 'Active Directory · Windows Server 2025 · PDC & Lab GPU (VM 400)',
-    category: 'ACTIVE DIRECTORY & ENTERPRISE LAB',
-    categoryRo: 'ACTIVE DIRECTORY & LAB ENTERPRISE',
-    description: 'Multi-generation Active Directory enterprise laboratory forest root. Windows Server 2025 Datacenter PDC with GTX 1050 Ti PCIe passthrough, 256 GB NVMe, Q35 OVMF UEFI, and TPM 2.0 (Ballooning: 4-8 GB).',
-    descriptionRo: 'Rădăcină forest a laboratorului enterprise Active Directory. PDC Windows Server 2025 Datacenter cu passthrough PCIe GTX 1050 Ti, 256 GB NVMe, UEFI Q35 OVMF și TPM 2.0 (Ballooning: 4-8 GB).',
-    endpoint: '192.168.1.225 (RDP 3389 / KVM)',
-    badge: 'AD: WIN SERVER 2025',
-    badgeRo: 'AD: WIN SERVER 2025'
+    title: 'Windows Server 2022 · Active Directory Forest Root PDC (VM 400)',
+    titleRo: 'Windows Server 2022 · PDC Rădăcină Pădure Active Directory (VM 400)',
+    category: 'ACTIVE DIRECTORY & ENTERPRISE IDENTITY',
+    categoryRo: 'ACTIVE DIRECTORY & IDENTITATE ENTERPRISE',
+    description: 'Active Directory Domain Services Forest Root PDC on Windows Server 2022 Datacenter with FSMO roles, Kerberos KDC, and integrated DNS (4096 MB RAM).',
+    descriptionRo: 'PDC rădăcină de pădure Active Directory Domain Services pe Windows Server 2022 Datacenter cu roluri FSMO, Kerberos KDC și DNS integrat (4096 MB RAM).',
+    endpoint: '192.168.1.222 (RDP 3389 / Kerberos 88)',
+    badge: 'AD: WIN SERVER 2022',
+    badgeRo: 'AD: WIN SERVER 2022'
   },
   {
-    src: 'photos/services/metasploitable2.png',
-    title: 'Bachelor Thesis · Metasploitable Lab · Vulnerable Target (VM 301)',
-    titleRo: 'Lucrare de Licență · Metasploitable Lab · Țintă Vulnerabilă (VM 301)',
-    category: 'BACHELOR THESIS & CYBERSECURITY',
-    categoryRo: 'LUCRARE DE LICENȚĂ & SECURITATE CIBERNETICĂ',
-    description: 'Dedicated Bachelor Thesis (Lucrare de Licență) proving ground (VM 301) for penetration testing, automated exploitation workflows, and Wazuh/Suricata detection rule validation.',
-    descriptionRo: 'Poligon de testare dedicat pentru Lucrarea de Licență (Bachelor Thesis, VM 301) pentru teste de securitate ofensivă, exploit-uri automate și validarea regulilor de detecție Wazuh și Suricata.',
-    endpoint: '192.168.1.211 (Console / SSH / HTTP)',
-    badge: 'THESIS: METASPLOITABLE',
-    badgeRo: 'LICENȚĂ: METASPLOITABLE'
+    src: 'photos/services/vm-rhel.png',
+    title: 'Red Hat Enterprise Linux 9 · SSSD Active Directory Member (VM 405)',
+    titleRo: 'Red Hat Enterprise Linux 9 · Membru Active Directory SSSD (VM 405)',
+    category: 'ENTERPRISE LINUX & REALMD',
+    categoryRo: 'LINUX ENTERPRISE & REALMD',
+    description: 'RHEL 9.4 enterprise Linux server joined to the Active Directory realm via SSSD and Kerberos for centralized domain user authentication and PAM integration.',
+    descriptionRo: 'Server enterprise RHEL 9.4 integrat în domeniul Active Directory prin SSSD și Kerberos pentru autentificarea centralizată a utilizatorilor de domeniu.',
+    endpoint: '192.168.1.228 (SSH 22 / SSSD PAM)',
+    badge: 'RHEL 9 SSSD',
+    badgeRo: 'RHEL 9 SSSD'
+  },
+  {
+    src: 'photos/services/wazuh.png',
+    title: 'Wazuh 4.14 · Enterprise SIEM, OpenSearch & XDR (CT 106)',
+    titleRo: 'Wazuh 4.14 · Platformă Enterprise SIEM, OpenSearch & XDR (CT 106)',
+    category: 'CYBERSECURITY & SIEM PLATFORM',
+    categoryRo: 'SECURITATE CIBERNETICĂ & PLATFORMĂ SIEM',
+    description: 'Wazuh Manager, Indexer (OpenSearch 2.19 with 4GB JVM Heap), and Dashboard deployed in dedicated LXC 106 on Proxmox VE (6GB RAM) analyzing real-time security events and FIM.',
+    descriptionRo: 'Wazuh Manager, Indexer (OpenSearch 2.19 cu Heap JVM 4GB) și Dashboard implementate în containerul LXC 106 pe Proxmox VE (6GB RAM) pentru analiză în timp real.',
+    endpoint: '192.168.1.240:443 / 1514 (Wazuh Web & Agent Listener)',
+    badge: 'WAZUH SIEM (CT 106)',
+    badgeRo: 'WAZUH SIEM (CT 106)'
   },
   {
     src: 'photos/services/openstack.png',
-    title: 'OpenStack 2024.1 Caracal · Private Cloud Horizon (VM 201)',
-    titleRo: 'OpenStack 2024.1 Caracal · Panou Cloud Privat Horizon (VM 201)',
-    category: 'CLOUD INFRASTRUCTURE & IAAS',
-    categoryRo: 'INFRASTRUCTURĂ CLOUD & IAAS',
-    description: 'Enterprise IaaS cloud controller orchestrating Nova compute virtual machines, Neutron SDN, Glance image services, and Horizon dashboard.',
-    descriptionRo: 'Controler cloud enterprise IaaS ce orchestrează instanțe de calcul Nova, rețele definite software Neutron, catalog de imagini Glance și panou de control Horizon.',
-    endpoint: '192.168.1.201 (HTTP 80 / Keystone 5000)',
-    badge: 'OPENSTACK IAAS',
-    badgeRo: 'OPENSTACK IAAS'
+    title: 'OpenStack Dev Sandbox · Kolla-Ansible Cloud (VM 201)',
+    titleRo: 'OpenStack Dev Sandbox · Cloud Kolla-Ansible (VM 201)',
+    category: 'CLOUD INFRASTRUCTURE & SDN',
+    categoryRo: 'INFRASTRUCTURĂ CLOUD & SDN',
+    description: 'Single-node OpenStack controller deployed via Kolla-Ansible for SDN Neutron testing and virtual machine orchestration under Proxmox VE.',
+    descriptionRo: 'Controller OpenStack single-node implementat prin Kolla-Ansible pentru testarea rețelelor software (SDN Neutron) și orchestrare de mașini virtuale.',
+    endpoint: '192.168.1.136:80 (Horizon Dashboard)',
+    badge: 'OPENSTACK CLOUD',
+    badgeRo: 'OPENSTACK CLOUD'
   },
   {
     src: 'photos/services/metasploitable2.png',
-    title: 'Metasploitable 2 · Vulnerable Target & Red Team Lab (VM 202)',
-    titleRo: 'Metasploitable 2 · Țintă Vulnerabilă & Laborator Red Team (VM 202)',
+    title: 'Metasploitable 2 · Vulnerable Exploit Target (VM 301)',
+    titleRo: 'Metasploitable 2 · Țintă Vulnerabilă pentru Exploatare (VM 301)',
     category: 'CYBERSECURITY & PROVING GROUND',
     categoryRo: 'SECURITATE CIBERNETICĂ & POLIGON DE TEST',
-    description: 'Intentionally vulnerable Ubuntu Linux virtual machine configured for penetration testing, Metasploit exploitation, and IDS/IPS signature tuning.',
-    descriptionRo: 'Mașină virtuală Linux vulnerabilă intenționat pentru teste de penetrare, exploatare cu Metasploit Framework și calibrarea detecțiilor Suricata / Wazuh.',
-    endpoint: '192.168.1.202 (Console / 22 / 80)',
-    badge: 'METASPLOITABLE',
-    badgeRo: 'METASPLOITABLE'
+    description: 'Intentionally vulnerable Linux test environment in isolated VLAN 30 for offensive exploit validation, payload crafting, and IDS signature tuning.',
+    descriptionRo: 'Mediu Linux deliberat vulnerabil în VLAN 30 izolat pentru validarea exploatărilor ofensive și calibrarea semnăturilor IDS.',
+    endpoint: '192.168.30.10 (VLAN 30 Isolated Target)',
+    badge: 'METASPLOITABLE (VM 301)',
+    badgeRo: 'METASPLOITABLE (VM 301)'
   },
   {
-    src: 'photos/services/tpot-honeypot.png',
-    title: 'T-Pot · Multi-Honeypot Decoy Platform (VM 203)',
-    titleRo: 'T-Pot · Platformă Multi-Honeypot & Capcane (VM 203)',
-    category: 'CYBERSECURITY & THREAT INTEL',
-    categoryRo: 'SECURITATE CIBERNETICĂ & THREAT INTEL',
-    description: 'Multi-honeypot decoy platform running 20+ specialized honeypot daemons (Cowrie, Dionaea, Conpot) capturing live attack telemetry and brute-force attempts.',
-    descriptionRo: 'Platformă multi-honeypot cu peste 20 de servicii capcană (Cowrie, Dionaea, Conpot) ce capturează telemetrie de atac în timp real și tentative brute-force.',
-    endpoint: '192.168.1.203:64297 (Web Center / Kibana)',
-    badge: 'T-POT HONEYPOT',
-    badgeRo: 'T-POT HONEYPOT'
-  },
-  {
-    src: 'photos/services/securityonion.png',
-    title: 'Security Onion 3.2 · Enterprise SIEM & SOC Platform (VM 204)',
-    titleRo: 'Security Onion 3.2 · Platformă Enterprise SIEM & SOC (VM 204)',
-    category: 'CYBERSECURITY & NETWORK DEFENSE',
-    categoryRo: 'SECURITATE CIBERNETICĂ & APĂRARE REȚEA',
-    description: 'Enterprise NSM, HIDS, Zeek network telemetry, Suricata alerts, Elasticsearch, and centralized SOC investigation console.',
-    descriptionRo: 'Platformă Enterprise de securitate cibernetică cu monitorizare de rețea, telemetrie Zeek, alerte Suricata, Elasticsearch și consolă centralizată SOC.',
-    endpoint: '192.168.1.204 (HTTPS 443 / SOC)',
-    badge: 'SECURITY ONION',
-    badgeRo: 'SECURITY ONION'
+    src: 'photos/services/dfir-sandbox.png',
+    title: 'Windows Malware Sandbox · Flare-VM Detonation (VM 303)',
+    titleRo: 'Windows Malware Sandbox · Detonare Malware Flare-VM (VM 303)',
+    category: 'CYBERSECURITY & MALWARE LAB',
+    categoryRo: 'SECURITATE CIBERNETICĂ & LAB MALWARE',
+    description: 'Isolated Windows 10 dynamic analysis sandbox equipped with Mandiant Flare-VM, Procmon, x64dbg, and Wireshark for behavioral malware detonation in VLAN 30.',
+    descriptionRo: 'Sandbox izolat Windows 10 pentru analiză dinamică de malware, dotat cu suita Flare-VM, Procmon, x64dbg și Wireshark pentru detonare comportamentală în VLAN 30.',
+    endpoint: '192.168.30.20 (VLAN 30 Isolated Sandbox)',
+    badge: 'FLARE-VM SANDBOX',
+    badgeRo: 'FLARE-VM SANDBOX'
   },
   {
     src: 'photos/services/remnux.png',
-    title: 'REMnux v7 Noble · Reverse Engineering & Malware Analysis (VM 205)',
-    titleRo: 'REMnux v7 Noble · Inginerie Inversă & Analiză Malware (VM 205)',
+    title: 'REMnux · Digital Forensics & Reverse Engineering (VM 304)',
+    titleRo: 'REMnux · Criminalistică Digitală & Inginerie Inversă (VM 304)',
     category: 'DIGITAL FORENSICS & REVERSE ENGINEERING',
     categoryRo: 'CRIMINALISTICĂ DIGITALĂ & INGINERIE INVERSĂ',
-    description: 'Specialized Linux distribution for malware analysis, memory forensics, Ghidra disassembly, YARA hunting, and Wireshark C2 investigation.',
-    descriptionRo: 'Distribuție Linux specializată pentru analiză malware, investigații criminalistice de memorie, dezasamblare Ghidra, YARA și analiză trafic C2.',
-    endpoint: '192.168.1.205 (SSH 22 / Console)',
-    badge: 'REMNUX NOBLE',
-    badgeRo: 'REMNUX NOBLE'
+    description: 'Specialized Linux distribution for static binary analysis, document deobfuscation, Ghidra reverse engineering, and memory triage in VLAN 30.',
+    descriptionRo: 'Distribuție Linux specializată de inginerie inversă pentru analiza statică a binarilor, deobfuscarea documentelor și triajul probelor în VLAN 30.',
+    endpoint: '192.168.30.30 (VLAN 30 Reverse Engineering)',
+    badge: 'REMNUX (VM 304)',
+    badgeRo: 'REMNUX (VM 304)'
   },
   {
    src: 'photos/services/opnsense.png',

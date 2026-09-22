@@ -120,20 +120,12 @@ export class CommandPaletteComponent {
 
   forensicCases: SearchResultItem[] = [
     {
-      id: 'case-steam',
-      title: 'DFIR Case: Steam OpenID 2.0 AiTM & Browser-in-the-Middle',
+      id: 'case-mediagalaxy',
+      title: 'DFIR Case: Media Galaxy E-Commerce Brand Spoofing & SaaS Fraud',
       category: 'Cyber Forensics · TLP:CLEAR',
-      subtext: 'SEC-2025-BITM-003 · In-DOM fake window, credential harvesting & trade bot hijacking',
+      subtext: 'SEC-2026-ECOM-005 · DNSC #178465 · Fake espresso machine campaign, disposable domains & card exfiltration',
       type: 'command',
-      actionData: { hash: '#cyber', caseSlug: 'openid' }
-    },
-    {
-      id: 'case-task',
-      title: 'DFIR Case: Pig Butchering Task Scam & USDT TRC-20 Drainage',
-      category: 'Cyber Forensics · TLP:CLEAR',
-      subtext: 'SEC-2026-TASK-001 · Decompiled scam web app, kill-switches & C2 infrastructure',
-      type: 'command',
-      actionData: { hash: '#cyber', caseSlug: 'task-scam' }
+      actionData: { hash: '#cyber-cases' }
     },
     {
       id: 'case-revolut',
@@ -141,7 +133,15 @@ export class CommandPaletteComponent {
       category: 'Cyber Forensics · TLP:CLEAR',
       subtext: 'SEC-2026-VISH-002 · Real-time reverse proxy, Caller ID spoofing & bank API relay',
       type: 'command',
-      actionData: { hash: '#cyber', caseSlug: 'revolut' }
+      actionData: { hash: '#cyber-cases' }
+    },
+    {
+      id: 'case-task',
+      title: 'DFIR Case: Pig Butchering Task Scam & USDT TRC-20 Drainage',
+      category: 'Cyber Forensics · TLP:CLEAR',
+      subtext: 'SEC-2026-TASK-003 · Decompiled scam web app, kill-switches & C2 infrastructure',
+      type: 'command',
+      actionData: { hash: '#cyber-cases' }
     },
     {
       id: 'case-mrr',
@@ -149,7 +149,47 @@ export class CommandPaletteComponent {
       category: 'Cyber Forensics · TLP:CLEAR',
       subtext: 'SEC-2025-MRR-001 · 19-stage investigation, synthetic LLM courses & payment gateway abuse',
       type: 'command',
-      actionData: { hash: '#cyber', caseSlug: 'tiktok' }
+      actionData: { hash: '#cyber-cases' }
+    },
+    {
+      id: 'case-steam',
+      title: 'DFIR Case: Steam OpenID 2.0 AiTM & Browser-in-the-Middle',
+      category: 'Cyber Forensics · TLP:CLEAR',
+      subtext: 'SEC-2025-AITM-004 · In-DOM fake window, credential harvesting & trade bot hijacking',
+      type: 'command',
+      actionData: { hash: '#cyber-cases' }
+    },
+    {
+      id: 'subsystem-thesis',
+      title: 'Bachelor Thesis: Banking Systems Architecture & Security',
+      category: 'Thesis Defense Lab',
+      subtext: 'Apache Fineract Core-Banking (VM 310), PostgreSQL 16 (VM 311), FastAPI Gateway (CT 312), Bastion MFA (VM 313)',
+      type: 'doc',
+      actionData: { hash: '#thesis' }
+    },
+    {
+      id: 'subsystem-ad',
+      title: 'Active Directory Lab: Multi-Tier Forest & Identity Security',
+      category: 'Enterprise Identity',
+      subtext: 'Forest Root PDC (VM 400), SDC (VM 401), CA (VM 402), Win10 Sysmon (VM 403), Win7 (VM 404), RHEL 9 (VM 405)',
+      type: 'doc',
+      actionData: { hash: '#ad' }
+    },
+    {
+      id: 'subsystem-network',
+      title: 'Network & VLANs: 802.1Q Segments & Bridges',
+      category: 'Network Architecture',
+      subtext: 'Linux bridges vmbr0/1/2, VLANs 10, 20, 30, 40, 50, and Unbound 0.0.0.0 DNS sinkholing',
+      type: 'doc',
+      actionData: { hash: '#network' }
+    },
+    {
+      id: 'subsystem-iac',
+      title: 'IaC & DevSecOps: Automated CI/CD Gates',
+      category: 'DevSecOps & CI/CD',
+      subtext: 'Terraform, Ansible, k3s and 6 automated GitHub Actions security gates (Gitleaks, TruffleHog, Checkov, Trivy, ShellCheck, Custom)',
+      type: 'doc',
+      actionData: { hash: '#iac-cicd' }
     }
   ];
 
@@ -295,9 +335,15 @@ export class CommandPaletteComponent {
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
     } else if (item.id.startsWith('case-')) {
-      const data = item.actionData as { hash: string; caseSlug: string };
-      window.location.hash = `#case-${data.caseSlug}`;
-      const el = document.getElementById('cyber') || document.getElementById('blueprint');
+      window.location.hash = '#cyber-cases';
+      const el = document.getElementById('cyber-cases') || document.getElementById('cyber');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      return;
+    } else if (item.id.startsWith('subsystem-')) {
+      const data = item.actionData as { hash: string };
+      window.location.hash = data.hash;
+      const targetId = data.hash.replace('#', '');
+      const el = document.getElementById(targetId);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
       return;
     } else if (item.type === 'service') {

@@ -44,19 +44,44 @@
       ></app-hardware-fleet>
     </div>
 
-    <!-- 4. Active Services & Workloads Catalog (101 Workloads) -->
+    <!-- 4. Active Services & Workloads Catalog (26 Workloads) -->
     <div class="border-b border-obsidian-750">
       <app-service-matrix
         (nodeFocused)="onNodeSelected($event)"
       ></app-service-matrix>
     </div>
 
-    <!-- 5. Real Infrastructure Photo Gallery & Portfolio About Me -->
+    <!-- 5. Network Architecture & VLAN Isolation -->
+    <div class="border-b border-obsidian-750">
+      <app-network-view></app-network-view>
+    </div>
+
+    <!-- 6. Active Directory Multi-Tier Identity Security Lab -->
+    <div class="border-b border-obsidian-750">
+      <app-active-directory></app-active-directory>
+    </div>
+
+    <!-- 7. Bachelor's Thesis: Banking Systems Architecture & Security -->
+    <div class="border-b border-obsidian-750">
+      <app-bachelor-thesis></app-bachelor-thesis>
+    </div>
+
+    <!-- 8. Real-World Cyber Forensics & Threat Deconstruction Cases (5 Cases) -->
+    <div class="border-b border-obsidian-750">
+      <app-cyber-cases></app-cyber-cases>
+    </div>
+
+    <!-- 9. Declarative IaC Lifecycle & 6 CI/CD Security Gates -->
+    <div class="border-b border-obsidian-750">
+      <app-iac-cicd></app-iac-cicd>
+    </div>
+
+    <!-- 10. Real Infrastructure Photo Gallery & Portfolio About Me -->
     <div class="border-b border-obsidian-750">
       <app-about-gallery></app-about-gallery>
     </div>
 
-    <!-- 6. Engineering Blueprint, VLANs, Power & Cyber/DFIR Stack -->
+    <!-- 11. Engineering Blueprint, Storage Pools & Technical Specs -->
     <app-architecture-blueprint></app-architecture-blueprint>
 
   </main>

@@ -9,6 +9,11 @@ import { HardwareFleetComponent } from './components/hardware-fleet/hardware';
 import { ArchitectureBlueprintComponent } from './components/architecture-blueprint/blueprint';
 import { AboutGalleryComponent } from './components/about-gallery/gallery';
 import { CommandPaletteComponent } from './components/command-palette/palette';
+import { NetworkViewComponent } from './components/network-view/network';
+import { ActiveDirectoryComponent } from './components/active-directory/ad';
+import { BachelorThesisComponent } from './components/bachelor-thesis/thesis';
+import { CyberCasesComponent } from './components/cyber-cases/cases';
+import { IacCicdComponent } from './components/iac-cicd/pipeline';
 import { TopologyNode } from './data/topology.data';
 import { TranslationService } from './services/translation.service';
 
@@ -21,10 +26,15 @@ import { TranslationService } from './services/translation.service';
     OverviewComponent,
     TopologyCanvasComponent,
     NodeInspectorComponent,
-    ServiceMatrixComponent,
     HardwareFleetComponent,
-    ArchitectureBlueprintComponent,
+    ServiceMatrixComponent,
+    NetworkViewComponent,
+    ActiveDirectoryComponent,
+    BachelorThesisComponent,
+    CyberCasesComponent,
+    IacCicdComponent,
     AboutGalleryComponent,
+    ArchitectureBlueprintComponent,
     CommandPaletteComponent
   ],
   templateUrl: './app.html',

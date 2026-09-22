@@ -47,7 +47,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     node: "Node 1 (PVE) · CT 101",
     ram: "96 MB",
     storage: "3 GB LVM",
-    ip: "192.168.1.18",
+    ip: "192.168.1.108",
     port: 8080,
     domain: "scrutiny.homelab.local",
     status: "ONLINE",
@@ -56,7 +56,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     tags: ["Storage", "SMART", "Telemetry", "Drive Health", "Metrics", "CT 101"],
     color: "#0d9488",
     icon: "scrutiny",
-    composeCode: "# Proxmox VE LXC Container 101\nhostname: scrutiny\nip: 192.168.1.18/24\nmemory: 96 MB\ncores: 1"
+    composeCode: "# Proxmox VE LXC Container 101\nhostname: scrutiny\nip: 192.168.1.108/24\nmemory: 96 MB\ncores: 1"
   },
   {
     id: "ollama",

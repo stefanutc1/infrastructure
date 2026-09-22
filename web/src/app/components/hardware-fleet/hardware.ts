@@ -21,7 +21,7 @@ import { TranslationService } from '../../services/translation.service';
     </p>
    </div>
 
-   <!-- 4 Hardware Cards Grid -->
+   <!-- 3 Physical Hardware Nodes Grid -->
    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 font-sans">
     @for (hw of hardware; track hw.id) {
      <div class="p-6 rounded-2xl bg-obsidian-850/80 border border-obsidian-750 hover:border-obsidian-600 transition-all flex flex-col justify-between shadow-xl group">

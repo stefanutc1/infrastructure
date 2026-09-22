@@ -6,8 +6,13 @@ export interface Translations {
   // Navigation & Header
   navOverview: string;
   navTopology: string;
-  navServices: string;
   navHardware: string;
+  navServices: string;
+  navNetwork: string;
+  navAd: string;
+  navThesis: string;
+  navCyber: string;
+  navIac: string;
   navBlueprint: string;
   statusClusterActive: string;
   sublabelTag: string;
@@ -117,31 +122,36 @@ export interface Translations {
 const EN_TRANSLATIONS: Translations = {
   navOverview: 'Overview',
   navTopology: '3D Topology',
-  navServices: 'Services',
-  navHardware: 'Hardware Fleet',
-  navBlueprint: 'Architecture & Cyber',
+  navHardware: 'Hardware',
+  navServices: 'Services (26)',
+  navNetwork: 'Network & VLANs',
+  navAd: 'Active Directory',
+  navThesis: 'Banking Security Lab',
+  navCyber: 'Forensic Cases (5)',
+  navIac: 'IaC & CI/CD',
+  navBlueprint: 'Blueprint & Specs',
   statusClusterActive: '3 nodes online',
   sublabelTag: 'Infrastructure & Services',
 
   heroTag: 'SYSTEM ARCHITECTURE & OVERVIEW',
   heroTitle: 'A heterogeneous bare-metal compute cluster, private cloud, and security testing lab.',
-  heroDescription: 'Technical documentation and interactive overview of the datacenter infrastructure: Proxmox VE virtualization on Intel x86_64, ZFS storage, OPNsense firewall segmentation, local GPU LLMs, and automation.',
+  heroDescription: 'Technical documentation and interactive overview of the datacenter infrastructure: Proxmox VE virtualization on Intel x86_64, ZFS storage, OPNsense firewall segmentation, local GPU LLMs, Active Directory forest, Banking Security Lab, and real-world digital forensics.',
   
   metricComputeTitle: 'PHYSICAL COMPUTE',
-  metricComputeCount: '3 Nodes',
-  metricComputeDesc: 'Intel i3-10100F (GTX 1050 Ti), ASUS Celeron OMV NAS, and AMD Athlon II k3s.',
+  metricComputeCount: '3 Bare-Metal Nodes',
+  metricComputeDesc: 'Intel i3-10100F (GTX 1050 Ti), ASUS Celeron OMV NAS, and AMD Athlon II k3s worker.',
   
   metricVirtTitle: 'VIRTUALIZATION',
-  metricVirtCount: '1 Hypervisor',
-  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Parrot (VM 300), Active Directory lab (VMs 400–405), and 7 production LXCs (100–106).',
+  metricVirtCount: '15 VMs · 8 LXCs',
+  metricVirtDesc: 'Proxmox VE 9.2 x86_64 hosting OPNsense (VM 200), Active Directory lab (VMs 400–405), Banking Core (VMs 310–313), and 8 LXC microservices.',
   
   metricServicesTitle: 'ACTIVE SERVICES',
-  metricServicesCount: '22 Workloads',
+  metricServicesCount: '26 Workloads',
   metricServicesDesc: 'Production microservices, Active Directory forest, SIEM telemetry, local GPU AI, and network infrastructure.',
   
   metricCyberTitle: 'SECURITY & DFIR',
-  metricCyberCount: 'SOC · Wazuh SIEM',
-  metricCyberDesc: 'Wazuh SIEM / XDR (4GB Heap), Suricata IDS/IPS, OPNsense firewall, and 5 digital forensics investigations.',
+  metricCyberCount: '5 Cases · SIEM',
+  metricCyberDesc: 'Wazuh SIEM / XDR (4GB Heap), Suricata IDS/IPS, OPNsense firewall, and 5 digital forensics investigations with DNSC dispositions.',
 
   topologyTag: 'NETWORK TOPOLOGY',
   topologyTitle: 'Spatial 3D Topology Visualization',
