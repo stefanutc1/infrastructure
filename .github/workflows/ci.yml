@@ -83,6 +83,10 @@ jobs:
         run: |
           python3 scripts/verify_suricata_rules.py
 
+      - name: Master Infrastructure Health Audit
+        run: |
+          python3 scripts/audit_infrastructure.py
+
       - name: DFIR PDF Report Smoke-Test
         run: |
           python3 -m pip install reportlab

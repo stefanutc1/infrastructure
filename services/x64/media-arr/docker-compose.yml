@@ -1,0 +1,172 @@
+name: media-stack
+
+services:
+  # ============================================================================
+  # 1. VPN GATEWAY & KILLSWITCH (Gluetun)
+  # qBittorrent își rutează întregul trafic exclusiv prin acest container.
+  # Dacă VPN-ul cade, iptables blochează instant orice pachet (zero ISP leak).
+  # ============================================================================
+  gluetun:
+    image: qmcgaw/gluetun:latest
+    container_name: gluetun
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - "8085:8085"       # qBittorrent WebUI expus în LAN
+      - "6881:6881"       # Torrent listening port TCP
+      - "6881:6881/udp"   # Torrent listening port UDP
+    environment:
+      - VPN_SERVICE_PROVIDER=${VPN_PROVIDER:-custom}
+      - VPN_TYPE=${VPN_TYPE:-wireguard}
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY:-}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES:-10.2.0.2/32}
+      - WIREGUARD_PRESHARED_KEY=${WIREGUARD_PRESHARED_KEY:-}
+      - VPN_ENDPOINT_IP=${VPN_ENDPOINT_IP:-}
+      - VPN_ENDPOINT_PORT=${VPN_ENDPOINT_PORT:-51820}
+      - FIREWALL_OUTBOUND_SUBNETS=192.168.0.0/16,10.0.0.0/8,172.16.0.0/12
+      - TZ=${TZ:-Europe/Bucharest}
+    volumes:
+      - ./config/gluetun:/gluetun
+
+  # ============================================================================
+  # 2. BITTORRENT CLIENT (qBittorrent-nox)
+  # Rulat direct pe stack-ul de rețea al containerului gluetun
+  # ============================================================================
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    restart: unless-stopped
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Bucharest}
+      - WEBUI_PORT=8085
+      - TORRENTING_PORT=6881
+    volumes:
+      - ./config/qbittorrent:/config
+      - ${STORAGE_ROOT:-/data}/torrents:/data/torrents
+    depends_on:
+      gluetun:
+        condition: service_healthy
+
+  # ============================================================================
+  # 3. INDEXER MANAGER & PROXY (Prowlarr)
+  # Gestionează toți trackerii (Public / Private) și îi sincronizează în Sonarr/Radarr
+  # ============================================================================
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    restart: unless-stopped
+    ports:
+      - "9696:9696"
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Bucharest}
+    volumes:
+      - ./config/prowlarr:/config
+
+  # ============================================================================
+  # 4. TV SERIES MANAGER (Sonarr)
+  # ============================================================================
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    restart: unless-stopped
+    ports:
+      - "8989:8989"
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Bucharest}
+    volumes:
+      - ./config/sonarr:/config
+      - ${STORAGE_ROOT:-/data}:/data
+    depends_on:
+      - prowlarr
+
+  # ============================================================================
+  # 5. MOVIE COLLECTION MANAGER (Radarr)
+  # ============================================================================
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    restart: unless-stopped
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Bucharest}
+    volumes:
+      - ./config/radarr:/config
+      - ${STORAGE_ROOT:-/data}:/data
+    depends_on:
+      - prowlarr
+
+  # ============================================================================
+  # 6. SUBTITLES AUTOMATION (Bazarr)
+  # Descarcă automat subtitrări în Română și Engleză pentru filme și seriale
+  # ============================================================================
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    restart: unless-stopped
+    ports:
+      - "6767:6767"
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Bucharest}
+    volumes:
+      - ./config/bazarr:/config
+      - ${STORAGE_ROOT:-/data}/media:/data/media
+    depends_on:
+      - sonarr
+      - radarr
+
+  # ============================================================================
+  # 7. MEDIA SERVER (Jellyfin) cu Transcodare Hardware (Intel QSV / VAAPI)
+  # ============================================================================
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    restart: unless-stopped
+    ports:
+      - "8096:8096"
+      - "7359:7359/udp"   # Client Discovery
+      - "1900:1900/udp"   # DLNA Service
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-Europe/Bucharest}
+      - JELLYFIN_PublishedServerUrl=${JELLYFIN_PUBLIC_URL:-http://192.168.1.132:8096}
+    devices:
+      - /dev/dri:/dev/dri # Intel QuickSync Video / AMD VAAPI Passthrough
+    volumes:
+      - ./config/jellyfin:/config
+      - ${STORAGE_ROOT:-/data}/media:/data/media
+
+  # ============================================================================
+  # 8. REQUEST & DISCOVERY INTERFACE (Jellyseerr)
+  # Interfață modernă pentru utilizatori: cereri de filme/seriale aprobate automat
+  # ============================================================================
+  jellyseerr:
+    image: fallenbagel/jellyseerr:latest
+    container_name: jellyseerr
+    restart: unless-stopped
+    ports:
+      - "5055:5055"
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TZ:-Europe/Bucharest}
+    volumes:
+      - ./config/jellyseerr:/app/config
+    depends_on:
+      - jellyfin
+      - sonarr
+      - radarr

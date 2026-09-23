@@ -34,7 +34,38 @@ The platform operates across physical bare-metal nodes, a virtualized perimeter 
 
 ---
 
-## 2. Architectural Blueprints
+## 2. Master Platform Documentation Suite
+
+The platform is thoroughly documented across specialized, production-ready specifications:
+
+| Document | Scope & Focus | Primary Engineering Topics |
+| :--- | :--- | :--- |
+| [**`ARCHITECTURE.md`**](ARCHITECTURE.md) | High-Level Platform Architecture | 16 functional domain models, physical & logical blueprints, Zero Trust transit bus, compute density. |
+| [**`INFRASTRUCTURE.md`**](INFRASTRUCTURE.md) | Physical Fleet & Compute Inventory | Hardware node specifications, KVM VM fleet (VM 200–410), LXC fleet (CT 100–106), capacity budget. |
+| [**`SERVICES.md`**](SERVICES.md) | 33-Service Portfolio & Catalog | Tier 1–4 service taxonomy, port assignments, authentication, dependencies, backup, criticality. |
+| [**`NETWORK.md`**](NETWORK.md) | Network Topology & Segmentation | Virtual bridges (`vmbr0–3`), 10.10.20.0/30 transit bus, 802.1q VLAN 10–50 matrix, WireGuard, DNS. |
+| [**`SECURITY.md`**](SECURITY.md) | Defense Baseline & Threat Model | STRIDE analysis, CIS Linux benchmarks, PKI/CA, secrets hygiene, Wazuh SIEM, Suricata NIDS. |
+| [**`OPERATIONS.md`**](OPERATIONS.md) | Day-2 Operations & SOPs | Cold boot sequencing, emergency shutdown protocols, routine maintenance, update cadences. |
+| [**`BACKUP.md`**](BACKUP.md) | Backup & Data Protection | 3-2-1 backup strategy, Proxmox vzdump, PBS client deduplication, ZFS snapshot retention, RPO/RTO. |
+| [**`DISASTER-RECOVERY.md`**](DISASTER-RECOVERY.md) | Disaster Recovery & Runbooks | Scenarios A–D, bare-metal rebuild procedures, restore drills, business continuity playbooks. |
+| [**`CONTRIBUTING.md`**](CONTRIBUTING.md) | Engineering Guidelines | IaC formatting standards, pre-commit gates, conventional commits, local health checks. |
+| [**`docs/decisions/`**](docs/decisions/) | Architecture Decision Records | Formal ADRs (ADR-0001 through ADR-0008) capturing key design decisions and trade-offs. |
+
+---
+
+## 3. Automated Infrastructure Health Doctor
+
+The repository includes a comprehensive 12-domain automated diagnostic doctor script:
+
+```bash
+python3 scripts/audit_infrastructure.py
+```
+
+Evaluating: `IaC`, `Configuration`, `Security`, `Secrets`, `Networking`, `Kubernetes`, `Observability`, `Backup`, `Disaster Recovery`, `Documentation`, `AI Security`, and `Supply Chain`.
+
+---
+
+## 4. Architectural Blueprints
 
 ### 2.1 High-Level Infrastructure Topology
 
@@ -757,38 +788,48 @@ The infrastructure security model is mapped against common enterprise and cloud 
 
 ## 17. Architectural Design Decisions
 
-- **Why Proxmox VE?**  
+- **Why Proxmox VE?** (See [ADR-0001](docs/decisions/ADR-0001-proxmox-primary-hypervisor.md))  
   Provides native support for lightweight unprivileged LXC containers alongside enterprise KVM virtual machines, delivering high compute density on resource-constrained physical desktop hardware without commercial licensing overhead.
-- **Why OPNsense as a Virtualized Perimeter?**  
+- **Why LXC Container Density?** (See [ADR-0002](docs/decisions/ADR-0002-lxc-container-density.md))  
+  Reduces memory footprint by >80% compared to KVM VMs, allowing 15+ services to run on a 12GB RAM hypervisor.
+- **Why OPNsense as a Virtualized Perimeter?** (See [ADR-0003](docs/decisions/ADR-0003-opnsense-perimeter-gateway.md))  
   Enables programmable routing, stateful packet filtering, Suricata NIDS/IPS, and Unbound DNS sinkholing directly within the hypervisor virtualization plane, eliminating the need for expensive dedicated physical firewall appliances.
-- **Why Dual Inventories in Ansible?**  
-  Separates the active running physical and virtual infrastructure (`ansible/inventories/homelab/hosts.yml`) from the extended declarative blueprint (`inventory/hosts.yml`), preventing configuration drift while maintaining future deployment targets.
-- **Why Wazuh SIEM & Suricata NIDS?**  
-  Combines host-level telemetry (Sysmon, pgAudit, Linux auditd) with perimeter deep packet inspection (Suricata EVE JSON), feeding into an open-source OpenSearch backend for real-time MITRE ATT&CK correlation.
-- **Why Separate the Bachelor's Thesis Segment on `vmbr1`?**  
-  Guarantees that penetration testing drills and simulated financial payment messaging cannot leak into production home automation or NAS storage networks.
+- **Why Two-Tier Storage Architecture?** (See [ADR-0004](docs/decisions/ADR-0004-storage-tiering-local-zfs.md))  
+  Splits high-IOPS local NVMe (`local-lvm`) for active databases and container roots from fault-tolerant remote ZFS storage (`omv_tank`) on OpenMediaVault NAS for backups.
+- **Why Ingress mTLS & On-Demand Active Directory?** (See [ADR-0005](docs/decisions/ADR-0005-identity-access-strategy.md))  
+  Avoids continuous 2GB JVM memory overhead of Keycloak/Authentik, while preserving full multi-version AD/Kerberos research capabilities on-demand.
+- **Why Secrets Hygiene over Vault Cluster?** (See [ADR-0006](docs/decisions/ADR-0006-secrets-management-hygiene.md))  
+  Eliminates unseal ceremony complexity during cold-boot while guaranteeing zero-plaintext storage via SOPS and age.
+- **Why Single-Node k3s/k0s on Edge Hardware?** (See [ADR-0007](docs/decisions/ADR-0007-edge-kubernetes-k3s-k0s.md))  
+  Runs lightweight edge Kubernetes on an AMD Athlon II X2 220 with 4GB RAM using SQLite backend instead of high-IOPS etcd.
+- **Why ELO AI Routing & Security Gatekeeper?** (See [ADR-0008](docs/decisions/ADR-0008-elo-ai-routing-security-gatekeeper.md))  
+  Guarantees offline local GPU inference (GTX 1050 Ti) while strictly enforcing L0–L3 human confirmation gates for destructive actions.
 
 ---
 
-## 18. Factual Project Status & Roadmap
+## 18. Factual Project Status & Lifecycle Matrix
 
-### Current Implementation Status
+In compliance with the **No Fake Enterprise** engineering standard, every workload and subsystem is classified into four truthful lifecycle states:
 
-| Infrastructure Area | Status | Verified Evidence in Repository |
+| Infrastructure Area | Factual Lifecycle State | Implementation & Verification Evidence |
 | :--- | :---: | :--- |
-| **Physical Hypervisors & Compute** | **OPERATIONAL** | Node 1 (Proxmox VE 9.2), Node 2 (OMV NAS), Node 4 (k3s worker) documented in [`inventory/hosts.yml`](inventory/hosts.yml). |
-| **Production LXC Fleet (100–106)** | **OPERATIONAL** | All 7 containers defined in [`terraform/proxmox/lxc_services.tf`](terraform/proxmox/lxc_services.tf) and [`services/x64/`](services/x64/). |
-| **Perimeter Firewall & Routing** | **OPERATIONAL** | OPNsense configurations in [`services/opnsense/`](services/opnsense/) and verified via [`scripts/verify-enterprise-firewall.sh`](scripts/verify-enterprise-firewall.sh). |
-| **Active Directory Core (400–405)** | **OPERATIONAL** | Core 6-node forest active on Node 1; VM configuration dumps verified in [`services/x64/`](services/x64/). |
-| **Active Directory Extended (406–410)**| **DECLARATIVE**| Extended 11-node blueprint declared in [`terraform/ad_lab.tf`](terraform/ad_lab.tf) and [`inventory/hosts.yml`](inventory/hosts.yml). |
-| **Bachelor's Thesis Banking Lab** | **OPERATIONAL** | VMs 310, 311, 313 and CT 312 declared in [`terraform/proxmox/licenta.tf`](terraform/proxmox/licenta.tf) with docker-compose stacks. |
-| **DFIR Forensic Investigations** | **PUBLISHED** | 5 complete case studies, evidence exhibits, and DNSC takedown documentation in [`cyber/`](cyber/). |
-| **Automated CI/CD Pipeline** | **OPERATIONAL** | 6 CI jobs in [`.github/workflows/ci.yml`](.github/workflows/ci.yml) and automated CD publishing in [`.github/workflows/cd.yml`](.github/workflows/cd.yml). |
+| **Physical Nodes & Fleet** | `DEPLOYED` | Node 1 (Proxmox 9.2), Node 2 (OMV NAS), Node 4 (Edge Worker) in [`INFRASTRUCTURE.md`](INFRASTRUCTURE.md). |
+| **Production LXC Fleet (100–106)** | `DEPLOYED` | 7 core containers in [`SERVICES.md`](SERVICES.md), [`terraform/proxmox/lxc_services.tf`](terraform/proxmox/lxc_services.tf). |
+| **Perimeter Firewall & Routing** | `DEPLOYED` | OPNsense VM 200, transit bus `10.10.20.0/30`, verified via [`NETWORK.md`](NETWORK.md). |
+| **Observability (Prom & Grafana)** | `DEPLOYED` | Prometheus TSDB, Grafana dashboards, Telegraf, Node Exporter in [`SERVICES.md`](SERVICES.md). |
+| **Local AI Inference (Ollama GPU)** | `DEPLOYED` | Container 102 with GTX 1050 Ti PCIe passthrough in [`docs/ai/model_routing_cascade.md`](docs/ai/model_routing_cascade.md). |
+| **Data Protection & 3-2-1 Backups** | `DEPLOYED` | Proxmox vzdump to OMV NAS NFS, PBS client, ZFS snapshots in [`BACKUP.md`](BACKUP.md). |
+| **Disaster Recovery Plan** | `DECLARED` (WARNING) | Scenarios A–D, cold boot, and vzdump restore runbooks in [`DISASTER-RECOVERY.md`](DISASTER-RECOVERY.md). |
+| **Bachelor's Thesis Banking Lab** | `DECLARED` (On-Demand) | Apache Fineract, PostgreSQL ledger, and Kali pentest range in [`docs/research/banking_security_lab.md`](docs/research/banking_security_lab.md). |
+| **Active Directory Security Lab** | `DECLARED` (On-Demand) | 11-node multi-forest lab (2008 R2 to 2025) in [`docs/research/active_directory_range.md`](docs/research/active_directory_range.md). |
+| **T-Pot Honeypot & Remnux Lab** | `DECLARED` (On-Demand) | VM 203 and VM 205 declared in [`terraform/proxmox/vm_workloads.tf`](terraform/proxmox/vm_workloads.tf). |
+| **DFIR Case Studies & Disclosures** | `DEPLOYED` (Published) | 5 complete forensic investigation dossiers and DNSC takedown files in [`cyber/`](cyber/). |
+| **Automated Health Audit & CI/CD** | `DEPLOYED` | 12-domain diagnostic doctor in [`scripts/audit_infrastructure.py`](scripts/audit_infrastructure.py) and [`.github/workflows/ci.yml`](.github/workflows/ci.yml). |
 
-### Planned Enhancements (Derived from Code Evidence)
-- [ ] **Proxmox SDN VXLAN Overlay**: Transition internal inter-node communications from Linux bridges to Proxmox SDN EVPN/VXLAN zones as outlined in [`ansible/playbooks/11-networking-sdn.yml`](ansible/playbooks/11-networking-sdn.yml).
-- [ ] **Extended Active Directory Fleet Activation**: Provision the remaining declarative nodes (VM 400 Server 2025, VM 402 Server 2019, VM 407 Windows 11) using the blueprint in [`terraform/ad_lab.tf`](terraform/ad_lab.tf).
-- [ ] **Talos OS Kubernetes Transition**: Migrate Node 4 from k0s/Alpine to immutable Talos Linux using configuration in [`kubernetes/talos/cluster.yaml`](kubernetes/talos/cluster.yaml).
+### Roadmap Enhancements
+- [ ] **Proxmox SDN EVPN/VXLAN Zones**: Transition inter-node links from Linux bridges to Proxmox SDN as outlined in [`ansible/playbooks/11-networking-sdn.yml`](ansible/playbooks/11-networking-sdn.yml).
+- [ ] **Automated Offsite Cold Mirror Sync**: Implement automated periodic GPG/Age encryption and rsync of vzdump snapshots to an offsite S3 repository.
+- [ ] **Talos OS Migration for Edge Node**: Evaluate migrating Node 4 to immutable Talos Linux using [`kubernetes/talos/cluster.yaml`](kubernetes/talos/cluster.yaml).
 
 ---
 
