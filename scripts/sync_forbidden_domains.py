@@ -363,7 +363,7 @@ def generate_forbidden_list_content(all_domains: list[str], breakdown: dict) -> 
 #   7. New Zealand: CERT NZ / NCSC NZ
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
-# Classification: TLP:CLEAR | Synchronized Daily at 05:00 Europe/Bucharest (24h)
+# Classification: TLP:CLEAR | Synchronized Daily at 00:00 Europe/Bucharest (24h)
 # Last Updated: {timestamp_str}
 # Total Forbidden Domains: {len(all_domains)}
 # Breakdown:

@@ -168,7 +168,7 @@ flowchart TD
 ```mermaid
 flowchart TD
     REPO["Git Repository (stefanutc1/infrastructure)"] --> CI["GitHub Actions CI Pipeline<br/>TruffleHog, Gitleaks, Trivy, Checkov, ShellCheck, Syntax Gates"]
-    CI --> CD["GitHub Actions CD Pipeline<br/>Daily 05:00 Bucharest Auto-Sync"]
+    CI --> CD["GitHub Actions CD Pipeline<br/>Daily 00:00 Bucharest Auto-Sync"]
     
     subgraph IAC["Provisioning & Orchestration Engine"]
         TF["Terraform (bpg/proxmox >= 0.60.0)<br/>Proxmox VE REST API Provisioning"]
@@ -576,7 +576,7 @@ flowchart LR
     end
 
     GATES --> MERGE["Protected Main Branch Merge"]
-    MERGE --> CD_PIPELINE["CD Pipeline (cd.yml)<br/>• Automated Dependabot Auto-Merge (100% CI pass gate)<br/>• GitHub Pages Dashboard Deploy<br/>• Daily 05:00 Bucharest Auto-Sync (Metrics, Currency, DNSC)<br/>• OPNsense DNS Sinkhole Auto-Sync"]
+    MERGE --> CD_PIPELINE["CD Pipeline (cd.yml)<br/>• Automated Dependabot Auto-Merge (100% CI pass gate)<br/>• GitHub Pages Dashboard Deploy<br/>• Daily 00:00 Bucharest Auto-Sync (Metrics, Currency, DNSC)<br/>• OPNsense DNS Sinkhole Auto-Sync"]
 ```
 
 ### 13.1 CI Pipeline Jobs (`.github/workflows/ci.yml`)
@@ -605,7 +605,7 @@ flowchart LR
 
 ### 13.2 CD Pipeline Jobs (`.github/workflows/cd.yml`)
 
-- **`merge-dependabot`**: Evaluates Dependabot pull requests at 05:00 Europe/Bucharest. PRs are merged automatically **only** if 100% of CI checks have completed with a green pass status.
+- **`merge-dependabot`**: Evaluates Dependabot pull requests at 00:00 Europe/Bucharest. PRs are merged automatically **only** if 100% of CI checks have completed with a green pass status.
 - **`build-and-deploy-web`**: Builds the Angular 20 frontend and publishes static assets to the `gh-pages` branch, providing the live web dashboard.
 - **`sync-readme`**: Automatically invokes `scripts/sync_readme_metrics.py`, `scripts/sync_currency_conversions.py`, and `scripts/sync_forbidden_domains.py` to keep documentation metrics and threat feeds current.
 - **`sync-opnsense-sinkhole`**: Connects via API/SSH to the live OPNsense perimeter firewall to deploy updated Unbound blocklists.

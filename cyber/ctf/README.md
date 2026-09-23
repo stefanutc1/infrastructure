@@ -23,8 +23,7 @@ cyber/ctf/
 ├── README.md                                    # CTF Hub overview & challenge master matrix
 └── 19-09-2026/                                  # InvataCyber.ro CTF (19 September 2026)
     ├── README.md                                # Challenge session index & execution guide
-    ├── WRITEUP.md                               # Comprehensive centralized English writeup
-    ├── WRITEUP.ro.md                            # Comprehensive centralized Romanian writeup
+    ├── WRITEUP.md                               # Comprehensive centralized writeup
     │
     ├── writeup_01_the_blog_xss.md               # Challenge 1: Stored XSS & Admin Context Theft
     ├── payload.js                               # Asynchronous payload exfiltrating /admin HTML

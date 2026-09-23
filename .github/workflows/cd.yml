@@ -13,8 +13,8 @@ on:
       - 'cyber/lista_interzisa.txt'
       - 'cyber/mediagalaxy-ecommerce-fraud-forensics/**'
   schedule:
-    - cron: '0 2 * * *' # Daily at 05:00 AM Europe/Bucharest (EEST, UTC+3)
-    - cron: '0 3 * * *' # Daily at 05:00 AM Europe/Bucharest (EET, UTC+2)
+    - cron: '0 21 * * *' # Daily at 00:00 Europe/Bucharest (EEST, UTC+3)
+    - cron: '0 22 * * *' # Daily at 00:00 Europe/Bucharest (EET, UTC+2)
   workflow_dispatch:
 
 concurrency:
@@ -43,9 +43,9 @@ jobs:
           BUCHAREST_HOUR=$(TZ="Europe/Bucharest" date +%H)
           echo "Current time in Europe/Bucharest: ${BUCHAREST_TIME} (hour: ${BUCHAREST_HOUR})"
 
-          # If triggered by schedule, verify that local time in Bucharest is 05:00 AM
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$BUCHAREST_HOUR" != "05" ]; then
-            echo "Scheduled trigger received at hour ${BUCHAREST_HOUR} (waiting for 05:00 Europe/Bucharest). Exiting successfully."
+          # If triggered by schedule, verify that local time in Bucharest is 00:00 (midnight)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$BUCHAREST_HOUR" != "00" ]; then
+            echo "Scheduled trigger received at hour ${BUCHAREST_HOUR} (waiting for 00:00 Europe/Bucharest). Exiting successfully."
             exit 0
           fi
 
@@ -165,17 +165,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Check Schedule Window (05:00 Europe/Bucharest)
+      - name: Check Schedule Window (00:00 Europe/Bucharest)
         id: check_schedule
         run: |
           BUCHAREST_HOUR=$(TZ="Europe/Bucharest" date +%H)
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            if [ "$BUCHAREST_HOUR" != "05" ]; then
+            if [ "$BUCHAREST_HOUR" != "00" ]; then
               echo "should_run=false" >> $GITHUB_OUTPUT
-              echo "Scheduled trigger received at hour ${BUCHAREST_HOUR}; waiting for 05:00 Europe/Bucharest. Skipping."
+              echo "Scheduled trigger received at hour ${BUCHAREST_HOUR}; waiting for 00:00 Europe/Bucharest. Skipping."
             else
               echo "should_run=true" >> $GITHUB_OUTPUT
-              echo "Proceeding with scheduled synchronization at 05:00 Europe/Bucharest."
+              echo "Proceeding with scheduled synchronization at 00:00 Europe/Bucharest."
             fi
           elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "should_run=true" >> $GITHUB_OUTPUT
