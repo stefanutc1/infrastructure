@@ -105,6 +105,12 @@ With exactly 12GB of physical DDR4 RAM on Node 1:
 - **Multi-Tier Cascade Routing**: Inbound requests evaluate: Primary Cloud Frontier Model -> Secondary Cloud Fallback -> Local Ollama GPU -> Deterministic Static Fallback.
 - **L0–L3 Tool Gatekeeper**: Strict authorization boundaries requiring out-of-band operator MFA confirmation before privileged or destructive system actions can be executed.
 
+### 3.7 Enterprise Management, Media & Personal Cloud Services
+- **Media & \*arr Ecosystem (`services/x64/media-arr`)**: Jellyfin with VAAPI/NVENC transcoding, Sonarr, Radarr, Prowlarr, Bazarr, Jellyseerr, and qBittorrent isolated via a zero-leak Gluetun VPN killswitch with atomic TRaSH Guides hardlinks.
+- **Immich Suite (`services/x64/immich`)**: High-performance photo and video backup with on-device machine learning (CLIP embeddings, facial recognition) and PostgreSQL vector search (`pgvecto-rs`).
+- **NetBox Source of Truth (`services/x64/netbox`)**: Unified IPAM and DCIM source of truth for all VLANs, subnets, IP assignments, and physical/virtual fleet inventory.
+- **Keycloak IAM (`services/x64/keycloak`)**: Centralized identity federation bridging Active Directory LDAP directory services and modern OpenID Connect (OIDC) / SAML 2.0 Single Sign-On.
+
 ---
 
 ## 4. Architecture Decision Records (ADRs)
@@ -127,7 +133,7 @@ Key architectural trade-offs and decisions are formally recorded in [`docs/decis
 | Document | Primary Focus | Target Audience |
 | :--- | :--- | :--- |
 | [`INFRASTRUCTURE.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/INFRASTRUCTURE.md) | Physical nodes, hardware specs, VM/LXC allocation, capacity budget | Platform & Systems Engineers |
-| [`SERVICES.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/SERVICES.md) | 33-service catalog, ports, protocols, auth, backup, criticality | Application & Operations Teams |
+| [`SERVICES.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/SERVICES.md) | 43-service catalog, ports, protocols, auth, backup, criticality | Application & Operations Teams |
 | [`NETWORK.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/NETWORK.md) | VLAN matrix, routing, bridges, firewall policies, WireGuard VPN | Network & Security Engineers |
 | [`SECURITY.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/SECURITY.md) | Threat modeling, CIS benchmarks, PKI, secrets, Wazuh, Suricata | SecOps & Compliance Auditors |
 | [`OPERATIONS.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/OPERATIONS.md) | Day-2 runbooks, cold boot sequencing, emergency shutdown, updates | SRE & Operations Engineers |
