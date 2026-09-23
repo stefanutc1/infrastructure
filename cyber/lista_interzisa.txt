@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 00:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-23 17:56:38 UTC
-# Total Forbidden Domains: 7183
+# Last Updated: 2026-09-23 21:06:26 UTC
+# Total Forbidden Domains: 7196
 # Breakdown:
 #   - Local Forensics:               432
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 517
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 6241
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 6254
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -128,6 +128,7 @@
 4eclient.com
 4f77ejby0y.workers.dev
 4i1yrtc2.shop-genesis-revival.com
+4lb3banh.ace9bet.net
 4m67cltgrp.workers.dev
 4qbl.com
 4threv.co.uk
@@ -256,6 +257,7 @@ accesstelematics.com
 accionarpolitico.com
 accountsensepro.net
 accountvaulthub.com
+ace90betyek.bet
 aceitelasanta.com
 aceleradoradeciudades.org
 acerosmarsal.com.mx
@@ -288,6 +290,7 @@ ad-checker.icu
 ad-delivery-network.com
 ad-gateway-cloud.cc
 ad-traffic-flow.vip
+adabiyat.org
 adamimmobilien.net
 adammyhill.ca
 adamundadam.de
@@ -873,6 +876,7 @@ avenidacharmehotel.com.br
 avenidalegal.com
 avenix.lol
 averroes.pk
+avhew86963.workers.dev
 avi-wallpapers.co.il
 avira-ent.com
 avivant.com
@@ -2013,6 +2017,7 @@ d15aa.org
 d83fvnq4f0.workers.dev
 daacadelectric.co.ke
 dach-atlas.de
+dacxyxfc.pazarlamasi.com
 dafacodabac52.fit
 daftsex.com
 dafwebkon.com
@@ -2708,6 +2713,7 @@ evolutionls.com
 evolveperformance.fit
 evosolis.it
 evrything-pix.icu
+evuoos85.adabiyat.org
 evwb5jgip6.workers.dev
 evz9hzhn.bonuscode.in
 ew779n8ja1.workers.dev
@@ -3086,6 +3092,7 @@ gamecr3w.com
 gamelandiran.ir
 gamemilitia.com
 gamergyrl.com
+gamesbasedcoach.com
 gamudacity.com.vn
 gamzesmith.com
 gandot.fr
@@ -3284,6 +3291,7 @@ goldrateuae.ae
 golfholidayexperiences.com.au
 golfstuds.golf
 gominii.com
+gone303.com
 gonser.voetbalshop-nlco.com
 gonzaskid-1.paiza-user-free.cloud
 goodaynailspa.com
@@ -3957,6 +3965,7 @@ jdllroofingllc.com
 jdnsquare.com
 jeevika.org
 jefecuje.workers.dev
+jefyfyne.workers.dev
 jenevabaiden.com
 jenniferloeffler.com
 jeremymosscomposer.com
@@ -5038,6 +5047,7 @@ pawtage.com.au
 pay.aqiu6.com
 payangel.info
 paystubsetc.com
+pazarlamasi.com
 pbgskytq.persianeducation.ir
 pctor.link
 pcupd.com
@@ -6587,6 +6597,7 @@ wgiqn27255.workers.dev
 whgsolution.com
 whitefoxrarebooks.com
 whitesborodental.com
+whitfkos.ace9bet.net
 wholenesswithwillene.com
 whxzqkbbtzvdyxdeseoiyujzs.co
 wicked.com
@@ -6627,6 +6638,7 @@ wittenhorst.eu
 witudeju.workers.dev
 wlc.v-panel.asia
 wlcm.v-panel.asia
+wlx9bsjd.gone303.com
 wmc.angiers.org.uk
 wmicconfidance.info
 wncgv45255.workers.dev
@@ -7087,6 +7099,7 @@ xx.1betasia.org
 xx.hg77.org
 xyhysa.workers.dev
 xyyhb62254.workers.dev
+y0h2qv6p.oralsurgeontintonfalls.com
 y32me8.com
 y6q8ve44.protransportationservice.com
 y7muyebir6.workers.dev
