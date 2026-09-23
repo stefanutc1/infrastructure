@@ -1,8 +1,19 @@
-# Infrastructure Cyber Security: Vulnerability & Threat Intelligence Hub
-## Critical Ecosystem CVE Assessments & Hardening Guides (Windows & Proxmox VE)
+# Infrastructure Cybersecurity: Vulnerability & Threat Intelligence Hub
+
+<div align="center">
+
+[![Classification](https://img.shields.io/badge/Classification-TLP%3ACLEAR-brightgreen.svg?style=flat&logo=securityscorecard)](#)
+[![Max Severity](https://img.shields.io/badge/CVSS%20v3.1-9.8%20CRITICAL-red.svg?style=flat&logo=target)](#)
+[![Target Hypervisors](https://img.shields.io/badge/Hypervisors-Proxmox%20VE%20%7C%20Hyper--V-orange.svg?style=flat&logo=proxmox)](#)
+[![Identity Systems](https://img.shields.io/badge/Ecosystem-Active%20Directory%20Forest-blue.svg?style=flat&logo=windows)](#)
+[![Remediation Status](https://img.shields.io/badge/Remediation-100%25%20Hardening%20Playbooks-brightgreen.svg?style=flat&logo=checkmarx)](#)
+
+</div>
+
+## Critical Ecosystem CVE Assessments & Hardening Playbooks (Windows & Proxmox VE)
 
 **Author:** @stefanutc1  
-**Last Updated:** 13 September 2026  
+**Last Updated:** September 2026  
 **Classification:** TLP:CLEAR / Technical Cyber Threat Intelligence  
 **Scope:** Impact Analysis on Homelab & Enterprise Infrastructure (`hosts.yml`, Proxmox VE Bare-Metal, Hyper-V, Active Directory Domain Controllers)
 

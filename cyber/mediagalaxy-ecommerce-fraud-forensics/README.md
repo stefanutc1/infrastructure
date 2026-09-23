@@ -207,7 +207,7 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 ### Phase 1: Lure Ingestion & Brand Impersonation
 | Sponsored TikTok Campaign | Cloned Media Galaxy Subdomain |
 | :---: | :---: |
-| ![TikTok Lure](<evidence/Screenshot 2026-09-17 at 01.14.25.png>) | ![Phishing Landing](evidence/08_phishing_subdomain_landing_chinese_notice.png) |
+| ![TikTok Lure](evidence/Screenshot%202026-09-17%20at%2001.14.25.png) | ![Phishing Landing](evidence/08_phishing_subdomain_landing_chinese_notice.png) |
 | *Deceptive sponsored ad offering 4 RON detergent* | *Subdomain `mediagalaxy.voetbalshop-nlco.com` displaying fake maintenance screen* |
 
 ---

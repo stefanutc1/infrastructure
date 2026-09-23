@@ -91,7 +91,7 @@
    - The filing submitted on September 16, 21:21 EEST was officially accepted, assigned Ticket ID **`[D.N.S.C. #178465]`**, and escalated to the *General Directorate of Technical Operations*.
 2. **PNRISC Blacklist Pipeline Integration:**
    - DNSC confirmed the evaluation of `mediagalaxy.voetbalshop-nlco.com` (and associated campaign endpoints) for inclusion in the national PNRISC Blacklist gateway ([`https://blacklist.dnsc.ro/`](https://blacklist.dnsc.ro/)).
-   - Our automated repository synchronizer ([`scripts/sync_forbidden_domains.py`](../../scripts/sync_forbidden_domains.py)), executing every 24 hours at 05:00 AM Europe/Bucharest via GitHub Actions CD, will automatically ingest the domain into [`cyber/forbidden_domains.txt`](../forbidden_domains.txt) and [`cyber/lista_interzisa.txt`](../lista_interzisa.txt) upon publication.
+   - Our automated repository synchronizer ([`scripts/sync_forbidden_domains.py`](../../../scripts/sync_forbidden_domains.py)), executing every 24 hours at 05:00 AM Europe/Bucharest via GitHub Actions CD, will automatically ingest the domain into [`cyber/forbidden_domains.txt`](../forbidden_domains.txt) and [`cyber/lista_interzisa.txt`](../lista_interzisa.txt) upon publication.
 3. **Alignment with National Directives:**
    - All 7 DNSC mitigation directives were proactively executed during earlier phases:
      - **Recommendation 4 & 6 (Card & Credentials lockdown):** Executed on Sept 16, 20:00 (card frozen) & Sept 17, 18:00 (BCR bank dispute opened under Visa/Mastercard Rule 4853).
@@ -110,7 +110,7 @@
 
 - **Dovadă Vizuală**: Înregistrată ca [`evidence/25_dnsc_blacklist_voetbalshop_block.png`](../evidence/25_dnsc_blacklist_voetbalshop_block.png).
 - **Efect Operativ**: Extensia oficială de browser DNSC blochează în timp real tentativele de acces la nivel național.
-- **Sincronizare Automată Depozit**: Scriptul nostru de sincronizare zilnică ([`scripts/sync_forbidden_domains.py`](../../scripts/sync_forbidden_domains.py)) a extras noile intrări direct din portalul DNSC, actualizând [`cyber/dnsc_blacklist.json`](../dnsc_blacklist.json) și lista de blocare [`cyber/forbidden_domains.txt`](../forbidden_domains.txt).
+- **Sincronizare Automată Depozit**: Scriptul nostru de sincronizare zilnică ([`scripts/sync_forbidden_domains.py`](../../../scripts/sync_forbidden_domains.py)) a extras noile intrări direct din portalul DNSC, actualizând [`cyber/dnsc_blacklist.json`](../dnsc_blacklist.json) și lista de blocare [`cyber/forbidden_domains.txt`](../forbidden_domains.txt).
 
 ---
 
