@@ -177,9 +177,51 @@ The campaign operated on a multi-tier infrastructure:
   3. **Multi-Channel Syndication (Meta & ByteDance):** Confirms the threat syndicate does not rely exclusively on TikTok; they actively syndicate identical promotional hooks across Meta platforms (Facebook / Instagram Feed) targeting Romanian demographics.
   4. **In-App WebView Hijack:** The "Aflați mai multe" CTA funnels users directly into Facebook's embedded browser (In-App WebView), obscuring the full FQDN URL bar, bypassing traditional desktop browser security extensions, and lowering victim skepticism.
 
+### Evidence Item 28: Order Delivery Notice Email Headers (StridewiseTrading Spoofing)
+- **File:** `evidence/28_delivery_notice_email_header_stridewise.png`
+- **Source:** Desktop Webmail Capture (Gmail Web Interface)
+- **Subject:** `Order Delivery Notice 229942-177457 (Notificare de livrare a comenzii 229942-177457)`
+- **Spam Labeling:** Filtered directly to `Spam` folder by Google Mail heuristics
+- **Sender (From):** `Customer Service <noreply@email.stridewisetrading.com>`
+- **Delivery Timestamp:** Friday, 18 September 2026 at 05:06 EEST
+- **Recipient:** Target victim inbox (`către eu`)
+- **Forensic Assessment & Technical Significance:**
+  1. **New Infrastructure Pivot (`stridewisetrading.com`):** Demonstrates that the threat actor operates a pool of disposable front domains (`worvixglobal.com`, `mailapp-fly.com`, and now `stridewisetrading.com`) for SMTP distribution, cycling domains as prior hosts accumulate spam reports or DNS blocks.
+  2. **Order Token Consistency:** The email references the exact fraudulent transaction token `229942-177457` originally generated in Evidence Item 05 (`Order Confirmation: Thank You for Your Purchase [229942-177457]`), proving end-to-end campaign infrastructure continuity across different sender domains.
+
+### Evidence Item 29: Order Delivery Notice Body & Fake Logistics Tracking (TrackParcel.de)
+- **File:** `evidence/29_delivery_notice_email_body_tracking_lure.png`
+- **Source:** Gmail Web Interface (Upper Body Capture)
+- **Order Identifier:** `numărul de comandă: 229942-177457`
+- **Tracking Identifier:** `EURO20260918100004917`
+- **Tracking Portal URL:** `https://www.trackparcel.de/`
+- **Delivery Notice Copy:**
+  > *"Vă mulțumim pentru achiziție! Comanda dumneavoastră 229942-177457 a fost livrată și este expediată la adresa specificată.*  
+  > *Informații importante:*  
+  > *• Informațiile de urmărire sunt de obicei actualizate în termen de 2-4 zile lucrătoare.*  
+  > *• Timp estimat de livrare: 10-20 zile lucrătoare.*  
+  > *• Tratamentul vamal la destinație poate afecta timpul de livrare."*
+- **Forensic Assessment & Stalling Psychology:**
+  1. **Dispute Window Pacification:** The explicit insertion of an extended shipping window ("10-20 zile lucrătoare") and a customs clearance pretext ("Tratamentul vamal la destinație poate afecta timpul de livrare") is a calculated psychological stalling tactic designed to deter the victim from contacting their bank immediately to dispute the charge or initiate a formal chargeback.
+  2. **Bogus Tracking Ecosystem (`trackparcel.de`):** The tracking number format (`EURO20260918100004917`) mimics European parcel consignments, directing victims to a third-party tracking portal (`trackparcel.de`) that returns spoofed in-transit milestones to maintain the illusion of an active physical shipment.
+
+### Evidence Item 30: Threat Actor Contact Drop Inbox (brekerfurught@outlook.com)
+- **File:** `evidence/30_delivery_notice_email_body_outlook_drop_inbox.png`
+- **Source:** Gmail Web Interface (Lower Body & Support Details)
+- **Customer Support Mailbox:** `brekerfurught@outlook.com`
+- **Call-to-Action Instructions:**
+  > *"Următoarea operațiune:*  
+  > *• Faceți clic pe linkul de mai sus pentru a urmări starea coletului.*  
+  > *• Asigurați-vă că adresa de destinație este corectă.*  
+  > *• Cineva primește coletul acasă sau îl aranjează în avans.*  
+  > *Dacă aveți întrebări despre această livrare, vă rugăm să contactați echipa noastră de asistență clienți.*  
+  > *Cutia poștală pentru serviciul clienți: brekerfurught@outlook.com*  
+  > *Acest e-mail este o notificare de livrare automată, vă rugăm să nu răspundeți direct."*
+- **Forensic Assessment & Direct Threat Actor Correlation:**
+  1. **Direct IoC Correlation:** The support address `brekerfurught@outlook.com` provides absolute forensic confirmation linking this delivery notification to the core threat syndicate, directly matching the drop inbox identified in Section 4 of our master dossier.
+  2. **Secondary Social Engineering Vector:** Directing victims to communicate with a freemail Outlook account rather than an authenticated retail customer support portal is a major red flag, intended to capture secondary identity artifacts, address verification, or deflect bank fraud inquiries.
 
 ---
-
 
 ### Section 2.5: Live Airtight Browser Sandbox Probing & Discoveries
 In addition to the historical screenshots provided on the Desktop, active forensic probing was conducted using an isolated Google Chrome headless sandbox (`--headless=new --incognito --user-data-dir=/tmp/isolated_chrome_sandbox`) with ephemeral profiles to prevent any client fingerprint leakage.

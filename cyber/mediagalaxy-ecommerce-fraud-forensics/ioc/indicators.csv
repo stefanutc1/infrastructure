@@ -17,3 +17,9 @@ MaryxBeckb96@gmail.com,Email,Attacker Reply-To Drop Address (Campaign 2),HIGH,20
 [229942-177457],String,Fake Purchase Order Tracking Token,HIGH,2026-09-16,N/A,N/A,HIGH,T1566,Correlation token in SIEM / Mails
 586571,String,Lure One-Time Validation Code,HIGH,2026-09-16,N/A,N/A,HIGH,T1539,Evidence tracking
 morvethemi london,Merchant Descriptor,Fraudulent Bank Card Charge Descriptor,CRITICAL,2026-09-16,Payment Gateway Aggregator / Shell Merchant,N/A,HIGH,T1657,Flag for Chargeback Dispute (Visa/MC)
+stridewisetrading.com,Domain,Attacker Shell Front & Stalling Delivery Notice Domain,CRITICAL,2026-09-18,Cloudflare Inc. (AS13335),Unknown,HIGH,T1583.001,Block / DNS Sinkhole
+email.stridewisetrading.com,FQDN,Fake Delivery Notification Sender Subdomain,CRITICAL,2026-09-18,Cloudflare Inc. (AS13335),Unknown,HIGH,T1566.001,Block / Quarantine at Mail Gateway
+noreply@email.stridewisetrading.com,Email,Phishing Sender (Fake Order Delivery Notice),CRITICAL,2026-09-18,DKIM Signed email.stridewisetrading.com,N/A,HIGH,T1566.001,Add to Blacklist / Report Abuse
+trackparcel.de,Domain,Fraudulent Stalling Parcel Tracking Portal,CRITICAL,2026-09-18,DENIC / Unknown Hosting,Unknown,HIGH,T1583.008 / T1204.001,Block at Gateway / DNS Sinkhole
+EURO20260918100004917,String,Fictitious Tracking Number / Dispute Stalling Pretext,HIGH,2026-09-18,N/A,N/A,HIGH,T1566,Correlation token in SIEM / Mails
+

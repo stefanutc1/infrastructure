@@ -16,3 +16,9 @@ email.worvixglobal.com
 info.mailapp-fly.com
 mailapp-fly.com
 *.mailapp-fly.com
+stridewisetrading.com
+*.stridewisetrading.com
+email.stridewisetrading.com
+trackparcel.de
+*.trackparcel.de
+

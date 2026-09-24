@@ -169,9 +169,10 @@ For victims or fraud handlers filing chargeback claims with BCR or issuing banks
 - **Compromised Base Domain:** `voetbalshop-nlco.com`
 - **DNSC PNRISC Blacklisted Subdomains:** `dm.voetbalshop-nlco.com`, `gonser.voetbalshop-nlco.com` *(Added September 18, 2026 under 'Impersonation')*
 - **Backend C2 SaaS:** `yiyangsaas.com` (Yunnan, China)
-- **Email Infrastructure:** `worvixglobal.com`, `email.worvixglobal.com`, `mailapp-fly.com`, `info.mailapp-fly.com`
+- **Email Infrastructure:** `worvixglobal.com`, `email.worvixglobal.com`, `mailapp-fly.com`, `info.mailapp-fly.com`, `stridewisetrading.com`, `email.stridewisetrading.com`
+- **Fake Tracking Portal & Token:** `https://www.trackparcel.de/` (Tracking #: `EURO20260918100004917`)
 - **Attacker Drop Inboxes:** `MaryxBeckb96@gmail.com`, `brekerfurught@outlook.com`
-- **Bank Charge Descriptor:** `morvethemi london`
+- **Bank Charge Descriptors:** `morvethemi london`, `dreamwardrobe.online`
 - **Fraud Order ID:** `[229942-177457]`
 - **Phishing OTP Lure:** `586571`
 
@@ -275,6 +276,13 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+### Phase 8: Post-Exploitation Stalling & Fake Logistics Infrastructure
+| Delivery Notice Header: StridewiseTrading | Fake Tracking Portal Lure (TrackParcel.de) | Threat Actor Support Drop Inbox |
+| :---: | :---: | :---: |
+| ![Delivery Notice Header](evidence/28_delivery_notice_email_header_stridewise.png) | ![Fake Tracking Body](evidence/29_delivery_notice_email_body_tracking_lure.png) | ![Support Drop Inbox](evidence/30_delivery_notice_email_body_outlook_drop_inbox.png) |
+| *Automated delivery notification (`Order Delivery Notice 229942-177457`) dispatched from `noreply@email.stridewisetrading.com` on Sept 18, 2026, flagged as Spam by Gmail heuristics.* | *Email body tying directly to fraudulent order `229942-177457`, providing a fabricated tracking number `EURO20260918100004917` routed to fake tracking portal `https://www.trackparcel.de/` with artificial 10-20 business day delivery window and customs clearance warnings.* | *Direct forensic link to campaign IoC drop inbox: `brekerfurught@outlook.com`. The stall tactic deliberately pacifies the victim to run down the card issuer's immediate fraud dispute window.* |
+
+---
 
 ## 8. Practical Security Guidelines: What to Do & What NOT to Do (DOs and DON'Ts)
 
