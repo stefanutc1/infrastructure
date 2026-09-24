@@ -1,0 +1,67 @@
+name: Chaos Engineering
+
+on:
+  schedule:
+    - cron: '0 3 * * 0' # Weekly Sunday at 03:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: chaos-tests
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  chaos-tests:
+    name: Chaos Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Environment
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq stress-ng iproute2 curl jq
+          chmod +x scripts/chaos/chaos_runner.sh
+
+      - name: Start Staging Container
+        run: |
+          echo "Starting staging container..."
+          docker run -d --name staging-microservice --restart=always -p 8088:80 nginx:alpine
+          sleep 3
+          curl -fsS http://localhost:8088 > /dev/null
+          echo "Staging container ready."
+
+      - name: CPU & Memory Stress Test
+        run: |
+          bash scripts/chaos/chaos_runner.sh cpu-stress 10
+          bash scripts/chaos/chaos_runner.sh ram-pressure 10
+
+      - name: Service Fault & Recovery Test
+        run: |
+          bash scripts/chaos/chaos_runner.sh service-kill 5 staging-microservice
+          bash scripts/chaos/chaos_runner.sh auto-healing-check 30 staging-microservice
+          docker ps --filter "name=staging-microservice"
+
+      - name: Network Degradation Test
+        run: |
+          bash scripts/chaos/chaos_runner.sh network-latency 5 lo 50ms || true
+          bash scripts/chaos/chaos_runner.sh packet-loss 5 lo 10% || true
+
+      - name: Alert Webhooks Test
+        env:
+          UPTIME_KUMA_URL: ${{ secrets.UPTIME_KUMA_PUSH_URL }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          bash scripts/chaos/chaos_runner.sh alert-webhook-validate
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f staging-microservice 2>/dev/null || true
+          echo "Staging environment cleaned up."

@@ -1,0 +1,44 @@
+#cloud-config
+# ==============================================================================
+# Ubuntu Server 24.04 LTS Cloud-Init User Data Manifest
+# ==============================================================================
+hostname: ubuntu-server-2404
+fqdn: ubuntu.homelab.lan
+manage_etc_hosts: true
+
+users:
+  - name: Stefanut
+    gecos: Stefanut
+    primary_group: Stefanut
+    groups: [sudo, adm, cdrom, dip, plugdev, lxd]
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: true
+    # Secret Management: Enforce SSH key-only authentication (no plaintext password)
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPqgqf4V3j2kL4m5n6p7q8r9s0t1u2v3w4x5y6z7a8b9 root@pve
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - qemu-guest-agent
+  - curl
+  - wget
+  - git
+  - htop
+  - net-tools
+  - ufw
+  - sudo
+
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+
+runcmd:
+  - systemctl enable --now qemu-guest-agent
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow 22/tcp
+  - ufw --force enable

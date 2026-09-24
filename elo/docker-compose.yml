@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  elo-postgres:
+    image: pgvector/pgvector:pg16
+    container_name: elo-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-elo_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-elo_secure_pass_change_me}
+      POSTGRES_DB: ${POSTGRES_DB:-elo_brain}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - elo_pgdata:/var/lib/postgresql/data
+      - ./infra/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-elo_admin} -d ${POSTGRES_DB:-elo_brain}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  elo-redis:
+    image: redis:7-alpine
+    container_name: elo-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - elo_redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  elo_pgdata:
+  elo_redisdata:

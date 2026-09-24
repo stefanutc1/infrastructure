@@ -1,0 +1,13 @@
+sistem:
+  nume: "irigatii"
+  interval_verificare_secunde: 60
+
+zone:
+  - id: "sector_1"
+    pin_gpio: 17
+    prag_umiditate: 35
+    durata_udare_sec: 1200
+  - id: "sector_2"
+    pin_gpio: 27
+    prag_umiditate: 40
+    durata_udare_sec: 900

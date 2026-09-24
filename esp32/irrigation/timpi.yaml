@@ -1,0 +1,9 @@
+zone:
+  - id: sector_nord
+    pin_valva: 17
+    prag_umiditate: 35
+    timp_udare_min: 20
+  - id: sector_sud
+    pin_valva: 27
+    prag_umiditate: 40
+    timp_udare_min: 15
