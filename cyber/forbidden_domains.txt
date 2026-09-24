@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 00:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-24 17:15:34 UTC
-# Total Forbidden Domains: 8255
+# Last Updated: 2026-09-24 17:41:08 UTC
+# Total Forbidden Domains: 8260
 # Breakdown:
 #   - Local Forensics:               435
 #   - Romania (DNSC Blacklist):       10
 #   - European Union (CERT-EU/URLh): 534
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 7297
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 7302
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -1020,6 +1020,7 @@ bafilufe.workers.dev
 bageforr.com
 bagongear.com
 bahira.me
+bahisbiz.com
 bahrainhrs.org
 baidenfree.com
 baidengop.com
@@ -2531,6 +2532,7 @@ dlfestudiocreativo.com
 dm.voetbalshop-nlco.com
 dmaltastore.com.br
 dmoretti.com
+dnewssuperfast.com
 dnnewsbangla.com
 dnqj.my
 dns.n1u89dhs.xyz
@@ -4392,6 +4394,7 @@ islamicloveduas.com
 islandmanaentertainment.com
 israel-carrom.com
 isso.com.tn
+istanbul303.com
 istitutomeridiana.it
 isvbauservice.de
 isyapp.de
@@ -4408,6 +4411,7 @@ iwonderifulovemeaswell.vg
 izharc.com
 izrasports.com
 j-88.co
+j01nn5zm.istanbul303.com
 j2zz03ut.belly-flush.us
 j4cleaning.co.uk
 j5hbvp9a.gideonconstructioninc.com
@@ -4688,6 +4692,7 @@ kz.zk89.net
 kz6e3mq6.pipo303.com
 l0jpgk5p.tapl.store
 l2a54f5j47.workers.dev
+l63gj1o5.bahisbiz.com
 l8ztthbb.en-us--tupitea.com
 la-programmation.surleweb-france.fr
 laasiasalon.com
