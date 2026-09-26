@@ -12,12 +12,12 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 00:00 Europe/Bucharest (24h)
-# Last Updated: 2026-09-25 21:06:04 UTC
-# Total Forbidden Domains: 10188
+# Last Updated: 2026-09-26 21:06:37 UTC
+# Total Forbidden Domains: 10192
 # Breakdown:
 #   - Local Forensics:               435
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 551
+#   - European Union (CERT-EU/URLh): 556
 #   - Five Eyes Coalition (US/UK/CA/AU/NZ): 9213
 # ==============================================================================
 007tg.vip
@@ -2192,6 +2192,7 @@ corpindianews.com
 corredora3g.cl
 corrykro.icu
 cortinaspacifico.cl
+corzclient.net
 cosadesidera.it
 cosmemountainview.com
 cosmotools.es
@@ -4728,6 +4729,7 @@ k3.zk89.net
 k31india.org
 k4d8qigu.houtbriketten.net
 k5iyfsce.wisma138paimon.org
+kabarberita.eu.cc
 kabari99.com
 kachiyou.net
 kaesercustomhomes.com
@@ -5043,6 +5045,7 @@ laridon.co.uk
 larmogicsvp.org.br
 larnacabay.com
 laroverestore.com
+larpdebug.com
 laryssarocha.arq.br
 lasalada1963.com
 laseniora.se
@@ -6197,6 +6200,7 @@ noram.be
 norayasesores.com
 norcom.com.ar
 nordensbyggteknik.se
+nordertextil.de
 nordicbeehive.se
 nordicqlobal.com
 norikokuresumi.com
