@@ -127,7 +127,7 @@ const EN_TRANSLATIONS: Translations = {
   navNetwork: 'Network & VLANs',
   navAd: 'Active Directory',
   navThesis: 'Banking Security Lab',
-  navCyber: 'Forensic Cases (5)',
+  navCyber: 'Forensic & CTF Cases (6)',
   navIac: 'IaC & CI/CD',
   navBlueprint: 'Blueprint & Specs',
   statusClusterActive: '3 nodes online',
@@ -150,8 +150,8 @@ const EN_TRANSLATIONS: Translations = {
   metricServicesDesc: 'Production microservices, Active Directory forest, SIEM telemetry, local GPU AI, and network infrastructure.',
   
   metricCyberTitle: 'SECURITY & DFIR',
-  metricCyberCount: '5 Cases · SIEM',
-  metricCyberDesc: 'Wazuh SIEM / XDR (4GB Heap), Suricata IDS/IPS, OPNsense firewall, and 5 digital forensics investigations with DNSC dispositions.',
+  metricCyberCount: '6 Cases · SIEM',
+  metricCyberDesc: 'Wazuh SIEM / XDR (4GB Heap), Suricata IDS/IPS, OPNsense firewall, 19.09.2026 CTF (3/3 · 100%), and 5 digital forensics investigations with DNSC dispositions.',
 
   topologyTag: 'NETWORK TOPOLOGY',
   topologyTitle: 'Spatial 3D Topology Visualization',

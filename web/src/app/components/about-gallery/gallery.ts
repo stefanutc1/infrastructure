@@ -21,99 +21,99 @@ interface PhotoItem {
  standalone: true,
  imports: [CommonModule],
  template: `
-  <section id="about" class="w-full py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-b border-obsidian-750 font-sans">
+  <section id="about" class="w-full py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
    
    <!-- Section Header -->
    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-    <div>
-     <h2 class="text-3xl sm:text-4xl font-serif text-slate-100 font-normal">
-      {{ ts.isRomanian ? 'Despre Mine & Galeria Completă a Serviciilor' : 'About Me & Complete Services Fleet Gallery' }}
+    <div class="space-y-3">
+     <div class="inline-flex items-center gap-2 rounded-[30px] bg-[#52212e] px-3 py-0.5 text-[11px] font-mono text-[#efebe5]">
+      <span class="h-1.5 w-1.5 rounded-[2px] bg-[#efebe5]"></span>
+      <span>ENGINEER PROFILE & LIVE TELEMETRY GALLERY</span>
+     </div>
+     <h2 class="text-3xl sm:text-4xl font-display text-[#efebe5] font-normal tracking-[-0.025em]">
+      About Me & Complete
+      <span class="font-light italic text-[#d9d1ca]">Services Fleet Gallery.</span>
      </h2>
     </div>
-    <p class="text-xs sm:text-sm text-slate-400 font-sans max-w-xl leading-relaxed">
-     {{ ts.isRomanian 
-      ? 'Arhitectură complet implementată pe hardware fizic și mașini virtuale de către @stefanutc1. Mai jos găsiți galeria panourilor principale, a mașinilor virtuale KVM și a tuturor microserviciilor active cu capturi reale.' 
-      : 'Production-grade enterprise virtualization, security, and GitOps architecture built by @stefanutc1. Explore live management panels, KVM enterprise VMs, and all active microservices.' }}
+    <p class="text-xs sm:text-sm text-[#d9d1ca] font-sans max-w-xl leading-relaxed">
+     Production-grade enterprise virtualization, security, and GitOps architecture built by <strong class="text-[#efebe5] font-medium">Moană Ștefănuț-Cornel (&#64;stefanutc1)</strong>. Explore live management panels, KVM enterprise VMs, and all active microservices.
     </p>
    </div>
 
    <!-- About Me Engineer Bio Card -->
-   <div class="mb-12 p-6 sm:p-8 rounded-3xl bg-[#0c0e11] border border-obsidian-750 shadow-2xl relative overflow-hidden">
-    <div class="absolute -right-16 -top-16 w-64 h-64 bg-obsidian-800/30 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+   <div class="mb-12 p-6 sm:p-8 rounded-[16px] bg-[#140b0f] border border-[#24181e] shadow-[0_24px_60px_rgba(0,0,0,0.6)] relative overflow-hidden">
+    <div class="absolute -right-16 -top-16 w-64 h-64 bg-[#52212e]/25 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
      
      <div class="lg:col-span-2 space-y-4">
-      <div class="flex items-center gap-3">
-       <div class="w-12 h-12 rounded-2xl bg-obsidian-800 border border-obsidian-700 flex items-center justify-center font-sans font-bold text-slate-300 text-xl shadow-inner">
-        SN
+      <div class="flex items-center gap-3.5">
+       <div class="w-12 h-12 rounded-tl-[16px] rounded-br-[16px] bg-[#401823] border border-[#52212e] flex items-center justify-center font-display font-semibold text-[#efebe5] text-lg shadow-inner">
+        MȘ
        </div>
        <div>
-        <h3 class="text-lg sm:text-xl font-bold text-slate-100">@stefanutc1</h3>
-        <p class="text-xs font-sans text-slate-300">DevOps & Infrastructure Architect · Datacenter Engineering</p>
+        <div class="flex flex-wrap items-center gap-2">
+         <h3 class="text-lg sm:text-xl font-display font-medium text-[#efebe5]">Moană Ștefănuț-Cornel</h3>
+         <span class="rounded-[30px] bg-[#52212e] px-2.5 py-0.5 font-mono text-[11px] text-[#efebe5]">&#64;stefanutc1</span>
+        </div>
+        <p class="text-xs font-mono text-[#d9d1ca] mt-0.5">
+         Universitatea din Craiova · FEAA — Informatică Economică (2024 – 2027) · Software Engineering since 2015
+        </p>
        </div>
       </div>
-      <p class="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
-       {{ ts.isRomanian
-        ? 'Pasionat de sisteme distribuite, securitate zero-trust, virtualizare hibridă (x86_64 cu 12 GB DDR4-2133 și ARM64 Apple Silicon) și automatizare GitOps (Terraform, Ansible, CI/CD). Acest datacenter servește drept mediu sandbox enterprise pentru testarea stivelor complexe de microservicii, kernel hardening (Linux / BSD) și observabilitate în timp real.'
-        : 'Passionate about distributed systems, zero-trust perimeter defense, multi-architecture virtualization (x86_64 with 12 GB DDR4-2133 and Apple Silicon ARM64), and GitOps automation. This datacenter powers live microservices, bare-metal telemetry, and real-time observability.' }}
+      <p class="dp-heading-accent text-xs sm:text-sm text-[#d9d1ca] font-sans leading-relaxed">
+       Hands-on software engineering since 2015 — evolving from early C++, Java, and full-stack web platforms to distributed bare-metal infrastructure, zero-trust perimeter defense, multi-architecture virtualization (x86_64 with 12 GB DDR4-2133 and Apple Silicon ARM64), and GitOps automation.
       </p>
       <div class="flex flex-wrap gap-2 pt-2">
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Proxmox VE 9.2 (12GB x64 · i3-10100F)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">OPNsense 24.7 Firewall (VM 200)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Wazuh SIEM / XDR (CT 106 · 6GB OpenSearch)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Ollama GPU LLM (CT 102 · GTX 1050 Ti)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Apache Fineract (VM 310)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Financial DB (VM 311)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Payment Gateway (CT 312)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Bachelor Thesis: Bastion MFA (VM 313)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD PDC: Windows Server 2022 (VM 400)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD SDC: Windows Server 2016 (VM 401)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD CA: Windows Server 2012 R2 (VM 402)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD Client: Windows 10 Sysmon (VM 403)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD Legacy: Windows 7 SMBv1 (VM 404)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">AD Linux: RHEL 9 SSSD Realm (VM 405)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">OpenStack Sandbox (VM 201)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Parrot Security OS (VM 300)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Metasploitable 2 Target (VM 301)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Malware Flare-VM Sandbox (VM 303)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">REMnux Forensic Toolkit (VM 304)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">OpenMediaVault NAS (Node 2)</span>
-        <span class="px-2.5 py-1 rounded-lg bg-obsidian-800 text-slate-300 font-sans text-[11px] border border-obsidian-750">Kubernetes k3s Worker (Node 4)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Proxmox VE 9.2 (12GB x64 · i3-10100F)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">OPNsense 24.7 Firewall (VM 200)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Wazuh SIEM / XDR (CT 106 · 6GB OpenSearch)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Ollama GPU LLM (CT 102 · GTX 1050 Ti)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Bachelor Thesis: Apache Fineract (VM 310)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Bachelor Thesis: Financial DB (VM 311)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Bachelor Thesis: Payment Gateway (CT 312)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">Bachelor Thesis: Bastion MFA (VM 313)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">AD PDC: Windows Server 2022 (VM 400)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">AD SDC: Windows Server 2016 (VM 401)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">AD CA: Windows Server 2012 R2 (VM 402)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">AD Client: Windows 10 Sysmon (VM 403)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">AD Legacy: Windows 7 SMBv1 (VM 404)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">AD Linux: RHEL 9 SSSD Realm (VM 405)</span>
+        <span class="px-2.5 py-1 rounded-[6px] bg-[#0c0c0c] text-[#d9d1ca] font-mono text-[11px] border border-[#24181e]">InvataCyber.ro CTF 19.09.2026 (3/3 · 100%)</span>
       </div>
      </div>
 
      <!-- Quick Access Endpoints Box -->
-     <div class="p-5 rounded-2xl bg-obsidian-900 border border-obsidian-750 font-sans text-xs space-y-2.5">
-      <div class="text-[10px] text-slate-300 font-bold uppercase tracking-wider pb-1 border-b border-obsidian-800">
-       {{ ts.isRomanian ? 'Acces Rapid Panouri Web' : 'Quick Access Web Dashboards' }}
+     <div class="p-5 rounded-[12px] bg-[#0c0c0c] border border-[#24181e] font-mono text-xs space-y-2.5">
+      <div class="text-[10px] text-[#efebe5] font-bold uppercase tracking-wider pb-1.5 border-b border-[#24181e]">
+       Quick Access Web Dashboards & Portals
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Grafana (CT 104):</span>
-       <a href="http://192.168.1.121:3000" target="_blank" class="text-slate-300 hover:underline">192.168.1.121:3000</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">Main Portfolio:</span>
+       <a href="https://stefanutc1.github.io" target="_blank" class="text-[#efebe5] hover:underline">stefanutc1.github.io ↗</a>
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">PVE x86_64 (Node 1):</span>
-       <a href="https://192.168.1.132:8006" target="_blank" class="text-slate-300 hover:underline">192.168.1.132:8006</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">University Repo:</span>
+       <a href="https://github.com/stefanutc1/university" target="_blank" class="text-[#efebe5] hover:underline">stefanutc1/university ↗</a>
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">OPNsense (VM 200):</span>
-       <a href="https://192.168.1.134:8443" target="_blank" class="text-slate-300 hover:underline">192.168.1.134:8443</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">Grafana (CT 104):</span>
+       <a href="http://192.168.1.121:3000" target="_blank" class="text-[#d9d1ca] hover:underline">192.168.1.121:3000</a>
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Wazuh SIEM (CT 106):</span>
-       <a href="https://192.168.1.240:443" target="_blank" class="text-slate-300 hover:underline">192.168.1.240:443</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">PVE x86_64 (Node 1):</span>
+       <a href="https://192.168.1.132:8006" target="_blank" class="text-[#d9d1ca] hover:underline">192.168.1.132:8006</a>
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Uptime Kuma (CT 103):</span>
-       <a href="http://192.168.1.119:3001" target="_blank" class="text-slate-300 hover:underline">192.168.1.119:3001</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">OPNsense (VM 200):</span>
+       <a href="https://192.168.1.134:8443" target="_blank" class="text-[#d9d1ca] hover:underline">192.168.1.134:8443</a>
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Home Assistant (CT 100):</span>
-       <a href="http://192.168.1.10:8123" target="_blank" class="text-slate-300 hover:underline">192.168.1.10:8123</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">Wazuh SIEM (CT 106):</span>
+       <a href="https://192.168.1.240:443" target="_blank" class="text-[#d9d1ca] hover:underline">192.168.1.240:443</a>
       </div>
-      <div class="flex justify-between items-center text-slate-300">
-       <span class="text-slate-400">Scrutiny SMART (CT 101):</span>
-       <a href="http://192.168.1.108:8080" target="_blank" class="text-slate-300 hover:underline">192.168.1.108:8080</a>
+      <div class="flex justify-between items-center text-[#d9d1ca]">
+       <span class="text-[#827470]">Uptime Kuma (CT 103):</span>
+       <a href="http://192.168.1.119:3001" target="_blank" class="text-[#d9d1ca] hover:underline">192.168.1.119:3001</a>
       </div>
      </div>
 
@@ -161,7 +161,7 @@ interface PhotoItem {
      @for (photo of photos; track photo.src) {
       <div 
        (click)="selectedPhoto.set(photo)"
-       class="group cursor-pointer rounded-2xl bg-[#0c0e11] border border-obsidian-750 overflow-hidden hover:border-obsidian-600 transition-all duration-300 shadow-xl flex flex-col"
+       class="group cursor-pointer rounded-2xl bg-[#140b0f] border border-obsidian-750 overflow-hidden hover:border-obsidian-600 transition-all duration-300 shadow-xl flex flex-col"
       >
        <div class="relative aspect-video w-full overflow-hidden bg-obsidian-950">
         <img 
@@ -169,7 +169,7 @@ interface PhotoItem {
          [alt]="ts.isRomanian ? photo.titleRo : photo.title"
          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e11] via-transparent to-transparent opacity-80"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#140b0f] via-transparent to-transparent opacity-80"></div>
         <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-sans font-bold bg-obsidian-900/90 border border-obsidian-700 text-slate-300 shadow">
          {{ ts.isRomanian ? photo.badgeRo : photo.badge }}
         </span>
@@ -201,7 +201,7 @@ interface PhotoItem {
      @for (s of allServices; track s.id) {
       <div 
        (click)="openServiceModal(s)"
-       class="group cursor-pointer rounded-2xl bg-[#0c0e11] border border-obsidian-750 overflow-hidden hover:border-obsidian-600 transition-all duration-300 shadow-xl flex flex-col"
+       class="group cursor-pointer rounded-2xl bg-[#140b0f] border border-obsidian-750 overflow-hidden hover:border-obsidian-600 transition-all duration-300 shadow-xl flex flex-col"
       >
        <div class="relative aspect-video w-full overflow-hidden bg-obsidian-950">
         <img 
@@ -209,7 +209,7 @@ interface PhotoItem {
          [alt]="s.name"
          class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e11] via-transparent to-transparent opacity-80"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#140b0f] via-transparent to-transparent opacity-80"></div>
         <span class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-sans font-bold bg-obsidian-900/90 border border-obsidian-700 text-slate-300 shadow">
          {{ s.category.toUpperCase() }}
         </span>

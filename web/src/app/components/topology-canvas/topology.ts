@@ -19,43 +19,45 @@ import { TranslationService } from '../../services/translation.service';
   standalone: true,
   imports: [CommonModule],
   template: `
-    <div id="topology-section" class="w-full space-y-3 font-sans">
+    <div id="topology-section" class="w-full space-y-5 font-sans">
       
       <!-- Section Header -->
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-        <div class="space-y-1">
-          <div class="text-xs font-sans font-semibold tracking-wider text-slate-400 uppercase">
-            {{ ts.t.topologyTag }}
+        <div class="space-y-2.5">
+          <div class="inline-flex items-center gap-2 rounded-[30px] bg-[#52212e] px-3 py-0.5 text-[11px] font-mono text-[#efebe5]">
+            <span class="h-1.5 w-1.5 rounded-[2px] bg-[#efebe5]"></span>
+            <span>{{ ts.t.topologyTag }}</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-serif text-slate-100 font-normal tracking-tight">
-            {{ ts.t.topologyTitle }}
+          <h2 class="text-3xl sm:text-4xl font-display text-[#efebe5] font-normal tracking-[-0.025em]">
+            Spatial 3D
+            <span class="font-light italic text-[#d9d1ca]">Topology Visualization.</span>
           </h2>
         </div>
-        <div class="text-xs text-slate-400 font-sans max-w-sm text-right leading-relaxed hidden sm:block">
+        <div class="text-xs text-[#827470] font-sans max-w-sm text-right leading-relaxed hidden sm:block">
           {{ ts.t.topologyDesc }}
         </div>
       </div>
 
       <!-- Main 3D Container Card -->
-      <div class="relative w-full h-[620px] bg-[#08090b] rounded-2xl overflow-hidden border border-obsidian-750 shadow-2xl flex flex-col select-none">
+      <div class="relative w-full h-[620px] bg-[#0c0c0c] rounded-[16px] overflow-hidden border border-[#24181e] shadow-[0_24px_60px_rgba(0,0,0,0.65)] flex flex-col select-none">
+        <!-- Subtle Radial Burgundy Glow -->
+        <div
+          class="pointer-events-none absolute inset-0 opacity-35"
+          style="background: radial-gradient(circle at 50% 45%, rgba(82, 33, 46, 0.45) 0%, transparent 65%);"
+        ></div>
         
         <!-- Top Controls & Subsystem Filters Bar -->
         <div class="absolute top-4 left-4 right-4 z-20 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
           
           <!-- Filter Categories -->
-          <div class="flex items-center gap-1.5 p-1 rounded-xl bg-obsidian-950/90 backdrop-blur-md border border-obsidian-750 pointer-events-auto shadow-xl overflow-x-auto max-w-full">
+          <div class="flex items-center gap-1.5 p-1.5 rounded-tl-[14px] rounded-br-[14px] bg-[#140b0f]/95 backdrop-blur-md border border-[#24181e] pointer-events-auto shadow-xl overflow-x-auto max-w-full">
             @for (cat of getCategories(); track cat.id) {
               <button
                 (click)="selectCategory(cat.id)"
-                [class.border-slate-500]="activeCategory === cat.id"
-                [class.bg-obsidian-800]="activeCategory === cat.id"
-                [class.text-slate-100]="activeCategory === cat.id"
-                [class.font-semibold]="activeCategory === cat.id"
-                [class.shadow-sm]="activeCategory === cat.id"
-                [class.border-transparent]="activeCategory !== cat.id"
-                [class.text-slate-400]="activeCategory !== cat.id"
-                [class.hover:text-slate-200]="activeCategory !== cat.id"
-                class="px-3 py-1.5 rounded-lg text-xs font-sans transition-all border whitespace-nowrap"
+                [ngClass]="activeCategory === cat.id
+                  ? 'bg-[#efebe5] text-[#0c0c0c] font-semibold border-[#efebe5]'
+                  : 'border-transparent text-[#d9d1ca] hover:text-[#efebe5] hover:bg-[#401823]/60'"
+                class="px-3 py-1.5 rounded-tl-[8px] rounded-br-[8px] text-xs font-mono transition-all border whitespace-nowrap"
               >
                 {{ cat.label }}
               </button>
@@ -63,27 +65,25 @@ import { TranslationService } from '../../services/translation.service';
           </div>
 
           <!-- Controls (Logical/Physical, Rotate, Reset) -->
-          <div class="flex items-center gap-2 pointer-events-auto font-sans text-xs">
+          <div class="flex items-center gap-2 pointer-events-auto font-mono text-xs">
             
             <!-- Logical / Physical Toggle -->
-            <div class="flex items-center p-1 rounded-xl bg-obsidian-950/90 backdrop-blur-md border border-obsidian-750 shadow-xl font-medium">
+            <div class="flex items-center p-1 rounded-tl-[12px] rounded-br-[12px] bg-[#140b0f]/95 backdrop-blur-md border border-[#24181e] shadow-xl font-medium">
               <button
                 (click)="setPerspective('logical')"
-                [class.bg-obsidian-800]="perspective === 'logical'"
-                [class.text-slate-100]="perspective === 'logical'"
-                [class.border-obsidian-600]="perspective === 'logical'"
-                [class.text-slate-400]="perspective !== 'logical'"
-                class="px-3 py-1 rounded-lg transition-all border border-transparent"
+                [ngClass]="perspective === 'logical'
+                  ? 'bg-[#401823] text-[#efebe5] border-[#52212e]'
+                  : 'text-[#827470] border-transparent hover:text-[#efebe5]'"
+                class="px-3 py-1 rounded-tl-[8px] rounded-br-[8px] transition-all border"
               >
                 {{ ts.t.btnLogical }}
               </button>
               <button
                 (click)="setPerspective('physical')"
-                [class.bg-obsidian-800]="perspective === 'physical'"
-                [class.text-slate-100]="perspective === 'physical'"
-                [class.border-obsidian-600]="perspective === 'physical'"
-                [class.text-slate-400]="perspective !== 'physical'"
-                class="px-3 py-1 rounded-lg transition-all border border-transparent"
+                [ngClass]="perspective === 'physical'
+                  ? 'bg-[#401823] text-[#efebe5] border-[#52212e]'
+                  : 'text-[#827470] border-transparent hover:text-[#efebe5]'"
+                class="px-3 py-1 rounded-tl-[8px] rounded-br-[8px] transition-all border"
               >
                 {{ ts.t.btnPhysical }}
               </button>
@@ -92,20 +92,19 @@ import { TranslationService } from '../../services/translation.service';
             <!-- Auto-Rotate -->
             <button
               (click)="toggleAutoRotate()"
-              [class.border-slate-500]="isAutoRotating"
-              [class.text-slate-200]="isAutoRotating"
-              [class.border-obsidian-750]="!isAutoRotating"
-              [class.text-slate-400]="!isAutoRotating"
-              class="px-3.5 py-1.5 rounded-xl bg-obsidian-950/90 backdrop-blur-md border hover:border-slate-500 transition-all flex items-center gap-2 shadow-xl font-sans"
+              [ngClass]="isAutoRotating
+                ? 'border-[#52212e] bg-[#401823] text-[#efebe5]'
+                : 'border-[#24181e] bg-[#140b0f]/95 text-[#827470]'"
+              class="px-3.5 py-1.5 rounded-tl-[12px] rounded-br-[12px] backdrop-blur-md border hover:border-[#52212e] transition-all flex items-center gap-2 shadow-xl font-mono"
             >
-              <span class="w-2 h-2 rounded-full" [class.bg-slate-300]="isAutoRotating" [class.bg-slate-600]="!isAutoRotating"></span>
+              <span class="w-2 h-2 rounded-[2px]" [class.bg-[#efebe5]]="isAutoRotating" [class.bg-[#827470]]="!isAutoRotating"></span>
               <span>{{ ts.t.btnRotate }}</span>
             </button>
 
             <!-- Reset -->
             <button
               (click)="resetCamera()"
-              class="px-3.5 py-1.5 rounded-xl bg-obsidian-950/90 backdrop-blur-md border border-obsidian-750 hover:border-slate-500 text-slate-300 hover:text-slate-100 transition-all shadow-xl"
+              class="px-3.5 py-1.5 rounded-tl-[12px] rounded-br-[12px] bg-[#140b0f]/95 backdrop-blur-md border border-[#24181e] hover:border-[#52212e] text-[#d9d1ca] hover:text-[#efebe5] transition-all shadow-xl"
             >
               {{ ts.t.btnReset }}
             </button>
@@ -115,7 +114,7 @@ import { TranslationService } from '../../services/translation.service';
         <!-- 3D Interactive Canvas -->
         <canvas
           #canvasRef
-          class="w-full h-full flex-1 cursor-grab active:cursor-grabbing block"
+          class="relative z-10 w-full h-full flex-1 cursor-grab active:cursor-grabbing block"
           (mousedown)="onMouseDown($event)"
           (mousemove)="onMouseMove($event)"
           (mouseup)="onMouseUp($event)"
@@ -124,13 +123,13 @@ import { TranslationService } from '../../services/translation.service';
         ></canvas>
 
         <!-- Bottom Status HUD -->
-        <div class="absolute bottom-4 left-4 right-4 z-20 pointer-events-none flex items-center justify-between font-sans text-xs">
-          <div class="flex items-center gap-2 text-slate-300 font-medium">
-            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+        <div class="absolute bottom-4 left-4 right-4 z-20 pointer-events-none flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2 text-[#d9d1ca] font-medium bg-[#140b0f]/90 border border-[#24181e] px-3 py-1.5 rounded-tl-[10px] rounded-br-[10px]">
+            <span class="w-2 h-2 rounded-[2px] bg-[#efebe5]"></span>
             <span class="tracking-wide">{{ ts.t.meshActive }} | {{ nodes.length }} {{ ts.t.nodesLabel }} | {{ links.length }} {{ ts.t.flowsLabel }}</span>
           </div>
 
-          <div class="text-slate-500 text-[11px] uppercase tracking-wider hidden sm:block font-sans font-normal">
+          <div class="text-[#827470] text-[11px] uppercase tracking-wider hidden sm:block font-mono">
             {{ ts.t.interactionHint }}
           </div>
         </div>
@@ -285,8 +284,8 @@ export class TopologyCanvasComponent implements OnInit, OnDestroy {
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, width, height);
 
-    // Draw Subtle Red Perspective Floor Grid
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    // Draw Subtle Burgundy/Ivory Perspective Floor Grid
+    ctx.strokeStyle = 'rgba(217, 209, 202, 0.05)';
     ctx.lineWidth = 1;
     const floorY = 220;
     for (let gx = -380; gx <= 380; gx += 65) {
@@ -337,7 +336,7 @@ export class TopologyCanvasComponent implements OnInit, OnDestroy {
 
         ctx.beginPath();
         ctx.arc(packetX, packetY, Math.max(1.8, 3.2 * p1.scale), 0, Math.PI * 2);
-        ctx.fillStyle = '#ffffff';
+        ctx.fillStyle = '#efebe5';
         ctx.shadowColor = link.color;
         ctx.shadowBlur = 6;
         ctx.fill();
@@ -366,14 +365,14 @@ export class TopologyCanvasComponent implements OnInit, OnDestroy {
       if (node.isSelected || node.isHovered) {
         ctx.beginPath();
         ctx.arc(node.px, node.py, radius + 6, 0, Math.PI * 2);
-        ctx.strokeStyle = '#ffffff';
+        ctx.strokeStyle = '#efebe5';
         ctx.lineWidth = 2;
         ctx.stroke();
 
         ctx.beginPath();
         ctx.arc(node.px, node.py, radius + 10, 0, Math.PI * 2);
         ctx.fillStyle = node.color;
-        ctx.globalAlpha = 0.12;
+        ctx.globalAlpha = 0.14;
         ctx.fill();
         ctx.globalAlpha = alpha;
       }
@@ -390,28 +389,28 @@ export class TopologyCanvasComponent implements OnInit, OnDestroy {
       // Center bright specular core
       ctx.beginPath();
       ctx.arc(node.px, node.py, Math.max(1.5, radius * 0.35), 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = '#efebe5';
       ctx.fill();
 
-      // Node Typography Label (matching screenshot style)
+      // Node Typography Label
       const shouldDrawLabel = node.tier <= 2 || node.isSelected || node.isHovered || (this.activeCategory !== 'all' && node.isActive) || node.scale > 0.85;
 
       if (shouldDrawLabel) {
         const fontSize = Math.max(9, Math.round(11 * node.scale));
-        ctx.font = `500 ${fontSize}px "JetBrains Mono", "Geist", monospace, sans-serif`;
+        ctx.font = `500 ${fontSize}px "IBM Plex Mono", monospace`;
         ctx.textAlign = 'center';
 
         // Drop shadow for crisp readability
-        ctx.shadowColor = '#000000';
+        ctx.shadowColor = '#0c0c0c';
         ctx.shadowBlur = 4;
-        ctx.fillStyle = node.isSelected ? '#ffffff' : node.isHovered ? '#ffffff' : 'rgba(237, 230, 222, 0.92)';
+        ctx.fillStyle = node.isSelected ? '#efebe5' : node.isHovered ? '#efebe5' : 'rgba(239, 235, 229, 0.92)';
         ctx.fillText(node.name, node.px, node.py + radius + 13);
         ctx.shadowBlur = 0;
 
         if (node.isSelected || node.isHovered) {
           const subFontSize = Math.max(8, Math.round(9 * node.scale));
-          ctx.font = `400 ${subFontSize}px "JetBrains Mono", monospace`;
-          ctx.fillStyle = 'rgba(164, 148, 126, 0.85)';
+          ctx.font = `400 ${subFontSize}px "IBM Plex Mono", monospace`;
+          ctx.fillStyle = 'rgba(217, 209, 202, 0.85)';
           ctx.fillText(node.sublabel || node.ip, node.px, node.py + radius + 25);
         }
       }
