@@ -1,31 +1,43 @@
-# 🖥️ Proxmox VE Virtual Machines (KVM)
+# Proxmox VE Virtual Machine Fleet (KVM)
 
-This directory contains declarative specifications, automated provisioning scripts, and infrastructure-as-code configurations for all **KVM Virtual Machines** deployed on the Proxmox VE hypervisor cluster.
+<div align="center">
+
+[![Virtualization](https://img.shields.io/badge/Virtualization-QEMU%20%2F%20KVM%20Hypervisor-0f172a.svg?style=flat&logo=proxmox)](https://www.proxmox.com)
+[![Host Node](https://img.shields.io/badge/Host-Node%201%20(pve__primary__x64)-blue.svg?style=flat)](#)
+[![Disk Provisioning](https://img.shields.io/badge/Storage-NVMe%20local--lvm%20(TRIM%20Discard)-059669.svg?style=flat&logo=speedtest)](#)
+[![Memory Optimization](https://img.shields.io/badge/Memory-VirtIO%20Dynamic%20Ballooning-8b5cf6.svg?style=flat)](#)
+
+</div>
 
 ---
 
-## 📋 Virtual Machine Inventory Matrix
+## Executive Summary
 
-| VMID | Name | Operating System | vCPUs | RAM (Alloc/Max) | Boot Disk | Primary Network | Primary Protocol | Role / Function |
+This directory contains declarative hardware specifications, cloud-init configurations, automated unattended answer files, and provisioning scripts for all **KVM Virtual Machines** deployed on the primary Proxmox VE hypervisor host (`pve_primary_x64`).
+
+---
+
+## 1. Virtual Machine Inventory Matrix
+
+| VMID | Hostname | Operating System | vCPUs | RAM (Alloc / Balloon) | Boot Disk | Network Bridge | Primary Protocols | Operational Role |
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- | :--- | :--- |
-| **200** | `opnsense` | FreeBSD 14.x / OPNsense | 2 | 2048 MB | 16 GB SSD | `vmbr1` (LAN) & `vmbr0` (WAN) | WebGUI (`:8443`), SSH | Core Gateway, NAT, HAProxy, WireGuard |
-| **201** | `windows-server` | Windows Server 2022 / 2025 | 2 | 3072 MB | 40 GB NVMe | `vmbr0` (Management) | RDP (`:3389`), WinRM (`:5985`) | Active Directory DS, DNS, Windows Management |
-| **202** | `ubuntu-server` | Ubuntu Server 24.04 LTS | 2 | 2048 MB | 25 GB NVMe | `vmbr0` (Management) | SSH (`:22`), QEMU Guest Agent | Cloud-Init Microservices, Automation, Docker |
+| **200** | `opnsense` | FreeBSD 14.x / OPNsense 24.x | 2 | 2,048 MB / 1,024 MB | 16 GB SSD | `vmbr0` (WAN), `vmbr1` (LAN) | WebGUI (`:8443`), SSH (`:22`) | Core Gateway, NAT, Suricata DPI, WireGuard |
+| **201** | `windows-server` | Windows Server 2022 / 2025 | 2 | 3,072 MB / 2,048 MB | 40 GB NVMe | `vmbr1` (VLAN 10) | RDP (`:3389`), WinRM (`:5985`) | Active Directory DS, Kerberos DC, GPO Management |
+| **202** | `ubuntu-server` | Ubuntu Server 24.04 LTS | 2 | 2,048 MB / 1,024 MB | 25 GB NVMe | `vmbr1` (VLAN 10) | SSH (`:22`), QEMU Guest Agent | Cloud-Init Microservices, Automation, Docker |
 
 ---
 
-## 🔐 Access Standards & Secrets Policy
+## 2. Access Standards & Secrets Management
 
-All virtual machine templates and automated provisioning scripts enforce zero-plaintext credential standards:
-
-- **Primary Administrator User:** `<admin_user>` (Configured via SOPS / Cloud-Init)
-- **Secret Management:** Vaultwarden & Encrypted Secrets Repository
-- **Authorized SSH Keys:** `~/.ssh/id_ed25519.pub` (injected via Cloud-Init metadata)
+All virtual machine templates and automated provisioning scripts enforce zero-plaintext credential hygiene:
+- **Primary Administrative Account**: Configured via SOPS / Cloud-Init metadata or LAPS.
+- **SSH Key Authentication**: Ed25519 public keys (`~/.ssh/id_ed25519.pub`) injected at boot; password authentication disabled.
+- **Secrets Store**: Secrets and tokens managed via Vaultwarden and HashiCorp Vault.
 
 ---
 
-## 📂 Subdirectories & Provisioning Modules
+## 3. Subdirectories & Provisioning Modules
 
-- **[`windows-server/`](./windows-server/)**: Automated unattended answer files (`autounattend.xml`), VirtIO SCSI drivers integration, and Proxmox `qm` hardware definitions.
+- **[`opnsense/`](./opnsense/)**: Core perimeter gateway firewall rules, VLAN trunking, and high-availability configuration.
 - **[`ubuntu-server/`](./ubuntu-server/)**: Ubuntu 24.04 Noble Numbat Cloud-Init (`user-data`, `meta-data`), QEMU guest agent automation, and fast-clone provisioning scripts.
-- **[`opnsense/`](./opnsense/)**: Core virtual firewall gateway routing rules, VLAN trunking, and high-availability configuration.
+- **[`windows-server/`](./windows-server/)**: Automated unattended answer files (`autounattend.xml`), VirtIO SCSI driver integration, and Proxmox `qm` hardware definitions.

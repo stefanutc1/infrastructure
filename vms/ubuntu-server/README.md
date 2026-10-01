@@ -1,38 +1,51 @@
-# 🐧 Ubuntu Server 24.04 LTS Cloud-Init VM (VM 202)
+# Ubuntu Server 24.04 LTS Cloud-Init Virtual Machine (VM 202)
 
-Declarative hardware specification and cloud-init automated provisioning for Ubuntu Server 24.04 LTS Noble Numbat on Proxmox VE.
+<div align="center">
 
----
+[![VM](https://img.shields.io/badge/Virtual%20Machine-Ubuntu%20Server%2024.04%20LTS-e95420.svg?style=flat&logo=ubuntu)](https://ubuntu.com)
+[![VMID](https://img.shields.io/badge/VMID-202-blue.svg?style=flat)](#)
+[![Cloud-Init](https://img.shields.io/badge/Provisioning-Automated%20Cloud--Init-10b981.svg?style=flat&logo=canonical)](#)
+[![Agent](https://img.shields.io/badge/Guest%20Agent-QEMU%20Agent%20Active-8b5cf6.svg?style=flat)](#)
 
-## ⚙️ Hardware Specifications
-
-- **VMID:** `202`
-- **Name:** `ubuntu-server-2404`
-- **vCPUs:** `2 Cores` (`type=host`, NUMA enabled)
-- **Memory:** `2048 MB` (Ballooning: 1024 MB - 2048 MB)
-- **SCSI Controller:** `virtio-scsi-single` (SSD emulation enabled, `discard=on`)
-- **Primary Disk:** `local-lvm:vm-202-disk-0`, Size: `25 GB`
-- **Cloud-Init Storage:** `ide2` (`local-lvm:vm-202-cloudinit`)
-- **Network Interface:** `virtio,bridge=vmbr0,firewall=1`
-- **Guest Agent:** Enabled (`qemu-guest-agent`)
+</div>
 
 ---
 
-## 🔑 Access & Authentication
+## Executive Summary
 
-- **Primary User:** `<admin_user>`
-- **Authentication:** SSH Key-Based (`~/.ssh/id_ed25519.pub`) & Vaultwarden Secrets
-- **Static IP:** `192.168.1.202/24` (Gateway: `192.168.1.1`, DNS: `192.168.1.4`)
-- **Local Domain:** `ubuntu.lan` / `ubuntuserver.lan`
-- **SSH Port:** `22`
+Declarative hardware specifications, cloud-init provisioning metadata, and deployment automation for Ubuntu Server 24.04 LTS (Noble Numbat) on Proxmox VE (Node 1).
 
 ---
 
-## 🚀 Automated Provisioning Script
+## 1. Hardware Specifications
 
-Run [`provision-vm.sh`](./provision-vm.sh) directly on the Proxmox VE hypervisor:
+- **Proxmox VMID**: `202`
+- **Hostname**: `ubuntu-server-2404`
+- **vCPU Allocation**: 2 Cores (`cpu: host`, NUMA enabled)
+- **Memory Allocation**: 2,048 MB (VirtIO Dynamic Ballooning: 1,024 MB – 2,048 MB)
+- **SCSI Controller**: `virtio-scsi-single` (SSD emulation enabled, `discard=on`)
+- **Primary Disk**: `local-lvm:vm-202-disk-0`, Size: 25 GB NVMe
+- **Cloud-Init Storage**: `ide2` (`local-lvm:vm-202-cloudinit`)
+- **Network Interface**: `virtio,bridge=vmbr1,tag=10,firewall=1`
+- **Guest Integration**: QEMU Guest Agent enabled (`qemu-guest-agent`)
 
-\`\`\`bash
+---
+
+## 2. Access & Authentication
+
+- **Primary User**: `<admin_user>`
+- **Authentication**: Ed25519 SSH Key (`~/.ssh/id_ed25519.pub`)
+- **Static IPv4**: `192.168.1.202/24` (VLAN 10, Gateway: `192.168.1.134`, DNS: `192.168.1.134`)
+- **Local FQDN**: `ubuntu.lan` / `ubuntuserver.lan`
+- **SSH Port**: `22/TCP`
+
+---
+
+## 3. Automated Provisioning Runbook
+
+Execute [`provision-vm.sh`](./provision-vm.sh) directly on the Proxmox VE hypervisor host:
+
+```bash
 chmod +x provision-vm.sh
 ./provision-vm.sh
-\`\`\`
+```

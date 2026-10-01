@@ -1,46 +1,44 @@
-# Hardware
+# Kubernetes Hardware & Compute Worker Specification
 
-This document describes the physical host(s) underpinning this Kubernetes's services layer — specs, virtualization approach, and how the available resources map to running workloads. It exists so that capacity questions ("can this host take one more service?") and recovery questions ("what am I rebuilding, exactly?") have a single place to be answered.
+<div align="center">
 
-## This file describes hardware and host-level virtualization only.
+[![Worker](https://img.shields.io/badge/Kubernetes-Node%204%20Worker-0f172a.svg?style=flat&logo=kubernetes)](#)
+[![CPU](https://img.shields.io/badge/CPU-AMD%20Athlon%20II%20X2%20220-blue.svg?style=flat&logo=amd)](#)
+[![RAM](https://img.shields.io/badge/RAM-4GB%20DDR3%20(Tuned)-8b5cf6.svg?style=flat)](#)
+[![Distribution](https://img.shields.io/badge/K8s-k3s%20%2F%20k0s%20Worker-10b981.svg?style=flat&logo=rancher)](#)
 
-## Host: `kubernetes1`
-
-### Hardware
-
-| Component | Spec |
-| --- | --- |
-| CPU | AMD Athlon X2 220 — 2 cores / 2 threads @ 2.80 GHz |
-| GPU | NVIDIA GeForce GTS 250 — 1 GB VRAM |
-| RAM | 4 GB DDR3 |
-| Storage | 80 GB HDD |
-
-**Capacity notes:**
-
-* 4 GB of RAM is the primary constraint on this node. It strictly limits the scale and number of pods that can be scheduled here, requiring a lightweight container runtime and OS layer.
-* The AMD Athlon X2 processor and 80 GB HDD storage tier provide limited throughput and IOPS, making this node suitable strictly for lightweight worker tasks, testing, or edge components rather than heavy databases or storage-intensive workloads.
-
-### Software & Infrastructure
-
-| Layer | Detail |
-| --- | --- |
-| OS | Alpine Linux |
-| Orchestration | k0s (Kubernetes) |
-| Networking | Tailscale (mesh VPN) / Container Network Interface (CNI) |
-
-**Notes:**
-
-* Alpine Linux provides a minimal, resource-efficient base OS footprint to preserve as much of the 4 GB RAM budget as possible for Kubernetes workloads.
-* k0s manages the lightweight Kubernetes worker node environment, linking this physical machine directly to the repository's Kubernetes track.
-
-### Usage Profile
-
-This host serves as a dedicated Kubernetes worker node:
-
-1. **Lightweight Kubernetes Workloads** — Running non-critical pods, testing deployments, and serving as an experimental edge worker within the repository's Kubernetes track.
+</div>
 
 ---
 
-## Adding a New Host
+## Executive Summary
 
-When a new host joins the homelab, duplicate the `## Host: <name>` section above rather than merging specs into one table — each host gets its own hardware, software, and usage profile block. This keeps per-host capacity reasoning legible as the infrastructure grows past a single machine, and each section should stay traceable to its corresponding `host_vars/<hostname>.yml` entry in the Ansible inventory (configured via Ansible inventory and Terraform).
+This document describes the physical compute host dedicated to the Kubernetes cluster track (`k3s` / `k0s`). It details hardware limits, container runtime configurations, and resource quota constraints.
+
+---
+
+## Host: `k8s-node-04` (Bare-Metal Kubernetes Worker)
+
+### Hardware Specifications
+
+| Component | Engineering Specification |
+| :--- | :--- |
+| **Physical Chassis** | Custom ATX Compute Chassis |
+| **Architecture** | x86_64 (`amd64`) |
+| **Processor (CPU)** | AMD Athlon II X2 220 — 2 Cores / 2 Threads @ 2.80 GHz (Regor / AM3) |
+| **Dedicated GPU** | NVIDIA GeForce GTS 250 — 1 GB GDDR3 (256-bit bus) |
+| **System Memory (RAM)** | 4 GB DDR3-1066 MHz |
+| **Storage Tier** | 80 GB 3.5" SATA II Mechanical HDD (7200 RPM) |
+| **Power Supply** | Standard ATX 450W PSU |
+
+### Capacity & Tuning Notes
+- **Memory Ceiling**: 4 GB DDR3 RAM is tuned strictly for lightweight container runtime execution (`containerd`) and `k3s-agent` background processing. Memory limits are enforced per-pod using resource requests and limits in Kubernetes manifests.
+- **Compute Allocation**: The dual-core AMD Athlon II processor handles asynchronous batch jobs, CI/CD runners, and stateless microservices without burdening the primary hypervisor.
+- **Storage Strategy**: The 80 GB SATA HDD serves as the OS root partition and ephemeral container image cache; persistent state is mounted remotely over NFSv4 from OpenMediaVault NAS (Node 2).
+
+### Software & Orchestration
+- **Base Operating System**: Debian 12 Minimal / Alpine Linux Base.
+- **Kubernetes Distribution**: `k3s` (Lightweight Kubernetes Worker Agent) / `k0s`.
+- **Container Runtime**: `containerd` (CRI).
+- **Networking**: Flannel CNI / Tailscale Mesh VPN node.
+- **Static IPv4**: `192.168.1.18` (VLAN 30 CyberLab / Worker).

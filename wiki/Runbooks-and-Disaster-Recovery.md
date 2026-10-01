@@ -1,15 +1,15 @@
 # Runbooks & Disaster Recovery
 
-## 1.  Extended 10+ Hour Power Outage Standard Operating Procedure (SOP)
+## 1. Extended Power Outage Standard Operating Procedure (SOP)
 
-During prolonged blackouts ($> 10\text{ hours}$), battery-backed UPS reserves cannot sustain full compute workloads. To protect OpenMediaVault NAS NFS storage shares, database write journals, and delicate electronics from dirty dismounts or grid recovery power surges, follow this 4-phase protocol:
+During prolonged blackouts, battery-backed UPS reserves cannot sustain full compute workloads indefinitely. To protect OpenMediaVault NAS ZFS storage pools, database write journals, and delicate electronics from dirty unmounts or grid recovery power surges, follow this 4-phase protocol:
 
 ```mermaid
 graph TD
-    A[" Grid Failure Detected (T+0m)"] --> B["NUT Alert & Broadcast (T+2m)"]
-    B --> C["Phase 1: Cascading Graceful Shutdown (T+5m)"]
+    A["Grid Failure Detected (T+0m)<br/>ESP32-EDGE-04 AC Optocoupler Interrupt"] --> B["Battery Discharge Monitored (T+2m)<br/>INA219 & ADC Divider Active"]
+    B --> C["Phase 1: Cascading Graceful Shutdown (T+5m or Battery < 11.4V)"]
     C --> D["Phase 2: Physical Isolation & Battery Cutoff (T+15m - 10h)"]
-    D --> E[" Grid Power Restored & Stabilized (T+10h+)"]
+    D --> E["Grid Power Restored & Voltage Stabilized (T+10h+)"]
     E --> F["Phase 3: Staged Cold-Boot Sequence"]
     F --> G["Phase 4: NAS NFS Mount & Health Verification"]
 ```
@@ -17,56 +17,71 @@ graph TD
 ---
 
 ### Phase 1: Automated & Cascading Graceful Shutdown (0 – 15 min)
-The automated script `/opt/homelab/scripts/emergency-shutdown.sh` executes the shutdown order:
-1. **Tier 4 (Heavy Workloads & Media LXCs):** Plex (114), Jellyfin (115), Immich (116), Nextcloud (106), Torrent (117) — `pct shutdown 114..123`
-2. **Tier 3 (Virtual Machines):** Windows Server (201), Ubuntu Server (202) — `qm shutdown 201 202`
-3. **Tier 2 (Databases & Cache):** PostgreSQL (110), MariaDB (111), Redis (112) — `pct shutdown 103..113`
-4. **Tier 1 (Auth & Ingress):** NPM (101), Authelia (102), Pi-hole (100) — `pct shutdown 101 102 100`
-5. **Tier 0 (Core Gateway, NFS Unmount & Hypervisor):** OPNsense (200), `umount -a -t nfs,nfs4`, `sync`, Proxmox host `poweroff`.
+Triggered manually or automatically via the `ESP32-EDGE-04` power monitor when battery drops below 11.4V:
+```bash
+# Executed via scripts/emergency-shutdown.sh
+# 1. Tier 4 (Heavy Workloads & Media): Immich, Nextcloud, Jellyfin, qBittorrent
+pct shutdown 105 100b 101b
+
+# 2. Tier 3 (Virtual Machines): Windows Server, Kali, Research Lab VMs
+qm shutdown 201 300 301 302 310 311 313
+
+# 3. Tier 2 (Databases & Storage API): PostgreSQL, MinIO S3
+pct shutdown 161
+
+# 4. Tier 1 (Auth & Ingress): Caddy, Keycloak, Prometheus
+pct shutdown 104 106
+
+# 5. Tier 0 (Core Gateway, NFS Unmount & Hypervisor Host):
+umount -a -t nfs,nfs4
+qm shutdown 200
+sync
+poweroff
+```
 
 ---
 
-### Phase 2: Long-Term 10+ Hour Outage Hardening & Physical Preservation
-1. **Surge Suppressor Isolation:** Physically unplug the master surge protector from the wall outlet to shield equipment from high-voltage inrush spikes when the municipal electrical grid re-energizes.
-2. **UPS Battery Protection:** Switch off the physical UPS power button to prevent deep-discharge cell degradation below safe threshold.
-3. **Off-Grid Telemetry:** Out-of-band monitoring via battery-backed LTE/4G router or remote power status notification.
+### Phase 2: Long-Term Outage Hardening & Physical Preservation
+1. **Surge Suppressor Isolation**: Physically unplug the master surge protector from the wall outlet to shield equipment from high-voltage inrush spikes when the electrical grid re-energizes.
+2. **UPS Battery Protection**: Switch off the physical UPS power button to prevent deep-discharge cell degradation below safe thresholds.
+3. **Off-Grid Telemetry**: Out-of-band monitoring via battery-backed LTE router or remote power status notification.
 
 ---
 
 ### Phase 3: Grid Restoration & Staged Cold-Boot Sequence
-Execute the sequential restoration script `/opt/homelab/scripts/cold-boot-sequence.sh`:
+Execute the sequential restoration script `scripts/cold-boot-sequence.sh`:
 
-1. **Grid Stabilization Window:** Wait 5–10 minutes after grid return for AC voltage stabilization (clean $230\text{V} \pm 5\%$ @ $50\text{Hz}$).
-2. **Re-engage Surge Suppressor & UPS:** Verify input voltage and normal bypass charging state.
-3. **Verify OpenMediaVault NAS (`192.168.1.5`):** Ensure NAS node is online and mount NFS shares (`mount -a -t nfs,nfs4`).
-4. **Power On Hypervisor (`pve`):** Boot Proxmox VE hardware.
-5. **Sequential Boot Hierarchy:**
+1. **Grid Stabilization Window**: Wait 5–10 minutes after grid return for AC voltage stabilization ($230\text{V} \pm 5\%$ @ $50\text{Hz}$).
+2. **Re-engage Surge Suppressor & UPS**: Verify input voltage and normal bypass charging state.
+3. **Verify OpenMediaVault NAS (`192.168.1.135`)**: Ensure NAS node is online and mount NFS shares (`mount -a -t nfs,nfs4`).
+4. **Power On Hypervisor (`pve_primary_x64`)**: Boot Proxmox VE hardware.
+5. **Sequential Boot Hierarchy**:
    - `qm start 200` (OPNsense Gateway — wait 30s for WAN routing & DHCP).
-   - `pct start 100` (Pi-hole DNS — enables internal name resolution).
-   - `pct start 101 && pct start 102` (NPM Ingress & Authelia SSO).
-   - `pct start 103..113` (Databases & Core Infrastructure).
-   - `pct start 114..123 && qm start 201 202` (Applications, Media & Workload VMs).
+   - `pct start 100` (Home Assistant Core).
+   - `pct start 101 && pct start 103` (Scrutiny & Uptime Kuma).
+   - `pct start 104 && pct start 106` (Prometheus, Grafana & Wazuh SIEM).
+   - `pct start 105 100b 101b 161` (Media Suite, Immich, Nextcloud, MinIO).
 
 ---
 
 ### Phase 4: Post-Recovery Integrity & NFS Verification
 ```bash
 # 1. Verify NFS Mounts & NAS Reachability
-showmount -e 192.168.1.5
+showmount -e 192.168.1.135
 df -h -t nfs,nfs4
 
 # 2. Verify Container Health
 pct list
-docker ps -a --filter "status=exited"
+qm list
 
-# 3. Database Checksums
-sudo -u postgres psql -c "SELECT datname, pg_size_pretty(pg_database_size(datname)) FROM pg_database;"
+# 3. Run Automated Doctor
+python3 scripts/audit_infrastructure.py
 ```
 
 ---
 
-## 2.  Automated Backup Hierarchy & 3-2-1 Strategy
+## 2. Automated Backup Hierarchy & 3-2-1 Strategy
 
-- **Proxmox Backup Server (PBS):** Daily deduplicated snapshots of all 24 LXC containers and 3 KVM VMs with encrypted remote sync.
-- **NAS NFS Backups:** Scheduled automated backups of application state and persistent volumes stored on OpenMediaVault NAS (`192.168.1.5`).
-- **Offsite Cold Storage (AWS S3 / Restic):** Weekly encrypted backup of critical configs (`/etc/pve`, `/etc/network/interfaces`, `/opt/homelab`).
+- **Proxmox Backup Server (PBS)**: Daily deduplicated, client-side encrypted snapshots of all LXC containers and KVM virtual machines.
+- **NAS NFS Backups**: Scheduled automated backups of application state and persistent volumes stored on OpenMediaVault NAS (`192.168.1.135`).
+- **Offsite Cold Storage**: Encrypted backup archives of critical hypervisor configs (`/etc/pve`, `/etc/network/interfaces`) synced to remote cloud object storage.

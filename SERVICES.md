@@ -1,9 +1,25 @@
-# Service Catalog & Portfolio Specification
+# Enterprise Service Catalog & Portfolio Specification
+
+<div align="center">
+
+[![Catalog](https://img.shields.io/badge/Services-43%20Enterprise%20Workloads-0f172a.svg?style=flat&logo=docker)](#)
+[![Foundational](https://img.shields.io/badge/Core%20Services-11%20Production%20Active-10b981.svg?style=flat&logo=nginx)](#11-foundational-core-identity--storage)
+[![Media Automation](https://img.shields.io/badge/Media%20Suite-10%20Services%20(*arr%20%2B%20Immich)-8b5cf6.svg?style=flat&logo=jellyfin)](#12-media--personal-cloud-automation-arr-suite--immich)
+[![SOC DFIR](https://img.shields.io/badge/SOC%2FDFIR-9%20Security%20Workloads-e11d48.svg?style=flat&logo=wazuh)](#14-security-operations-center-soc-dfir--malware-lab)
+[![AI Platform](https://img.shields.io/badge/AI%20Subsystem-GTX%201050%20Ti%20Ollama%20%2B%20LiteLLM-f59e0b.svg?style=flat&logo=nvidia)](#15-artificial-intelligence--elo-research-platform)
+[![Edge IoT](https://img.shields.io/badge/Edge%20Fleet-4%20ESP32%20Bare--Metal%20Nodes-e7352c.svg?style=flat&logo=espressif)](esp32/README.md)
+[![Author](https://img.shields.io/badge/Architect-Moan%C4%83%20%C8%98tef%C4%83nu%C8%9B--Cornel-blue.svg?style=flat&logo=github)](https://github.com/stefanutc1)
+[![University](https://img.shields.io/badge/University-Universitatea%20din%20Craiova%20%C2%B7%20FEAA-0284c7.svg?style=flat&logo=academia)](https://feaa.ucv.ro)
+
+</div>
+
+---
 
 ## Executive Summary
-This document defines the formal Service Catalog for the `stefanutc1/infrastructure` platform. It records both the active foundational services (OPNsense, Proxmox VE, Active Directory, Wazuh, Prometheus, Grafana, Loki, Ollama, Home Assistant, Scrutiny) and the curated **Enterprise / Research Homelab 2.0 Stack** (Core, Identity, DevSecOps, SOC/DFIR, AI, and the Media & Personal Cloud automation suite).
 
-Each entry documents its functional role, deployment model, network location, port allocation, authentication protocol, operational criticality (P1–P4), and factual lifecycle state (`DEPLOYED`, `DECLARED`, or `ROADMAP`).
+This document defines the formal Enterprise Service Catalog for the `stefanutc1/infrastructure` platform. It records both the active foundational workloads (OPNsense, Proxmox VE, Active Directory, Wazuh, Prometheus, Grafana, Ollama, Home Assistant, Scrutiny) and the curated **Enterprise / Research Homelab 2.0 Portfolio** (Identity, Cloud-Native CI/CD, SOC/DFIR, AI, Media & Personal Cloud automation, and Edge Microcontroller Telemetry).
+
+Each service entry documents its operational role, deployment model, network location, port allocation, authentication protocol, operational criticality level (P1–P4), and factual lifecycle state (`DEPLOYED`, `DECLARED`, or `ROADMAP`).
 
 ---
 
@@ -11,20 +27,20 @@ Each entry documents its functional role, deployment model, network location, po
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
-│                                HOMELAB 2.0 SERVICE TIERS & PILONI                                │
+│                                HOMELAB 2.0 SERVICE TIERS & PILLARS                               │
 ├───────────────────────────────┬───────────────────────────────┬──────────────────────────────────┤
-│ PILON 1: INGRESS & IDENTITY   │ PILON 2: CLOUD-NATIVE & CI/CD │ PILON 3: OBSERVABILITY & SOC     │
+│ PILLAR 1: INGRESS & IDENTITY  │ PILLAR 2: CLOUD-NATIVE & CI/CD│ PILLAR 3: OBSERVABILITY & SOC    │
 │ - OPNsense Perimeter Firewall │ - Harbor OCI Registry         │ - Prometheus TSDB & Alertmanager │
 │ - Caddy Reverse Proxy & mTLS  │ - Argo CD GitOps Controller   │ - Grafana Central Telemetry      │
 │ - Smallstep step-ca (ACME)    │ - MetalLB Bare-Metal LB       │ - Vector & Loki Log Pipeline     │
 │ - Active Directory Domain Svc │ - Kyverno Policy-as-Code      │ - Tempo Distributed Tracing      │
-│ - Keycloak Enterprise IAM     │ - Longhorn Distributed Storage│ - Wazuh Manager 4.14 (SIEM/HIDS) │
+│ - Keycloak Enterprise IAM     │ - Longhorn Distributed Storage│ - Wazuh Manager 4.14 (SIEM/XDR)  │
 │ - HashiCorp Vault / OpenBao   │ - Woodpecker CI Runner        │ - Suricata DPI & CrowdSec        │
 │ - NetBox DCIM & IPAM (SoT)    │ - Backstage Developer Portal  │ - Zeek Network Security Monitor  │
 │                               │ - Syft, Grype & Cosign        │ - Velociraptor Endpoint Hunting  │
 │                               │ - Dependency-Track & SonarQube│ - TheHive + Cortex SOAR & MISP   │
 ├───────────────────────────────┴───────────────────────────────┴──────────────────────────────────┤
-│ PILON 4: AI PLATFORM, RESEARCH & DFIR LAB                                                        │
+│ PILLAR 4: AI PLATFORM, RESEARCH & DFIR LAB                                                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ - Ollama GPU AI Runtime (CT 102 · GTX 1050 Ti Passthrough)                                      │
 │ - LiteLLM Unified Model Gateway & Load Balancer                                                  │
@@ -35,17 +51,24 @@ Each entry documents its functional role, deployment model, network location, po
 │ - CAPEv2 Automated Malware Detonation Sandbox (Isolated VLAN 66 Quarantine)                       │
 │ - REMnux / FLARE-VM Forensic Workstations                                                        │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
-│ PILON 5: MEDIA, STORAGE & PERSONAL CLOUD AUTOMATION (*arr Suite + Immich)                        │
+│ PILLAR 5: MEDIA, STORAGE & PERSONAL CLOUD AUTOMATION (*arr Suite + Immich)                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────────┤
 │ - OpenMediaVault ZFS Central NAS & MinIO S3 Object Storage API                                   │
 │ - Proxmox Backup Server (PBS) Deduplicated Snapshot Engine                                       │
-│ - Jellyfin Media Streaming with Intel QuickSync Hardware Transcoding                             │
+│ - Jellyfin Media Streaming with Intel QuickSync / NVENC Hardware Transcoding                     │
 │ - Gluetun VPN Gateway with Automatic Killswitch (zero ISP leaks)                                 │
 │ - qBittorrent-nox (routed exclusively via Gluetun VPN tunnel)                                    │
 │ - Sonarr (TV Series) & Radarr (Movies) with TRaSH Guides Atomic Hardlinks                         │
 │ - Prowlarr Indexer Proxy & Bazarr Subtitles Automation                                           │
 │ - Jellyseerr Modern Content Discovery & Request Management                                       │
 │ - Immich Photo/Video Backup Suite with Machine Learning CLIP Search & pgvector                   │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ PILLAR 6: EMBEDDED EDGE TELEMETRY & AUTOMATION FLEET (ESP32 C++ Microcontrollers)                │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ - Node 01 (footprint): Optical fingerprint scanner, dual PIR, ultrasonic gate relay              │
+│ - Node 02 (irrigation): 4-zone optically isolated relays, capacitive soil probes, flow meter     │
+│ - Node 03 (datacenter_env): BME280 I2C, dual DS18B20 1-Wire Delta-T, Noctua 25kHz PWM fan driver │
+│ - Node 04 (power_monitor): 230V AC optocoupler, 12V SLA battery divider, emergency PVE shutdown  │
 └──────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -53,11 +76,11 @@ Each entry documents its functional role, deployment model, network location, po
 
 ## 1. Complete Service Catalog
 
-### 1.1. Foundational Core, Identity & Storage
-| # | Service Name | Purpose | Deployment Model | Host Node | Network / VLAN | Port | Auth Method | Criticality | Factual Status |
+### 1.1 Foundational Core, Identity & Storage
+| # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **1** | **OPNsense Firewall** | Perimeter routing, NAT, stateful packet filter, Suricata DPI | KVM VM 200 | Node 1 | VLAN 10 (`192.168.1.134`) | `8443/TCP`, `53/UDP` | Password + TOTP | **P1 (Critical)** | `DEPLOYED` |
-| **2** | **Caddy Reverse Proxy** | TLS termination, mutual TLS (mTLS), automated Let's Encrypt / step-ca | Docker / Host | Node 1 | VLAN 10 (`192.168.1.132`) | `80/TCP`, `443/TCP` | mTLS / OIDC | **P1 (Critical)** | `DEPLOYED` |
+| **2** | **Caddy Reverse Proxy** | TLS termination, mutual TLS (mTLS), automated Let's Encrypt / Step-CA | Docker / Host | Node 1 | VLAN 10 (`192.168.1.132`) | `80/TCP`, `443/TCP` | mTLS / OIDC | **P1 (Critical)** | `DEPLOYED` |
 | **3** | **Unbound DNS Resolver**| Recursive DNS with DNS-over-TLS (Quad9) & split-horizon `.lan` | Bare-Metal | VM 200 | VLAN 10 (`192.168.1.134`) | `53/UDP`, `53/TCP` | None (Local Subnets) | **P1 (Critical)** | `DEPLOYED` |
 | **4** | **Step-CA PKI** | Internal Certificate Authority, ACME provider & automated mTLS | Docker / LXC | Node 1 | VLAN 20 (`192.168.1.132`) | `9000/TCP` | mTLS / Admin Provisioner | **P1 (Critical)** | `DECLARED` |
 | **5** | **Active Directory DC** | Windows Server domain controller forest (Kerberos / LDAP authentication)| KVM VM 400 | Node 1 | VLAN 10 (`192.168.1.130`) | `88/TCP`, `389/TCP`, `636` | Kerberos / NTLMv2 | **P1 (Critical)** | `DEPLOYED` |
@@ -68,8 +91,8 @@ Each entry documents its functional role, deployment model, network location, po
 | **10**| **MinIO S3 Storage** | High-performance S3-compatible object storage for backups, logs, ML models | LXC CT 161 | Node 1 | VLAN 20 (`192.168.1.161`) | `9000/TCP`, `9001/TCP` | S3 Access Key / Secret | **P2 (High)** | `DEPLOYED` |
 | **11**| **Proxmox Backup Server**| Deduplicated, client-side encrypted backup target for VM/LXC snapshots | Dedicated Service| Node 1 / 2 | VLAN 10 (`192.168.1.132`) | `8007/TCP` | TLS Fingerprint / API | **P1 (Critical)** | `DEPLOYED` |
 
-### 1.2. Media & Personal Cloud Automation (*arr Suite + Immich)
-| # | Service Name | Purpose | Deployment Model | Host Node | Network / VLAN | Port | Storage Mapping | Criticality | Factual Status |
+### 1.2 Media & Personal Cloud Automation (*arr Suite + Immich)
+| # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Storage Volume | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **12**| **Gluetun VPN Gateway** | Dedicated WireGuard tunnel with automated iptables killswitch | Docker Container | Node 1 | VLAN 20 (`192.168.1.132`) | `8085/TCP`, `6881` | Config volume | **P2 (High)** | `DECLARED` |
 | **13**| **qBittorrent-nox** | Automated torrent downloader hard-locked through Gluetun VPN | Docker (service:gluetun)| Node 1 | Routed via Gluetun | `8085/TCP` (WebUI) | `/data/torrents` | **P2 (High)** | `DECLARED` |
@@ -82,8 +105,8 @@ Each entry documents its functional role, deployment model, network location, po
 | **20**| **Immich Server** | Self-hosted Google Photos alternative with mobile auto-sync | Docker Container | Node 1 | VLAN 20 (`192.168.1.132`) | `2283/TCP` | `/data/photos` | **P2 (High)** | `DECLARED` |
 | **21**| **Immich ML Engine** | Neural engine for facial recognition and semantic CLIP text search | Docker Container | Node 1 | VLAN 20 (`192.168.1.132`) | Internal API | Model cache volume | **P2 (High)** | `DECLARED` |
 
-### 1.3. Cloud-Native, DevSecOps & Platform Engineering
-| # | Service Name | Purpose | Deployment Model | Host Node | Network / VLAN | Port | Auth Method | Criticality | Factual Status |
+### 1.3 Cloud-Native, DevSecOps & Platform Engineering
+| # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **22**| **Harbor Registry** | Enterprise OCI container & Helm registry with Trivy vulnerability scanning| Kubernetes / Compose | Node 1 / 4 | VLAN 30 (`192.168.1.18`) | `8088/TCP`, `8444` | Keycloak OIDC / RBAC | **P2 (High)** | `ROADMAP` |
 | **23**| **Argo CD** | Declarative GitOps continuous delivery controller for Kubernetes | Kubernetes Pod | Node 4 | VLAN 30 (`192.168.1.18`) | `8081/TCP` | Keycloak OIDC | **P2 (High)** | `ROADMAP` |
@@ -93,8 +116,8 @@ Each entry documents its functional role, deployment model, network location, po
 | **27**| **Woodpecker CI** | Cloud-native lightweight container pipeline runner | Kubernetes Pod | Node 4 | VLAN 30 (`192.168.1.18`) | `8000/TCP` | GitHub Webhook / Token | **P3 (Normal)** | `DEPLOYED` |
 | **28**| **Backstage** | Internal Developer Portal, service catalog & architecture explorer | Kubernetes Pod | Node 4 | VLAN 30 | `7007/TCP` | Keycloak OIDC | **P3 (Normal)** | `ROADMAP` |
 
-### 1.4. Security Operations Center (SOC), DFIR & Malware Lab
-| # | Service Name | Purpose | Deployment Model | Host Node | Network / VLAN | Port | Auth Method | Criticality | Factual Status |
+### 1.4 Security Operations Center (SOC), DFIR & Malware Lab
+| # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **29**| **Wazuh Manager 4.14** | Host intrusion detection, file integrity monitoring & compliance audits | LXC CT 106 | Node 1 | VLAN 10 (`192.168.1.240`) | `1514/TCP`, `55000` | Wazuh Agent Token / API| **P1 (Critical)** | `DEPLOYED` |
 | **30**| **Suricata NIDS/IPS** | Real-time deep packet inspection and signature threat detection | FreeBSD Daemon | VM 200 | Bridge `vmbr0`, `vmbr1` | Kernel Hook | None (Passive/Drop) | **P1 (Critical)** | `DEPLOYED` |
@@ -106,8 +129,8 @@ Each entry documents its functional role, deployment model, network location, po
 | **36**| **CAPEv2 Sandbox** | Automated malware execution, unpacking and behavioral reporting | KVM VM / Bridge | Node 1 | VLAN 66 (Quarantine) | `8000/TCP` | Admin Password | **P4 (Lab)** | `ROADMAP` |
 | **37**| **REMnux / FLARE-VM** | Specialized digital forensics & reverse engineering workstations | KVM VMs | Node 1 | VLAN 66 (Quarantine) | `22/TCP`, `3389` | Operator Password | **P4 (Lab)** | `DEPLOYED` |
 
-### 1.5. Artificial Intelligence & ELO Research Platform
-| # | Service Name | Purpose | Deployment Model | Host Node | Network / VLAN | Port | Auth Method | Criticality | Factual Status |
+### 1.5 Artificial Intelligence & ELO Research Platform
+| # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **38**| **Ollama GPU AI** | GPU-accelerated local LLM inference (CUDA 12.x on GTX 1050 Ti) | LXC CT 102 | Node 1 | VLAN 20 (`192.168.1.110`) | `11434/TCP` | Internal / Caddy | **P2 (High)** | `DEPLOYED` |
 | **39**| **LiteLLM Proxy** | Unified AI gateway: rate-limiting, load-balancing, provider abstraction | Docker Container | Node 1 | VLAN 20 (`192.168.1.110`) | `4000/TCP` | Virtual Master Keys | **P2 (High)** | `ROADMAP` |
@@ -116,6 +139,14 @@ Each entry documents its functional role, deployment model, network location, po
 | **42**| **Open WebUI** | Feature-rich AI workspace with multi-model chat, documents & tools | Docker Container | Node 1 | VLAN 20 (`192.168.1.110`) | `3000/TCP` | Keycloak OIDC | **P3 (Normal)** | `ROADMAP` |
 | **43**| **JupyterHub** | Multi-user Python data science and machine learning research platform | Docker / K8s Pod | Node 1 / 4 | VLAN 20 | `8000/TCP` | Keycloak OIDC | **P3 (Normal)** | `ROADMAP` |
 
+### 1.6 Embedded Edge IoT Microcontroller Services (`esp32/`)
+| # | Node / Service | Operational Role | Firmware Type | Network / VLAN | Protocol & Port | Integration Target | Factual State |
+| :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **44**| **`esp32-footprint`** | Optical fingerprint biometric access, dual PIR, gate solenoid | C++ (Arduino Core) | VLAN 50 (`192.168.50.21`) | MQTT (`1883/TCP`) | Home Assistant (`CT 100`) | `DEPLOYED` |
+| **45**| **`esp32-irrigation`** | 4-zone garden irrigation, capacitive soil probes, pulse flow | C++ (Arduino Core) | VLAN 50 (`192.168.50.22`) | MQTT (`1883/TCP`) | Home Assistant (`CT 100`) | `DEPLOYED` |
+| **46**| **`esp32-datacenter_env`**| Rack thermals (BME280, dual DS18B20 Delta-T), Noctua PWM | C++ (Arduino Core) | VLAN 50 (`192.168.50.23`) | HTTP `/metrics` (`80/TCP`) & MQTT | Prometheus (`CT 104`) | `DEPLOYED` |
+| **47**| **`esp32-power_monitor`** | 230V mains optocoupler, 12V battery ADC, emergency shutdown | C++ (Arduino Core) | VLAN 50 (`192.168.50.24`) | HTTP `/metrics` (`80/TCP`) & Webhook| Proxmox Host API (`Node 1`) | `DEPLOYED` |
+
 ---
 
 ## 2. Port Allocation & Collision Prevention Table
@@ -123,12 +154,14 @@ Each entry documents its functional role, deployment model, network location, po
 The following static port assignments guarantee that no two services contend for identical sockets:
 
 ```text
-PORT RANGE    SERVICE / DAEMON              HOST NODE       VLAN
-──────────────────────────────────────────────────────────────────
+PORT RANGE    SERVICE / DAEMON              HOST NODE       VLAN / NETWORK
+──────────────────────────────────────────────────────────────────────────
 22/TCP        OpenSSH Management Daemon     All Nodes       VLAN 10
 53/UDP/TCP    Unbound Recursive DNS         VM 200          VLAN 10
 80/TCP        Caddy HTTP Redirect Ingress   Node 1          VLAN 10
+80/TCP        ESP32 Prometheus /metrics     ESP32-03/04     VLAN 50 (IoT)
 443/TCP       Caddy HTTPS / mTLS Ingress    Node 1          VLAN 10
+1883/TCP      Mosquitto MQTT Broker         CT 100          VLAN 20
 2283/TCP      Immich Photo & Video Server   Node 1 (Docker) VLAN 20
 3000/TCP      Grafana Central Dashboard     CT 104          VLAN 20
 3001/TCP      Uptime Kuma Health Prober     CT 103          VLAN 20
@@ -164,3 +197,12 @@ PORT RANGE    SERVICE / DAEMON              HOST NODE       VLAN
 51820/UDP     WireGuard Remote VPN Gateway  VM 200          WAN / VLAN 10
 55000/TCP     Wazuh Manager REST API        CT 106          VLAN 10
 ```
+
+---
+
+<div align="center">
+
+*Engineered with precision by **Moană Ștefănuț-Cornel** (`@stefanutc1`).*  
+*Universitatea din Craiova · Facultatea de Economie și Administrarea Afacerilor (FEAA) · Informatică Economică (2024–2027).*
+
+</div>

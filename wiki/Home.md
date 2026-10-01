@@ -1,80 +1,84 @@
-# Homelab Infrastructure Wiki
+# Enterprise Homelab & Datacenter Wiki
 
-Welcome to the **Homelab Knowledge Base**. This wiki contains the complete architectural blueprints, configuration standards, operations runbooks, and disaster recovery procedures for the entire homelab environment.
+<div align="center">
+
+[![Wiki](https://img.shields.io/badge/Documentation-Homelab%20Knowledge%20Base-0f172a.svg?style=flat&logo=gitbook)](#)
+[![Architect](https://img.shields.io/badge/Author-Moan%C4%83%20%C8%98tef%C4%83nu%C8%9B--Cornel-blue.svg?style=flat&logo=github)](https://github.com/stefanutc1)
+[![University](https://img.shields.io/badge/University-Universitatea%20din%20Craiova%20%C2%B7%20FEAA-0284c7.svg?style=flat&logo=academia)](https://feaa.ucv.ro)
+[![Program](https://img.shields.io/badge/Degree-Informatic%C4%83%20Economic%C4%83%20(2024--2027)-10b981.svg?style=flat)](#)
+
+</div>
+
+---
+
+Welcome to the **Enterprise Homelab & Datacenter Knowledge Base**. This wiki contains the complete architectural blueprints, configuration standards, operational runbooks, disaster recovery procedures, and edge microcontroller documentation for the `stefanutc1/infrastructure` platform.
 
 ```mermaid
 flowchart TB
-    Internet([" WAN / Internet"])
+    Internet([" WAN / Internet Uplink"])
 
-    subgraph PVE["Proxmox VE Hypervisor Host"]
+    subgraph PVE["Proxmox VE 9.2 Type-1 Hypervisor Host (Node 1)"]
         direction TB
 
-        subgraph CORE["Layer 1: Core Networking & Security"]
-            OPN["OPNsense Firewall / Router
-VLANs & NAT"]
-            DNS["Pi-hole DNS Engine
-Ad & Tracker Blocking"]
-            VPN["NetBird Mesh VPN
-WireGuard Zero-Trust"]
+        subgraph CORE["Layer 1: Core Perimeter Security & Routing"]
+            OPN["OPNsense Firewall (VM 200)<br/>802.1Q VLANs & NAT"]
+            DNS["Unbound DNS Engine<br/>DNS-over-TLS (Quad9) & DNSC Sinkhole"]
+            VPN["WireGuard & Tailscale<br/>Zero-Trust Remote Access"]
         end
 
-        subgraph INGRESS["Layer 2: Ingress & Authentication"]
-            NPM["OPNsense Nginx Ingress
-SSL Termination (:80/:443)"]
-            AUTH["Authelia SSO Provider
-MFA & Forward Auth"]
+        subgraph INGRESS["Layer 2: Ingress & Identity Federation"]
+            CADDY["Caddy Reverse Proxy<br/>mTLS Client Certs & ACME"]
+            KEYCLOAK["Keycloak Enterprise IAM<br/>AD DS LDAP Federation & OIDC SSO"]
+            STEPCA["Smallstep step-ca PKI<br/>Internal Automated Certificates"]
         end
 
         subgraph PLATFORM["Layer 3: Core Application Stacks"]
-            STORAGE["Storage & Media
-Immich · Nextcloud · AList · FileBrowser"]
-            OPS["Operations & Automation
-n8n · Gitea · Woodpecker CI · Vaultwarden"]
-            DASH["Dashboards
-Homepage · Homarr · IT-Tools"]
+            STORAGE["Storage & Media<br/>Immich · Nextcloud · Jellyfin · Sonarr · Radarr"]
+            OPS["Operations & SSoT<br/>NetBox · Woodpecker CI · MinIO S3"]
+            AI["AI Platform & Local Inference<br/>Ollama GPU (GTX 1050 Ti) · LiteLLM · Qdrant"]
         end
 
-        subgraph OBS["Layer 4: Observability & Monitoring"]
-            PROM["Prometheus + Alertmanager
-Metrics & Discord Routing"]
-            GRAF["Grafana
-Telemetry Dashboards"]
-            HEALTH["Health Checkers
-Uptime Kuma · Scrutiny SMART"]
+        subgraph OBS["Layer 4: Observability & Security Operations (SOC)"]
+            PROM["Prometheus + Alertmanager<br/>15s Metrics Scrapes & Alerts"]
+            GRAF["Grafana Unified Dashboards<br/>Host & Container Telemetry"]
+            WAZUH["Wazuh SIEM / XDR 4.14<br/>Host Intrusion Detection & FIM"]
+            HEALTH["Uptime Kuma & Scrutiny<br/>Endpoint Probing & Drive SMART"]
         end
 
-        subgraph K8S["Layer 5: Container Orchestration"]
-            K3S["k3s Kubernetes Cluster
-FluxCD GitOps Reconciliation"]
+        subgraph RESEARCH["Layer 5: Academic & Cybersecurity Research Testbeds"]
+            LICENTA["Bachelor's Thesis Core-Banking Lab<br/>Apache Fineract · PostgreSQL 16 · SWIFT Bastion"]
+            AD["Active Directory Enterprise Forest<br/>Windows Server 2008 R2–2025 Multi-Tier"]
+            CYBER["Offensive Security & Malware Range<br/>Kali Linux · Metasploitable 2 · OWASP Juice Shop"]
         end
     end
 
-    subgraph EDGE["Layer 6: Edge & Embedded Nodes (ESP32)"]
-        IRR["Irrigation Controller
-Weather-Aware Solenoids"]
-        PIR["Footprint Presence Sensor
-MQTT to Home Assistant"]
+    subgraph EDGE["Layer 6: Embedded Edge Telemetry & Automation Fleet (ESP32 C++)"]
+        EDGE1["ESP32-01: footprint<br/>Optical Fingerprint · Dual PIR · Gate Solenoid · OLED"]
+        EDGE2["ESP32-02: irrigation<br/>4-Zone Relays · Soil Moisture Probes · Pulse Flow Meter"]
+        EDGE3["ESP32-03: datacenter_env<br/>BME280 · Dual DS18B20 Delta-T · Noctua PWM Driver · /metrics"]
+        EDGE4["ESP32-04: power_monitor<br/>230V Mains Interrupt · 12V Battery ADC · Emergency PVE Shutdown"]
     end
 
     Internet --> OPN
-    OPN --> NPM
-    NPM --> AUTH
-    AUTH --> PLATFORM
+    OPN --> CADDY
+    CADDY --> KEYCLOAK
+    KEYCLOAK --> PLATFORM
     OPN --> DNS
     OPN --> VPN
     OBS --> PLATFORM
-    K8S --> PLATFORM
-    EDGE -.->|"Telemetry / MQTT"| PLATFORM
+    RESEARCH --> OBS
+    EDGE -.->|"MQTT Telemetry & Prometheus /metrics"| OBS
+    EDGE -.->|"State Tracking"| PLATFORM
 ```
 
 ---
 
 ## Table of Contents
 
-1. **[[Architecture & Networking|Architecture-and-Networking]]** — VLAN topology, subnet allocations, firewall rules, and reverse proxy routing.
-2. **[[Services Catalog|Services-Catalog]]** — Complete inventory of 30+ containerized services, exposed ports, and volume layouts.
-3. **[[Infrastructure as Code|Infrastructure-as-Code]]** — Terraform Proxmox VM modules and multi-hypervisor IaC (Xen, ESXi, Hyper-V, bhyve).
-4. **[[Kubernetes & GitOps|Kubernetes-and-GitOps]]** — k3s cluster configuration, Ansible bootstrap, and continuous FluxCD sync.
+1. **[[Architecture & Networking|Architecture-and-Networking]]** — 802.1Q VLAN topology, subnet allocations, virtual bridges, and firewall policies.
+2. **[[Services Catalog|Services-Catalog]]** — Complete inventory of 43 enterprise services, exposed ports, and volume layouts.
+3. **[[Infrastructure as Code|Infrastructure-as-Code]]** — Terraform Proxmox VM modules and multi-cloud preventative zero-cost guardrails.
+4. **[[Kubernetes & GitOps|Kubernetes-and-GitOps]]** — k3s edge worker cluster configuration, containerd runtime, and GitOps workflows.
 5. **[[Monitoring & Alerting|Monitoring-and-Alerting]]** — Prometheus metrics scraping, node-level alert triggers, and Discord webhook routing.
-6. **[[ESP32 Edge Systems|ESP32-Edge-Systems]]** — Embedded C++ firmware for automated garden irrigation and physical occupancy tracking.
-7. **[[Runbooks & Disaster Recovery|Runbooks-and-Disaster-Recovery]]** — Operational runbooks, cold start sequences, and automated backup procedures.
+6. **[[ESP32 Edge Systems|ESP32-Edge-Systems]]** — Embedded C++ firmware suite for access control, irrigation, rack thermals, and power failover.
+7. **[[Runbooks & Disaster Recovery|Runbooks-and-Disaster-Recovery]]** — Operational runbooks, cold boot sequences, 3-2-1 backup strategy, and emergency shutdown procedures.

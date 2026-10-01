@@ -1,2 +1,2 @@
 ---
-*Homelab Infrastructure Wiki · Maintained by [`@stefanutc1`](https://github.com/stefanutc1) · Licensed under MIT (2026).*
+*Enterprise Homelab & Datacenter Wiki · Engineered by **Moană Ștefănuț-Cornel** ([`@stefanutc1`](https://github.com/stefanutc1)) · Universitatea din Craiova (FEAA — Informatică Economică, 2024–2027).*

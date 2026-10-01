@@ -1,39 +1,52 @@
-# 🪟 Windows Server 2022 / 2025 KVM Virtual Machine (VM 201)
+# Windows Server 2022 / 2025 KVM Virtual Machine (VM 201)
 
-Declarative hardware specification and unattended installation configuration for Windows Server on Proxmox VE.
+<div align="center">
 
----
+[![VM](https://img.shields.io/badge/Virtual%20Machine-Windows%20Server%20Datacenter-0078d4.svg?style=flat&logo=windows)](https://www.microsoft.com/windows-server)
+[![VMID](https://img.shields.io/badge/VMID-201-blue.svg?style=flat)](#)
+[![Unattended](https://img.shields.io/badge/Setup-Automated%20autounattend.xml-10b981.svg?style=flat)](#)
+[![Drivers](https://img.shields.io/badge/Drivers-VirtIO%20SCSI%20%2B%20Net-8b5cf6.svg?style=flat)](#)
 
-## ⚙️ Hardware Specifications
-
-- **VMID:** `201`
-- **Name:** `windows-server-2022`
-- **Machine Type:** `q35`
-- **BIOS:** `OVMF (UEFI)` with 4M EFI Disk
-- **vCPUs:** `2 Cores` (`type=host`, NUMA enabled)
-- **Memory:** `3072 MB` (Ballooning: 2048 MB - 3072 MB)
-- **SCSI Controller:** `virtio-scsi-single` (SSD emulation enabled, `discard=on`)
-- **Primary Disk:** `local-lvm:vm-201-disk-0`, Size: `40 GB`
-- **Network Interface:** `virtio,bridge=vmbr0,firewall=1`
-- **Guest Agent:** Enabled (`qemu-guest-agent`)
+</div>
 
 ---
 
-## 🔑 Access & Authentication
+## Executive Summary
 
-- **Administrator:** `Administrator` (Password managed via Vaultwarden / LAPS)
-- **Primary User:** `<admin_user>` (Provisioned via `autounattend.xml`)
-- **RDP Port:** `3389`
-- **WinRM Port:** `5985` (HTTP) / `5986` (HTTPS)
-- **Local Domain:** `winserver.lan` / `windows.lan` (`192.168.1.201`)
+Declarative hardware specifications, unattended installation answer files (`autounattend.xml`), and automation scripts for Windows Server on Proxmox VE (Node 1).
 
 ---
 
-## 🚀 Automated Provisioning Script
+## 1. Hardware Specifications
 
-Run [`provision-vm.sh`](./provision-vm.sh) directly on the Proxmox VE hypervisor:
+- **Proxmox VMID**: `201`
+- **Hostname**: `windows-server-2022`
+- **Machine Type**: `q35`
+- **Firmware / BIOS**: `OVMF (UEFI)` with 4M EFI Disk
+- **vCPU Allocation**: 2 Cores (`cpu: host`, NUMA enabled)
+- **Memory Allocation**: 3,072 MB (VirtIO Dynamic Ballooning: 2,048 MB – 3,072 MB)
+- **SCSI Controller**: `virtio-scsi-single` (SSD emulation enabled, `discard=on`)
+- **Primary Disk**: `local-lvm:vm-201-disk-0`, Size: 40 GB NVMe
+- **Network Interface**: `virtio,bridge=vmbr1,tag=10,firewall=1`
+- **Guest Integration**: QEMU Guest Agent enabled (`qemu-guest-agent`)
 
-\`\`\`bash
+---
+
+## 2. Access & Authentication
+
+- **Built-in Administrator**: `Administrator` (Password managed via Vaultwarden / LAPS)
+- **Primary Operator**: `<admin_user>` (Provisioned via `autounattend.xml`)
+- **RDP Port**: `3389/TCP`
+- **WinRM Ports**: `5985/TCP` (HTTP) / `5986/TCP` (HTTPS)
+- **Local FQDN**: `winserver.lan` / `windows.lan` (`192.168.1.201`)
+
+---
+
+## 3. Automated Provisioning Runbook
+
+Execute [`provision-vm.sh`](./provision-vm.sh) directly on the Proxmox VE hypervisor host:
+
+```bash
 chmod +x provision-vm.sh
 ./provision-vm.sh
-\`\`\`
+```

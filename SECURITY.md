@@ -1,7 +1,25 @@
 # Enterprise Security Policy, Threat Model & Defense Baseline
 
+<div align="center">
+
+[![Security](https://img.shields.io/badge/Security-Defense--in--Depth%20Baseline-0f172a.svg?style=flat&logo=target)](#)
+[![Compliance](https://img.shields.io/badge/CIS%20Benchmark-Level%201%20Server%20Hardened-10b981.svg?style=flat&logo=linux)](docs/security/cis_hardening_baseline.md)
+[![SIEM](https://img.shields.io/badge/SIEM%2FXDR-Wazuh%204.14%20Manager-00a4e4.svg?style=flat&logo=wazuh)](https://wazuh.com)
+[![NIDS](https://img.shields.io/badge/NIDS%2FIPS-Suricata%20Inline%20DPI-ea580c.svg?style=flat&logo=wireshark)](#5-detection--incident-response-infrastructure)
+[![Zero-Plaintext](https://img.shields.io/badge/Secrets-Zero--Plaintext%20(Gitleaks%2FTruffleHog)-6366f1.svg?style=flat&logo=1password)](#4-secrets-management--repository-hygiene)
+[![Cloud Policy](https://img.shields.io/badge/Cloud%20Security-%240.00%20Zero--Cost%20Guardrails-059669.svg?style=flat&logo=terraform)](policy/cloud/zero_cost_policy.rego)
+[![Author](https://img.shields.io/badge/Security%20Lead-Moan%C4%83%20%C8%98tef%C4%83nu%C8%9B--Cornel-blue.svg?style=flat&logo=github)](https://github.com/stefanutc1)
+[![University](https://img.shields.io/badge/University-Universitatea%20din%20Craiova%20%C2%B7%20FEAA-0284c7.svg?style=flat&logo=academia)](https://feaa.ucv.ro)
+
+</div>
+
+---
+
 ## Executive Summary
-This document establishes the comprehensive cybersecurity posture, threat models, hardening benchmarks, cryptographic policies, and detection-and-response procedures for the `stefanutc1/infrastructure` platform. Built on the tenets of **Defense-in-Depth**, **Least Privilege**, and **Zero Trust Architecture**, the platform protects production assets while safely facilitating offensive cyber research and malware analysis.
+
+This document establishes the comprehensive cybersecurity posture, threat models, hardening benchmarks, cryptographic baselines, detection-and-response procedures, and cloud cost guardrails governing the `stefanutc1/infrastructure` platform.
+
+Built on the principles of **Defense-in-Depth**, **Least Privilege**, and **Zero Trust Architecture**, the platform protects 24/7 household services while providing isolated, hardened proving grounds for academic cybersecurity research, digital forensics, and penetration testing.
 
 ---
 
@@ -9,11 +27,11 @@ This document establishes the comprehensive cybersecurity posture, threat models
 
 | Threat Category (STRIDE) | Potential Attack Vector | Platform Mitigations & Technical Controls |
 | :--- | :--- | :--- |
-| **Spoofing Identity** | Unauthorized operator access via stolen SSH or WebGUI credentials. | Mandatory ed25519 SSH keys; password auth disabled; Caddy mTLS client certificate authentication for administrative portals. |
-| **Tampering with Data** | Modification of financial ledger database or DNS poison attacks. | PostgreSQL SSL/SCRAM-SHA-256; DNSSEC validation on Unbound DNS; ZFS cryptographic checksumming. |
-| **Repudiation** | An operator or compromised service denies executing destructive commands. | Centralized Wazuh SIEM audit logging; immutable syslog forwarding; Git signed commits (`commitlint`). |
-| **Information Disclosure** | Leakage of API tokens, private keys, or passwords committed to Git. | Pre-commit hooks (`.pre-commit-config.yaml`); automated Gitleaks & TruffleHog CI scanning; SOPS/age encrypted parameter storage. |
-| **Denial of Service (DoS)** | SYN floods, brute-force floods, or malicious bandwidth saturation. | TCP SYN Cookies enabled; CrowdSec firewall bouncers; Suricata rate-limiting; OPNsense state tracking. |
+| **Spoofing Identity** | Unauthorized operator access via compromised SSH or WebGUI credentials. | Mandatory `ed25519` SSH keys; password auth disabled globally; Caddy mTLS client certificate authentication for administrative portals. |
+| **Tampering with Data** | Modification of financial ledger database or DNS poisoning attacks. | PostgreSQL SSL/SCRAM-SHA-256; DNSSEC validation on Unbound DNS; ZFS cryptographic block checksumming. |
+| **Repudiation** | Operator or compromised workload denies executing destructive commands. | Centralized Wazuh SIEM audit logging; immutable syslog forwarding; GPG/commitlint signed Git commits. |
+| **Information Disclosure** | Leakage of API tokens, private keys, or passwords committed to Git. | Pre-commit hooks (`.pre-commit-config.yaml`); automated Gitleaks & TruffleHog CI scanning; Mozilla SOPS with `age` public-key encryption. |
+| **Denial of Service (DoS)** | SYN floods, brute-force floods, or malicious bandwidth saturation. | TCP SYN Cookies enabled; CrowdSec firewall bouncers; Suricata rate-limiting; OPNsense stateful connection limits. |
 | **Elevation of Privilege** | Container escape from untrusted LXC or web application exploit. | Default unprivileged LXC containers (`UID 100000+`); AppArmor profiles; restrictive sudoers (`Defaults env_reset`). |
 
 ---
@@ -21,7 +39,7 @@ This document establishes the comprehensive cybersecurity posture, threat models
 ## 2. Hardening Benchmarks & System Compliance
 
 ### 2.1 Linux Operating System Hardening
-All physical hypervisors, virtual machines, and container runtimes conform to the **CIS Linux Benchmark Level 1 Server Baseline** (see [`docs/security/cis_hardening_baseline.md`](file:///Users/s3nnnzzzatyeeee/stefannut_repos/datacenter/docs/security/cis_hardening_baseline.md)):
+All physical hypervisors, virtual machines, and container runtimes conform to the **CIS Linux Benchmark Level 1 Server Baseline** (see [`docs/security/cis_hardening_baseline.md`](docs/security/cis_hardening_baseline.md)):
 - Reverse Path Filtering (`rp_filter = 1`) enforced to eliminate IP spoofing.
 - ICMP redirects and source-routed packets unconditionally dropped.
 - Address Space Layout Randomization (ASLR) enforced at maximum entropy (`kernel.randomize_va_space = 2`).
@@ -49,7 +67,7 @@ All physical hypervisors, virtual machines, and container runtimes conform to th
 ## 4. Secrets Management & Repository Hygiene
 
 The repository enforces a **Zero-Plaintext Policy**:
-- **Scanning Gates**: Gitleaks and TruffleHog scan every pull request and push in the CI matrix (`.github/workflows/ci.yml`).
+- **Automated CI Gates**: Gitleaks and TruffleHog scan every pull request and push in the CI matrix (`.github/workflows/ci.yml`).
 - **Storage Standards**:
   - Production passwords, tokens, and private keys reside in local environment files (`.env`) excluded via `.gitignore`.
   - Shared repository secrets use Mozilla SOPS with `age` public-key encryption.
@@ -80,7 +98,7 @@ The repository enforces a **Zero-Plaintext Policy**:
       OPNsense Packet Drop                  Uptime Kuma & ntfy Alert
 ```
 
-1. **Wazuh HIDS Server (CT 106)**:
+1. **Wazuh HIDS / SIEM Server (CT 106)**:
    - Collects real-time security events, file integrity changes (FIM), and CIS benchmark audit results across all Linux and Windows nodes.
    - Automated Active Response: Repeated SSH brute-force attempts trigger an automated host-level drop rule via iptables.
 2. **Suricata Network IDS/IPS (VM 200)**:
@@ -92,7 +110,19 @@ The repository enforces a **Zero-Plaintext Policy**:
 
 ---
 
-## 6. Vulnerability & Supply Chain Management
+## 6. Preventative Zero-Cost Cloud Security Policy
+
+To prevent unexpected billing liabilities and resource sprawl when staging hybrid cloud architectures:
+1. **Free-Tier Static Whitelist**: Terraform configurations in `cloud/aws`, `cloud/gcp`, and `cloud/azure` are restricted to zero-cost instance tiers (`t2.micro`, `t3.micro`, `t4g.small`, `e2-micro`, `Standard_B1s`).
+2. **Billable Resource Ban**: NAT Gateways, paid ALBs, provisioned IOPS (`io1`, `io2`), and unattached elastic IPs are strictly prohibited.
+3. **Automated CI Enforcement**:
+   - Python static analyzer: `python3 scripts/verify_zero_cloud_cost.py` (exit code 0 required).
+   - Policy-as-Code: Open Policy Agent (OPA) / Conftest executing [`policy/cloud/zero_cost_policy.rego`](policy/cloud/zero_cost_policy.rego).
+4. **Cloud Storage Hygiene**: S3 / GCS buckets must enforce `block_public_acls = true`, `block_public_policy = true`, and default server-side encryption (AES-256).
+
+---
+
+## 7. Vulnerability & Supply Chain Management
 
 1. **Static Analysis Security Testing (SAST)**:
    - Trivy scans infrastructure filesystem configs, Dockerfiles, and Terraform modules for known CVEs.
@@ -103,9 +133,18 @@ The repository enforces a **Zero-Plaintext Policy**:
 
 ---
 
-## 7. Responsible Vulnerability Disclosure
+## 8. Responsible Vulnerability Disclosure
 
 If you discover a potential security vulnerability within this infrastructure codebase, please report it via private disclosure:
 - Email: `security@stefanut.lan` / GitHub Security Advisory.
 - Please include reproduction steps, affected commit SHA, and remediation suggestions.
 - Do not publicly disclose vulnerabilities until a verified patch has been merged.
+
+---
+
+<div align="center">
+
+*Engineered with precision by **Moană Ștefănuț-Cornel** (`@stefanutc1`).*  
+*Universitatea din Craiova · Facultatea de Economie și Administrarea Afacerilor (FEAA) · Informatică Economică (2024–2027).*
+
+</div>

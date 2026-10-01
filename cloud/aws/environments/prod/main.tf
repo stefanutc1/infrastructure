@@ -13,6 +13,6 @@ module "ec2" {
   source        = "../../modules/ec2"
   environment   = "prod"
   ami_id        = "ami-0c55b159cbfafe1f0"
-  instance_type = "t3.medium"
+  instance_type = "t3.micro"
   subnet_id     = module.vpc.public_subnet_id
 }

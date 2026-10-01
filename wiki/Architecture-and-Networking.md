@@ -1,25 +1,34 @@
 # Architecture & Networking
 
-## Subnetting & VLAN Topology
+## 1. Subnetting & 802.1Q VLAN Topology
 
-The network is segmented into isolated VLANs managed by OPNsense:
+The network is segmented into isolated VLANs managed by the OPNsense core perimeter firewall (VM 200):
 
-| VLAN ID | Subnet CIDR | Purpose | Isolation & Ingress Policy |
-| :--- | :--- | :--- | :--- |
-| **VLAN 1 (Untagged)** | `192.168.1.0/24` | Management & Hypervisor | Restricted to physical administrator workstation. |
-| **VLAN 10** | `192.168.10.0/24` | Core Infrastructure | OPNsense, Pi-hole, NetBird, and reverse proxies. |
-| **VLAN 20** | `192.168.20.0/24` | Application Services | All application Docker containers and persistent data nodes. |
-| **VLAN 30** | `192.168.30.0/24` | Kubernetes Cluster | k3s control plane and worker nodes with pod CIDR overlays. |
-| **VLAN 40** | `192.168.40.0/24` | IoT & Embedded Devices | ESP32 nodes, Home Assistant sensors (no direct WAN access). |
+| VLAN ID | Subnet CIDR | Gateway IP | Segment Name | Workloads & Traffic Classification | Default Ingress Policy |
+| :---: | :--- | :--- | :--- | :--- | :--- |
+| **VLAN 10** | `192.168.1.0/24` | `192.168.1.1` / `134` | **Management & Storage** | Hypervisor consoles, IPMI, OPNsense WebGUI, NAS NFS/SMB storage, Wazuh SIEM. | **DROP** (mTLS & Sudoers Only) |
+| **VLAN 20** | `192.168.20.0/24`| `192.168.20.1` | **Core Production** | Home Assistant, Nextcloud, Immich, Scrutiny, Ollama AI, Prometheus monitoring. | **DROP** (Explicit Whitelist Only) |
+| **VLAN 30** | `192.168.30.0/24`| `192.168.30.1` | **CyberLab & Sandboxes** | Kali Linux pentest workstation, Metasploitable targets, Bachelor Thesis Core-Banking lab. | **DROP** (Strict Inter-VLAN Block) |
+| **VLAN 40** | `192.168.40.0/24`| `192.168.40.1` | **DMZ & Honeypots** | T-Pot multi-honeypot decoy platform, public-facing reverse proxy honeypots. | **DROP** (Zero Lateral Movement) |
+| **VLAN 50** | `192.168.50.0/24`| `192.168.50.1` | **Isolated IoT Sensors** | Bare-metal ESP32 microcontrollers (`192.168.50.21` to `.24`), smart plugs, Zigbee bridges. | **DROP** (No WAN Access, HA State Track Only) |
 
 ---
 
-## Reverse Proxy & Authentication Flow
+## 2. Software-Defined Virtual Bridges
 
-All external and internal HTTP traffic is routed through OPNsense Nginx Ingress Reverse Proxy (VM 200) and authenticated via Authelia:
+The primary hypervisor (Node 1) implements four virtual bridges:
+- **`vmbr0` (WAN Ingress / Physical Uplink)**: Bound to physical interface `enp3s0` (`192.168.1.0/24`).
+- **`vmbr1` (VLAN-Aware Trunk Bridge)**: Trunk parent with `vlan-aware 1` distributing 802.1Q tagged frames across all containers and VMs.
+- **`vmbr2` (Point-to-Point Host Transit Bus)**: Low-latency `10.10.20.0/30` interconnect linking OPNsense (`10.10.20.1`) and Proxmox VE (`10.10.20.2`).
+- **`vmbr3` (Isolated Deception Bridge)**: Standalone virtual switch with zero physical NIC attachments for malware detonation and honeypots.
 
-1. Client sends request to `https://service.homelab.local`.
-2. OPNsense Nginx terminates TLS using internal wildcard or Let's Encrypt certificates.
-3. Ingress evaluates forward-auth sub-request against Authelia (`http://authelia:9091/api/verify`).
-4. Authelia verifies user session cookie (`authelia_session`) and checks MFA requirements.
-5. Upon successful validation, Nginx proxies traffic to target container on VLAN 20/30.
+---
+
+## 3. Reverse Proxy & Ingress Authentication Flow
+
+All external and internal HTTP traffic is routed through Caddy / OPNsense Reverse Proxy and authenticated via mutual TLS (mTLS) or Keycloak SSO:
+
+1. Client initiates TLS handshake to `https://service.lan`.
+2. Reverse proxy validates client certificate against internal Certificate Authority (Smallstep Step-CA).
+3. If valid, request is forwarded to backend container across internal VLANs with encrypted headers (`X-Forwarded-User`, `X-Forwarded-Email`).
+4. Unauthorized requests lacking valid certificates or session cookies are rejected immediately with HTTP 403 Forbidden.

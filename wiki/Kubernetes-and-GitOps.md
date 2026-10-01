@@ -1,8 +1,8 @@
 # Kubernetes & GitOps
 
-## k3s Cluster Architecture
+## 1. k3s Edge Worker Architecture
 
-The Kubernetes layer runs a lightweight, production-tuned k3s cluster configured via Ansible in `kubernetes/ansible/`.
+The Kubernetes layer runs a lightweight, production-tuned k3s cluster configured via Ansible in `kubernetes/ansible/`. It offloads batch processing and stateless worker containers to Node 4 (`k8s_node_04`).
 
 ```mermaid
 flowchart TB
@@ -10,11 +10,11 @@ flowchart TB
         subgraph CP["Control Plane (k3s-server)"]
             DB["Embedded SQLite / Kine Datastore"]
             NET["Flannel VXLAN Overlay Network"]
-            ING["Ingress Routing via NPM Proxy"]
+            ING["Ingress Routing via Caddy Proxy"]
         end
 
         subgraph Flux["FluxCD Controller & GitOps Reconciliation Layer"]
-            SRC["Source Controller<br/>(polls stefanut/homelab @ 5m)"]
+            SRC["Source Controller<br/>(polls stefanutc1/infrastructure @ 5m)"]
             KUST["Kustomize Controller<br/>(evaluates manifests & applies drift fix)"]
             NOTIF["Notification Controller<br/>(Discord & Telegram webhooks)"]
         end
@@ -24,19 +24,21 @@ flowchart TB
     KUST --> NOTIF
 ```
 
-## Continuous Reconciliation with FluxCD
+---
 
-FluxCD monitors `kubernetes/gitops/` in the main repository:
+## 2. Continuous Reconciliation with GitOps
+
+Continuous deployment monitors `kubernetes/gitops/` in the main infrastructure repository:
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: homelab-repo
+  name: infrastructure-repo
   namespace: flux-system
 spec:
   interval: 5m0s
-  url: https://github.com/stefanutc1/homelab
+  url: https://github.com/stefanutc1/infrastructure
   ref:
     branch: main
 ---
@@ -51,5 +53,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: homelab-repo
+    name: infrastructure-repo
 ```
