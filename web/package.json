@@ -27,7 +27,7 @@
     "@angular/core": "^20.3.0",
     "@angular/forms": "^20.3.32",
     "@angular/platform-browser": "^20.3.0",
-    "@angular/router": "^20.3.0",
+    "@angular/router": "^20.3.32",
     "lucide": "^1.47.0",
     "lucide-angular": "^1.0.0",
     "rxjs": "~7.8.0",
