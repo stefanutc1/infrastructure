@@ -78,7 +78,7 @@ flowchart TD
         CONF["GET /api/v1/site/config<br/>Withdrawal Kill-Switch: false<br/>Country Lock: +40 (Romania)"]
         AUTH["POST /api/v1/user/auth/*<br/>SQLi surface on invite_code & username"]
         TASK["POST /api/v1/task/submit<br/>Algorithmic payout manipulation"]
-        DB[(PostgreSQL / MySQL Ledger)]
+        DB[("PostgreSQL / MySQL Ledger")]
         CONF --- DB
         AUTH --- DB
         TASK --- DB

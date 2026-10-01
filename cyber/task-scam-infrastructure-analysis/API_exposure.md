@@ -18,7 +18,7 @@ This endpoint functions as the central global state distributor for the frontend
 flowchart TD
     CLIENT["Client Browser (Vue.js App)"] -->|"Unauthenticated GET /api/v1/site/config"| NGINX["Nginx Web Server"]
     NGINX --> PHP["Laravel Controller (SiteConfigController.php)"]
-    PHP --> DB[(MySQL / Redis Config Cache)]
+    PHP --> DB[("MySQL / Redis Config Cache")]
     DB --> PHP
     PHP -->|"Leaked JSON Payload (Kill-Switches & Locks)"| CLIENT
     CLIENT -->|"Parses withdrawMethodBank: false"| KILL["Hardcoded Fiat Kill-Switch Triggered"]

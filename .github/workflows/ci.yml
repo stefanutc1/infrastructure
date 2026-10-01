@@ -104,6 +104,10 @@ jobs:
         run: |
           python3 scripts/verify_zero_cloud_cost.py
 
+      - name: Mermaid Diagram Quoting & Syntax Audit
+        run: |
+          python3 scripts/audit_mermaid_diagrams.py
+
       - name: Commit Lint
         uses: wagoid/commitlint-github-action@v6
         continue-on-error: true

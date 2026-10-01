@@ -25,7 +25,7 @@ flowchart TD
     
     subgraph VULNERABLE_LOGIC["Vulnerable Referral Query Execution"]
         CONTROLLER -->|"String Concatenation: whereRaw('invite_code = ' . $code)"| RAW_SQL["SELECT * FROM campaigns WHERE invite_code = '888888' OR 1=1--'"]
-        RAW_SQL --> DB[(MySQL 8.0 Database Engine)]
+        RAW_SQL --> DB[("MySQL 8.0 Database Engine")]
     end
     
     DB -->|"Time Delay / Error Response"| CONTROLLER

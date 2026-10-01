@@ -38,7 +38,7 @@ Withdrawal Kill-Switch: false
 Country Code Lock: +40"]
  API_AUTH["/api/v1/user/auth/*
 SQL Injection Surface on invite_code & username"]
- DB[(Campaign Database & Ledger)]
+ DB[("Campaign Database & Ledger")]
  end
 
  subgraph TRAP["Financial Drain Trap"]
