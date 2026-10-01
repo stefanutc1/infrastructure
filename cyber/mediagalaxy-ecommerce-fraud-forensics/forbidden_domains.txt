@@ -12,13 +12,13 @@
 #   8. Internal Homelab Forensics (Media Galaxy, Revolut, Task Scam, Steam OpenID)
 # ------------------------------------------------------------------------------
 # Classification: TLP:CLEAR | Synchronized Daily at 00:00 Europe/Bucharest (24h)
-# Last Updated: 2026-10-01 15:39:58 UTC
-# Total Forbidden Domains: 11452
+# Last Updated: 2026-10-01 17:23:41 UTC
+# Total Forbidden Domains: 11472
 # Breakdown:
 #   - Local Forensics:               435
 #   - Romania (DNSC Blacklist):       10
-#   - European Union (CERT-EU/URLh): 634
-#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 10400
+#   - European Union (CERT-EU/URLh): 637
+#   - Five Eyes Coalition (US/UK/CA/AU/NZ): 10417
 # ==============================================================================
 007tg.vip
 00rr59n2.en-pegasus.com
@@ -191,6 +191,7 @@
 5dw.xyz
 5o1lb12w.toxyk.store
 5qflb4vy.usa--lipogummy.com
+5sj00j15.udeur.org
 5starautobody.com
 5ueb461u.enus-bellyflush.com
 5w84syyg.en-bizopp.com
@@ -538,6 +539,7 @@ ajax.graphwindows.com
 ajdwebsolutions.co.uk
 ajedrezdiagonal.es
 ajenti.co.za
+ajht2xg0.sensa138var.com
 ajms.online
 ajutor-copii-sarmani.cc
 ajxventure.com
@@ -2183,6 +2185,7 @@ clearviewrepository.com
 clearvoice1.com
 cledeschampsdunham.com
 clementdourlens.com
+cleo-wasmer-app-deployments.wasmer.app
 clf2026.org
 clhfgcomacdn.beer
 click-convert-pro.top
@@ -2442,6 +2445,7 @@ cozycarehospice.co
 cozyosy.be
 cpc188.day
 cpmohali.in
+cpofficial.com
 cpsique.com
 craft.zjkgx.workers.dev
 craftedcollector.com
@@ -2694,6 +2698,7 @@ dekoratiftugla.com
 delavana.workers.dev
 delawareacid.com
 delberggroup.ru
+deleeue.lol
 delegadajessica.com
 delfiastore.site
 delhiescort69.com
@@ -3261,6 +3266,7 @@ email.worvixglobal.com
 emailbox.icu
 emailmigration.org
 emara-afrilight.com
+embedone.com
 embopatchbadge.com
 emergeno.com
 emilc.org
@@ -5180,6 +5186,7 @@ jswen.com
 jtlobmo4xt.workers.dev
 jtscollection.com
 jtshvacindustries.com
+jucilyru.workers.dev
 judgmentacquisitions.com
 judyu.com
 juggernautbalanceofpower.com
@@ -6573,6 +6580,7 @@ mvnetworking.com
 mvpmotorvehicleprocessing.com
 mwengeifoundation.com
 mwg-update.cloud
+mx9x.com
 mxgiaverapark.com
 mxhd.top
 my-accounts-gooogle.com
@@ -7906,6 +7914,7 @@ rapidfinact.com
 rapidroutelogisticx.com
 rapjuve.com
 rapmusicfashion.com
+rappellingaart.com
 rapture-services.com
 raqaa.com
 raqmnh.com
@@ -8545,6 +8554,7 @@ senoltekstil.com
 sens-design.fr
 sensa138.uk.com
 sensa138pg.it.com
+sensa138var.com
 sensedproject.com
 sensesbeautysalon.co.za
 sensingsunrise.com
@@ -9024,6 +9034,7 @@ status.creek-place.one
 stavebnezeriavy.eu
 staxta.click
 stayreportdesk.life
+stcdn.yuriykraynov.com
 stcontact.top
 stdown.dinju.com
 steady-aim.com
@@ -11200,6 +11211,7 @@ x4227u7g.ewagajewskamd.com
 x666gamee.com.pk
 xaerosminimap.com
 xalexo.workers.dev
+xalibovu.workers.dev
 xamayojir.com
 xaynhatrongoitphcm.vn
 xaztwb.redcanoerealestate.com
@@ -11269,6 +11281,13 @@ xudevylo.workers.dev
 xuluxetas.com
 xvideos-cdn.com
 xvideos.com
+xw.bidz.top
+xw.cizt.top
+xw.fexd.top
+xw.jukt.top
+xw.maxr.top
+xw.vqxt.top
+xw.vyqt.top
 xx.1betasia.org
 xx.234-e.com
 xx.hg77.org
@@ -11389,6 +11408,7 @@ zeddd.com
 zeife.giize.com
 zejaziri.workers.dev
 zekerzit.nl
+zen-prepare-silk-chuckle.xyz
 zendogzz.com
 zendriol.com
 zenfa.store
