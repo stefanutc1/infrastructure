@@ -1,4 +1,8 @@
+<div align="center">
+
 # OPNsense Core Perimeter Gateway & Firewall (VM 200)
+
+</div>
 
 <div align="center">
 
@@ -11,13 +15,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 Declarative hardware specifications, bridge assignments, and provisioning parameters for the primary **OPNsense Core Virtual Firewall** deployed on Proxmox VE (Node 1).
 
 ---
 
+<div align="center">
+
 ## 1. Hardware Specifications
+
+</div>
 
 - **Proxmox VMID**: `200`
 - **Hostname**: `opnsense-firewall`

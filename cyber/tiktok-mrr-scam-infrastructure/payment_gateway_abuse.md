@@ -1,4 +1,8 @@
+<div align="center">
+
 # Payment Gateway Abuse, Terms of Service Violations & Chargeback Mitigation
+
+</div>
 
 **Case File Reference:** `SEC-2025-MRR-001`  
 **Classification:** `TLP:CLEAR`  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary & Architectural Flow
+
+</div>
 
 To monetize automated social media funnels without establishing formal corporate merchant entities, Master Resell Rights (MRR) operators exploit modern SaaS storefront aggregators like **Stan.store**.
 
@@ -37,17 +45,29 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Direct Violations of Payment Processor Acceptable Use Policies (AUP)
+
+</div>
 
 Both major global payment processors explicitly prohibit operations matching the structural mechanics of Master Resell Rights:
 
+<div align="center">
+
 ### 2.1. Stripe Prohibited and Restricted Businesses Policy
+
+</div>
 Under Stripe's global compliance standards, the following categories are strictly barred from utilizing Stripe processing services:
 - **"Multi-Level Marketing (MLM)"**: Businesses that reward participants primarily for reselling the system itself or recruiting downstream resellers.
 - **"Get-Rich-Quick Schemes"**: Operations that promise rapid, high-margin passive income with minimal capital or effort, utilizing deceptive testimonials.
 - **"Unfair, Predatory, or Deceptive Practices"**: Products sold under artificial urgency without clear disclosure of real earnings distributions.
 
+<div align="center">
+
 ### 2.2. PayPal Acceptable Use Policy (Section 2)
+
+</div>
 PayPal prohibits the use of its payment rails for:
 - *"Pyramid, matrix, multi-level marketing, or other 'get rich quick' schemes, or certain network marketing programs."*
 
@@ -56,11 +76,19 @@ PayPal prohibits the use of its payment rails for:
 
 ---
 
+<div align="center">
+
 ## 3. Threat Actor Chargeback Evasion Tactics
+
+</div>
 
 Because financial pyramid and resale schemes experience elevated rates of buyer regret and consumer disputes, operators deploy deliberate contractual and technical barriers to suppress chargebacks:
 
+<div align="center">
+
 ### 3.1. Weaponizing the "Immediate Digital Access" Waiver
+
+</div>
 During checkout, the customer is forced to tick a mandatory checkbox:
 ```text
 [X] "I agree that by accessing this digital download immediately, 
@@ -69,7 +97,11 @@ All sales are final, non-refundable, and irrevocable."
 ```
 - **Legal Reality:** Under EU Directive 2011/83/EU on Consumer Rights, the waiver of the right of withdrawal is only valid for *genuine* digital content. When the underlying transaction involves deceptive marketing or an illegal pyramid-style promotion (Directive 2005/29/EC Annex I), the contract is void *ab initio*, and the consumer retains full statutory dispute and chargeback rights.
 
+<div align="center">
+
 ### 3.2. Merchant Account Churning
+
+</div>
 When an operator's Stripe dispute rate approaches the critical **1.0% threshold** (the standard ceiling before Visa/Mastercard monitoring programs trigger heavy fines or merchant termination):
 - The operator abandons the connected account.
 - The operator re-registers on Stan.store using a different email address and routing numbers from secondary digital banking providers (Wise, Revolut Business).
@@ -77,7 +109,11 @@ When an operator's Stripe dispute rate approaches the critical **1.0% threshold*
 
 ---
 
+<div align="center">
+
 ## 4. Formal Escalation & Actionable Remedies
+
+</div>
 
 1. **Stripe Integrity Reporting:** Formal abuse reports were filed with `abuse@stan.store`, `compliance@stan.store`, and `legal@stripe.com`, providing transaction hashes and evidentiary course extraction dumps.
 2. **Banking Chargeback Path (Reason Code 53 / Condition 13.1):** Consumers who fall victim to MRR schemes can initiate chargebacks through their card-issuing bank citing **"Services/Merchandise Not as Described"** or **"Deceptive Practices / Misrepresentation"**, presenting the synthetic LLM course contents as evidence that the advertised business curriculum was fraudulent.

@@ -1,6 +1,14 @@
+<div align="center">
+
 # Research Environment: Active Directory Attack & Defense Range
 
+</div>
+
+<div align="center">
+
 ## Context & Research Scope
+
+</div>
 Enterprise networks overwhelmingly rely on Microsoft Active Directory Domain Services (AD DS) and Azure AD/Entra ID for identity, authentication, and policy distribution. Consequently, Active Directory remains the primary target for advanced persistent threat (APT) actors seeking domain dominance.
 
 This cyber range provides a multi-version, multi-forest research environment for:
@@ -11,7 +19,11 @@ This cyber range provides a multi-version, multi-forest research environment for
 
 ---
 
+<div align="center">
+
 ## Active Directory Fleet Inventory
+
+</div>
 
 | VMID | Hostname | Operating System | Domain Role | Assigned RAM | Disk | Network & IP |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -29,28 +41,48 @@ This cyber range provides a multi-version, multi-forest research environment for
 
 ---
 
+<div align="center">
+
 ## Validated Cyber Drills & Detection Engineering
 
+</div>
+
+<div align="center">
+
 ### 1. Kerberoasting & Service Principal Name (SPN) Abuse
+
+</div>
 - **Objective**: Request TGS service tickets for user accounts with registered SPNs and crack the RC4/AES hashes offline.
 - **Attack Tooling**: Impacket `GetUserSPNs.py`, Rubeus.
 - **Detection Baseline**:
   - Event ID 4769 (A Kerberos service ticket was requested) with Encryption Type `0x17` (RC4-HMAC) requested by non-machine accounts.
   - Sigma Rule: `win_security_kerberoasting_spn.yml` running in Wazuh / Security Onion.
 
+<div align="center">
+
 ### 2. AS-REP Roasting
+
+</div>
 - **Objective**: Target domain user accounts with the `DONT_REQ_PREAUTH` attribute enabled to extract encrypted TGT hashes without authentication.
 - **Attack Tooling**: Impacket `GetNPUsers.py`.
 - **Detection Baseline**:
   - Event ID 4768 (A Kerberos authentication ticket was requested) where Pre-Authentication Type is `0`.
 
+<div align="center">
+
 ### 3. Active Directory Attack Path Graphing (BloodHound)
+
+</div>
 - **Objective**: Collect domain object relationships, group memberships, and ACL misconfigurations using SharpHound.
 - **Defense & Remediation**: Auditing GenericAll, WriteDacl, and ForceChangePassword permissions granted to unprivileged security principals.
 
 ---
 
+<div align="center">
+
 ## Operational Constraint & Spin-Up Protocol
+
+</div>
 The total declared RAM across the entire Active Directory fleet is **35GB**, which substantially exceeds the 12GB physical capacity of Node 1.
 
 **Operational Mandate**:

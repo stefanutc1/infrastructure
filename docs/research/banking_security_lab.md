@@ -1,4 +1,8 @@
+<div align="center">
+
 # Research Environment: Bachelor's Thesis Banking Security Lab
+
+</div>
 
 <div align="center">
 
@@ -12,7 +16,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Context & Academic Thesis
+
+</div>
 
 This research laboratory hosts the practical implementation and empirical attack-defense testbed for the **Bachelor's Thesis (Lucrare de Licență)** focused on **Enterprise Banking Infrastructure Security, Resilient Core-Banking Architectures, and Automated Threat Detection**.
 
@@ -20,7 +28,11 @@ The research simulates a realistic, multi-tier banking architecture adhering to 
 
 ---
 
+<div align="center">
+
 ## 2. Architecture Topology
+
+</div>
 
 ```text
                ┌────────────────────────────────────────────────────────┐
@@ -51,7 +63,11 @@ The research simulates a realistic, multi-tier banking architecture adhering to 
 
 ---
 
+<div align="center">
+
 ## 3. Component Matrix
+
+</div>
 
 | VMID / CTID | Component Name | Operational Role | Technology Stack | Network & Static IP | Lifecycle State |
 | :---: | :--- | :--- | :--- | :--- | :---: |
@@ -65,7 +81,11 @@ The research simulates a realistic, multi-tier banking architecture adhering to 
 
 ---
 
+<div align="center">
+
 ## 4. Validated Attack & Defense Scenarios
+
+</div>
 
 1. **Scenario 1: SQL Injection & Financial Ledger Tampering**
    - *Attack*: Exploitation of vulnerable microservice input fields using `sqlmap` from VM 302 targeting the payment gateway.
@@ -79,7 +99,11 @@ The research simulates a realistic, multi-tier banking architecture adhering to 
 
 ---
 
+<div align="center">
+
 ## 5. Operational Lifecycle
+
+</div>
 
 Because the full thesis laboratory requires approximately 14 GB of RAM when all VMs execute simultaneously, the laboratory operates under the **On-Demand Spin-Up Lifecycle**:
 - To begin a research drill: Execute `bash scripts/licenta-lab-start.sh`.

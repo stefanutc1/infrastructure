@@ -1,4 +1,8 @@
+<div align="center">
+
 # Technical Write-Up: The Blog (Stored XSS & Context Exfiltration)
+
+</div>
 
 <div align="center">
 
@@ -12,7 +16,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Challenge Specification
+
+</div>
 
 - **Target Application**: Standard blogging engine with articles and a public contact submission form (`/contact`).
 - **Simulated Environment**: An editorial bot with authenticated administrative privileges periodically navigates to the inbox in a real browser instance and opens unread messages.
@@ -20,20 +28,32 @@
 
 ---
 
+<div align="center">
+
 ## 2. Attack Surface Analysis & Root Cause
+
+</div>
 
 The application exposes two primary components:
 1. **Public Ingress**: Contact submission form at `/contact` accepting `name`, `email`, and `message` via HTTP POST.
 2. **Privileged Background Bot**: A headless browser (Puppeteer / Chromium) operating with active session cookies on the internal `/admin` route.
 
+<div align="center">
+
 ### Vulnerability Mechanism
+
+</div>
 The server stores incoming messages in its database without applying contextual HTML entity encoding (e.g. `htmlspecialchars()`) or DOM sanitization (e.g. `DOMPurify`). When the admin bot reviews unread messages, the unsanitized `message` content is inserted directly into the page DOM as raw HTML, executing arbitrary JavaScript in the context of the administrator's authenticated session (Stored Cross-Site Scripting).
 
 Even if session cookies are protected with the `HttpOnly` flag (preventing direct `document.cookie` theft), the bot executes in an authenticated browser state. The injected payload can issue an asynchronous `fetch('/admin')` request, inheriting session credentials automatically, and transmit the returned HTML body to an external listener.
 
 ---
 
+<div align="center">
+
 ## 3. Exploit Payload Engineering
+
+</div>
 
 The payload executes in three sequential stages:
 1. Issues an asynchronous `fetch()` request to `/admin`.
@@ -53,7 +73,11 @@ Wrapped in a `<script>` tag for injection into the `message` field:
 
 ---
 
+<div align="center">
+
 ## 4. Automated Python Solver (`solver.py`)
+
+</div>
 
 ```python
 #!/usr/bin/env python3
@@ -76,7 +100,11 @@ print(f"[*] Payload delivered! Server responded with status code: {response.stat
 
 ---
 
+<div align="center">
+
 ## 5. Remediation & Hardening Recommendations
+
+</div>
 
 1. **Context-Aware Output Encoding**: Ensure all user-supplied input rendered in HTML templates is encoded (e.g. using Jinja2 automatic escaping or React DOM bindings).
 2. **Content Security Policy (CSP)**: Deploy strict CSP headers forbidding unauthorized inline scripts and restricting outbound network connections:

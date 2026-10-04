@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Smart 4-Zone Weather-Aware Irrigation Controller
+
+</div>
 
 **Author**: Moană Ștefănuț-Cornel ([@stefanutc1](https://github.com/stefanutc1))  
 **Platform**: ESP32-WROOM-32  
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Architecture
+
+</div>
 
 The **Smart Irrigation Controller** automates garden and lawn watering with fail-safe safety mechanisms:
 - **4 Optically Isolated Zones**: Controls 12V / 24V AC/DC solenoid valves via an Active-LOW 4-channel relay module.
@@ -18,7 +26,11 @@ The **Smart Irrigation Controller** automates garden and lawn watering with fail
 
 ---
 
+<div align="center">
+
 ## 2. GPIO Pinout & Electrical Connections
+
+</div>
 
 | ESP32 Pin | Function | Peripheral Connection | Notes |
 | :--- | :--- | :--- | :--- |
@@ -33,7 +45,11 @@ The **Smart Irrigation Controller** automates garden and lawn watering with fail
 
 ---
 
+<div align="center">
+
 ## 3. MQTT Control Topics & Payloads
+
+</div>
 
 | Topic | Direction | Payload Example | Description |
 | :--- | :--- | :--- | :--- |
@@ -43,7 +59,11 @@ The **Smart Irrigation Controller** automates garden and lawn watering with fail
 | `homelab/irrigation/zone/1/state` | Publisher | `"ON"` / `"OFF"` | Live operational confirmation |
 | `homelab/irrigation/telemetry` | Publisher | JSON Object | Comprehensive periodic metrics |
 
+<div align="center">
+
 ### Example Telemetry Payload
+
+</div>
 ```json
 {
   "device": "esp32-irrigation-controller",

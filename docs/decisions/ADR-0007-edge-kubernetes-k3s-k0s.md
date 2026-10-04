@@ -1,9 +1,21 @@
+<div align="center">
+
 # ADR-0007: Single-Node Lightweight Kubernetes (k3s/k0s) on Legacy Hardware
 
+</div>
+
+<div align="center">
+
 ## Status
+
+</div>
 **Accepted**
 
+<div align="center">
+
 ## Context
+
+</div>
 Physical Node 4 (`k8s_node_04` / `kubernetes_node`) is legacy x86_64 bare-metal hardware:
 - CPU: AMD Athlon II X2 220 (2 cores / 2 threads, 2.8 GHz, lacking modern AVX instructions).
 - GPU: NVIDIA GeForce GTS 250 (legacy Tesla architecture).
@@ -19,7 +31,11 @@ However, the infrastructure platform requires edge Kubernetes capabilities to su
 - Containerized batch pipelines and Woodpecker CI agents.
 - Cilium eBPF network policy validation.
 
+<div align="center">
+
 ## Decision
+
+</div>
 We deploy **k3s (or k0s)** in a single-node, optimized edge configuration on Node 4:
 
 1. **Lightweight Datastore**:
@@ -31,13 +47,25 @@ We deploy **k3s (or k0s)** in a single-node, optimized edge configuration on Nod
 4. **ZRAM Swap Configuration**:
    - Enforces a 1.5GB ZRAM swap pool on the node to prevent OOM termination of the kubelet during container image pulls.
 
+<div align="center">
+
 ## Consequences
 
+</div>
+
+<div align="center">
+
 ### Positive
+
+</div>
 - **Functional Edge Cluster**: Enables real Kubernetes API interactions, CRDs, and GitOps deployments on legacy 4GB RAM hardware.
 - **Minimal Idle Overhead**: Idle k3s daemon consumes approximately 400MB–600MB of RAM.
 - **Disaster Isolation**: Faults or crashes on the legacy edge node cannot disrupt the primary Proxmox hypervisor hosting production workloads.
 
+<div align="center">
+
 ### Negative
+
+</div>
 - **No High Availability**: As a single-node cluster, node maintenance requires scheduled downtime for edge workloads.
 - **Compute Constraints**: Workloads scheduled on Node 4 must be lightweight (e.g., Woodpecker runners, DNS testing, ephemeral cron containers) and avoid AVX-dependent binaries.

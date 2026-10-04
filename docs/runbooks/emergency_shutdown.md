@@ -1,13 +1,25 @@
+<div align="center">
+
 # Runbook: Emergency Controlled Shutdown Protocol
 
+</div>
+
+<div align="center">
+
 ## Trigger Conditions
+
+</div>
 This runbook must be executed immediately when:
 1. **Prolonged Power Outage**: UPS battery runtime drops below 20% or 5 minutes remaining.
 2. **Thermal Emergency**: Hypervisor CPU core temperatures exceed 85°C continuously for >60 seconds.
 3. **Severe Hardware Malfunction**: Uncorrectable disk I/O errors or electrical fault warnings.
 4. **Physical Facility Evacuation**: Severe weather, flood, or facility maintenance requiring de-energizing.
 
+<div align="center">
+
 ## Shutdown Sequence (Inverse Dependency Order)
+
+</div>
 
 ```text
 PHASE 1: Stop On-Demand Research Labs & Heavy VMs (AD, Banking, Sandboxes)
@@ -29,17 +41,33 @@ PHASE 8: Sync & Halt Storage Node (Node 2 / OMV ZFS Pool Export)
 PHASE 9: Graceful Poweroff of Primary Hypervisor (Node 1)
 ```
 
+<div align="center">
+
 ## Step-by-Step Procedure
 
+</div>
+
+<div align="center">
+
 ### 1. Automated Execution
+
+</div>
 If SSH access to Proxmox Node 1 is available, run the master emergency shutdown script:
 ```bash
 bash scripts/emergency-shutdown.sh
 ```
 
+<div align="center">
+
 ### 2. Manual Execution Steps (If Automated Script Fails)
 
+</div>
+
+<div align="center">
+
 #### Phase 1: Terminate All Virtual Machines
+
+</div>
 ```bash
 # Gracefully shutdown non-firewall VMs first:
 for vmid in 201 202 203 204 205 301 302 310 311 312 313 400 401 402 403 404 405 406 407 408 409 410; do
@@ -50,7 +78,11 @@ for vmid in 201 202 203 204 205 301 302 310 311 312 313 400 401 402 403 404 405 
 done
 ```
 
+<div align="center">
+
 #### Phase 2: Terminate All LXC Containers
+
+</div>
 ```bash
 # Gracefully stop all active LXCs:
 for ctid in $(pct list 2>/dev/null | awk 'NR>1 {print $1}'); do
@@ -59,29 +91,49 @@ for ctid in $(pct list 2>/dev/null | awk 'NR>1 {print $1}'); do
 done
 ```
 
+<div align="center">
+
 #### Phase 3: Stop Edge Kubernetes (Node 4)
+
+</div>
 ```bash
 ssh -o ConnectTimeout=5 root@192.168.1.18 "systemctl stop k3s 2>/dev/null || systemctl stop k0s 2>/dev/null; sync; poweroff" || true
 ```
 
+<div align="center">
+
 #### Phase 4: Stop Perimeter Firewall (VM 200)
+
+</div>
 ```bash
 qm shutdown 200 --timeout 45 || qm stop 200
 ```
 
+<div align="center">
+
 #### Phase 5: Flush ZFS & Unmount Storage on Node 2 (NAS)
+
+</div>
 ```bash
 ssh -o ConnectTimeout=5 root@192.168.1.135 "sync; zpool export -a 2>/dev/null || true; poweroff" || true
 ```
 
+<div align="center">
+
 #### Phase 6: Sync NVMe & Power Off Primary Hypervisor
+
+</div>
 ```bash
 sync
 sync
 systemctl poweroff
 ```
 
+<div align="center">
+
 ## Post-Incident Recovery Checklist
+
+</div>
 - [ ] Inspect thermal sensors and fan intakes for physical obstructions.
 - [ ] Verify AC utility power stability before re-energizing.
 - [ ] Inspect UPS battery charge status (>80% recommended before boot).

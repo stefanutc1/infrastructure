@@ -1,4 +1,8 @@
+<div align="center">
+
 # Platform Engineering & Contribution Guidelines
+
+</div>
 
 <div align="center">
 
@@ -13,7 +17,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Core Engineering Principles
+
+</div>
 
 All contributions to the `stefanutc1/infrastructure` platform must strictly conform to these engineering principles:
 
@@ -26,7 +34,11 @@ All contributions to the `stefanutc1/infrastructure` platform must strictly conf
 
 ---
 
+<div align="center">
+
 ## 2. Local Environment Setup & Prerequisites
+
+</div>
 
 To develop, validate, and test changes locally:
 
@@ -44,7 +56,11 @@ pre-commit install
 
 ---
 
+<div align="center">
+
 ## 3. Pre-Commit Validation & Local Quality Gates
+
+</div>
 
 Before opening a pull request or pushing to `main`, execute the complete local verification suite:
 
@@ -72,31 +88,55 @@ cd web && npm run build && cd ..
 
 ---
 
+<div align="center">
+
 ## 4. Coding & Configuration Standards
 
+</div>
+
+<div align="center">
+
 ### 4.1 Terraform (`terraform/` & `cloud/`)
+
+</div>
 - Formatting: All `.tf` files must pass `terraform fmt -check -recursive`.
 - Providers: Use modern `bpg/proxmox` provider syntax for Proxmox resources.
 - Cost Guardrails: Any cloud instance must be whitelisted in `scripts/verify_zero_cloud_cost.py`.
 - State: Production state backends utilize S3-compatible remote locking (MinIO / PBS S3 API).
 
+<div align="center">
+
 ### 4.2 Ansible (`ansible/`)
+
+</div>
 - Inventory: Single source of truth is `inventory/hosts.yml` (synchronized with `ansible/inventories/homelab/hosts.yml`).
 - Playbooks: All playbooks must pass `ansible-playbook --syntax-check`.
 - Idempotency: Roles must be completely idempotent; running a playbook twice must yield `changed=0` on the second run.
 
+<div align="center">
+
 ### 4.3 ESP32 Edge Firmware (`esp32/`)
+
+</div>
 - Language: Bare-metal C++ using the Arduino ESP32 Core.
 - Safety: Every project sketch must implement a Hardware Watchdog Timer (WDT) and non-blocking sensor sampling.
 - Configuration: Wi-Fi credentials, MQTT topics, and GPIO pinouts must be encapsulated cleanly in a dedicated `config.h`.
 
+<div align="center">
+
 ### 4.4 Kubernetes (`kubernetes/`)
+
+</div>
 - Schema Validation: All manifests must conform to Kubernetes 1.28+ schemas via `kubeconform`.
 - Resource Quotas: Pod deployments must specify explicit `resources.requests` and `resources.limits`.
 
 ---
 
+<div align="center">
+
 ## 5. Commit & Pull Request Workflow
+
+</div>
 
 1. **Branching**: Branch off `main` using descriptive prefixes (`feat/`, `fix/`, `docs/`, `sec/`, `esp32/`).
 2. **Conventional Commits**: Commit messages must follow the Conventional Commits specification:

@@ -1,4 +1,8 @@
+<div align="center">
+
 # Homelab Wiki
+
+</div>
 
 - [[Home]]
 - [[Architecture & Networking|Architecture-and-Networking]]

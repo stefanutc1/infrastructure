@@ -1,11 +1,23 @@
+<div align="center">
+
 # Security Specification: Public Key Infrastructure (PKI) & Internal CA
 
+</div>
+
+<div align="center">
+
 ## Objective
+
+</div>
 Establish an automated, secure internal Public Key Infrastructure (PKI) to enforce cryptographic transport security (TLS 1.3) and Mutual TLS (mTLS) authentication across all internal services, APIs, and administrative endpoints within the `.lan` and `stefanut.lan` namespaces.
 
 ---
 
+<div align="center">
+
 ## 1. PKI Hierarchy
+
+</div>
 
 ```text
                ┌───────────────────────────────┐
@@ -31,7 +43,11 @@ Establish an automated, secure internal Public Key Infrastructure (PKI) to enfor
 
 ---
 
+<div align="center">
+
 ## 2. Certificate Authority Engine (Step-CA)
+
+</div>
 - **Engine**: Smallstep `step-ca` deployed in an unprivileged container or standalone daemon.
 - **Root CA Storage**: The Root CA private key is kept offline, encrypted with AES-256-GCM.
 - **Intermediate CA**: Runs online, signing short-lived end-entity certificates.
@@ -41,7 +57,11 @@ Establish an automated, secure internal Public Key Infrastructure (PKI) to enfor
 
 ---
 
+<div align="center">
+
 ## 3. Mutual TLS (mTLS) Ingress Gateway
+
+</div>
 Internal administrative endpoints require both server authentication and client certificate presentation:
 
 ```text
@@ -55,7 +75,11 @@ Operator Client Browser ──[Client Cert Presentation]──> Caddy Reverse Pr
                                         (Port 8006)      (Port 8443)      (Port 55000)
 ```
 
+<div align="center">
+
 ### Caddyfile mTLS Configuration (`services/caddy-mtls/Caddyfile`)
+
+</div>
 ```caddy
 pve.lan:8443 {
     tls {
@@ -75,7 +99,11 @@ pve.lan:8443 {
 
 ---
 
+<div align="center">
+
 ## 4. Key Rotation & Expiration Policies
+
+</div>
 | Certificate Type | Key Algorithm | Expiration | Automated Renewal |
 | :--- | :--- | :--- | :--- |
 | **Offline Root CA** | RSA 4096 | 10 Years | Manual Air-Gapped Ceremony |
@@ -86,6 +114,10 @@ pve.lan:8443 {
 
 ---
 
+<div align="center">
+
 ## 5. Revocation & Incident Response
+
+</div>
 - **CRL (Certificate Revocation List)**: Published and updated every 24 hours at `http://ca.lan/crl.pem`.
 - **Compromise Procedure**: Immediate revocation of compromised leaf certificate using `step ca revoke <serial-number>` followed by reloading Caddy reverse proxy daemon.

@@ -1,10 +1,22 @@
+<div align="center">
+
 # Monitoring & Alerting
+
+</div>
+
+<div align="center">
 
 ## 1. Prometheus Telemetry Architecture
 
+</div>
+
 Prometheus (CT 104) scrapes metrics across physical hosts, virtual machines, container endpoints, and embedded ESP32 edge nodes every 15 seconds.
 
+<div align="center">
+
 ### Exporter Targets
+
+</div>
 - **Node Exporter**: Scraping port `9100/TCP` across all physical hosts (Node 1, Node 2, Node 4).
 - **cAdvisor**: Container runtime resource utilization across all LXC microservices.
 - **ESP32 Datacenter Environment**: Embedded HTTP exporter scraping port `80/TCP` (`http://192.168.50.23/metrics`) for ambient temperature, humidity, pressure, DS18B20 delta-T, and fan RPM.
@@ -12,7 +24,11 @@ Prometheus (CT 104) scrapes metrics across physical hosts, virtual machines, con
 
 ---
 
+<div align="center">
+
 ## 2. Alert Rules (`services/prometheus/rules/homelab-alerts.yml`)
+
+</div>
 
 ```yaml
 groups:
@@ -48,7 +64,11 @@ groups:
 
 ---
 
+<div align="center">
+
 ## 3. Alertmanager Notification Routing
+
+</div>
 
 Alerts are routed to notification channels via webhooks:
 - `warning` severity -> `#homelab-alerts` channel.

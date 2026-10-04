@@ -1,19 +1,35 @@
+<div align="center">
+
 # OPNsense & Unbound DNS Blocklist Integration Guide
+
+</div>
 **Gateway:** `192.168.1.1` (OPNsense Business / Community Edition)  
 **Target:** Homelab & Enterprise Defense-in-Depth  
 **Incident Reference:** `SEC-2026-ECOM-005` (Media Galaxy Phishing & E-Commerce Fraud)
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary
+
+</div>
 
 This technical runbook details the end-to-end procedure for ingesting the extracted Indicators of Compromise (IoCs) into the perimeter gateway at `192.168.1.1`. By implementing protective measures across **Unbound DNS (Sinkholing)**, **Firewall Aliases (L3/L4 Egress Filtering)**, and **Suricata IDS/IPS (Deep Packet Inspection)**, the local network and downstream endpoints are immunized against credential theft, command-and-control callback, and data exfiltration.
 
 ---
 
+<div align="center">
+
 ## 2. DNS Sinkholing via Unbound DNS
 
+</div>
+
+<div align="center">
+
 ### Option A: Local Overrides (Immediate Quarantine)
+
+</div>
 1. Log in to the OPNsense WebGUI at `https://192.168.1.1`.
 2. Navigate to **Services -> Unbound DNS -> Overrides**.
 3. Under **Host Overrides**, click **+ Add** for each extracted domain:
@@ -29,7 +45,11 @@ This technical runbook details the end-to-end procedure for ingesting the extrac
    - `mailapp-fly.com` -> `0.0.0.0`
 5. Click **Save** and **Apply Changes**.
 
+<div align="center">
+
 ### Option B: Custom Blocklist Feed (Automated Fetch)
+
+</div>
 1. Store `domains.txt` on a local web server (e.g. Nginx on `192.168.1.175` / Proxmox VM):
    `http://192.168.1.175/blocklists/sec-2026-ecom-005.txt`
 2. In OPNsense, navigate to **Services -> Unbound DNS -> Blocklist**.
@@ -40,11 +60,19 @@ This technical runbook details the end-to-end procedure for ingesting the extrac
 
 ---
 
+<div align="center">
+
 ## 3. Firewall Alias & Egress Blocking (L3/L4)
+
+</div>
 
 Even if an attacker bypasses local DNS (e.g., using DNS-over-HTTPS / DoH), L3/L4 firewall blocks on target proxy IPs guarantee zero communication.
 
+<div align="center">
+
 ### Step 1: Create Firewall Alias
+
+</div>
 1. Navigate to **Firewall -> Aliases**.
 2. Click **+ Add**.
    - **Name:** `PHISHING_SAAS_IPS`
@@ -55,7 +83,11 @@ Even if an attacker bypasses local DNS (e.g., using DNS-over-HTTPS / DoH), L3/L4
    - **Description:** `Known Phishing C2 and Reverse Proxy IPs (SEC-2026-ECOM-005)`
 3. Save and Apply Changes.
 
+<div align="center">
+
 ### Step 2: Create Floating Egress Reject Rule
+
+</div>
 1. Navigate to **Firewall -> Rules -> Floating**.
 2. Click **+ Add** (top rule):
    - **Action:** `Reject`
@@ -71,7 +103,11 @@ Even if an attacker bypasses local DNS (e.g., using DNS-over-HTTPS / DoH), L3/L4
 
 ---
 
+<div align="center">
+
 ## 4. Suricata IDS/IPS Rules Deployment
+
+</div>
 
 1. SSH into the OPNsense gateway:
    ```bash
@@ -96,7 +132,11 @@ Even if an attacker bypasses local DNS (e.g., using DNS-over-HTTPS / DoH), L3/L4
 
 ---
 
+<div align="center">
+
 ## 5. Verification & Testing
+
+</div>
 
 From a workstation on the LAN:
 ```bash

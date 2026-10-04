@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Platform Operations & Maintenance Manual
+
+</div>
 
 <div align="center">
 
@@ -14,7 +18,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document establishes standard operating procedures (SOPs), maintenance schedules, emergency failover protocols, hardware-triggered telemetry responses, and diagnostic runbooks for the `stefanutc1/infrastructure` platform.
 
@@ -22,7 +30,11 @@ It equips Systems Administrators, Site Reliability Engineers (SREs), and Platfor
 
 ---
 
+<div align="center">
+
 ## 1. Day-2 Operational Cadence
+
+</div>
 
 | Frequency | Task / Procedure | Automation Script / Tool | Expected Duration |
 | :--- | :--- | :--- | :--- |
@@ -37,34 +49,58 @@ It equips Systems Administrators, Site Reliability Engineers (SREs), and Platfor
 
 ---
 
+<div align="center">
+
 ## 2. Core Operational Runbooks
 
+</div>
+
+<div align="center">
+
 ### 2.1 Deterministic Cold Boot Sequence
+
+</div>
 Restores full datacenter operations from a cold, unpowered state in strict dependency-ordered stages:
 - **Runbook**: [`docs/runbooks/cold_boot_sequence.md`](docs/runbooks/cold_boot_sequence.md)
 - **Automated Script**: `scripts/cold-boot-sequence.sh` (or `scripts/cold-boot-sequence.ps1`)
 - **Key Verification Gate**: Confirm OPNsense (VM 200) is running and resolving DNS before booting downstream LXC containers.
 
+<div align="center">
+
 ### 2.2 Emergency Controlled Shutdown
+
+</div>
 Gracefully terminates active databases, containers, and hypervisors during power loss or thermal alarms:
 - **Runbook**: [`docs/runbooks/emergency_shutdown.md`](docs/runbooks/emergency_shutdown.md)
 - **Automated Script**: `scripts/emergency-shutdown.sh` (or `scripts/emergency-shutdown.ps1`)
 - **Safety Guarantee**: Flushes ZFS transaction groups and syncs NVMe journal pages to prevent filesystem corruption.
 
+<div align="center">
+
 ### 2.3 Hardware-Triggered Emergency Shutdown (ESP32 Power Monitor)
+
+</div>
 - **Node**: `ESP32-EDGE-04` (`esp32/power_monitor/`)
 - **Mechanism**: The 230V AC optocoupler detects grid drop instantly. If power remains lost and the 12V SLA battery bank discharges below **11.4V (critical cut-off threshold)**:
   1. ESP32 sounds the onboard emergency buzzer.
   2. Issues an authenticated emergency webhook to Proxmox VE host API (`POST /api2/json/nodes/pve/status -d command=shutdown`).
   3. Proxmox automatically initiates `scripts/emergency-shutdown.sh`, safely powering down VMs, flushing databases, and unmounting NFS before battery cutoff.
 
+<div align="center">
+
 ### 2.4 Datacenter Thermal Regulation (ESP32 Environment Node)
+
+</div>
 - **Node**: `ESP32-EDGE-03` (`esp32/datacenter_environment/`)
 - **Mechanism**: Continuously samples BME280 ambient temperature and dual DS18B20 1-Wire intake/exhaust probes:
   - If delta-T ($\Delta T = T_{\text{exhaust}} - T_{\text{intake}}$) exceeds $8.0^\circ\text{C}$ or exhaust exceeds $38.0^\circ\text{C}$, the 25kHz PWM driver spins Noctua cooling fans to 100% duty cycle.
   - If ambient temperature exceeds $45.0^\circ\text{C}$ despite fan cooling, an alert is dispatched to Prometheus Alertmanager and Uptime Kuma.
 
+<div align="center">
+
 ### 2.5 Proxmox vzdump Restore Verification Drill
+
+</div>
 Validates that backup archives are valid and bootable without causing production network conflicts:
 - **Runbook**: [`docs/runbooks/vzdump_restore_drill.md`](docs/runbooks/vzdump_restore_drill.md)
 - **Script**: `scripts/disaster-recovery/dr_vzdump_restore.sh`
@@ -72,34 +108,58 @@ Validates that backup archives are valid and bootable without causing production
 
 ---
 
+<div align="center">
+
 ## 3. Routine Health Audits & Diagnostics
 
+</div>
+
+<div align="center">
+
 ### 3.1 Automated Infrastructure Health Doctor
+
+</div>
 Execute the master automated health validation script:
 ```bash
 python3 scripts/audit_infrastructure.py
 ```
 This diagnostic engine inspects 12 operational domains (IaC, Ansible, Security, Secrets, Networking, Kubernetes, Observability, Backup, Disaster Recovery, Documentation, AI Governance, Supply Chain) and outputs an executive validation report.
 
+<div align="center">
+
 ### 3.2 ESP32 Edge Firmware Verification
+
+</div>
 Verify compile integrity and configuration consistency across all 4 edge microcontroller sketches:
 ```bash
 python3 scripts/verify_esp32_firmware.py
 ```
 
+<div align="center">
+
 ### 3.3 Zero-Cost Cloud Static Verification
+
+</div>
 Verify that all cloud Terraform configurations conform strictly to $0.00 / free-tier rules:
 ```bash
 python3 scripts/verify_zero_cloud_cost.py
 ```
 
+<div align="center">
+
 ### 3.4 Hypervisor & Container Fleet Healthcheck
+
+</div>
 To check live hypervisor telemetry and container statuses from the Proxmox console:
 ```bash
 bash scripts/healthcheck-fleet.sh
 ```
 
+<div align="center">
+
 ### 3.5 Network Connectivity & Transit Diagnostics
+
+</div>
 ```bash
 # Verify inter-firewall transit bus responsiveness:
 ping -c 2 10.10.20.1
@@ -113,16 +173,28 @@ wg show wg-cloud0
 
 ---
 
+<div align="center">
+
 ## 4. Maintenance & Rolling Updates
 
+</div>
+
+<div align="center">
+
 ### 4.1 Applying Operating System Updates
+
+</div>
 To perform safe, rolling updates across the container fleet using Ansible:
 ```bash
 cd ansible
 ansible-playbook -i inventories/homelab/hosts.yml playbooks/maintenance.yml
 ```
 
+<div align="center">
+
 ### 4.2 Proxmox VE Kernel Upgrades
+
+</div>
 1. Place the node in maintenance mode: stop non-critical on-demand research VMs.
 2. Upgrade Proxmox packages:
    ```bash
@@ -133,9 +205,17 @@ ansible-playbook -i inventories/homelab/hosts.yml playbooks/maintenance.yml
 
 ---
 
+<div align="center">
+
 ## 5. Storage Maintenance & Space Management
 
+</div>
+
+<div align="center">
+
 ### 5.1 Local NVMe (`local-lvm`) Disk Space
+
+</div>
 If root filesystem usage on Node 1 exceeds 80%:
 ```bash
 # Clean up downloaded package caches:
@@ -146,7 +226,11 @@ rm -rf /var/tmp/vzdump*
 fstrim -av
 ```
 
+<div align="center">
+
 ### 5.2 OpenMediaVault ZFS Pool Scrub
+
+</div>
 Initiate monthly data scrub to verify block checksums:
 ```bash
 ssh root@192.168.1.135 "zpool scrub omv_tank"
@@ -156,14 +240,26 @@ ssh root@192.168.1.135 "zpool status omv_tank"
 
 ---
 
+<div align="center">
+
 ## 6. Incident Response & On-Call Playbooks
 
+</div>
+
+<div align="center">
+
 ### Alert: CPU Core Temperature Exceeds 80°C
+
+</div>
 1. Identify offending process via `htop` or `top`.
 2. If caused by local Ollama AI GPU inference, verify fan curves and thermal throttle.
 3. If temperature continues rising past 85°C, initiate `docs/runbooks/emergency_shutdown.md`.
 
+<div align="center">
+
 ### Alert: Uptime Kuma Endpoint Unreachable (HTTP 502/504)
+
+</div>
 1. Check if backend container is running: `pct status <ctid>`.
 2. Inspect container systemd logs: `pct exec <ctid> -- journalctl -xeu <service> --no-pager -n 50`.
 3. Check Caddy reverse proxy upstream logs: `docker logs caddy --tail 50`.

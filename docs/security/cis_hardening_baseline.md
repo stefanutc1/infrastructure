@@ -1,11 +1,23 @@
+<div align="center">
+
 # Security Benchmark: Linux CIS Hardening Baseline
 
+</div>
+
+<div align="center">
+
 ## Objective
+
+</div>
 Establish a formal, auditable security baseline for all bare-metal hypervisors (Proxmox VE), container hosts, and Linux virtual machines across the infrastructure platform. This specification implements controls derived from the **CIS Linux Benchmark (Distribution Independent, Level 1 Server)**.
 
 ---
 
+<div align="center">
+
 ## 1. Operating System & Kernel Hardening (`/etc/sysctl.d/99-cis-hardening.conf`)
+
+</div>
 
 All Linux hosts enforce the following kernel-level parameters:
 
@@ -53,7 +65,11 @@ kernel.yama.ptrace_scope = 1
 
 ---
 
+<div align="center">
+
 ## 2. SSH Daemon Hardening (`/etc/ssh/sshd_config.d/99-cis-sshd.conf`)
+
+</div>
 
 Remote administrative access is strictly constrained:
 
@@ -85,7 +101,11 @@ AllowAgentForwarding no
 
 ---
 
+<div align="center">
+
 ## 3. Account & Access Governance
+
+</div>
 1. **Root Password Prohibition**: Direct root password login is disabled. Administrative operations require standard unprivileged user authentication into the `wheel` or `sudo` group.
 2. **Sudoers Hardening**:
    - `Defaults env_reset, timestamp_timeout=15`
@@ -94,7 +114,11 @@ AllowAgentForwarding no
 
 ---
 
+<div align="center">
+
 ## 4. Filesystem Permissions & Partition Security
+
+</div>
 1. **Critical Filesystem Permissions**:
    - `/etc/shadow`: `0600 root:root`
    - `/etc/passwd`: `0644 root:root`
@@ -107,7 +131,11 @@ AllowAgentForwarding no
 
 ---
 
+<div align="center">
+
 ## 5. Audit & Telemetry Integration
+
+</div>
 All Linux hosts run the **Wazuh HIDS agent** (`wazuh-agent`), actively monitoring:
 - File Integrity Monitoring (FIM) across `/etc`, `/usr/bin`, and `/usr/sbin`.
 - Sudo invocation logs and failed authentication attempts.

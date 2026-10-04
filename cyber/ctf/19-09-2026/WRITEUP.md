@@ -1,4 +1,8 @@
+<div align="center">
+
 # InvataCyber.ro · Centralized CTF Write-Up
+
+</div>
 
 <div align="center">
 
@@ -17,7 +21,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary & Challenge Matrix
+
+</div>
 
 This report centralizes the technical analysis, exploitation methodology, and architectural remediation for three web security challenges solved on the InvataCyber.ro platform.
 
@@ -31,15 +39,27 @@ Each challenge illustrates a distinct vulnerability class according to the OWASP
 
 ---
 
+<div align="center">
+
 ## 2. Challenge 1: The Blog (Stored XSS & Context Exfiltration)
 
+</div>
+
+<div align="center">
+
 ### 2.1. Statement & Architectural Context
+
+</div>
 
 > *„The Blog este un blog clasic: câteva articole publicate și un formular de contact deschis oricui. Redacția are un editor care își verifică periodic inbox-ul, într-un browser real, și deschide fiecare mesaj necitit. Ce se întâmplă în browserul lui în momentul ăla nu vezi, dar poți face să ajungă la tine.”*
 
 The application exposes a public area with a contact form (`/contact`) and an automated internal component (a headless Chromium/Puppeteer bot) that accesses the administrative inbox at regular intervals.
 
+<div align="center">
+
 ### 2.2. Vulnerability Analysis (Root Cause)
+
+</div>
 
 The `message` field from the contact form is saved directly to the database without HTML escaping. When messages are rendered in the editor's panel, the content is injected raw into the DOM (Raw HTML), triggering the execution of JavaScript code stored within the editor's browsing session context.
 
@@ -64,7 +84,11 @@ sequenceDiagram
     Webhook-->>Attacker: Exfiltrated Flag captured in webhook logs
 ```
 
+<div align="center">
+
 ### 2.3. Exploitation Chain
+
+</div>
 
 1. **Building the JS Payload ([`payload.js`](./payload.js)):**
 ```javascript
@@ -93,7 +117,11 @@ Checking the webhook listener logs after the admin bot cycle yielded the flag:
 
 `InvataCyber{st0r3d_xss_c0nt4ct_f0rm_pwn}`
 
+<div align="center">
+
 ### 2.4. Defensive Remediation Measures
+
+</div>
 
 - **Context-Aware Output Encoding:** Enforcing HTML entity encoding before rendering user input:
   ```python
@@ -107,13 +135,25 @@ Checking the webhook listener logs after the admin bot cycle yielded the flag:
 
 ---
 
+<div align="center">
+
 ## 3. Challenge 2: Portal InvataCyber.ro (Blind Boolean-Based SQLite Injection)
+
+</div>
+
+<div align="center">
 
 ### 3.1. Statement & Architectural Context
 
+</div>
+
 > *„Portalul este o aplicație internă pentru monitorizarea activității utilizatorilor. Fiecare vizitator primește un cookie `TrackingId` generat la prima accesare. Dacă revii cu același cookie, sistemul recunoaște vizita anterioară. Undeva în logica din spate, identificatorul ăsta este interogat într-un mod neglijent.”*
 
+<div align="center">
+
 ### 3.2. Vulnerability Analysis (Root Cause)
+
+</div>
 
 The HTTP request header `Cookie: TrackingId=...` is concatenated directly into an internal SQL query executed against an embedded **SQLite** database:
 
@@ -137,7 +177,11 @@ flowchart TD
     BINARY --> DUMP["Extracted Table, Column & Credentials Dumped"]
 ```
 
+<div align="center">
+
 ### 3.3. Exploitation Chain
+
+</div>
 
 1. **Confirming the Vulnerability ([`sql_solve.py`](./sql_solve.py)):**
    - True Payload: `base-id' OR '1'='1` $\rightarrow$ `5652 bytes`
@@ -159,7 +203,11 @@ flowchart TD
 
 `InvataCyber{bl1nd_sql1_c00k13_tr4ck1ng_m4st3r}`
 
+<div align="center">
+
 ### 3.4. Defensive Remediation Measures
+
+</div>
 
 - **Parameterized Queries (Prepared Statements):**
   ```python
@@ -169,13 +217,25 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 4. Challenge 3: CMS Newsroom (Broken Access Control & Jinja2 SSTI to RCE)
+
+</div>
+
+<div align="center">
 
 ### 4.1. Statement & Architectural Context
 
+</div>
+
 > *„Aceeași redacție, altă problemă. După migrarea de pe vechiul CMS, SSO-ul nu a mai fost configurat pe instanța asta, așa că panoul de editor este accesibil direct, fără cont. Poți scrie și publica articole ca și cum ai face parte din echipă. Conținutul articolelor nu este doar afișat, ci procesat de server înainte să ajungă în pagină. Locație flag: /flag.txt”*
 
+<div align="center">
+
 ### 4.2. Vulnerability Analysis (Root Cause)
+
+</div>
 
 1. **Broken Access Control ([CWE-306](https://cwe.mitre.org/data/definitions/306.html)):** The article editor route `POST /edit/<id>` permitted unrestricted modifications without authentication or role verification.
 2. **Server-Side Template Injection ([CWE-1336](https://cwe.mitre.org/data/definitions/1336.html)):** The Flask backend passed article contents directly into `render_template_string(article.content)`. Submitting `{{ 7 * 7 }}` rendered `49`.
@@ -188,7 +248,11 @@ flowchart LR
     SYSTEM --> FLAG["Flag Exfiltrated in Page Body"]
 ```
 
+<div align="center">
+
 ### 4.3. Python Sandbox Escape & RCE Chain
+
+</div>
 
 In Jinja2 templates, navigating from the accessible `config` object through its class hierarchy enables access to the global module namespace, exposing the `os` module:
 
@@ -199,7 +263,11 @@ $$\text{config} \longrightarrow \text{\_\_class\_\_} \longrightarrow \text{\_\_i
 {{ config.__class__.__init__.__globals__.os.popen('cat /flag.txt').read() }}
 ```
 
+<div align="center">
+
 ### 4.4. Exploitation Automation ([`blog_flag.py`](./blog_flag.py))
+
+</div>
 
 ```python
 import urllib.request, urllib.parse
@@ -220,7 +288,11 @@ Accessing `/post/5` executed `cat /flag.txt` at the OS level and returned the fl
 
 `InvataCyber{ssti_j1nj42_rc3_fl4g_txt_3xtr4ct3d}`
 
+<div align="center">
+
 ### 4.5. Defensive Remediation Measures
+
+</div>
 
 - **Enforce Authentication Middleware:** Apply authentication guards to all administrative routes (`@login_required`).
 - **Static Template Separation:** Never compile user input through `render_template_string()`. Always pass dynamic strings as template context variables:
@@ -231,7 +303,11 @@ Accessing `/post/5` executed `cat /flag.txt` at the OS level and returned the fl
 
 ---
 
+<div align="center">
+
 ## 5. Summary & Enterprise Defensive Takeaways
+
+</div>
 
 | Tier | Primary Defense | Implementation Standard |
 | :--- | :--- | :--- |

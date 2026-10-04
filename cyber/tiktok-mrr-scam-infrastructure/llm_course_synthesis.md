@@ -1,4 +1,8 @@
+<div align="center">
+
 # Forensic Analysis of Synthetic Digital Products: LLM Prompting & Recursive Resale Schemas
+
+</div>
 
 **Case File Reference:** `SEC-2025-MRR-001`  
 **Classification:** `TLP:CLEAR`  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary & Problem Formulation
+
+</div>
 
 A core claim of social media "Master Resell Rights" (MRR) operators is that their \$497 courses provide high-value, proprietary education in digital marketing, search engine optimization, funnel architecture, and automated sales operations.
 
@@ -28,9 +36,17 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Stylometric & Linguistic Fingerprinting
 
+</div>
+
+<div align="center">
+
 ### 2.1. Hallmarks of Synthetic LLM Prose
+
+</div>
 Corpus evaluation across the 147-page course PDF revealed ubiquitous lexical, grammatical, and structural artifacts characteristic of default LLM generation:
 - **Repetitive Introductory Clichés:** Over 82% of chapters began with textbook LLM openers:
   - *"In today’s fast-paced digital world..."*
@@ -39,7 +55,11 @@ Corpus evaluation across the 147-page course PDF revealed ubiquitous lexical, gr
 - **Symmetrical Triadic Cadence:** Excessive reliance on parallel adjective groupings (e.g., *"scalable, sustainable, and profitable"*, *"clear, concise, and compelling"*).
 - **Zero Primary Source Citations:** Across 147 pages, zero empirical case studies, technical API documentations, or verified banking datasets were cited. All numerical examples consisted of hypothetical scenarios (e.g., *"If you sell 1 course a day at \$497, that’s \$14,910 a month"*).
 
+<div align="center">
+
 ### 2.2. Reverse Prompt Engineering Teardown
+
+</div>
 By isolating recurring prompt structures, our research team reconstructed the baseline master prompt utilized by the threat syndicate to generate the entire course curriculum:
 
 ```text
@@ -56,11 +76,19 @@ Do not use technical jargon or programming terms; keep the tone accessible to co
 
 ---
 
+<div align="center">
+
 ## 3. The "Master Resell Rights" (MRR) Licensing Trap
+
+</div>
 
 The sole distinguishing operational element in the delivered bundle is the accompanying PDF document titled: **`MRR_Terms_and_Conditions_License.pdf`**.
 
+<div align="center">
+
 ### 3.1. Forensic Deconstruction of the License Rider
+
+</div>
 ```text
 "Subject to the terms herein, Licensor grants Licensee a non-exclusive, 
 transferable, perpetual right to resell, distribute, and re-brand this work. 
@@ -68,14 +96,22 @@ Licensee may retain 100% of the proceeds of any subsequent sale, provided
 the resale price is not set below the minimum advertised price of $497.00 USD."
 ```
 
+<div align="center">
+
 ### 3.2. Structural Inversion of Value
+
+</div>
 1. **The Product is Not the Product:** The educational text holds negligible market value (\$0, freely available via any public AI model).
 2. **The License is the Commodity:** What is actually traded is the legal permission to charge subsequent consumers \$497 for the exact same transaction right.
 3. **Price Fixing Enforcement:** By stipulating a strict price floor (\$497 minimum), the original syndicate ensures that the market is not undercut by rational price discovery, maintaining the perception of a premium luxury educational tier.
 
 ---
 
+<div align="center">
+
 ## 4. Legal & Regulatory Implications (EU & US)
+
+</div>
 
 Under established regulatory frameworks:
 - **United States (FTC):** Federal Trade Commission Act, 15 U.S.C. § 45 (Unfair or Deceptive Acts or Practices). Products whose primary financial incentive derives from recruitment or onward resale of the sales package rather than bona fide retail utility constitute unlawful pyramid schemes.

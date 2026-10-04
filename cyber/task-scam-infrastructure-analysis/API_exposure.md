@@ -1,4 +1,8 @@
+<div align="center">
+
 # API Architecture & Backend Configuration Exposure
+
+</div>
 
 **Case File Reference:** `SEC-2026-TASK-003`  
 **Classification:** `TLP:CLEAR`  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Architectural Role & Vulnerability Teardown
+
+</div>
 
 During HTTP traffic inspection through Burp Suite Professional, the client-side single-page application (SPA) was observed executing an unauthenticated GET request to `/api/v1/site/config` immediately upon application boot.
 
@@ -28,7 +36,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Leaked Configuration Payload (Raw JSON Excerpt)
+
+</div>
 
 ```json
 {
@@ -82,9 +94,17 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 3. Forensic Analysis of Exposed Attributes
 
+</div>
+
+<div align="center">
+
 ### 3.1. The "Withdrawal Kill-Switch" Smoking Gun
+
+</div>
 - **`withdrawMethodBank: false`**
 - **`withdrawMethodRevolut: false`**
 - **`withdrawMethodUSDT: true`**
@@ -97,7 +117,11 @@ flowchart TD
 >
 > This creates the operational pretext required to force the victim into transferring cryptocurrency (USDT TRC-20) to attacker-controlled custodial addresses.
 
+<div align="center">
+
 ### 3.2. Geographic Targeting Lock (`defaultCountryCode: "+40"`)
+
+</div>
 The `defaultCountryCode` key is locked to `+40` (Romania). The `supportedCountryCodes` array strictly permits Romanian phone prefixes. 
 
 During runtime validation testing:
@@ -107,14 +131,22 @@ During runtime validation testing:
   ```
 - This confirms that threat actors purchase and deploy geographically partitioned server instances tailored specifically to regional social engineering outreach campaigns.
 
+<div align="center">
+
 ### 3.3. Fabricated Social Proof Engine (`aiNewsFeed`)
+
+</div>
 The live ticker appearing at the top of the victim dashboard was confirmed to be entirely synthetic:
 - The items displayed are not generated from dynamic database events or real blockchain transaction logs.
 - They are drawn from a static array within the `/api/v1/site/config` response, looping continuously to create artificial urgency, peer validation, and FOMO.
 
 ---
 
+<div align="center">
+
 ## 4. Security Recommendations & Defensive Action
+
+</div>
 
 1. **Sinkhole Domain:** Egress traffic targeting the configuration endpoints should be blocked at the perimeter resolver (`Unbound DNS: 0.0.0.0`).
 2. **Suricata Signature:** Deploy signatures matching unauthenticated responses returning `withdrawMethodBank: false` and `defaultCountryCode: "+40"`.

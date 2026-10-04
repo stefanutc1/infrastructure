@@ -1,6 +1,14 @@
+<div align="center">
+
 # Active Directory Multi-Generation Enterprise Laboratory (VM 400 – 405)
 
+</div>
+
+<div align="center">
+
 ## 1. Executive Summary & Lab Scope
+
+</div>
 
 The **Active Directory Multi-Generation Enterprise Laboratory** is a specialized, production-parity identity and domain infrastructure deployed on **Proxmox VE Node 1 (Intel Core i3-10100F · x86_64)**. Spanning three Windows Server releases (2022 down to 2012 R2), two Windows client operating systems (Windows 10 Enterprise & Windows 7 Ultimate SP1), and enterprise Linux domain integration (Red Hat Enterprise Linux 9.8), this testbed facilitates deep research into:
 
@@ -13,7 +21,11 @@ The **Active Directory Multi-Generation Enterprise Laboratory** is a specialized
 
 ---
 
+<div align="center">
+
 ## 2. VM Roster & Hardware Topology
+
+</div>
 
 All installation media are sourced directly from genuine Microsoft distribution channels via [massgrave.dev](https://massgrave.dev) and official enterprise distributions, guaranteeing clean official hashes without third-party modifications.
 
@@ -28,7 +40,11 @@ All installation media are sourced directly from genuine Microsoft distribution 
 
 ---
 
+<div align="center">
+
 ## 3. Replication & Domain Architecture
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -54,7 +70,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 4. Activation & Licensing (Massgrave Genuine Integration)
+
+</div>
 
 The laboratory leverages genuine Microsoft volume licensing mechanisms via **Microsoft Activation Scripts (MAS)** hosted on [massgrave.dev](https://massgrave.dev):
 
@@ -71,7 +91,11 @@ The laboratory leverages genuine Microsoft volume licensing mechanisms via **Mic
 
 ---
 
+<div align="center">
+
 ## 5. Storage & VirtIO Ballooning Optimizations
+
+</div>
 
 1. **Local LVM Thin Provisioning**:
    * All disks reside on `local-lvm:data` with TRIM/discard support enabled (`discard=on,ssd=1`), ensuring zero unallocated block usage on the host NVMe SSD.
@@ -82,7 +106,11 @@ The laboratory leverages genuine Microsoft volume licensing mechanisms via **Mic
 
 ---
 
+<div align="center">
+
 ## 6. Infrastructure as Code Declarations
+
+</div>
 
 * **Bash Creation Script**: [`scripts/create/x64/create_vms.sh`](../scripts/create/x64/create_vms.sh) (VMs 400 through 407)
 * **Terraform Module**: [`terraform/proxmox/ad_lab.tf`](../terraform/proxmox/ad_lab.tf) & [`terraform/ad_lab.tf`](../terraform/ad_lab.tf)

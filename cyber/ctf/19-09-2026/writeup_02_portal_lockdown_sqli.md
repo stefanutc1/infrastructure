@@ -1,4 +1,8 @@
+<div align="center">
+
 # Technical Write-Up: Portal InvataCyber.ro (Blind SQL Injection & Admin Takeover)
+
+</div>
 
 <div align="center">
 
@@ -12,7 +16,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Challenge Specification
+
+</div>
 
 - **Target Application**: Maintenance / lockdown portal with authentication modules hidden from the public interface.
 - **Tracking Mechanism**: The application sets and reads a tracking cookie (`TrackingId`) to identify returning visitors. When the cookie value matches an active database record, a unique banner is displayed; when it does not match, a different response is returned.
@@ -21,7 +29,11 @@
 
 ---
 
+<div align="center">
+
 ## 2. Attack Surface Analysis & Root Cause
+
+</div>
 
 Upon inspecting HTTP traffic, the web server reads the `TrackingId` cookie:
 
@@ -42,7 +54,11 @@ Because data is not directly reflected in page content and no database error tra
 
 ---
 
+<div align="center">
+
 ## 3. Vulnerability Verification (PoC Oracle)
+
+</div>
 
 Testing boolean conditional logic using [`sql_solve.py`](sql_solve.py):
 
@@ -62,11 +78,19 @@ This confirms the presence of an injectable SQLite database backend.
 
 ---
 
+<div align="center">
+
 ## 4. Automated Database Schema & Credential Exfiltration
+
+</div>
 
 Using automated Python scripts ([`dump_sqlite.py`](dump_sqlite.py), [`dump_schema.py`](dump_schema.py), and [`dump_users.py`](dump_users.py)), binary-search character extraction was executed against `sqlite_master` and internal tables.
 
+<div align="center">
+
 ### 4.1 Schema Extraction Query
+
+</div>
 ```sql
 TrackingId=' OR (SELECT SUBSTR(sql, {pos}, 1) FROM sqlite_master WHERE type='table' AND name='users') = '{char}'--
 ```
@@ -76,7 +100,11 @@ Recovered Table DDL:
 CREATE TABLE users (id INTEGER PRIMARY KEY, username TEXT, password TEXT, role TEXT)
 ```
 
+<div align="center">
+
 ### 4.2 Credential Dumping Query
+
+</div>
 ```sql
 TrackingId=' OR (SELECT SUBSTR(password, {pos}, 1) FROM users WHERE username='admin') = '{char}'--
 ```
@@ -87,7 +115,11 @@ Recovered Credentials:
 
 ---
 
+<div align="center">
+
 ## 5. Administrative Console Discovery & Flag Capture
+
+</div>
 
 Executing the endpoint scanner [`solver_portal.py`](solver_portal.py) revealed the hidden administrative route:
 - Route: `/console`
@@ -96,7 +128,11 @@ Executing the endpoint scanner [`solver_portal.py`](solver_portal.py) revealed t
 
 ---
 
+<div align="center">
+
 ## 6. Remediation & Hardening Recommendations
+
+</div>
 
 1. **Parameterized Prepared Statements**: Replace dynamic string concatenation with parameterized SQL queries:
    ```python

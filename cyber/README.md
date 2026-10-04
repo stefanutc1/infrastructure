@@ -1,4 +1,8 @@
+<div align="center">
+
 # Cyber Threat Intelligence, Forensics & Defensive Operations Hub (`cyber/`)
+
+</div>
 
 <div align="center">
 
@@ -13,7 +17,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Directory Topology
+
+</div>
 
 This directory serves as the centralized digital forensics, threat intelligence, and defensive engineering repository for the **Hybrid Infrastructure & Cybersecurity Laboratory**. It documents real-world cybercrime campaigns investigated locally, reverse-engineered malware/phishing backends, full Capture The Flag (CTF) writeups, vulnerability research (CVEs), and active DNS threat blocklists enforced on our perimeter firewall.
 
@@ -40,7 +48,11 @@ cyber/
 
 ---
 
+<div align="center">
+
 ## 2. Investigation Master Dossier Matrix
+
+</div>
 
 | Case ID | Case Title & Vector | Threat Actor Profile / Origin | Ingress Vector | Technical Impact | Resolution & Defense Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -52,7 +64,11 @@ cyber/
 
 ---
 
+<div align="center">
+
 ## 3. Threat Flow & Defensive Engineering Pipeline
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -88,11 +104,19 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 4. Homelab Defense & Detection Engineering
+
+</div>
 
 Indicators of Compromise (IoCs) extracted from live investigations are directly operationalized in our datacenter:
 
+<div align="center">
+
 ### 4.1. OPNsense DNS Sinkhole Integration (`192.168.1.134` / VM 200)
+
+</div>
 
 Malicious FQDNs and hosting domains are compiled into [`cyber/forbidden_domains.txt`](forbidden_domains.txt) and automatically synchronized with Unbound DNS on our OPNsense perimeter firewall.
 
@@ -113,7 +137,11 @@ local-data: "worvixglobal.com AAAA ::"
 
 The automation script [`cyber/antigravity/opnsense_dns_sinkhole.py`](antigravity/README.md) interfaces with the Proxmox hypervisor (`192.168.1.132`) and updates the active Unbound DNS cache without interrupting production traffic.
 
+<div align="center">
+
 ### 4.2. Suricata NIDS/IPS Signatures (`vmbr0` / `vmbr1` Transit)
+
+</div>
 
 Custom Suricata inspection rules deployed on OPNsense detect malicious API probes and phishing kit signatures:
 
@@ -128,7 +156,11 @@ alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"THREAT-INTEL Pig Butchering 
 alert tcp $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"THREAT-INTEL Steam OpenID BitM Cookie Exfiltration Attempt"; flow:established,to_server; content:"steamLoginSecure"; content:"sessionid"; nocase; classtype:credential-theft; sid:2026003; rev:1;)
 ```
 
+<div align="center">
+
 ### 4.3. Wazuh SIEM & XDR Telemetry (LXC 106 - `192.168.1.240`)
+
+</div>
 
 The central Wazuh SIEM cluster collects syslog streams from OPNsense (`filterlog`), Nginx reverse proxies, and hypervisor audit logs. Custom decoders and rules trigger alerts for forensic matches:
 
@@ -149,9 +181,17 @@ The central Wazuh SIEM cluster collects syslog streams from OPNsense (`filterlog
 
 ---
 
+<div align="center">
+
 ## 5. Security Sub-Projects & Specializations
 
+</div>
+
+<div align="center">
+
 ### 5.1. [`cyber/antigravity/`](antigravity/README.md) · DFIR & Intelligence Automation
+
+</div>
 Custom Python tooling built for automated forensic workflows:
 - **`dfir_image_redactor.py`**: Apple Vision Framework OCR engine for automatic PII redaction on forensic screenshots.
 - **`safari_feed_crawler.py`**: macOS Safari automation for dynamic social feed crawling and sponsored ad extraction.
@@ -160,7 +200,11 @@ Custom Python tooling built for automated forensic workflows:
 - **`opnsense_dns_sinkhole.py`**: Declarative DNS null-routing synchronizer for OPNsense firewalls.
 - **`live_threat_probe.py`**: Safe sandboxed TLS/SSL certificate analyzer and C2 origin discovery probe.
 
+<div align="center">
+
 ### 5.2. [`cyber/cve/`](cve/README.md) · Critical Vulnerability Research
+
+</div>
 Technical assessments, exploit mechanism teardowns, and actionable hardening playbooks for core homelab technologies:
 - **`CVE-2023-54391`**: Proxmox VE unauthenticated root takeover via `tfa-challenge` bypass.
 - **`CVE-2025-57539`**: Proxmox VE stored cross-site scripting (XSS) in U2F Origin field.
@@ -168,7 +212,11 @@ Technical assessments, exploit mechanism teardowns, and actionable hardening pla
 - **`CVE-2026-69730`**: Windows DNS Server wormable remote code execution (`dns.exe:53`).
 - **`CVE-2026-69845` & `CVE-2026-72979`**: Windows DHCP Server heap overflow and use-after-free RCE.
 
+<div align="center">
+
 ### 5.3. [`cyber/ctf/`](ctf/README.md) · Capture The Flag Compendium
+
+</div>
 Comprehensive writeups, exploitation tooling, and database extraction scripts:
 - **The Blog**: Stored Cross-Site Scripting (XSS) & headless admin browser context theft ([`writeup_01_the_blog_xss.md`](ctf/19-09-2026/writeup_01_the_blog_xss.md)).
 - **Portal InvataCyber.ro**: Boolean blind SQL injection via `TrackingId` cookies with SQLite schema dumping ([`writeup_02_portal_lockdown_sqli.md`](ctf/19-09-2026/writeup_02_portal_lockdown_sqli.md)).
@@ -176,7 +224,11 @@ Comprehensive writeups, exploitation tooling, and database extraction scripts:
 
 ---
 
+<div align="center">
+
 ## 6. Threat Blocklist Synchronization (`forbidden_domains.txt`)
+
+</div>
 
 The primary intelligence feed [`cyber/forbidden_domains.txt`](forbidden_domains.txt) (and localized mirror [`cyber/lista_interzisa.txt`](lista_interzisa.txt)) consolidates threat indicators from:
 1. **Local Investigations**: Newly identified phishing lures, fake checkouts, and C2 servers.
@@ -187,7 +239,11 @@ An automated cron workflow ([`scripts/sync_forbidden_domains.py`](../scripts/syn
 
 ---
 
+<div align="center">
+
 ## 7. MITRE ATT&CK Matrix Mapping
+
+</div>
 
 | Tactic | Technique ID | Technique Name | Investigated Case Files |
 | :--- | :--- | :--- | :--- |

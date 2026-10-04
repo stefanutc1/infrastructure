@@ -1,10 +1,18 @@
+<div align="center">
+
 # Enterprise Homelab Domain Model (16 Functional Domains)
+
+</div>
 
 The `stefanutc1/infrastructure` platform is architected around 16 decoupled, highly cohesive functional domains. Each domain specifies its operational boundaries, lifecycle state, primary controllers, and cross-domain interfaces.
 
 ---
 
+<div align="center">
+
 ## Domain Overview Matrix
+
+</div>
 
 | Domain ID | Domain Name | Core Technologies | Primary Host / Node | Factual Status | Security Tier |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -27,9 +35,17 @@ The `stefanutc1/infrastructure` platform is architected around 16 decoupled, hig
 
 ---
 
+<div align="center">
+
 ## Domain Architecture Details
 
+</div>
+
+<div align="center">
+
 ### 01. Network Domain
+
+</div>
 - **Ingress & Egress**: Managed by OPNsense (VM 200). Stateful inspection, NAT translation, and DoT DNS forwarding to Quad9 (`9.9.9.9`).
 - **Transit Bus**: Point-to-point interconnect `10.10.20.0/30` on `vmbr2` linking OPNsense directly to the Proxmox hypervisor.
 - **VLAN Segmentation**:
@@ -39,69 +55,129 @@ The `stefanutc1/infrastructure` platform is architected around 16 decoupled, hig
   - VLAN 40 (`192.168.40.0/24`): Deception, Honeypots & DMZ.
   - VLAN 50 (`192.168.50.0/24`): IoT Devices & Untrusted Sensors.
 
+<div align="center">
+
 ### 02. Identity Domain
+
+</div>
 - **Runtime Web Ingress**: Mutual TLS (mTLS) with client certificates issued by Step-CA. OAuth2-Proxy provides web SSO.
 - **Academic Research Directory**: Multi-version Windows Server Active Directory forest (2008 R2 to 2025) running in an on-demand research range for Kerberos testing and BloodHound graph analysis.
 
+<div align="center">
+
 ### 03. Compute Domain
+
+</div>
 - **Hypervisor**: Proxmox VE 9.2 running Linux 6.8+ kernel on Intel Core i3-10100F.
 - **Containerization**: Unprivileged LXC containers with shared host page cache for production microservices.
 - **Virtualization**: Hardware-accelerated KVM virtual machines with VirtIO memory ballooning for non-Linux workloads.
 
+<div align="center">
+
 ### 04. Storage Domain
+
+</div>
 - **Tier 1 (High-IOPS)**: 512GB NVMe SSD formatted as LVM-thin (`local-lvm`) hosting container root filesystems and active VM disks.
 - **Tier 2 (Capacity & Archive)**: 500GB ZFS storage pool on OpenMediaVault NAS (`omv_nas`) providing NFS/SMB shares and backup targets.
 
+<div align="center">
+
 ### 05. Platform Domain
+
+</div>
 - **Declarative Host Specifications**: `configuration.nix` provides a reproducible, auditable reference blueprint for the host OS configuration (`homelab-max`).
 - **Kernel Tuning**: ZRAM swap (3.8GB compressed lz4), sysctl TCP BBR congestion control, and file descriptor limits optimized for high container density.
 
+<div align="center">
+
 ### 06. Kubernetes Domain
+
+</div>
 - **Edge Deployment**: Lightweight single-node k3s/k0s cluster running on Node 4 (AMD Athlon II X2 220, 4GB RAM).
 - **Storage & Networking**: SQLite/Kine backend, Flannel/Cilium CNI, and host-local volume provisioner.
 - **Workloads**: Woodpecker CI build runners, edge container experiments, and GitOps sync via Flux.
 
+<div align="center">
+
 ### 07. Services Domain
+
+</div>
 - **Production Catalog**: 33 declared and deployed services including Home Assistant, Scrutiny, Nextcloud, Immich, Uptime Kuma, and Jellyfin.
 - **Port Governance**: Non-conflicting static port assignments registered in `SERVICES.md`.
 
+<div align="center">
+
 ### 08. Observability Domain
+
+</div>
 - **Metrics Collection**: Prometheus scrapes Node Exporter, Telegraf, and cAdvisor endpoints every 15 seconds.
 - **Dashboards**: Grafana displays system health, thermal telemetry, network throughput, and disk SMART wear.
 - **Alerting**: Alertmanager routes critical thresholds (disk capacity >85%, CPU temp >75°C) to Uptime Kuma and ntfy webhooks.
 
+<div align="center">
+
 ### 09. Security Domain
+
+</div>
 - **Host Hardening**: CIS Linux Benchmark Level 1 compliance, root SSH password disabled, ed25519 key authentication only.
 - **Host Intrusion Detection**: Wazuh HIDS agents deployed across Linux and Windows nodes reporting to Wazuh Manager (CT 106).
 - **Network Intrusion Prevention**: Suricata running inline on OPNsense inspecting WAN/LAN transit with custom rulesets.
 
+<div align="center">
+
 ### 10. Digital Forensics (DFIR) Domain
+
+</div>
 - **Forensic Repositories**: In-depth incident dossiers and evidence archives located in `cyber/` (Media Galaxy e-commerce fraud, Steam OpenID phishing, Revolut vishing, Task scam infrastructure).
 - **Analysis Sandbox**: Isolated REMnux VM (VM 205) and Kali Linux workstation (VM 302) with no lateral access to production subnets.
 
+<div align="center">
+
 ### 11. AI Domain (ELO Subsystem)
+
+</div>
 - **Local GPU Inference**: Ollama running in Container 102 with NVIDIA GeForce GTX 1050 Ti PCIe passthrough (CUDA 12.x).
 - **Multi-Tier Cascade**: Cloud Primary (Gemini/Claude) -> Cloud Fallback -> Local Ollama GPU -> Deterministic Fallback.
 - **Security Gatekeeper**: L0–L3 authorization boundaries preventing destructive tool execution.
 
+<div align="center">
+
 ### 12. IoT Domain
+
+</div>
 - **Network Isolation**: All smart home sensors, IP cameras, and smart plugs confined to VLAN 50.
 - **Firewall Policy**: Default DROP; zero outbound internet access permitted. Home Assistant (VLAN 20) initiates state polling across the firewall boundary.
 
+<div align="center">
+
 ### 13. Backup Domain
+
+</div>
 - **3-2-1 Strategy**: 3 copies of data, 2 different media types (local NVMe + remote ZFS), 1 offsite encrypted archive.
 - **Proxmox Backup Server (PBS)**: Deduplicated chunk-level backups with SHA-256 verification and fast snapshot rollback.
 
+<div align="center">
+
 ### 14. Disaster Recovery Domain
+
+</div>
 - **Recovery Time Objective (RTO)**: P1 Core Services < 30 minutes; P2 Production < 2 hours; P3 Research < 8 hours.
 - **Recovery Point Objective (RPO)**: Databases < 6 hours; Containers < 24 hours; Static configurations < 1 hour.
 - **Runbooks**: Automated cold boot sequencing and emergency shutdown scripts.
 
+<div align="center">
+
 ### 15. Automation Domain
+
+</div>
 - **IaC Engine**: Terraform managing Proxmox VMs, LXCs, and software-defined networks (`terraform/`).
 - **Configuration Management**: Ansible playbooks and modular roles automating package installation, user provisioning, and service hardening (`ansible/`).
 - **CI/CD Pipeline**: GitHub Actions running linting, secret audits, container scans, and the infrastructure health doctor.
 
+<div align="center">
+
 ### 16. Research Domain
+
+</div>
 - **Academic Focus**: Bachelor's thesis research in financial infrastructure security (`licenta/`).
 - **Architecture**: Simulated core-banking system (Apache Fineract VM 310), PostgreSQL financial ledger (VM 311), payment gateway (VM 312), and SWIFT jumpbox (VM 313) subjected to offensive security drills from Kali Linux (VM 302).

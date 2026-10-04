@@ -1,6 +1,14 @@
+<div align="center">
+
 # Architecture & Networking
 
+</div>
+
+<div align="center">
+
 ## 1. Subnetting & 802.1Q VLAN Topology
+
+</div>
 
 The network is segmented into isolated VLANs managed by the OPNsense core perimeter firewall (VM 200):
 
@@ -14,7 +22,11 @@ The network is segmented into isolated VLANs managed by the OPNsense core perime
 
 ---
 
+<div align="center">
+
 ## 2. Software-Defined Virtual Bridges
+
+</div>
 
 The primary hypervisor (Node 1) implements four virtual bridges:
 - **`vmbr0` (WAN Ingress / Physical Uplink)**: Bound to physical interface `enp3s0` (`192.168.1.0/24`).
@@ -24,7 +36,11 @@ The primary hypervisor (Node 1) implements four virtual bridges:
 
 ---
 
+<div align="center">
+
 ## 3. Reverse Proxy & Ingress Authentication Flow
+
+</div>
 
 All external and internal HTTP traffic is routed through Caddy / OPNsense Reverse Proxy and authenticated via mutual TLS (mTLS) or Keycloak SSO:
 

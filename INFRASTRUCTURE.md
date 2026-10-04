@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Infrastructure & Hardware Fleet Inventory
+
+</div>
 
 <div align="center">
 
@@ -14,7 +18,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document provides the definitive, factual inventory of physical compute nodes, embedded microcontrollers, hypervisors, virtual machines, container fleets, storage arrays, and network appliances comprising the `stefanutc1/infrastructure` platform.
 
@@ -22,7 +30,11 @@ In strict observance of the **"No Fake Enterprise"** standard, all capacity rati
 
 ---
 
+<div align="center">
+
 ## 1. Physical Hardware Fleet
+
+</div>
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────────────────┐
@@ -54,7 +66,11 @@ In strict observance of the **"No Fake Enterprise"** standard, all capacity rati
 
 ---
 
+<div align="center">
+
 ## 2. ESP32 Edge Sensor & Microcontroller Fleet (`esp32/`)
+
+</div>
 
 All edge microcontrollers connect to **VLAN 50 (Isolated IoT Sensors)** and execute custom bare-metal C++ firmware with Hardware Watchdog Timers (WDT) and automated reconnect loops. Complete pinout diagrams and source code reside in [`esp32/`](esp32/README.md).
 
@@ -67,7 +83,11 @@ All edge microcontrollers connect to **VLAN 50 (Isolated IoT Sensors)** and exec
 
 ---
 
+<div align="center">
+
 ## 3. Virtual Machine Fleet (KVM)
+
+</div>
 
 All virtual machines execute under QEMU/KVM on Node 1 (`pve_primary_x64`).
 
@@ -98,7 +118,11 @@ All virtual machines execute under QEMU/KVM on Node 1 (`pve_primary_x64`).
 
 ---
 
+<div align="center">
+
 ## 4. LXC Container Fleet
+
+</div>
 
 All containers execute on Node 1 (`pve_primary_x64`), sharing the host Linux 6.8+ kernel with unprivileged user namespace mapping.
 
@@ -120,9 +144,17 @@ All containers execute on Node 1 (`pve_primary_x64`), sharing the host Linux 6.8
 
 ---
 
+<div align="center">
+
 ## 5. Physical Capacity Budget & Memory Footprint Analysis
 
+</div>
+
+<div align="center">
+
 ### 5.1 Node 1 (`pve_primary_x64` — 12,288 MB Total Physical DDR4 RAM)
+
+</div>
 
 ```text
 Total Physical RAM: 12,288 MB (100.0%)
@@ -146,7 +178,11 @@ Total Physical RAM: 12,288 MB (100.0%)
   └─ Ingress & Telemetry Proxies: 128 MB
 ```
 
+<div align="center">
+
 ### 5.2 On-Demand Lab Memory Governance Policy
+
+</div>
 Because total declared RAM across academic research workloads (Active Directory Forest: 35 GB, Bachelor Thesis Banking Lab: 14 GB, Security Onion + T-Pot: 16 GB) exceeds the physical 12 GB RAM ceiling:
 1. **Default State**: All research virtual machines are configured with `onboot: 0` (default state: `STOPPED`).
 2. **Pre-Flight Memory Verification**: Startup automation scripts (`scripts/licenta-lab-start.sh`, `scripts/ad-lab-start.sh`) verify that free physical host RAM is at least **2,500 MB** before issuing boot commands.

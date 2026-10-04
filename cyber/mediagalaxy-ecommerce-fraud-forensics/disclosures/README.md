@@ -1,4 +1,8 @@
+<div align="center">
+
 # Forensic Disclosures, National CSIRT Filings & Takedown Records
+
+</div>
 
 **Case File Reference:** `SEC-2026-ECOM-005`  
 **Classification:** `TLP:CLEAR`  
@@ -17,7 +21,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Disclosure Lifecycle
+
+</div>
 
 This directory archives the complete, verified legal and technical disclosure dossier compiled during the **Media Galaxy Brand Impersonation & E-Commerce Phishing Investigation** (`SEC-2026-ECOM-005`).
 
@@ -38,7 +46,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Notification & Disclosure Master Index
+
+</div>
 
 | Document | Recipient & Counterpart | Operational Scope & Objective | Language | Status |
 | :--- | :--- | :--- | :---: | :---: |
@@ -53,7 +65,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 3. Key Telemetry Communicated Across All Authorities
+
+</div>
 
 - **Phishing Lure FQDN:** `mediagalaxy.voetbalshop-nlco.com` (Subdomain spoof on compromised Dutch domain).
 - **Backend C2 Infrastructure:** `yiyangsaas.com` (Cloudflare-fronted SaaS platform, Yunnan, China).

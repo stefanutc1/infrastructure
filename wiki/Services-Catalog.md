@@ -1,4 +1,8 @@
+<div align="center">
+
 # Services Catalog
+
+</div>
 
 Complete breakdown of foundational and production services hosted across the infrastructure:
 

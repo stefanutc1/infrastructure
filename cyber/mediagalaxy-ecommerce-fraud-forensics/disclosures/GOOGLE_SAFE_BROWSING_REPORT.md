@@ -1,4 +1,8 @@
+<div align="center">
+
 # Google Safe Browsing Malicious Entity Incident Report
+
+</div>
 
 **Case File Reference:** `SEC-2026-ECOM-005`  
 **Target Authority:** Google Safe Browsing Team / Security Threat Submission Desk  
@@ -17,7 +21,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Incident Overview & Threat Description
+
+</div>
 
 To the Google Safe Browsing Engineering Team,
 
@@ -27,7 +35,11 @@ The threat infrastructure misleads European consumers with heavily discounted ho
 
 ---
 
+<div align="center">
+
 ## 2. Malicious Indicators of Compromise (IoCs) to Block
+
+</div>
 
 | Priority | Malicious Indicator / URL | Threat Role & Architectural Function | Recommended Action |
 | :---: | :--- | :--- | :--- |
@@ -39,7 +51,11 @@ The threat infrastructure misleads European consumers with heavily discounted ho
 
 ---
 
+<div align="center">
+
 ## 3. Threat Flow & In-Browser Phishing Teardown
+
+</div>
 
 ```mermaid
 flowchart LR
@@ -54,7 +70,11 @@ flowchart LR
 
 ---
 
+<div align="center">
+
 ## 4. Cross-Reference & National Coordination
+
+</div>
 
 This campaign has been formally reported to the **Romanian National Cyber Security Directorate (DNSC)** under incident ticket **`[D.N.S.C. #178465]`**, which confirmed the activation of PNRISC blacklisting and subsequent domain deactivation.
 

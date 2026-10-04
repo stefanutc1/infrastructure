@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Platform Architecture & Hybrid Cloud Blueprint
+
+</div>
 
 <div align="center">
 
@@ -16,7 +20,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 The `stefanutc1/infrastructure` platform serves as the central hybrid datacenter, private cloud, and offensive/defensive cybersecurity laboratory engineered by **Moană Ștefănuț-Cornel** (`@stefanutc1`). Designed on the tenets of **Software-Defined Infrastructure (IaC)**, **Zero-Trust Network Segmentation (802.1Q)**, **Empirical Resource Grounding ("No Fake Enterprise")**, and **Preventative Zero-Cost Cloud Guardrails**, this infrastructure unifies:
 
@@ -31,9 +39,17 @@ Physical Hardware ──> Type-1 Proxmox VE ──> OPNsense Firewall ──> Ze
 
 ---
 
+<div align="center">
+
 ## 1. High-Level Architectural Blueprints
 
+</div>
+
+<div align="center">
+
 ### 1.1 Physical, Edge & Logical Topology
+
+</div>
 
 ```mermaid
 flowchart TB
@@ -93,21 +109,37 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## 2. Core Architectural Principles
 
+</div>
+
+<div align="center">
+
 ### 2.1 Empirical Reality & "No Fake Enterprise"
+
+</div>
 Every architectural component, compute specification, and workload documented in this repository observes strict empirical reality:
 1. **`DEPLOYED`**: Workloads actively executing on physical bare-metal hardware, validated by live network endpoints, process IDs, and healthcheck probes.
 2. **`DECLARED`**: Production-ready code and configurations declared in Terraform (`terraform/`), Ansible (`ansible/`), or Proxmox `.conf` templates, awaiting on-demand execution.
 3. **`PROPOSED`**: Target blueprints and architectural roadmaps clearly marked as non-deployed concepts.
 4. **`DEFERRED`**: Technologies intentionally evaluated and rejected or postponed due to hardware resource constraints (e.g., dual-CPU requirements, enterprise SANs).
 
+<div align="center">
+
 ### 2.2 Strict Physical Memory Governance
+
+</div>
 Node 1 possesses exactly 12,288 MB (12 GB) of physical DDR4 RAM:
 - The **Always-On Runtime Tier** consumes approximately **9,280 MB (~75% capacity)**, guaranteeing ~3,000 MB of permanent headroom for host kernel caching, ZFS ARC, and transient operational bursts.
 - **On-Demand Research Labs** (Active Directory: 35 GB total declared, Bachelor's Thesis: 14 GB total declared, Security Onion: 8 GB) are strictly governed by automated startup gates (`scripts/licenta-lab-start.sh`, `scripts/ad-lab-start.sh`). Only 1 to 2 isolated lab nodes can be booted simultaneously, leveraging VirtIO memory ballooning to release inactive pages.
 
+<div align="center">
+
 ### 2.3 Preventative Zero-Cost Cloud Guardrails
+
+</div>
 All hybrid cloud assets (AWS, GCP, Azure) are codified under a strict **$0.00 / Free-Tier Only policy**:
 - Whitelisted free-tier compute instances only: `t2.micro`, `t3.micro`, `t4g.small` (AWS), `e2-micro` (GCP), `Standard_B1s` (Azure).
 - Strictly forbidden: NAT Gateways, paid Application Load Balancers, provisioned IOPS (`io1`, `io2`), and billable managed services.
@@ -115,9 +147,17 @@ All hybrid cloud assets (AWS, GCP, Azure) are codified under a strict **$0.00 / 
 
 ---
 
+<div align="center">
+
 ## 3. Subsystem Architecture Specifications
 
+</div>
+
+<div align="center">
+
 ### 3.1 Network & Dual-Perimeter Security
+
+</div>
 - **Perimeter Firewall**: FreeBSD-based OPNsense deployed in KVM VM 200 with VirtIO network acceleration.
 - **Point-to-Point Host Transit Bus**: `vmbr2` assigns `10.10.20.1/30` (OPNsense) and `10.10.20.2/30` (Proxmox VE host), enabling line-rate inter-firewall telemetry and packet inspection without transiting physical switch ports.
 - **802.1Q Segmentation**: Strict layer-2 microsegmentation across VLAN 10 (Management), VLAN 20 (Core Production), VLAN 30 (CyberLab Quarantine), VLAN 40 (Deception DMZ), and VLAN 50 (IoT Microcontrollers).
@@ -125,27 +165,47 @@ All hybrid cloud assets (AWS, GCP, Azure) are codified under a strict **$0.00 / 
 - **Threat Reputation**: CrowdSec firewall bouncers automatically inject malicious scanning IPs into OPNsense pf tables.
 - **Encrypted DNS**: Unbound resolves recursive queries using DNS-over-TLS (DoT) upstream to Quad9 (`9.9.9.9`), enforcing local authoritative resolution for `.lan` and sinkholing malicious domains from the Romanian National Cyber Security Directorate (DNSC) blocklist.
 
+<div align="center">
+
 ### 3.2 Compute & Virtualization Density
+
+</div>
 - **Proxmox VE 9.2**: Type-1 bare-metal hypervisor running on the Linux 6.8+ kernel with unprivileged LXC containerization and KVM hardware virtualization.
 - **LXC Container Density**: Production microservices execute in unprivileged user namespaces (`UID 100000+`), cutting RAM footprint by >80% compared to traditional virtual machines.
 - **Dynamic VirtIO Memory Ballooning**: KVM guest drivers automatically return idle memory pages to the host hypervisor during low-load intervals.
 
+<div align="center">
+
 ### 3.3 Disaggregated Storage & 3-2-1 Data Protection
+
+</div>
 - **Tier 1 (High-IOPS Local NVMe)**: Internal 512 GB PCIe NVMe SSD formatted as LVM-thin (`local-lvm`) hosting container root filesystems, PostgreSQL ledgers, and active VM virtual disks.
 - **Tier 2 (Capacity & Backup Storage Pool)**: Remote 500 GB ZFS pool (`omv_tank`) hosted on Node 2 (`omv_nas`) exported over gigabit Ethernet via NFSv4 for Proxmox vzdump archives and SMBv3 for network storage.
 - **Tier 3 (Offsite Cold Sync)**: Automated client-side encrypted backup snapshots synced to air-gapped offsite object storage using Mozilla SOPS and `age` encryption.
 
+<div align="center">
+
 ### 3.4 Identity, Ingress & Access Management
+
+</div>
 - **Administrative Ingress**: Mutual TLS (mTLS) enforced by Caddy reverse proxy; administrative endpoints require valid client certificates issued by the internal Certificate Authority (Smallstep Step-CA).
 - **Enterprise Federation**: Keycloak IAM bridges Active Directory LDAP directory services and modern OpenID Connect (OIDC) / SAML 2.0 Single Sign-On across internal web applications.
 - **Active Directory Research Range**: Multi-generation Windows Server domain forest (VMs 400 to 410) dedicated to academic Kerberos, BloodHound graph modeling, and lateral movement research.
 
+<div align="center">
+
 ### 3.5 Artificial Intelligence Architecture (ELO Subsystem)
+
+</div>
 - **Local GPU Acceleration**: NVIDIA GeForce GTX 1050 Ti (4GB GDDR5) passed through via PCIe IOMMU to Container 102 (`ollama`) for private, local LLM inference.
 - **Multi-Tier Cascade Routing**: Inbound inference requests evaluate: Primary Cloud Frontier Model -> Secondary Cloud Fallback -> Local Ollama GPU -> Deterministic Static Fallback.
 - **L0–L3 Tool Gatekeeper**: Strict authorization boundaries requiring out-of-band operator multi-factor authentication (MFA) before privileged or destructive system actions can be executed.
 
+<div align="center">
+
 ### 3.6 Edge Microcontroller Fleet (`esp32/`)
+
+</div>
 - **Bare-Metal C++ Firmware**: Production-grade ESP32 firmware equipped with Hardware Watchdog Timers (WDT), automated Wi-Fi reconnect backoff, and MQTT telemetry integration.
 - **Physical Security & Access (`esp32/footprint/`)**: R307/R504 optical fingerprint sensor, dual HC-SR501 PIR sensors, HC-SR04 ultrasonic distance measurement, 12V solenoid gate relay, and SSD1306 OLED display.
 - **Precision Irrigation (`esp32/irrigation/`)**: 4-zone optically isolated active-LOW relay driver, capacitive analog soil moisture probes, rain sensor inhibit logic, and YF-S201 pulse flow meter interrupt counter.
@@ -154,7 +214,11 @@ All hybrid cloud assets (AWS, GCP, Azure) are codified under a strict **$0.00 / 
 
 ---
 
+<div align="center">
+
 ## 4. Architecture Decision Records (ADRs)
+
+</div>
 
 Key architectural trade-offs and design decisions are formally cataloged in [`docs/decisions/`](docs/decisions/):
 
@@ -169,7 +233,11 @@ Key architectural trade-offs and design decisions are formally cataloged in [`do
 
 ---
 
+<div align="center">
+
 ## 5. Master Platform Documentation Map
+
+</div>
 
 | Document | Primary Focus | Target Engineering Role |
 | :--- | :--- | :--- |

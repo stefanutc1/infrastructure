@@ -1,4 +1,8 @@
+<div align="center">
+
 # Hardware Fleet & Host Virtualization Specification
+
+</div>
 
 <div align="center">
 
@@ -14,17 +18,33 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document describes the physical host hardware, compute chassis, power delivery, thermal envelopes, and embedded microcontrollers underpinning the `stefanutc1/infrastructure` platform. It serves as the primary reference for hardware capacity budgeting, failure domain mapping, and bare-metal disaster recovery planning.
 
 ---
 
+<div align="center">
+
 ## 1. Physical Compute Hosts
+
+</div>
+
+<div align="center">
 
 ### Host: `proxmox` (Node 1 — Primary Hypervisor `pve_primary_x64`)
 
+</div>
+
+<div align="center">
+
 #### Hardware Specifications
+
+</div>
 
 | Component | Engineering Specification |
 | :--- | :--- |
@@ -36,12 +56,20 @@ This document describes the physical host hardware, compute chassis, power deliv
 | **Network Interface** | 1x Realtek RTL8111H PCIe Gigabit Ethernet (RJ-45) |
 | **Power Supply Unit (PSU)** | Coldex 350W Pure Sine Wave Active PFC Power Supply |
 
+<div align="center">
+
 #### Capacity Notes
+
+</div>
 - **Memory Ceiling**: 12 GB DDR4 RAM is strictly budgeted: ~9,280 MB allocated to always-on production LXCs (100–106b) and OPNsense (VM 200), leaving ~3,000 MB permanent headroom for host kernel page caching and ZFS ARC.
 - **GPU Acceleration**: The GTX 1050 Ti is dedicated via IOMMU passthrough to Container 102 (`ollama`) for local LLM inference (CUDA 12.x).
 - **Storage Tier**: The 512 GB NVMe SSD hosts all latency-sensitive root filesystems and active PostgreSQL transaction ledgers.
 
+<div align="center">
+
 #### Software & Operating System
+
+</div>
 - **Hypervisor**: Proxmox VE 9.2 (Debian 12 base / Linux 6.8+ pve kernel).
 - **Virtualization Engine**: QEMU/KVM 8.x + LXC unprivileged containerization.
 - **Security Agent**: Wazuh Agent 4.14 + Prometheus Node Exporter.
@@ -49,9 +77,17 @@ This document describes the physical host hardware, compute chassis, power deliv
 
 ---
 
+<div align="center">
+
 ### Host: `openmediavault` (Node 2 — Storage NAS `omv_nas`)
 
+</div>
+
+<div align="center">
+
 #### Hardware Specifications
+
+</div>
 
 | Component | Engineering Specification |
 | :--- | :--- |
@@ -63,16 +99,28 @@ This document describes the physical host hardware, compute chassis, power deliv
 | **Network Interface** | 1x Realtek RTL8101E 100M/Gigabit Ethernet |
 | **Power Supply Unit (PSU)** | External 19V / 2.37A (45W) AC Adapter with integrated Li-Ion battery buffer |
 
+<div align="center">
+
 #### Capacity Notes
+
+</div>
 - **Memory Ceiling**: 2 GB RAM strictly limits this host to low-overhead file serving (NFSv4 / SMBv3) and ZFS storage operations. Heavy background microservices are intentionally barred from this node.
 - **Role**: Secondary backup target for Proxmox vzdump archives and household file shares.
 - **Static IPv4**: `192.168.1.135` (VLAN 10 Management / Storage).
 
 ---
 
+<div align="center">
+
 ### Host: `k8s-node-04` (Node 4 — Edge Kubernetes Worker)
 
+</div>
+
+<div align="center">
+
 #### Hardware Specifications
+
+</div>
 
 | Component | Engineering Specification |
 | :--- | :--- |
@@ -84,14 +132,22 @@ This document describes the physical host hardware, compute chassis, power deliv
 | **Network Interface** | 1x Realtek Gigabit Ethernet PCI-e Adapter |
 | **Power Supply Unit (PSU)** | Standard ATX 450W Power Supply Unit |
 
+<div align="center">
+
 #### Capacity Notes
+
+</div>
 - **Memory Ceiling**: 4 GB DDR3 RAM is tuned strictly for lightweight container runtimes (`containerd`) and `k3s-agent` background processing. Pod memory limits are enforced via Kubernetes resource quotas.
 - **Role**: Asynchronous batch job processing, Woodpecker CI runners, and stateless worker queue offloading.
 - **Static IPv4**: `192.168.1.18` (VLAN 30 CyberLab / Worker).
 
 ---
 
+<div align="center">
+
 ## 2. Embedded Microcontroller Fleet (`esp32/`)
+
+</div>
 
 All microcontrollers are powered by dual-core 32-bit Xtensa LX6 processors clocked at 240 MHz with 520 KB SRAM and 4 MB onboard SPI flash memory. Connected to **VLAN 50 (Isolated IoT Sensors)**:
 
@@ -117,7 +173,11 @@ Detailed schematic documentation, GPIO pinouts, and source code reside in [`esp3
 
 ---
 
+<div align="center">
+
 ## 3. Adding a New Host
+
+</div>
 
 When a new compute node joins the infrastructure:
 1. Duplicate the `### Host: <name>` section above with complete hardware specifications.

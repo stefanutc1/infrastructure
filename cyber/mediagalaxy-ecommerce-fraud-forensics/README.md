@@ -1,4 +1,8 @@
+<div align="center">
+
 # Incident Analysis: E-Commerce Brand Spoofing & Phishing Campaign (Media Galaxy)
+
+</div>
 **Case File Reference:** `SEC-2026-ECOM-005`  
 **Classification:** `TLP:CLEAR`  
 **Investigation Date:** 16 September 2026  
@@ -10,7 +14,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Project Overview
+
+</div>
 
 This repository contains the complete forensic investigation, evidence analysis, Indicators of Compromise (IoCs), Incident Response (IR) playbooks, and perimeter defense configurations for an e-commerce fraud campaign uncovered in September 2026. 
 
@@ -50,9 +58,17 @@ The threat actors impersonated the Romanian retail giant **Media Galaxy** via sp
 
 ---
 
+<div align="center">
+
 ## 2. Attack Lifecycle & Incident Response Action Timeline
 
+</div>
+
+<div align="center">
+
 ### 2.1 Technical Attack Kill Chain (Sequence Diagram)
+
+</div>
 
 ```mermaid
 sequenceDiagram
@@ -77,7 +93,11 @@ sequenceDiagram
 
 ---
 
+<div align="center">
+
 ### 2.2 Incident Response Action Lifecycle & Forensic Audit Trail
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -134,9 +154,17 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 3. Quick Start & Execution
 
+</div>
+
+<div align="center">
+
 ### Generating the Executive PDF Report
+
+</div>
 ```bash
 # Set up virtual environment and install ReportLab
 python3 -m venv .venv
@@ -148,7 +176,11 @@ python3 reports/generate_report.py
 ```
 The output file `reports/cybersecurity_report_final.pdf` will be compiled immediately.
 
+<div align="center">
+
 ### Deploying Network Blocklists to OPNsense (`192.168.1.1`)
+
+</div>
 ```bash
 # Inspect plain domain list
 cat ioc/domains.txt
@@ -157,13 +189,21 @@ cat ioc/domains.txt
 # Follow the complete step-by-step instructions in configs/opnsense_blocklist_guide.md
 ```
 
+<div align="center">
+
 ### Reviewing the Chargeback Playbook
+
+</div>
 For victims or fraud handlers filing chargeback claims with BCR or issuing banks, refer to:
 [playbooks/ir_playbook.md](playbooks/ir_playbook.md)
 
 ---
 
+<div align="center">
+
 ## 4. Key Indicators of Compromise (IoCs)
+
+</div>
 
 - **Phishing FQDN:** `mediagalaxy.voetbalshop-nlco.com`
 - **Compromised Base Domain:** `voetbalshop-nlco.com`
@@ -178,7 +218,11 @@ For victims or fraud handlers filing chargeback claims with BCR or issuing banks
 
 ---
 
+<div align="center">
+
 ## 5. Defense-in-Depth Homelab Correlation
+
+</div>
 
 This incident analysis feeds directly into the homelab's central security architecture:
 - **OPNsense Gateway (`192.168.1.1`):** Unbound DNS sinkholing and Suricata IDS alerts.
@@ -187,7 +231,11 @@ This incident analysis feeds directly into the homelab's central security archit
 
 ---
 
+<div align="center">
+
 ## 6. Official Disclosures & Investigation Communications
+
+</div>
 
 All external incident notifications, abuse filings, and public advocacy disclosures are tracked in the [`disclosures/`](disclosures/) directory:
 
@@ -201,11 +249,19 @@ All external incident notifications, abuse filings, and public advocacy disclosu
 
 ---
 
+<div align="center">
+
 ## 7. Visual Forensic Evidence Gallery
+
+</div>
 
 Below is the complete photographic and forensic dossier documenting the anatomy of this e-commerce phishing campaign across its entire lifecycle:
 
+<div align="center">
+
 ### Phase 1: Lure Ingestion & Brand Impersonation
+
+</div>
 | Sponsored TikTok Campaign | Cloned Media Galaxy Subdomain |
 | :---: | :---: |
 | ![TikTok Lure](evidence/Screenshot%202026-09-17%20at%2001.14.25.png) | ![Phishing Landing](evidence/08_phishing_subdomain_landing_chinese_notice.png) |
@@ -213,7 +269,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 2: Technical Fingerprinting & Chinese SaaS Telemetry
+
+</div>
 | Browser DevTools & Storage Inspection | DOM Source Code (`zh-CN` Language Tag) |
 | :---: | :---: |
 | ![DevTools Storage](evidence/09_browser_devtools_storage_inspection.png) | ![DOM zh-CN](evidence/10_dom_source_zh_cn_login_module.png) |
@@ -221,7 +281,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 3: Fraudulent Order Confirmation & Spoofed Communications
+
+</div>
 | Phishing Email Confirmation | Spoofed Media Galaxy Footer |
 | :---: | :---: |
 | ![Order Confirmation](evidence/05_order_confirmation_worvixglobal.png) | ![Spoofed Footer](evidence/06_email_footer_spoofed_mediagalaxy.png) |
@@ -234,7 +298,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 4: Financial Exfiltration & Secondary Lures
+
+</div>
 | Bank Statement & Merchant Descriptor | Secondary Password Reset / Verification Lure |
 | :---: | :---: |
 | ![Merchant Descriptor](evidence/14_merchant_descriptor_investigation.png) | ![Password Reset Lure](evidence/23_fake_password_reset_lure.png) |
@@ -242,7 +310,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 5: OSINT, Certificate Pivoting & Threat Actor Attribution
+
+</div>
 | WorvixGlobal Facade Shell | WHOIS Records (NameSilo Parked Domain) |
 | :---: | :---: |
 | ![WorvixGlobal Shell](evidence/01_worvixglobal_fake_portal.png) | ![WHOIS WorvixGlobal](evidence/02_whois_worvixglobal.png) |
@@ -260,7 +332,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 6: Regulatory Authority Resolution & National PNRISC Blacklisting
+
+</div>
 | DNSC Official PNRISC Blacklist Confirmation |
 | :---: |
 | ![DNSC Blacklist Confirmation](evidence/25_dnsc_blacklist_voetbalshop_block.png) |
@@ -268,7 +344,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 7: Cross-Platform Campaign Link (Facebook Sponsored Ad Lure & Banking Fraud)
+
+</div>
 | Facebook Sponsored Ad Lure: Philips LatteGO 4300 (51 lei) | Facebook Victim Transaction: Dreamwardrobe.online (-49.72 RON) |
 | :---: | :---: |
 | ![Facebook Sponsored Ad Lure](evidence/27_facebook_sponsored_ad_mediagalaxy_coffee_machine_51lei.png) | ![Facebook Victim Dreamwardrobe](evidence/26_facebook_victim_dreamwardrobe_coffee_machine_fraud.png) |
@@ -276,7 +356,11 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ### Phase 8: Post-Exploitation Stalling & Fake Logistics Infrastructure
+
+</div>
 | Delivery Notice Header: StridewiseTrading | Fake Tracking Portal Lure (TrackParcel.de) | Threat Actor Support Drop Inbox |
 | :---: | :---: | :---: |
 | ![Delivery Notice Header](evidence/28_delivery_notice_email_header_stridewise.png) | ![Fake Tracking Body](evidence/29_delivery_notice_email_body_tracking_lure.png) | ![Support Drop Inbox](evidence/30_delivery_notice_email_body_outlook_drop_inbox.png) |
@@ -284,11 +368,19 @@ Below is the complete photographic and forensic dossier documenting the anatomy 
 
 ---
 
+<div align="center">
+
 ## 8. Practical Security Guidelines: What to Do & What NOT to Do (DOs and DON'Ts)
+
+</div>
 
 These recommendations are designed for consumers and victims of e-commerce phishing schemes, as well as security practitioners, incident responders, and their families.
 
+<div align="center">
+
 ### WHAT TO DO (DOs) - Immediate Protective Actions
+
+</div>
 
 | Recommended Action | Detailed Instructions & Practical Procedure |
 | :--- | :--- |
@@ -301,7 +393,11 @@ These recommendations are designed for consumers and victims of e-commerce phish
 
 ---
 
+<div align="center">
+
 ### WHAT NOT TO DO (DON'Ts) - Critical Mistakes to Avoid
+
+</div>
 
 | Common Critical Mistake | Threat Rationale & Why It Is Hazardous |
 | :--- | :--- |
@@ -314,7 +410,11 @@ These recommendations are designed for consumers and victims of e-commerce phish
 
 ---
 
+<div align="center">
+
 ### Key Incident Response Takeaways
+
+</div>
 
 1. **Immediate Containment:** Freeze/terminate the compromised card, dispute the transaction via your issuing bank under official chargeback protocols, and preserve raw forensic email headers (`.eml`/`.msg`).
 2. **Zero-Trust Browsing:** Never finalize transactions within in-app social media webviews; always break out to external browsers to inspect the Fully Qualified Domain Name (FQDN).

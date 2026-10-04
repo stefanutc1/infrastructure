@@ -1,4 +1,8 @@
+<div align="center">
+
 # Keycloak Enterprise Identity & Access Management (IAM)
+
+</div>
 
 <div align="center">
 
@@ -11,13 +15,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 Keycloak provides enterprise identity federation, Single Sign-On (SSO), and role-based access control (RBAC) across the homelab infrastructure. It bridges legacy directory services in **Active Directory Domain Services (AD DS)** with modern web applications through **OpenID Connect (OIDC)**, **OAuth 2.0**, and **SAML 2.0** profiles.
 
 ---
 
+<div align="center">
+
 ## 1. Architectural Topology & Federation Pipeline
+
+</div>
 
 ```mermaid
 flowchart LR
@@ -45,7 +57,11 @@ flowchart LR
 
 ---
 
+<div align="center">
+
 ## 2. Active Directory Domain Services (AD DS) Integration
+
+</div>
 
 To federate users and security groups from the Windows Server Domain Controller:
 
@@ -63,7 +79,11 @@ All domain users and security groups automatically populate Keycloak realms, ena
 
 ---
 
+<div align="center">
+
 ## 3. Deployment Runbook
+
+</div>
 
 ```bash
 # 1. Prepare environment variables

@@ -1,4 +1,8 @@
+<div align="center">
+
 # DNSC Official Takedown & Closure Confirmation / Confirmare Oficială Dezafectare și Închidere Incident [D.N.S.C. #178465]
+
+</div>
 
 **Autoritate:** Directoratul Național de Securitate Cibernetică (DNSC)  
 **Sistem:** Platforma Națională de Raportare a Incidentelor de Securitate Cibernetică (PNRISC)  
@@ -13,7 +17,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Versiunea în Limba Română (Text Oficial Primit)
+
+</div>
 
 **De la:** DNSC  
 **Data:** 21 Septembrie 2026, 06:29 EEST  
@@ -35,7 +43,11 @@
 
 ---
 
+<div align="center">
+
 ## 2. English Translation (Official Incident Closure Notice)
+
+</div>
 
 **From:** National Cyber Security Directorate (DNSC - Romania)  
 **Date:** September 21, 2026, 06:29 EEST  
@@ -57,16 +69,28 @@
 
 ---
 
+<div align="center">
+
 ## 3. Evaluare Tehnică & Cronologia Neutralizării (Technical Assessment)
 
+</div>
+
+<div align="center">
+
 ### 3.1. Cronologia Incidentului `SEC-2026-ECOM-005`
+
+</div>
 1. **16 Septembrie 2026, 19:42 EEST:** Detectarea campaniei active de phishing și clonare vizuală Media Galaxy pe `mediagalaxy.voetbalshop-nlco.com`.
 2. **16 Septembrie 2026, 21:21 EEST:** Trimiterea sesizării oficiale de securitate cibernetică către DNSC prin portalul PNRISC ([`DNSC_INCIDENT_NOTIFICATION.md`](./DNSC_INCIDENT_NOTIFICATION.md)).
 3. **18 Septembrie 2026, 11:22 EEST:** Recepționarea primului răspuns oficial `[D.N.S.C. #178465]`, confirmând deschiderea anchetei de către *Direcția Generală Operațiuni Tehnice* ([`DNSC_RESPONSE_178465.md`](./DNSC_RESPONSE_178465.md)).
 4. **18 Septembrie 2026, 20:00 EEST:** Includerea oficială a subdomeniilor campaniei în baza națională **PNRISC Blacklist** (`https://blacklist.dnsc.ro/`).
 5. **21 Septembrie 2026, 06:29 EEST:** **Confirmarea finală de dezafectare (Takedown)** — domeniul apex `voetbalshop-nlco.com` a fost complet suspendat / dezafectat la nivel de registru/hosting, iar sesizarea `#178465` a fost marcată ca **REZOLVATĂ**.
 
+<div align="center">
+
 ### 3.2. Impact Operativ
+
+</div>
 * **Dezafectare la Nivel de Rădăcină (Apex Takedown):** Suspendarea domeniului `voetbalshop-nlco.com` neutralizează instantaneu întreaga flotă de subdomenii malițioase folosite în campanii paralele de fraudă e-commerce:
   * `mediagalaxy.voetbalshop-nlco.com` (Campania investigată în prezentul dosar)
   * `dm.voetbalshop-nlco.com` (Impersonare lanț drogherii DM)

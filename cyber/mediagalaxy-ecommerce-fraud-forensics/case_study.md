@@ -1,4 +1,8 @@
+<div align="center">
+
 # Case Study: E-Commerce Brand Impersonation & Chinese SaaS Fraud Funnel (Media Galaxy Spoof via TikTok)
+
+</div>
 **Case Reference:** `SEC-2026-ECOM-005`  
 **Classification:** `TLP:CLEAR`  
 **Incident Date:** 16 September 2026  
@@ -10,7 +14,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Context & Incident Overview
+
+</div>
 
 In September 2026, a targeted e-commerce fraud operation weaponized sponsored short-form video advertisements on TikTok to impersonate **Media Galaxy**, one of Romania's largest national consumer electronics retailers. Consumers were lured with unrealistic promotional pricing on high-demand tech items, routed through in-app mobile browsers into a fraudulent web property hosted at:
 `https://mediagalaxy.voetbalshop-nlco.com`
@@ -19,7 +27,11 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
 
 ---
 
+<div align="center">
+
 ## 2. Technical Findings & Forensics
+
+</div>
 
 1. **Subdomain Masking on Compromised Infrastructure:**  
    The attackers leveraged a secondary domain (`voetbalshop-nlco.com`) ostensibly created to clone a Dutch football sportswear portal (`voetbalshop.nl`). The subdomain `mediagalaxy` was established to spoof the genuine brand.
@@ -40,7 +52,11 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
 
 ---
 
+<div align="center">
+
 ## 3. Indicators of Compromise (IoCs)
+
+</div>
 
 | Indicator | Type | Threat Role | Action |
 | :--- | :--- | :--- | :--- |
@@ -64,7 +80,11 @@ Upon submitting card details, the victim was debited ~21 EUR under the obscure f
 
 ---
 
+<div align="center">
+
 ## 4. Remediation & Incident Response Execution
+
+</div>
 
 1. **Compromised Card Lockdown:** The victim immediately froze and blocked the compromised card via George BCR, requesting an emergency card cancellation and reissuance to eliminate recurring unauthorized charges.
 2. **Chargeback Dispute:** A formal dispute was initiated with BCR support under Visa/Mastercard Rule 4853 / Condition 13.1 (Merchant Fraud / Misrepresentation), requesting a complete clawback of the ~21 EUR fee.

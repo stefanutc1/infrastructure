@@ -1,4 +1,8 @@
+<div align="center">
+
 # Case Study: Forensic Deconstruction of a Fraudulent Task Scam & Cryptocurrency Drainage Platform
+
+</div>
 
 **Author:** @stefanutc1 
 **Date:** 17 April 2026 
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary
+
+</div>
 
 This case study documents the comprehensive forensic reverse engineering of an active **Task Scam** platform (a hybrid Pig Butchering investment fraud operation). Fraud rings recruit victims via WhatsApp and Telegram under the pretext of flexible remote work evaluating products for major e-commerce platforms.
 
@@ -18,7 +26,11 @@ Through traffic interception (Burp Suite) and API endpoint analysis, this invest
 
 ---
 
+<div align="center">
+
 ## 2. Infrastructure Architecture & Fraudulent Data Flow
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -64,9 +76,17 @@ Mandatory 'VIP Task Level Unlock'"]
 
 ---
 
+<div align="center">
+
 ## 3. Deep-Dive Technical Findings
 
+</div>
+
+<div align="center">
+
 ### 3.1 Backend Configuration Exposure (`/api/v1/site/config`)
+
+</div>
 Interrogating the unauthenticated site configuration endpoint revealed the operational parameters of the fraud campaign:
 
 ```json
@@ -88,12 +108,20 @@ Interrogating the unauthenticated site configuration endpoint revealed the opera
 - **The Withdrawal Kill-Switch**: While the frontend renders payment options for bank transfer and Revolut, the backend explicitly sets their operational flags to `false`. Cryptocurrency (USDT TRC-20) remains the only active deposit rail.
 - **Geographic Segmentation**: The `defaultCountryCode` parameter enforced `+40`, isolating Romanian targets.
 
+<div align="center">
+
 ### 3.2 SQL Injection & Input Validation Analysis (`SQLI.md`)
+
+</div>
 The `invite_code` parameter (validated as `888888`) and the `username` field in `POST /api/v1/user/auth/login` exhibited clear indicators of improper backend sanitization. Time-based latency variations when injecting quote characters indicated raw string concatenation into database queries, allowing potential bypass of authentication tables.
 
 ---
 
+<div align="center">
+
 ## 4. Indicators of Compromise (IOCs)
+
+</div>
 
 | Category | Indicator / Detail | Threat Description |
 | :--- | :--- | :--- |
@@ -104,7 +132,11 @@ The `invite_code` parameter (validated as `888888`) and the `username` field in 
 
 ---
 
+<div align="center">
+
 ## 5. MITRE ATT&CK Mapping
+
+</div>
 
 | Phase | Tactic | Technique ID | Technique Description |
 | :--- | :--- | :--- | :--- |
@@ -115,7 +147,11 @@ The `invite_code` parameter (validated as `888888`) and the `username` field in 
 
 ---
 
+<div align="center">
+
 ## 6. Defensive Conclusions & Threat Advisory
+
+</div>
 
 1. **Scam Indicators**: Any remote job requiring upfront cryptocurrency deposits to unlock higher commissions or complete task quotas is fraudulent by design.
 2. **Blockchain Tracing**: Track wallet transfer hops on TRONSCAN to identify consolidation exchanges and submit asset freezing requests to compliance desks.

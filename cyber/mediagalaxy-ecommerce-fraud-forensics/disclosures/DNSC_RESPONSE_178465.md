@@ -1,4 +1,8 @@
+<div align="center">
+
 # DNSC Official Incident Response / Răspuns Oficial Sesizare Incident [D.N.S.C. #178465]
+
+</div>
 
 **Autoritate:** Directoratul Național de Securitate Cibernetică (DNSC)  
 **Departament:** Direcția Generală Operațiuni Tehnice  
@@ -15,7 +19,11 @@
 
 ---
 
+<div align="center">
+
 ## Versiunea in Limba Romana (Text Oficial Primit)
+
+</div>
 
 **De la:** DNSC `<alerts@dnsc.ro>`  
 **Data:** 18 Septembrie 2026, 11:22  
@@ -50,7 +58,11 @@
 
 ---
 
+<div align="center">
+
 ## English Translation (Official Incident Response)
+
+</div>
 
 **From:** DNSC `<alerts@dnsc.ro>`  
 **Date:** September 18, 2026, 11:22 EEST  
@@ -85,7 +97,11 @@
 
 ---
 
+<div align="center">
+
 ## Technical Assessment & Integration
+
+</div>
 
 1. **Incident Validation & Ticketing:**
    - The filing submitted on September 16, 21:21 EEST was officially accepted, assigned Ticket ID **`[D.N.S.C. #178465]`**, and escalated to the *General Directorate of Technical Operations*.
@@ -99,7 +115,11 @@
 
 ---
 
+<div align="center">
+
 ## Verificare & Confirmare Blocare Oficială PNRISC (18 Septembrie 2026)
+
+</div>
 
 În cursul serii de 18 Septembrie 2026, specialiștii Directoratului Național de Securitate Cibernetică (DNSC) au finalizat analiza și au adăugat oficial infrastructura de fraudă semnalată în baza națională de date **PNRISC Blacklist** ([`https://blacklist.dnsc.ro/`](https://blacklist.dnsc.ro/)):
 
@@ -114,7 +134,11 @@
 
 ---
 
+<div align="center">
+
 ## 6. Rezoluție Finală: Confirmare Dezafectare Domeniu & Închidere Sesizare (21 Septembrie 2026)
+
+</div>
 
 La data de **21 Septembrie 2026, ora 06:29 EEST**, DNSC a transmis confirmarea oficială a finalizării demersurilor operative și închiderea tichetului `[D.N.S.C. #178465]`:
 * **Concluzie Oficială:** Domeniul apex `voetbalshop-nlco[.]com` nu mai este funcțional (neutralizat/takedown complet).

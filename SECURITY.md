@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Security Policy, Threat Model & Defense Baseline
+
+</div>
 
 <div align="center">
 
@@ -15,7 +19,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document establishes the comprehensive cybersecurity posture, threat models, hardening benchmarks, cryptographic baselines, detection-and-response procedures, and cloud cost guardrails governing the `stefanutc1/infrastructure` platform.
 
@@ -23,7 +31,11 @@ Built on the principles of **Defense-in-Depth**, **Least Privilege**, and **Zero
 
 ---
 
+<div align="center">
+
 ## 1. STRIDE Threat Model & Attack Surface Analysis
+
+</div>
 
 | Threat Category (STRIDE) | Potential Attack Vector | Platform Mitigations & Technical Controls |
 | :--- | :--- | :--- |
@@ -36,9 +48,17 @@ Built on the principles of **Defense-in-Depth**, **Least Privilege**, and **Zero
 
 ---
 
+<div align="center">
+
 ## 2. Hardening Benchmarks & System Compliance
 
+</div>
+
+<div align="center">
+
 ### 2.1 Linux Operating System Hardening
+
+</div>
 All physical hypervisors, virtual machines, and container runtimes conform to the **CIS Linux Benchmark Level 1 Server Baseline** (see [`docs/security/cis_hardening_baseline.md`](docs/security/cis_hardening_baseline.md)):
 - Reverse Path Filtering (`rp_filter = 1`) enforced to eliminate IP spoofing.
 - ICMP redirects and source-routed packets unconditionally dropped.
@@ -46,14 +66,22 @@ All physical hypervisors, virtual machines, and container runtimes conform to th
 - Kernel `dmesg` restrictions active (`kernel.dmesg_restrict = 1`).
 - Filesystem permission auditing: `/etc/shadow` restricted to `0600`, `/etc/sudoers` to `0440`.
 
+<div align="center">
+
 ### 2.2 Proxmox VE Hypervisor Hardening
+
+</div>
 - Commercial enterprise repository nag disabled via clean automation (`scripts/pve-remove-nag.sh`).
 - Proxmox cluster communication restricted to dedicated management interfaces (`192.168.1.132`).
 - Web management interface (port 8006) wrapped behind Caddy reverse proxy with client mTLS verification.
 
 ---
 
+<div align="center">
+
 ## 3. Cryptographic Baseline & PKI Standards
+
+</div>
 
 1. **Symmetric Cryptography**: AES-256-GCM and ChaCha20-Poly1305 only. Legacy 3DES, DES, and RC4 algorithms are blacklisted across all services.
 2. **Asymmetric Cryptography**:
@@ -64,7 +92,11 @@ All physical hypervisors, virtual machines, and container runtimes conform to th
 
 ---
 
+<div align="center">
+
 ## 4. Secrets Management & Repository Hygiene
+
+</div>
 
 The repository enforces a **Zero-Plaintext Policy**:
 - **Automated CI Gates**: Gitleaks and TruffleHog scan every pull request and push in the CI matrix (`.github/workflows/ci.yml`).
@@ -75,7 +107,11 @@ The repository enforces a **Zero-Plaintext Policy**:
 
 ---
 
+<div align="center">
+
 ## 5. Detection & Incident Response Infrastructure
+
+</div>
 
 ```text
        Security Events (Host Logs, Syslog, Network Packets, Auth Failures)
@@ -110,7 +146,11 @@ The repository enforces a **Zero-Plaintext Policy**:
 
 ---
 
+<div align="center">
+
 ## 6. Preventative Zero-Cost Cloud Security Policy
+
+</div>
 
 To prevent unexpected billing liabilities and resource sprawl when staging hybrid cloud architectures:
 1. **Free-Tier Static Whitelist**: Terraform configurations in `cloud/aws`, `cloud/gcp`, and `cloud/azure` are restricted to zero-cost instance tiers (`t2.micro`, `t3.micro`, `t4g.small`, `e2-micro`, `Standard_B1s`).
@@ -122,7 +162,11 @@ To prevent unexpected billing liabilities and resource sprawl when staging hybri
 
 ---
 
+<div align="center">
+
 ## 7. Vulnerability & Supply Chain Management
+
+</div>
 
 1. **Static Analysis Security Testing (SAST)**:
    - Trivy scans infrastructure filesystem configs, Dockerfiles, and Terraform modules for known CVEs.
@@ -133,7 +177,11 @@ To prevent unexpected billing liabilities and resource sprawl when staging hybri
 
 ---
 
+<div align="center">
+
 ## 8. Responsible Vulnerability Disclosure
+
+</div>
 
 If you discover a potential security vulnerability within this infrastructure codebase, please report it via private disclosure:
 - Email: `security@stefanut.lan` / GitHub Security Advisory.

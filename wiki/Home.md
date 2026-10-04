@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Homelab & Datacenter Wiki
+
+</div>
 
 <div align="center">
 
@@ -73,7 +77,11 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## Table of Contents
+
+</div>
 
 1. **[[Architecture & Networking|Architecture-and-Networking]]** — 802.1Q VLAN topology, subnet allocations, virtual bridges, and firewall policies.
 2. **[[Services Catalog|Services-Catalog]]** — Complete inventory of 43 enterprise services, exposed ports, and volume layouts.

@@ -1,4 +1,8 @@
+<div align="center">
+
 # Windows Server 2022 / 2025 KVM Virtual Machine (VM 201)
+
+</div>
 
 <div align="center">
 
@@ -11,13 +15,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 Declarative hardware specifications, unattended installation answer files (`autounattend.xml`), and automation scripts for Windows Server on Proxmox VE (Node 1).
 
 ---
 
+<div align="center">
+
 ## 1. Hardware Specifications
+
+</div>
 
 - **Proxmox VMID**: `201`
 - **Hostname**: `windows-server-2022`
@@ -32,7 +44,11 @@ Declarative hardware specifications, unattended installation answer files (`auto
 
 ---
 
+<div align="center">
+
 ## 2. Access & Authentication
+
+</div>
 
 - **Built-in Administrator**: `Administrator` (Password managed via Vaultwarden / LAPS)
 - **Primary Operator**: `<admin_user>` (Provisioned via `autounattend.xml`)
@@ -42,7 +58,11 @@ Declarative hardware specifications, unattended installation answer files (`auto
 
 ---
 
+<div align="center">
+
 ## 3. Automated Provisioning Runbook
+
+</div>
 
 Execute [`provision-vm.sh`](./provision-vm.sh) directly on the Proxmox VE hypervisor host:
 

@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Edge Systems & Physical Telemetry Suite
+
+</div>
 
 **Platform Architect**: Moană Ștefănuț-Cornel ([@stefanutc1](https://github.com/stefanutc1))  
 **Academic Affiliation**: Universitatea din Craiova · FEAA — Informatică Economică (2024 – 2027)  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Edge Architecture
+
+</div>
 
 The `esp32/` directory houses the complete bare-metal firmware suite powering edge sensing, environmental control, biometric physical security, and datacenter hardware safety. Each project is engineered as an autonomous, fail-safe edge node:
 
@@ -38,7 +46,11 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## 2. Project Directory Structure
+
+</div>
 
 ```text
 esp32/
@@ -71,7 +83,11 @@ esp32/
 
 ---
 
+<div align="center">
+
 ## 3. Engineering Safety Standards Across All Firmware
+
+</div>
 
 1. **Hardware Watchdog Timers (`esp_task_wdt`)**: Every sketch initializes the hardware watchdog timer (`12–15 seconds`). If an event loop freezes or an I2C transaction stalls, the microcontroller automatically reboots into a known safe state.
 2. **Fail-Safe Solenoid Relay States**:

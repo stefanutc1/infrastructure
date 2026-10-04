@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Disaster Recovery Plan & Business Continuity Blueprint
+
+</div>
 
 <div align="center">
 
@@ -13,7 +17,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document establishes the comprehensive Disaster Recovery (DR) Plan, operational recovery objectives, failure scenario playbooks, and bare-metal reconstruction runbooks for the `stefanutc1/infrastructure` platform.
 
@@ -25,7 +33,11 @@ It defines deterministic, repeatable procedures to recover infrastructure servic
 
 ---
 
+<div align="center">
+
 ## 1. Disaster Classification & Recovery Scenarios
+
+</div>
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────────────────────┐
@@ -44,7 +56,11 @@ It defines deterministic, repeatable procedures to recover infrastructure servic
 
 ---
 
+<div align="center">
+
 ## 2. Disaster Recovery Targets (RTO & RPO)
+
+</div>
 
 | Subsystem / Service | Recovery Point Objective (RPO) | Recovery Time Objective (RTO) | Primary Recovery Mechanism |
 | :--- | :--- | :--- | :--- |
@@ -57,18 +73,34 @@ It defines deterministic, repeatable procedures to recover infrastructure servic
 
 ---
 
+<div align="center">
+
 ## 3. Scenario Playbooks & Step-by-Step Runbooks
+
+</div>
+
+<div align="center">
 
 ### Scenario A: Primary Hypervisor Hardware Failure (Node 1 Rebuild)
 
+</div>
+
 If the physical motherboard or CPU on Node 1 experiences catastrophic failure, follow this 5-stage reconstruction workflow:
 
+<div align="center">
+
 #### Step 1: Hardware Replacement & Proxmox Installation (T+0:00 - T+0:30)
+
+</div>
 1. Procure replacement x86_64 host (minimum 4 cores, 12 GB DDR4 RAM, PCIe NVMe M.2 slot).
 2. Install Proxmox VE 9.2 via bootable USB installation media.
 3. Configure hostname `pve` and static management IP `192.168.1.132/24` with default gateway `192.168.1.1`.
 
+<div align="center">
+
 #### Step 2: Bootstrap Base Configuration & Network Bridges (T+0:30 - T+0:45)
+
+</div>
 1. Clone the infrastructure repository from Git:
    ```bash
    git clone https://github.com/stefanutc1/infrastructure.git /root/datacenter
@@ -84,7 +116,11 @@ If the physical motherboard or CPU on Node 1 experiences catastrophic failure, f
    ifreload -a
    ```
 
+<div align="center">
+
 #### Step 3: Mount Secondary Storage NAS (T+0:45 - T+1:00)
+
+</div>
 Connect Proxmox to OpenMediaVault NAS backup storage over Gigabit Ethernet:
 ```bash
 pvesm add nfs nas-backup \
@@ -94,7 +130,11 @@ pvesm add nfs nas-backup \
     --options vers=4.1
 ```
 
+<div align="center">
+
 #### Step 4: Restore Core Virtual Machines & Containers (T+1:00 - T+1:45)
+
+</div>
 Restore workloads in strict dependency hierarchy:
 ```bash
 # 1. Restore OPNsense Perimeter Firewall (VM 200):
@@ -121,7 +161,11 @@ pct start 104
 pct start 106
 ```
 
+<div align="center">
+
 #### Step 5: Verify System Integrity & Health (T+1:45 - T+2:00)
+
+</div>
 ```bash
 bash scripts/healthcheck-fleet.sh
 python3 scripts/audit_infrastructure.py
@@ -129,7 +173,11 @@ python3 scripts/audit_infrastructure.py
 
 ---
 
+<div align="center">
+
 ### Scenario C: Ransomware / Host Compromise Recovery
+
+</div>
 
 If malicious tampering or an unauthorized intrusion is detected on any node:
 1. **Network Severing**: Disconnect physical ethernet cables immediately to isolate the cluster.
@@ -141,7 +189,11 @@ If malicious tampering or an unauthorized intrusion is detected on any node:
 
 ---
 
+<div align="center">
+
 ## 4. Disaster Recovery Testing & Validation Schedule
+
+</div>
 
 | Drill Name | Frequency | Target Objective | Execution Guide |
 | :--- | :--- | :--- | :--- |

@@ -68,7 +68,11 @@ The platform operates across physical bare-metal nodes, a virtualized perimeter 
 > - **Main Engineering Portfolio**: [`https://stefanutc1.github.io`](https://stefanutc1.github.io)
 > - **Interactive Datacenter 3D Explorer**: [`https://stefanutc1.github.io/infrastructure/`](https://stefanutc1.github.io/infrastructure/)
 
+<div align="center">
+
 ### Core Architectural Pillars
+
+</div>
 1. **100% Declarative Infrastructure-as-Code**: Entire infrastructure lifecycle codified using HashiCorp Terraform (`bpg/proxmox`, AWS, GCP, Azure), Ansible automation playbooks, and GitOps orchestration.
 2. **Strict Zero-Cost Cloud Policy**: Mandatory CI/CD static guardrails guaranteeing **$0.00** monthly cloud expenditure by enforcing AWS/GCP/Azure Free-Tier SKUs only and rejecting billable resources.
 3. **Defense-in-Depth & Zero-Trust**: OPNsense virtualized firewall with Deep Packet Inspection (Suricata IDS/IPS), Unbound DNS over TLS (DoT) sinkholing 11,300+ malicious indicators, and Wazuh SIEM/XDR log correlation.
@@ -110,7 +114,11 @@ The platform operates across physical bare-metal nodes, a virtualized perimeter 
 
 </div>
 
+<div align="center">
+
 ### 3.1 Global Infrastructure Blueprint
+
+</div>
 
 ```mermaid
 flowchart TB
@@ -214,7 +222,11 @@ The bare-metal cluster balances high-density virtualization, storage redundancy,
 | **Static IPv4** | `192.168.1.132` | `192.168.1.135` | `192.168.1.18` |
 | **Operational State**| `DEPLOYED` (Active 24/7 Production) | `DEPLOYED` (Active 24/7 Production) | `DEPLOYED` (Active Edge Worker) |
 
+<div align="center">
+
 ### Memory Budgeting & Overcommit Management
+
+</div>
 - Total physical hypervisor capacity: **12,288 MB (12 GB DDR4)**.
 - Base hypervisor Linux kernel + ZFS ARC cache reserve: **1,024 MB**.
 - Active container + VM provisioned RAM: **10,752 MB**.
@@ -246,7 +258,11 @@ All network traffic traverses the virtualized OPNsense perimeter gateway (`VM 20
 +---------+----------------------------+-----------------+---------------------------+----------------------------------------------+
 ```
 
+<div align="center">
+
 ### Perimeter Security Capabilities
+
+</div>
 - **Suricata IDS/IPS**: Inline Deep Packet Inspection on `vmbr0` enforcing custom rules for credit card number exfiltration patterns, SQL injection signatures, and Cobalt Strike beaconing.
 - **Unbound DNS over TLS (DoT)**: DNS query encryption upstream with local sinkholing enforcing 11,316+ indicators from DNSC (National Cyber Security Directorate) and CSIRT threat feeds.
 - **WireGuard Road-Warrior Mesh**: Encrypted ChaCha20-Poly1305 VPN tunnel providing authenticated remote operator ingress directly to VLAN 10 management.
@@ -317,7 +333,11 @@ flowchart TD
     end
 ```
 
+<div align="center">
+
 ### Key Technical Implementations
+
+</div>
 1. **VM 310 — Apache Fineract Core-Banking Platform (`192.168.20.50`)**:
    - Central transaction engine executing double-entry ledger verification under ACID semantics.
    - Maker-Checker authorization controls for high-value financial mutations (four-eyes principle).
@@ -375,13 +395,21 @@ The platform integrates four autonomous ESP32 microcontroller edge systems opera
 
 </div>
 
+<div align="center">
+
 ### 10.1 InvataCyber.ro CTF (19.09.2026) — 100% Solved (3/3 Flags)
+
+</div>
 Complete writeups, exploit code, and post-incident remediation guides:
 - [**Challenge 1: The Blog (Stored XSS & Context Exfiltration)**](cyber/ctf/19-09-2026/writeup_01_the_blog_xss.md): Unsanitized contact form rendering raw HTML in editor browser sessions. Exploited via `payload.js` exfiltrating session tokens and `/admin` content.
 - [**Challenge 2: Portal InvataCyber.ro (Blind SQL Injection)**](cyber/ctf/19-09-2026/writeup_02_portal_lockdown_sqli.md): Blind Boolean-based SQLi via the `Cookie: TrackingId` header against SQLite. Extracted database schema and hashes via multi-threaded Python binary search.
 - [**Challenge 3: CMS Newsroom (Server-Side Template Injection — SSTI)**](cyber/ctf/19-09-2026/writeup_03_cms_editor_ssti.md): Unauthenticated template injection in Jinja2 via `render_template_string()`. Achieved remote code execution (RCE) via MRO sandbox escapes.
 
+<div align="center">
+
 ### 10.2 Real-World Threat Forensics Case Studies
+
+</div>
 - [**Media Galaxy E-Commerce Fraud Forensics**](cyber/mediagalaxy-ecommerce-fraud-forensics/README.md): Coordinated disclosure with the National Cyber Security Directorate (DNSC Alert #178465) neutralizing a Chinese cybercrime syndicate operating fraudulent payment gateways.
 - [**Revolut FinTech Vishing & Session Hijacking**](cyber/revolut-vishing-forensics/README.md): Analysis of SIP caller-ID spoofing and real-time push notification relay bypassing biometric multi-factor authentication.
 - [**Steam OpenID MitM Phishing Architecture**](cyber/openid-mitm-phishing-forensics/README.md): Forensic analysis of reverse-proxy man-in-the-middle phishing capturing Steam Guard mobile authenticator sessions.
@@ -411,7 +439,11 @@ flowchart LR
     I --> J["Production Artifact Packaging"]
 ```
 
+<div align="center">
+
 ### Preventative Zero-Cost Cloud Policy
+
+</div>
 To prevent accidental cloud charges:
 - **`scripts/verify_zero_cloud_cost.py`**: Statically audits all Terraform configurations in `cloud/aws`, `cloud/gcp`, `cloud/azure`. Enforces an explicit whitelist of Free-Tier eligible compute (`t2.micro`, `t3.micro`, `t4g.small`, `e2-micro`, `Standard_B1s`).
 - **Prohibited Billable Services**: Instantly rejects paid NAT Gateways (`aws_nat_gateway`), Application Load Balancers (`aws_lb`), provisioned IOPS (`io1`, `io2`), elastic IPs without attachment, and managed cloud databases.
@@ -426,12 +458,20 @@ To prevent accidental cloud charges:
 
 </div>
 
+<div align="center">
+
 ### 12.1 3-2-1 Data Protection Strategy
+
+</div>
 - **Tier 1 (Local Fast Storage)**: NVMe M.2 SSD (`local-lvm`) hosting operating system root filesystems with daily local ZFS snapshots (7-day retention).
 - **Tier 2 (Onsite NAS Storage)**: OpenMediaVault 7 NAS (`192.168.1.135`) receiving nightly `vzdump` backup archives over an isolated Gigabit storage network.
 - **Tier 3 (Offsite Cold Storage)**: Encrypted zstd vzdump archives replicated offsite, guaranteeing an RPO of under 4 hours and an RTO of under 15 minutes.
 
+<div align="center">
+
 ### 12.2 Automated Runbooks
+
+</div>
 - **Cold Boot Sequence ([`scripts/cold-boot-sequence.sh`](scripts/cold-boot-sequence.sh))**: Deterministic power-on sequencing: (1) OPNsense Gateway $\rightarrow$ (2) DNS & Core Networking $\rightarrow$ (3) Storage NAS $\rightarrow$ (4) Hypervisor $\rightarrow$ (5) Tier 1 Infrastructure $\rightarrow$ (6) Banking & Application Tiers.
 - **Emergency Controlled Shutdown ([`scripts/emergency-shutdown.sh`](scripts/emergency-shutdown.sh))**: Initiated automatically by the ESP32 Power Monitor if mains AC cuts out and battery drops below 11.4V, shutting down VMs in reverse dependency order within 120 seconds to prevent filesystem corruption.
 
@@ -450,7 +490,11 @@ Execute the automated health audit engine locally to verify full compliance acro
 python3 scripts/audit_infrastructure.py
 ```
 
+<div align="center">
+
 ### Verification Suite
+
+</div>
 ```bash
 # 1. Verify Zero-Cost Cloud Guardrail ($0.00 Free-Tier)
 python3 scripts/verify_zero_cloud_cost.py
@@ -474,13 +518,21 @@ python3 scripts/verify_ioc_hygiene.py
 
 </div>
 
+<div align="center">
+
 ### 14.1 Clone Repository
+
+</div>
 ```bash
 git clone https://github.com/stefanutc1/infrastructure.git
 cd infrastructure
 ```
 
+<div align="center">
+
 ### 14.2 Validate Hygiene & Guardrails
+
+</div>
 ```bash
 python3 scripts/audit_infrastructure.py
 python3 scripts/verify_zero_cloud_cost.py
@@ -488,7 +540,11 @@ python3 scripts/verify_esp32_firmware.py
 python3 scripts/audit_mermaid_diagrams.py
 ```
 
+<div align="center">
+
 ### 14.3 Run 3D Interactive Topology Dashboard Locally
+
+</div>
 ```bash
 cd web
 npm install

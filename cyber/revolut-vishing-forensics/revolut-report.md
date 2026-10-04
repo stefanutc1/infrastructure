@@ -1,4 +1,8 @@
+<div align="center">
+
 # FinTech Incident Disclosure & Countermeasure Report: Revolut Vishing
+
+</div>
 
 **Case File Reference:** `SEC-2026-VISH-002`  
 **Classification:** `TLP:CLEAR`  
@@ -9,7 +13,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary & Problem Formulation
+
+</div>
 
 Modern financial technology (FinTech) services offer frictionless mobile onboarding and real-time payment settlement (SEPA Instant, internal peer-to-peer transfers). However, this rapid settlement velocity makes FinTech platforms an attractive target for organized criminal syndicates deploying hybrid **Voice Phishing (Vishing)** and real-time reverse proxy interception pipelines.
 
@@ -40,7 +48,11 @@ flowchart LR
 
 ---
 
+<div align="center">
+
 ## 2. Exploitation of the FinTech Trust Model
+
+</div>
 
 Threat actors capitalize on the high level of trust users place in mobile-first digital banking:
 1. **The Fear-Authority Dilemma:** Threat actors impersonate internal compliance and fraud prevention officers. By quoting fake transaction amounts or impending regulatory fines, they strip the user of critical reasoning time.
@@ -49,34 +61,62 @@ Threat actors capitalize on the high level of trust users place in mobile-first 
 
 ---
 
+<div align="center">
+
 ## 3. Evaluation of Revolut Native Defenses
+
+</div>
 
 Revolut has implemented sophisticated client-side security measures. However, this investigation highlighted specific operational edge cases:
 
+<div align="center">
+
 ### 3.1. The "In-App Call Status" Feature
+
+</div>
 - **Mechanism:** When a legitimate Revolut customer support agent initiates a phone call, an encrypted WebSocket signal from Revolut's backend displays an active banner in the user's mobile app:  
   *“You are currently speaking with an official Revolut support specialist.”*
 - **Forensic Finding:** While technologically robust, this defense relies on **negative inference** — users must recognize that the *absence* of this banner during a call signifies fraud. Less technical consumers frequently fail to open the application while engaged on a voice call, missing the indicator entirely.
 
 ---
 
+<div align="center">
+
 ## 4. Proposed Architectural & UX Countermeasures
+
+</div>
 
 To bridge the gap between technical defenses and human cognitive vulnerabilities, the following security controls are submitted:
 
+<div align="center">
+
 ### 4.1. Persistent Warning Banner (Contextual UI Control)
+
+</div>
 - **Implementation:** Display a non-intrusive, persistent warning banner in the mobile app cards tab:  
   *“Revolut will never call you to request card CVVs, one-time passcodes, or ask you to access external verification websites.”*
 - **Impact:** Establishes a proactive baseline in the user's subconscious before an adversarial call is received.
 
+<div align="center">
+
 ### 4.2. Proactive Threat-Intelligence Push Notifications
+
+</div>
 - When national CSIRT feeds (e.g., DNSC in Romania) or carrier partners identify active telephone spoofing clusters (such as the `0749-XXX-XXX` range), the banking backend should dispatch localized warning pushes to users in that country.
 
+<div align="center">
+
 ### 4.3. Cryptographic In-Call Verification Code
+
+</div>
 - Introduce a mutual authentication prompt: During any official call, the banking app generates a rotating 3-word challenge or numeric token that the agent must verbally read to the customer before any transaction discussion proceeds.
 
 ---
 
+<div align="center">
+
 ## 5. Formal Communication & Disclosure Status
+
+</div>
 
 This report was compiled and shared with Revolut Security & Fraud Prevention teams, establishing actionable intelligence for automated rule tuning and user education initiatives.

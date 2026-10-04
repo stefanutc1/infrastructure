@@ -1,4 +1,8 @@
+<div align="center">
+
 # Consumer Protection Advisory: Detecting & Mitigating Social Media Resale Scams
+
+</div>
 
 **Case File Reference:** `SEC-2025-MRR-001`  
 **Classification:** `TLP:CLEAR`  
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary & Advisory Scope
+
+</div>
 
 Digital marketing schemes operating on short-form video platforms (TikTok, Instagram Reels, YouTube Shorts) frequently disguise recursive pyramid business models as legitimate online education.
 
@@ -32,7 +40,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Technical & Behavioral Red Flag Matrix
+
+</div>
 
 Before entering credit card details or digital wallet authorizations on an in-app landing page, audit the offering against the following verified threat signatures:
 
@@ -47,7 +59,11 @@ Before entering credit card details or digital wallet authorizations on an in-ap
 
 ---
 
+<div align="center">
+
 ## 3. Account Age & Infrastructure Verification Checklist
+
+</div>
 
 If evaluating a suspicious social media entrepreneur, run the following verification steps:
 
@@ -57,16 +73,28 @@ If evaluating a suspicious social media entrepreneur, run the following verifica
 
 ---
 
+<div align="center">
+
 ## 4. Post-Purchase Incident Response & Dispute Playbook
+
+</div>
 
 If you or an associate have purchased a \$497 MRR bundle and discovered it to be a synthetic LLM-generated document:
 
+<div align="center">
+
 ### Step 1: Secure Digital Evidence
+
+</div>
 - Save the complete PDF files, license agreements, transaction confirmation emails, and Stripe/PayPal receipts.
 - Record screen captures of the originating TikTok profile and the specific video that advertised the product.
 - Compute SHA-256 hashes of the files to establish a cryptographic chain of custody.
 
+<div align="center">
+
 ### Step 2: Demand Formal Merchant Refund
+
+</div>
 - Send a formal email to the merchant handle and `support@stan.store`:
   ```text
   Subject: Formal Demand for Refund – Deceptive Transaction & Unfair Commercial Practice
@@ -79,12 +107,20 @@ If you or an associate have purchased a \$497 MRR bundle and discovered it to be
   complaints to ANPC and the FTC will be filed immediately.
   ```
 
+<div align="center">
+
 ### Step 3: Initiate Card Issuer Chargeback
+
+</div>
 - Contact your issuing bank (e.g., BCR, Banca Transilvania, ING, Revolut).
 - Request a formal chargeback under **Visa Condition 13.1** or **Mastercard Reason Code 4853**: *"Merchandise/Services Not as Described or Defective"*.
 - Provide the merchant email transcript, evidence that the course consists of recycled generic ChatGPT summaries, and the MRR license requiring you to resell the bundle to monetize it.
 
+<div align="center">
+
 ### Step 4: File Consumer Protection Reports
+
+</div>
 - **Romania:** File an online complaint with the **Autoritatea Națională pentru Protecția Consumatorilor (ANPC)** at `anpc.ro`.
 - **European Union:** If the seller is based in another EU member state, submit an investigation request via the **European Consumer Centre Network (ECC-Net)**.
 - **United States:** Submit an incident filing with the **Federal Trade Commission (FTC)** at `reportfraud.ftc.gov`.

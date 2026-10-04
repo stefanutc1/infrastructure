@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Footprint Presence & Biometric Gate Access Controller
+
+</div>
 
 **Author**: Moană Ștefănuț-Cornel ([@stefanutc1](https://github.com/stefanutc1))  
 **Platform**: ESP32-WROOM-32 / NodeMCU-32S  
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Capabilities
+
+</div>
 
 The **Footprint Gate Access Controller** is an edge microcontroller node providing dual-layer room presence tracking and physical biometric security:
 - **Dual-Layer Presence Detection**: Combines a digital PIR motion sensor (`GPIO 19`) with an ultrasonic distance sensor (`HC-SR04` on `GPIO 5/18`) to filter out false positives.
@@ -18,7 +26,11 @@ The **Footprint Gate Access Controller** is an edge microcontroller node providi
 
 ---
 
+<div align="center">
+
 ## 2. Hardware Wiring & Pinout Matrix
+
+</div>
 
 | ESP32 Pin | Peripheral Pin | Function | Electrical Characteristic |
 | :--- | :--- | :--- | :--- |
@@ -36,9 +48,17 @@ The **Footprint Gate Access Controller** is an edge microcontroller node providi
 
 ---
 
+<div align="center">
+
 ## 3. MQTT Topics & Message Payloads
 
+</div>
+
+<div align="center">
+
 ### 3.1 Presence State (`homelab/sensors/footprint/presence`)
+
+</div>
 ```json
 {
   "presence": true,
@@ -48,7 +68,11 @@ The **Footprint Gate Access Controller** is an edge microcontroller node providi
 }
 ```
 
+<div align="center">
+
 ### 3.2 Access Event (`homelab/access/gate/event`)
+
+</div>
 ```json
 {
   "status": "GRANTED",
@@ -57,12 +81,20 @@ The **Footprint Gate Access Controller** is an edge microcontroller node providi
 }
 ```
 
+<div align="center">
+
 ### 3.3 Remote Unlock Command (`homelab/access/gate/set`)
+
+</div>
 Send payload `"UNLOCK"` or `"OPEN"` to trigger gate actuation remotely from Home Assistant or authorized automation scripts.
 
 ---
 
+<div align="center">
+
 ## 4. Software Dependencies & Flashing
+
+</div>
 
 Install the following libraries via the Arduino IDE Library Manager or PlatformIO:
 - `Adafruit GFX Library`
@@ -71,7 +103,11 @@ Install the following libraries via the Arduino IDE Library Manager or PlatformI
 - `PubSubClient` (Nick O'Leary)
 - `ArduinoJson` (v6 or v7)
 
+<div align="center">
+
 ### Flashing Command (esptool)
+
+</div>
 ```bash
 arduino-cli compile --fqbn esp32:esp32:esp32 footprint.ino
 arduino-cli upload -p /dev/ttyUSB0 --fqbn esp32:esp32:esp32 footprint.ino

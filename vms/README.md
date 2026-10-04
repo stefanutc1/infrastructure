@@ -1,4 +1,8 @@
+<div align="center">
+
 # Proxmox VE Virtual Machine Fleet (KVM)
+
+</div>
 
 <div align="center">
 
@@ -11,13 +15,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This directory contains declarative hardware specifications, cloud-init configurations, automated unattended answer files, and provisioning scripts for all **KVM Virtual Machines** deployed on the primary Proxmox VE hypervisor host (`pve_primary_x64`).
 
 ---
 
+<div align="center">
+
 ## 1. Virtual Machine Inventory Matrix
+
+</div>
 
 | VMID | Hostname | Operating System | vCPUs | RAM (Alloc / Balloon) | Boot Disk | Network Bridge | Primary Protocols | Operational Role |
 | :---: | :--- | :--- | :---: | :---: | :---: | :--- | :--- | :--- |
@@ -27,7 +39,11 @@ This directory contains declarative hardware specifications, cloud-init configur
 
 ---
 
+<div align="center">
+
 ## 2. Access Standards & Secrets Management
+
+</div>
 
 All virtual machine templates and automated provisioning scripts enforce zero-plaintext credential hygiene:
 - **Primary Administrative Account**: Configured via SOPS / Cloud-Init metadata or LAPS.
@@ -36,7 +52,11 @@ All virtual machine templates and automated provisioning scripts enforce zero-pl
 
 ---
 
+<div align="center">
+
 ## 3. Subdirectories & Provisioning Modules
+
+</div>
 
 - **[`opnsense/`](./opnsense/)**: Core perimeter gateway firewall rules, VLAN trunking, and high-availability configuration.
 - **[`ubuntu-server/`](./ubuntu-server/)**: Ubuntu 24.04 Noble Numbat Cloud-Init (`user-data`, `meta-data`), QEMU guest agent automation, and fast-clone provisioning scripts.

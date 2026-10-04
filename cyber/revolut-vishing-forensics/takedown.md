@@ -1,4 +1,8 @@
+<div align="center">
+
 # Infrastructure Takedown & Incident Remediation Record
+
+</div>
 
 **Case File Reference:** `SEC-2026-VISH-002`  
 **Classification:** `TLP:CLEAR`  
@@ -9,7 +13,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary
+
+</div>
 
 This document records the operational lifecycle, registrar escalations, and technical verification steps taken to disrupt and dismantle the malicious infrastructure identified during the **10 August 2026** Revolut impersonation campaign.
 
@@ -28,7 +36,11 @@ timeline
 
 ---
 
+<div align="center">
+
 ## 2. Infrastructure Inventory & Threat Attribution
+
+</div>
 
 | Indicator | Technical Role | Hosting Provider / ASN | Registrar / DNS Authority | Status |
 | :--- | :--- | :--- | :--- | :--- |
@@ -39,22 +51,42 @@ timeline
 
 ---
 
+<div align="center">
+
 ## 3. Escalation Actions & Multi-Party Coordination
 
+</div>
+
+<div align="center">
+
 ### 3.1. Registrar Abuse Submission (Namecheap Abuse Desk)
+
+</div>
 - **Ticket Reference:** `NC-ABUSE-2026-0810-772`
 - **Submission Evidence:** Raw DOM source code containing cloned Revolut trademarks, exfiltration JavaScript payloads targeting `/api/v2/card/relay`, and live HTTP request headers.
 - **Action Taken:** The registrar placed a `clientHold` / `serverHold` status on the `.xyz` domain, dropping DNS authority.
 
+<div align="center">
+
 ### 3.2. Bitly Link Disablement
+
+</div>
 - A malicious redirect report was submitted via the Bitly abuse reporting API. The URL shortener service disabled the shortlink within 35 minutes, routing subsequent visitors to an automated Bitly malicious activity advisory screen.
 
+<div align="center">
+
 ### 3.3. National CSIRT Notification (DNSC Romania)
+
+</div>
 - An incident briefing containing the spoofed telephony range, phishing FQDN, and associated IP addresses was submitted to the **National Cyber Security Directorate (DNSC)** for regional distribution across Romanian telecom and banking threat feeds.
 
 ---
 
+<div align="center">
+
 ## 4. Verification & Validation Protocol
+
+</div>
 
 Following confirmed mitigation from upstream authorities, recursive DNS resolution tests were executed from the isolated research VM and independent external probes:
 
@@ -74,7 +106,11 @@ curl -I https://rev-verify-app.xyz/ --connect-timeout 5
 
 ---
 
+<div align="center">
+
 ## 5. Strategic Lessons & Homelab Takeaways
+
+</div>
 
 1. **Shortened TTL Vulnerability:** Threat actors frequently leverage free or low-cost TLDs with ultra-short TTLs to rapidly evade blacklists. Automated perimeter sinkholing in Unbound DNS (`0.0.0.0`) provides immediate local protection before global registrars act.
 2. **Telemetry Preservation:** Freezing local DOM captures and network HAR files before triggering abuse reports ensures evidence integrity for law enforcement and banking fraud investigations.

@@ -1,4 +1,8 @@
+<div align="center">
+
 # Cloudflare Abuse & Infrastructure Phishing Takedown Request
+
+</div>
 
 **Case File Reference:** `SEC-2026-ECOM-005`  
 **Recipient Authority:** Cloudflare Abuse, Trust & Safety Team (`abuse@cloudflare.com`)  
@@ -18,7 +22,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Formal Incident Notification Statement
+
+</div>
 
 Dear Cloudflare Trust & Safety / Abuse Team,
 
@@ -30,7 +38,11 @@ The primary malicious domain operating as the command, control, and multi-tenant
 
 ---
 
+<div align="center">
+
 ## 2. Infrastructure Architecture & Threat Telemetry
+
+</div>
 
 ```mermaid
 flowchart LR
@@ -40,7 +52,11 @@ flowchart LR
     ORIGIN -->|"Harvests Credit Card Telemetry"| FRAUD["Debit Card Settlement: morvethemi london (~21 EUR)"]
 ```
 
+<div align="center">
+
 ### 2.1. The "Smoking Gun" TLS Certificate Pivot
+
+</div>
 Direct TLS handshakes on the Cloudflare front-end edge serving `mediagalaxy.voetbalshop-nlco.com` returned a Subject Alternative Name (SAN) and Common Name (CN) pointing directly to:
 ```text
 Common Name (CN): yiyangsaas.com
@@ -51,7 +67,11 @@ WHOIS analysis indicates `yiyangsaas.com` is registered through **eName Technolo
 
 ---
 
+<div align="center">
+
 ## 3. Violations of Cloudflare Terms of Service (ToS)
+
+</div>
 
 This operation engages in direct violations of Cloudflare's Acceptable Use Policy:
 1. **Phishing & Brand Impersonation:** Unlawful cloning of Romanian retail trademark **Media Galaxy** (Altex România S.A.).
@@ -60,7 +80,11 @@ This operation engages in direct violations of Cloudflare's Acceptable Use Polic
 
 ---
 
+<div align="center">
+
 ## 4. Action Requested
+
+</div>
 
 We formally request that Cloudflare Trust & Safety:
 1. Immediately suspend Cloudflare proxying and caching services for the domain **`yiyangsaas.com`** and its subdomains.

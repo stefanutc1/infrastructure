@@ -1,14 +1,26 @@
+<div align="center">
+
 # Architecture Decision Records (ADRs)
+
+</div>
 
 This directory documents the foundational architectural and design decisions governing the `stefanutc1/infrastructure` platform. Each record outlines the architectural context, decision taken, status, alternatives considered, and operational consequences.
 
+<div align="center">
+
 ## Governance & Process
+
+</div>
 
 1. **Immutability**: Once an ADR is accepted, it reflects an architectural consensus. If a decision changes, a new ADR must supersede it.
 2. **Resource Awareness**: Every architectural decision must account for the physical hardware reality of the homelab fleet (12GB RAM hypervisor, 2GB NAS, 4GB edge compute node).
 3. **No Fake Enterprise / Anti-Cargo-Culting**: Decisions prioritize lightweight, highly integrated solutions over bloated enterprise suites that degrade reliability.
 
+<div align="center">
+
 ## ADR Index
+
+</div>
 
 | ADR ID | Title | Status | Date | Primary Driver |
 | :--- | :--- | :--- | :--- | :--- |

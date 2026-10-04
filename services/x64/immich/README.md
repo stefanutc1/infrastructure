@@ -1,4 +1,8 @@
+<div align="center">
+
 # Immich Self-Hosted Photo & Video Management Suite
+
+</div>
 
 <div align="center">
 
@@ -12,13 +16,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This module deploys the self-hosted photo, video backup, indexing, and computer-vision classification platform for the homelab. It serves as a privacy-preserving, high-performance replacement for commercial cloud photo services.
 
 ---
 
+<div align="center">
+
 ## 1. Microservice Architecture
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -36,7 +48,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Storage Mapping & Hardware Acceleration
+
+</div>
 
 | Volume Path | Host Mount Point | Purpose |
 | :--- | :--- | :--- |
@@ -46,7 +62,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 3. Deployment & Operational Runbook
+
+</div>
 
 ```bash
 # 1. Prepare environment variables

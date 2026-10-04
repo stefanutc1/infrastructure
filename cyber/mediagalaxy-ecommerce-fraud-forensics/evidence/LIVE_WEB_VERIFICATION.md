@@ -1,4 +1,8 @@
+<div align="center">
+
 # Live Web Infrastructure Verification & Active Probe Report
+
+</div>
 **Case File Reference:** `SEC-2026-ECOM-005`  
 **Investigation Mode:** Isolated Airtight Headless Browser Sandbox (Google Chrome 153 Incognito + Ephemeral Profile)  
 **Execution Timestamp:** 16 September 2026 21:24 GMT+3  
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Sandbox Isolation Methodology ("Airtight / Vidat")
+
+</div>
 
 To prevent any threat actor tracking, fingerprinting, drive-by malware execution, or state contamination on the investigator host, all live web verifications were executed under rigorous operational containment:
 1. **Disposable Browser Sandbox:** Executed Google Chrome (v153.0.8010.48) in modern headless mode (`--headless=new`) with a randomly generated, single-use profile directory (`/tmp/chrome_isolated_forensics/profile_*`) on a ramfs/tmp mount.
@@ -16,7 +24,11 @@ To prevent any threat actor tracking, fingerprinting, drive-by malware execution
 
 ---
 
+<div align="center">
+
 ## 2. Live Target Verification Matrix
+
+</div>
 
 | Target Host / URL | Resolved IP(s) | HTTP Status | SSL CN & Fingerprint | Operational State |
 | :--- | :--- | :--- | :--- | :--- |
@@ -30,14 +42,26 @@ To prevent any threat actor tracking, fingerprinting, drive-by malware execution
 
 ---
 
+<div align="center">
+
 ## 3. Critical Forensic Breakthroughs from Live Extraction
 
+</div>
+
+<div align="center">
+
 ### Finding A: Shared Host IP Proves Attribution (`104.16.145.247`)
+
+</div>
 - The phishing host `mediagalaxy.voetbalshop-nlco.com` resolves directly to **`104.16.145.247`**.
 - The backend C2 domain **`yiyangsaas.com`** resolves to the exact same IP: **`104.16.145.247`**.
 - This provides irrefutable infrastructure-level co-location proving that both the landing frontend and the Chinese SaaS backend share the identical Cloudflare upstream origin.
 
+<div align="center">
+
 ### Finding B: Targeted TikTok Ads Preloading Meta Tag
+
+</div>
 Extracted directly from the live DOM of `https://mediagalaxy.voetbalshop-nlco.com`:
 ```html
 <meta name="tiktok-ads-preloading-nocache" content="1">
@@ -46,7 +70,11 @@ Extracted directly from the live DOM of `https://mediagalaxy.voetbalshop-nlco.co
 ```
 - **Significance:** The threat actors specifically embedded `<meta name="tiktok-ads-preloading-nocache" content="1">` to force the TikTok in-app WebKit webview to bypass local client cache and execute dynamic cloaking scripts on every victim visit.
 
+<div align="center">
+
 ### Finding C: Deobfuscation of the Chinese "OEMCart" Engine
+
+</div>
 The live DOM execution environment contained an obfuscated initialization routine:
 ```javascript
 (function () {
@@ -73,7 +101,11 @@ The live DOM execution environment contained an obfuscated initialization routin
   - **Note:** *Guoqi* (国旗) is Chinese pinyin for "National Flag".
 - **Conclusion:** The application is built upon **OEMCart**, a specialized multi-tenant counterfeit/phishing e-commerce platform developed in the People's Republic of China.
 
+<div align="center">
+
 ### Finding D: Fresh SSL Certificate Issued 1 Day Prior to Campaign
+
+</div>
 Inspection of the X.509 certificate for `mediagalaxy.voetbalshop-nlco.com`:
 ```text
 Certificate:
@@ -92,12 +124,20 @@ Certificate:
 ```
 - The certificate was provisioned on **September 15, 2026 at 00:43:20 GMT**, less than 24 hours prior to the fraudulent transaction occurring on the morning of September 16, 2026.
 
+<div align="center">
+
 ### Finding E: Burned Email Dispatch Infrastructure
+
+</div>
 DNS resolution for `email.worvixglobal.com`, `info.mailapp-fly.com`, and `mailapp-fly.com` now returns `NXDOMAIN`. Following the active exploitation and ATO code dispatch, the threat actors removed the DNS host records to obstruct active scanning and mitigate domain reputational contagion back to their primary upstream accounts.
 
 ---
 
+<div align="center">
+
 ## 4. Live Evidence File Inventory
+
+</div>
 
 All raw files captured from the airtight probe session are persisted in the repository under `evidence/live_scans/`:
 

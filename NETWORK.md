@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Network Architecture & Zero Trust Segmentation
+
+</div>
 
 <div align="center">
 
@@ -14,7 +18,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document defines the comprehensive network topology, software-defined virtual bridge interfaces, inter-firewall transit architecture, 802.1Q VLAN micro-segmentation, Zero-Trust access control rules, VPN overlays, and DNS resolution infrastructure governing the `stefanutc1/infrastructure` platform.
 
@@ -22,7 +30,11 @@ The network architecture is built on the principle of **Default-DROP**: no packe
 
 ---
 
+<div align="center">
+
 ## 1. Network Topology & Virtual Bridges
+
+</div>
 
 The primary hypervisor (Node 1) implements four software-defined virtual bridges managed by Proxmox VE and FreeBSD VirtIO drivers:
 
@@ -47,7 +59,11 @@ The primary hypervisor (Node 1) implements four software-defined virtual bridges
 └────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+<div align="center">
+
 ### Bridge Interface Specifications
+
+</div>
 1. **`vmbr0` (Physical Ingress / WAN Uplink)**:
    - Physical Port: Realtek RTL8111H gigabit interface (`enp3s0`).
    - Network Subnet: `192.168.1.0/24`, Default Gateway: `192.168.1.1` (ISP Fiber Router).
@@ -67,7 +83,11 @@ The primary hypervisor (Node 1) implements four software-defined virtual bridges
 
 ---
 
+<div align="center">
+
 ## 2. 802.1Q VLAN Segmentation Matrix
+
+</div>
 
 | VLAN ID | Subnet CIDR | Gateway IP | Segment Name | Traffic Classification & Workloads | Default Ingress Policy |
 | :---: | :--- | :--- | :--- | :--- | :--- |
@@ -77,7 +97,11 @@ The primary hypervisor (Node 1) implements four software-defined virtual bridges
 | **VLAN 40** | `192.168.40.0/24`| `192.168.40.1` | **DMZ & Honeypots** | T-Pot multi-honeypot decoy platform, public-facing reverse proxy honeypots. | **DROP** (Zero Lateral Movement) |
 | **VLAN 50** | `192.168.50.0/24`| `192.168.50.1` | **Isolated IoT Sensors** | Bare-metal ESP32 microcontrollers (`192.168.50.21` to `.24`), smart plugs, Zigbee bridges. | **DROP** (No WAN Access, HA State Track Only) |
 
+<div align="center">
+
 ### ESP32 Edge Device Static Allocation (VLAN 50)
+
+</div>
 - **`192.168.50.21`**: `ESP32-EDGE-01` (`footprint` — optical fingerprint scanner, dual PIR, gate solenoid, OLED).
 - **`192.168.50.22`**: `ESP32-EDGE-02` (`irrigation` — 4-zone optocoupler relays, capacitive moisture probes, pulse flow meter).
 - **`192.168.50.23`**: `ESP32-EDGE-03` (`datacenter_environment` — BME280, dual DS18B20 1-Wire Delta-T, Noctua PWM driver, Prometheus `/metrics`).
@@ -85,7 +109,11 @@ The primary hypervisor (Node 1) implements four software-defined virtual bridges
 
 ---
 
+<div align="center">
+
 ## 3. Zero Trust Firewall Policies & Rule Matrix
+
+</div>
 
 All traffic transiting between network segments is evaluated under the **Default-DROP Posture**.
 
@@ -107,7 +135,11 @@ All traffic transiting between network segments is evaluated under the **Default
                └────────────────────────────────────────────────────────┘
 ```
 
+<div align="center">
+
 ### Specific Segment Protections
+
+</div>
 1. **VLAN 30 (CyberLab Quarantine)**:
    - Research workloads (Kali Linux VM 302, Metasploitable VM 301, Bachelor's Thesis banking testbeds) cannot initiate connections to VLAN 10 (Hypervisor Management) or VLAN 20 (Core Household Services).
    - Any attempt to scan or probe `192.168.1.0/24` triggers a Suricata alert (`SID 1000003`) and an automated Wazuh active-response firewall drop.
@@ -118,30 +150,54 @@ All traffic transiting between network segments is evaluated under the **Default
 
 ---
 
+<div align="center">
+
 ## 4. VPN Remote Access & Hybrid Cloud Tunnels
 
+</div>
+
+<div align="center">
+
 ### 4.1 WireGuard Site-to-Site Gateway (`wg-cloud0`)
+
+</div>
 - **Protocol**: WireGuard (ChaCha20-Poly1305, Curve25519).
 - **Listening Port**: `51820/UDP`.
 - **Tunnel Subnet**: `10.88.0.0/24` (Gateway: `10.88.0.1`).
 - **Cryptographic Key Rotation**: Automated via `scripts/wireguard_key_rotation.sh` every 90 days.
 - **Allowed IPs**: Restricted to authorized administrative bastion IPs and hybrid cloud VPC CIDRs (AWS/Azure/GCP).
 
+<div align="center">
+
 ### 4.2 Tailscale Zero-Trust Mesh Router
+
+</div>
 - **Role**: Secure, NAT-traversing administrative access for mobile devices and out-of-band diagnostics.
 - **Authentication**: Modern OIDC multi-factor authentication.
 - **Access Control (ACLs)**: Enforces least-privilege tags (`tag:admin` can reach Proxmox console; `tag:media` can only reach Jellyfin on port 8096).
 
 ---
 
+<div align="center">
+
 ## 5. Domain Name Resolution (DNS) Architecture
 
+</div>
+
+<div align="center">
+
 ### 5.1 Unbound Recursive Resolver (OPNsense)
+
+</div>
 - **Local Namespace**: Authoritative for `*.lan` and `*.stefanut.lan`.
 - **Upstream Forwarding**: Encrypted DNS-over-TLS (DoT) upstream to Quad9 (`9.9.9.9:853` and `149.112.112.112:853`) with TLS hostname verification (`dns.quad9.net`).
 - **DNSSEC Validation**: Enforced; unsigned or tampered DNS records are rejected.
 
+<div align="center">
+
 ### 5.2 Threat Intelligence Sinkholing (RPZ / Blacklists)
+
+</div>
 - Automated synchronization via `scripts/sync_opnsense_blocklist.py` and `scripts/sync_forbidden_domains.py`.
 - Ingests:
   1. Romanian National Cyber Security Directorate (**DNSC**) fraud blocklist (`cyber/mediagalaxy-ecommerce-fraud-forensics/dnsc_blacklist.json`).

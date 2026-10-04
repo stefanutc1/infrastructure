@@ -1,4 +1,8 @@
+<div align="center">
+
 # Case Study: Advanced Voice Phishing (Vishing) & Real-Time Credential Relay Targeting FinTech Users (Revolut)
+
+</div>
 
 **Author:** @stefanutc1 
 **Date:** 10 August 2026 
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary
+
+</div>
 
 This case study provides a technical teardown of an aggressive **Voice Phishing (Vishing)** and SMS-spoofing campaign targeting digital banking users across Romania and the European Union. Threat actors leveraged **SIP VoIP Caller ID Spoofing** to impersonate official anti-fraud representatives, manufacturing urgent security pretexts (e.g., unauthorized transactions or negative balance penalties) to force immediate user compliance.
 
@@ -15,7 +23,11 @@ Victims were guided to dynamically cloned banking verification portals that harv
 
 ---
 
+<div align="center">
+
 ## 2. Attack Lifecycle & Infrastructure Diagram
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -63,13 +75,25 @@ Immediate API Injection into Bank"]
 
 ---
 
+<div align="center">
+
 ## 3. Technical Breakdown of Telephony & Web Proxy Vectors
 
+</div>
+
+<div align="center">
+
 ### 3.1 SIP Telephony Exploitation
+
+</div>
 - **Caller ID Manipulation**: The threat actors routed voice calls through foreign unauthenticated SIP trunking providers, injecting arbitrary Romanian mobile prefixes (`0749-XXX-XXX`) into the SIP `P-Asserted-Identity` and `From` headers.
 - **Psychological Coercion**: Callers adopted an authoritative tone, citing internal fraud reference numbers and simulating background call center ambient noise to discourage independent verification.
 
+<div align="center">
+
 ### 3.2 Dynamic Phishing Proxy Architecture
+
+</div>
 1. The victim received an SMS containing a shortened URL that performed multi-hop HTTP 302 redirects.
 2. The landing server analyzed the client's `User-Agent` string, serving the phishing payload exclusively to mobile WebKit/Chrome clients while serving HTTP 404 responses to desktop security scanners.
 3. The page dynamically captured payment credentials and streamed them via WebSockets to the attacker's operator dashboard.
@@ -77,7 +101,11 @@ Immediate API Injection into Bank"]
 
 ---
 
+<div align="center">
+
 ## 4. Indicators of Compromise (IOCs)
+
+</div>
 
 | Category | Indicator / Detail | Threat Context |
 | :--- | :--- | :--- |
@@ -88,7 +116,11 @@ Immediate API Injection into Bank"]
 
 ---
 
+<div align="center">
+
 ## 5. MITRE ATT&CK Mapping
+
+</div>
 
 | Phase | Tactic | Technique ID | Technique Description |
 | :--- | :--- | :--- | :--- |
@@ -100,11 +132,19 @@ Immediate API Injection into Bank"]
 
 ---
 
+<div align="center">
+
 ## 6. Upstream Breach Correlation & Vishing Persistence (September 2026)
+
+</div>
 
 On September 12, 2026, investigative reports ([Financiarul.ro](https://financiarul.ro/tehnologie/revolut-a-divulgat-date-sensibile-ale-unor-clienti-dupa-solicitari/), citing [TechCrunch](https://techcrunch.com/2026/09/12/revolut-confirms-customer-data-breach-through-fake-government-requests/)) confirmed that **Revolut suffered a significant customer data breach**. An unauthorized third party impersonating a legitimate government law enforcement agency submitted fraudulent legal requests for information, causing Revolut to disclose sensitive KYC files and personal records.
 
+<div align="center">
+
 ### Key Factors Driving Persistent Vishing Attacks:
+
+</div>
 - **Exfiltrated PII & Contact Records:** Attackers obtained verified phone numbers, residential addresses, dates of birth, and email addresses.
 - **Compromised KYC & Financial Metadata:** High-resolution scans of passports, driving licenses, verification selfies, and bank transaction statements were exfiltrated.
 - **Targeting High-Net-Worth Individuals (HNWI):** Crypto threat intelligence researcher **ZachXBT** highlighted that high-net-worth customers were specifically targeted.
@@ -112,7 +152,11 @@ On September 12, 2026, investigative reports ([Financiarul.ro](https://financiar
 
 ---
 
+<div align="center">
+
 ## 7. Incident Response & Defensive Guidelines
+
+</div>
 
 1. **Bank Verification Policy**: Legitimate financial institutions will never instruct clients over the phone to disclose their CVV, transfer funds to "safety accounts", or read back SMS authorization codes.
 2. **In-App Verification**: Users must verify all fraud inquiries exclusively through the authenticated in-app chat channel.

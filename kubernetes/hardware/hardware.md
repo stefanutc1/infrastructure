@@ -1,4 +1,8 @@
+<div align="center">
+
 # Kubernetes Hardware & Compute Worker Specification
+
+</div>
 
 <div align="center">
 
@@ -11,15 +15,27 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document describes the physical compute host dedicated to the Kubernetes cluster track (`k3s` / `k0s`). It details hardware limits, container runtime configurations, and resource quota constraints.
 
 ---
 
+<div align="center">
+
 ## Host: `k8s-node-04` (Bare-Metal Kubernetes Worker)
 
+</div>
+
+<div align="center">
+
 ### Hardware Specifications
+
+</div>
 
 | Component | Engineering Specification |
 | :--- | :--- |
@@ -31,12 +47,20 @@ This document describes the physical compute host dedicated to the Kubernetes cl
 | **Storage Tier** | 80 GB 3.5" SATA II Mechanical HDD (7200 RPM) |
 | **Power Supply** | Standard ATX 450W PSU |
 
+<div align="center">
+
 ### Capacity & Tuning Notes
+
+</div>
 - **Memory Ceiling**: 4 GB DDR3 RAM is tuned strictly for lightweight container runtime execution (`containerd`) and `k3s-agent` background processing. Memory limits are enforced per-pod using resource requests and limits in Kubernetes manifests.
 - **Compute Allocation**: The dual-core AMD Athlon II processor handles asynchronous batch jobs, CI/CD runners, and stateless microservices without burdening the primary hypervisor.
 - **Storage Strategy**: The 80 GB SATA HDD serves as the OS root partition and ephemeral container image cache; persistent state is mounted remotely over NFSv4 from OpenMediaVault NAS (Node 2).
 
+<div align="center">
+
 ### Software & Orchestration
+
+</div>
 - **Base Operating System**: Debian 12 Minimal / Alpine Linux Base.
 - **Kubernetes Distribution**: `k3s` (Lightweight Kubernetes Worker Agent) / `k0s`.
 - **Container Runtime**: `containerd` (CRI).

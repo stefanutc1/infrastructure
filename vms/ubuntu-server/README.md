@@ -1,4 +1,8 @@
+<div align="center">
+
 # Ubuntu Server 24.04 LTS Cloud-Init Virtual Machine (VM 202)
+
+</div>
 
 <div align="center">
 
@@ -11,13 +15,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 Declarative hardware specifications, cloud-init provisioning metadata, and deployment automation for Ubuntu Server 24.04 LTS (Noble Numbat) on Proxmox VE (Node 1).
 
 ---
 
+<div align="center">
+
 ## 1. Hardware Specifications
+
+</div>
 
 - **Proxmox VMID**: `202`
 - **Hostname**: `ubuntu-server-2404`
@@ -31,7 +43,11 @@ Declarative hardware specifications, cloud-init provisioning metadata, and deplo
 
 ---
 
+<div align="center">
+
 ## 2. Access & Authentication
+
+</div>
 
 - **Primary User**: `<admin_user>`
 - **Authentication**: Ed25519 SSH Key (`~/.ssh/id_ed25519.pub`)
@@ -41,7 +57,11 @@ Declarative hardware specifications, cloud-init provisioning metadata, and deplo
 
 ---
 
+<div align="center">
+
 ## 3. Automated Provisioning Runbook
+
+</div>
 
 Execute [`provision-vm.sh`](./provision-vm.sh) directly on the Proxmox VE hypervisor host:
 

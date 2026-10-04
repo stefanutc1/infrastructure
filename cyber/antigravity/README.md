@@ -1,4 +1,8 @@
+<div align="center">
+
 # Cyber Threat Intelligence, Forensics & Network Defense Tools (`antigravity`)
+
+</div>
 
 <div align="center">
 
@@ -12,7 +16,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Operational Role
+
+</div>
 
 This directory contains specialized threat intelligence, digital forensics, dynamic web crawling, and automated perimeter synchronization utilities developed and battle-tested during active cybercrime investigations (such as `SEC-2026-ECOM-005: Media Galaxy Counterfeit Phishing Cluster`).
 
@@ -44,7 +52,11 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Tool Arsenal & Functional Matrix
+
+</div>
 
 | Utility | Primary Function | Core Technical Capabilities | Runtime Dependencies |
 | :--- | :--- | :--- | :--- |
@@ -57,9 +69,17 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 3. Detailed Usage & CLI Playbooks
 
+</div>
+
+<div align="center">
+
 ### 3.1. DFIR Evidence Image Redactor (`dfir_image_redactor.py`)
+
+</div>
 ```bash
 # Redact all instances of a sensitive personal name in an evidence screenshot:
 python3 dfir_image_redactor.py --file /path/to/evidence.png --target "Victim Full Name"
@@ -71,7 +91,11 @@ python3 dfir_image_redactor.py --dir ./evidence/ --target "Sensitive PII"
 python3 dfir_image_redactor.py --file card_receipt.png --box 1150 780 1450 840
 ```
 
+<div align="center">
+
 ### 3.2. Safari Feed & Ad Crawler (`safari_feed_crawler.py`)
+
+</div>
 ```bash
 # Crawl the active Safari tab with 15 dynamic scroll intervals:
 python3 safari_feed_crawler.py --tab 1 --scrolls 15 --outdir /tmp/feed_dumps
@@ -80,7 +104,11 @@ python3 safari_feed_crawler.py --tab 1 --scrolls 15 --outdir /tmp/feed_dumps
 python3 safari_feed_crawler.py --all --scrolls 20 --outdir /tmp/feed_dumps
 ```
 
+<div align="center">
+
 ### 3.3. Clipboard HTML Decoder (`clipboard_html_decoder.py`)
+
+</div>
 ```bash
 # Decode current macOS clipboard selection to a sanitized HTML file:
 python3 clipboard_html_decoder.py --save /tmp/page_dom.html
@@ -89,7 +117,11 @@ python3 clipboard_html_decoder.py --save /tmp/page_dom.html
 python3 clipboard_html_decoder.py --extract-links
 ```
 
+<div align="center">
+
 ### 3.4. Ad Threat Intelligence Analyzer (`ad_threat_intel_analyzer.py`)
+
+</div>
 ```bash
 # Analyze a list of URLs or domains against threat signatures:
 python3 ad_threat_intel_analyzer.py --file /tmp/extracted_links.txt
@@ -98,7 +130,11 @@ python3 ad_threat_intel_analyzer.py --file /tmp/extracted_links.txt
 python3 ad_threat_intel_analyzer.py --url "https://mediagalaxy.voetbalshop-nlco.com"
 ```
 
+<div align="center">
+
 ### 3.5. OPNsense DNS Sinkhole Deployer (`opnsense_dns_sinkhole.py`)
+
+</div>
 ```bash
 # Sync newly extracted malicious domain list to OPNsense (VM 200 on Proxmox VE 9.2):
 PROXMOX_HOST="192.168.1.132" OPNSENSE_VMID="200" python3 opnsense_dns_sinkhole.py --domains-file iocs.txt
@@ -107,7 +143,11 @@ PROXMOX_HOST="192.168.1.132" OPNSENSE_VMID="200" python3 opnsense_dns_sinkhole.p
 python3 opnsense_dns_sinkhole.py --status
 ```
 
+<div align="center">
+
 ### 3.6. Sandboxed Threat Recon Probe (`live_threat_probe.py`)
+
+</div>
 ```bash
 # Inspect TLS certificate SANs and server headers for a target domain:
 python3 live_threat_probe.py --target "voetbalshop-nlco.com"

@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Edge Systems & Physical Telemetry Suite
+
+</div>
 
 **Platform Architect**: Moană Ștefănuț-Cornel ([@stefanutc1](https://github.com/stefanutc1))  
 **Academic Context**: Universitatea din Craiova · FEAA — Informatică Economică (2024 – 2027)  
@@ -8,11 +12,19 @@ The homelab integrates an autonomous fleet of ESP32 microcontrollers deployed ac
 
 ---
 
+<div align="center">
+
 ## 1. Automated Irrigation Controller (`esp32/irrigation/`)
+
+</div>
 
 Microcontroller firmware for weather-aware, scheduled valve actuation with hardware fail-safes.
 
+<div align="center">
+
 ### Source Files & Architecture
+
+</div>
 - `irrigation.ino` — Production Arduino sketch with WiFi auto-reconnect, MQTT telemetry, and safety timeout loops.
 - `config.h` — Hardware pin mapping, safety duration caps (max 15m), and ADC calibration constants.
 - `control.cpp` / `valve.cpp` — Solenoid valve actuation via optocoupled digital relay pins with fail-safe automatic shutoff.
@@ -20,7 +32,11 @@ Microcontroller firmware for weather-aware, scheduled valve actuation with hardw
 - `vreme.cpp` — Soil moisture and weather telemetry integration; automatically inhibits watering if precipitation is detected or rain inhibit is set.
 - `logger.cpp` / `logger.h` — Serial and network syslog logging abstraction.
 
+<div align="center">
+
 ### Hardware Mapping
+
+</div>
 ```yaml
 pins:
   relay_valve_zone1: 23  # Lawn Front (Active LOW)
@@ -35,11 +51,19 @@ pins:
 
 ---
 
+<div align="center">
+
 ## 2. Footprint Biometric & Presence Sensor (`esp32/footprint/`)
+
+</div>
 
 Presence and occupancy detection node paired with physical biometric gate access control.
 
+<div align="center">
+
 ### Capabilities & Source Files
+
+</div>
 - `footprint.ino` — Master Arduino sketch executing concurrent presence tracking and biometric verification.
 - `config.h` — Pin definitions for UART2 fingerprint scanner, ultrasonic sensor, PIR sensor, and relay.
 - `sensor.cpp` — Dual PIR + Ultrasonic distance sensor sampling with noise filtering and debounce.
@@ -48,11 +72,19 @@ Presence and occupancy detection node paired with physical biometric gate access
 
 ---
 
+<div align="center">
+
 ## 3. Datacenter Rack Thermal Monitor (`esp32/datacenter_environment/`)
+
+</div>
 
 Rack climate and thermal efficiency monitor managing cold/hot aisle delta-T and cooling fans.
 
+<div align="center">
+
 ### Capabilities & Source Files
+
+</div>
 - `datacenter_environment.ino` — Autonomous temperature, humidity, and fan RPM regulation sketch.
 - `config.h` — I2C BME280 addresses, 1-Wire DS18B20 digital probe buses, and 25 kHz PWM timer channels.
 - **Embedded Prometheus Server**: Directly serves `/metrics` on port 80 for Prometheus scraping.
@@ -60,11 +92,19 @@ Rack climate and thermal efficiency monitor managing cold/hot aisle delta-T and 
 
 ---
 
+<div align="center">
+
 ## 4. Datacenter Power & UPS Safety Appliance (`esp32/power_monitor/`)
+
+</div>
 
 Grid failure detection and battery depletion monitor protecting bare-metal hypervisors from brownouts.
 
+<div align="center">
+
 ### Capabilities & Source Files
+
+</div>
 - `power_monitor.ino` — Zero-latency mains monitoring and battery voltage tracking sketch.
 - `config.h` — Optocoupler interrupt pins, battery voltage divider ratios, and threshold constants.
 - **Zero-Latency Grid Loss Alert**: Detects AC power cuts in <10ms via hardware interrupt and dispatches urgent MQTT warning to Proxmox VE.

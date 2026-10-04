@@ -1,6 +1,14 @@
+<div align="center">
+
 # Runbooks & Disaster Recovery
 
+</div>
+
+<div align="center">
+
 ## 1. Extended Power Outage Standard Operating Procedure (SOP)
+
+</div>
 
 During prolonged blackouts, battery-backed UPS reserves cannot sustain full compute workloads indefinitely. To protect OpenMediaVault NAS ZFS storage pools, database write journals, and delicate electronics from dirty unmounts or grid recovery power surges, follow this 4-phase protocol:
 
@@ -16,7 +24,11 @@ graph TD
 
 ---
 
+<div align="center">
+
 ### Phase 1: Automated & Cascading Graceful Shutdown (0 – 15 min)
+
+</div>
 Triggered manually or automatically via the `ESP32-EDGE-04` power monitor when battery drops below 11.4V:
 ```bash
 # Executed via scripts/emergency-shutdown.sh
@@ -41,14 +53,22 @@ poweroff
 
 ---
 
+<div align="center">
+
 ### Phase 2: Long-Term Outage Hardening & Physical Preservation
+
+</div>
 1. **Surge Suppressor Isolation**: Physically unplug the master surge protector from the wall outlet to shield equipment from high-voltage inrush spikes when the electrical grid re-energizes.
 2. **UPS Battery Protection**: Switch off the physical UPS power button to prevent deep-discharge cell degradation below safe thresholds.
 3. **Off-Grid Telemetry**: Out-of-band monitoring via battery-backed LTE router or remote power status notification.
 
 ---
 
+<div align="center">
+
 ### Phase 3: Grid Restoration & Staged Cold-Boot Sequence
+
+</div>
 Execute the sequential restoration script `scripts/cold-boot-sequence.sh`:
 
 1. **Grid Stabilization Window**: Wait 5–10 minutes after grid return for AC voltage stabilization ($230\text{V} \pm 5\%$ @ $50\text{Hz}$).
@@ -64,7 +84,11 @@ Execute the sequential restoration script `scripts/cold-boot-sequence.sh`:
 
 ---
 
+<div align="center">
+
 ### Phase 4: Post-Recovery Integrity & NFS Verification
+
+</div>
 ```bash
 # 1. Verify NFS Mounts & NAS Reachability
 showmount -e 192.168.1.135
@@ -80,7 +104,11 @@ python3 scripts/audit_infrastructure.py
 
 ---
 
+<div align="center">
+
 ## 2. Automated Backup Hierarchy & 3-2-1 Strategy
+
+</div>
 
 - **Proxmox Backup Server (PBS)**: Daily deduplicated, client-side encrypted snapshots of all LXC containers and KVM virtual machines.
 - **NAS NFS Backups**: Scheduled automated backups of application state and persistent volumes stored on OpenMediaVault NAS (`192.168.1.135`).

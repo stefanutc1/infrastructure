@@ -1,4 +1,8 @@
+<div align="center">
+
 # Infrastructure Cybersecurity: Vulnerability & Threat Intelligence Hub
+
+</div>
 
 <div align="center">
 
@@ -14,7 +18,11 @@
 
 ---
 
+<div align="center">
+
 ## Critical Ecosystem CVE Assessments & Hardening Playbooks (Windows & Proxmox VE)
+
+</div>
 
 **Lead Threat Analyst:** Moană Ștefănuț-Cornel ([`@stefanutc1`](https://github.com/stefanutc1))  
 **Academic Affiliation:** Universitatea din Craiova · FEAA — Informatică Economică (2024–2027)  
@@ -23,7 +31,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Vulnerability Matrix & Threat Dashboard
+
+</div>
 
 | CVE Identifier | Affected Component | CVSS v3.1 | Vulnerability Class | Infrastructure Impact & Vector | Technical Dossier | Remediation Playbook |
 | :--- | :--- | :---: | :--- | :--- | :---: | :---: |
@@ -35,7 +47,11 @@
 
 ---
 
+<div align="center">
+
 ## 2. Threat Topology & Attack Surface Intersection
+
+</div>
 
 ```mermaid
 graph TD
@@ -89,7 +105,11 @@ graph TD
 
 ---
 
+<div align="center">
+
 ## 3. Remediation Playbooks & Action Guides
+
+</div>
 
 Each vulnerability dossier contains a technical analysis report (`report.md`) and an actionable hardening playbook (`fix.md`):
 

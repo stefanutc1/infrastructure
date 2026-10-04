@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Datacenter Mains & UPS Battery Power Monitor
+
+</div>
 
 **Author**: Moană Ștefănuț-Cornel ([@stefanutc1](https://github.com/stefanutc1))  
 **Platform**: ESP32-WROOM-32  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Capabilities
+
+</div>
 
 The **Datacenter Power & UPS Monitor** is an edge safety telemetry appliance designed to prevent catastrophic data loss during power outages:
 - **Instantaneous Grid Failure Detection**: Optocoupler-isolated 230V AC mains sensing (`GPIO 23`) firing an immediate hardware interrupt when utility power drops.
@@ -19,7 +27,11 @@ The **Datacenter Power & UPS Monitor** is an edge safety telemetry appliance des
 
 ---
 
+<div align="center">
+
 ## 2. Pinout Matrix & Schematic Connections
+
+</div>
 
 | ESP32 Pin | Peripheral Connection | Function | Safety / Isolation |
 | :--- | :--- | :--- | :--- |
@@ -32,7 +44,11 @@ The **Datacenter Power & UPS Monitor** is an edge safety telemetry appliance des
 
 ---
 
+<div align="center">
+
 ## 3. High-Voltage Electrical Safety Notice
+
+</div>
 
 > [!WARNING]
 > AC mains monitoring interfaces with 230V utility electricity. Ensure the AC optocoupler module is enclosed in a certified DIN-rail flame-retardant housing with minimum 8mm creepage distance. Never touch live wiring during installation.

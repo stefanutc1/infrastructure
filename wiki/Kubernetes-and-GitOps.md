@@ -1,6 +1,14 @@
+<div align="center">
+
 # Kubernetes & GitOps
 
+</div>
+
+<div align="center">
+
 ## 1. k3s Edge Worker Architecture
+
+</div>
 
 The Kubernetes layer runs a lightweight, production-tuned k3s cluster configured via Ansible in `kubernetes/ansible/`. It offloads batch processing and stateless worker containers to Node 4 (`k8s_node_04`).
 
@@ -26,7 +34,11 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## 2. Continuous Reconciliation with GitOps
+
+</div>
 
 Continuous deployment monitors `kubernetes/gitops/` in the main infrastructure repository:
 

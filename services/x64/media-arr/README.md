@@ -1,4 +1,8 @@
+<div align="center">
+
 # Media Automation & Entertainment Suite (*arr Stack + Jellyfin)
+
+</div>
 
 <div align="center">
 
@@ -11,13 +15,21 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This module deploys the automated media management, indexing, and streaming ecosystem for the homelab. Engineered in strict compliance with **TRaSH Guides** standards, the architecture guarantees atomic filesystem hardlinks (zero redundant disk I/O) and network isolation via a hardware-locked VPN killswitch.
 
 ---
 
+<div align="center">
+
 ## 1. Service Portfolio & Topology
+
+</div>
 
 | Service | LAN Port | Functional Role | Network Routing Mode |
 | :--- | :---: | :--- | :--- |
@@ -32,7 +44,11 @@ This module deploys the automated media management, indexing, and streaming ecos
 
 ---
 
+<div align="center">
+
 ## 2. Storage Layout & TRaSH Guides Atomic Hardlinks
+
+</div>
 
 To prevent sluggish cross-filesystem file copies and eliminate duplicate disk consumption on ZFS storage:
 
@@ -50,7 +66,11 @@ When Sonarr or Radarr imports a downloaded file from qBittorrent, an **instantan
 
 ---
 
+<div align="center">
+
 ## 3. Security Architecture: Gluetun VPN Killswitch
+
+</div>
 
 1. **Zero-Leak Networking**: The `qbittorrent` container has no dedicated virtual ethernet adapter; it attaches directly to `network_mode: "service:gluetun"`.
 2. **Deterministic Killswitch**: If the WireGuard tunnel drops, Gluetun's internal `iptables` drop rules immediately block all outbound non-tunnel traffic, preventing any ISP-visible traffic leaks.
@@ -58,7 +78,11 @@ When Sonarr or Radarr imports a downloaded file from qBittorrent, an **instantan
 
 ---
 
+<div align="center">
+
 ## 4. Deployment & Operation Runbook
+
+</div>
 
 ```bash
 # 1. Prepare environment file

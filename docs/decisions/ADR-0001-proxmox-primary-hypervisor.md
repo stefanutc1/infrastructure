@@ -1,9 +1,21 @@
+<div align="center">
+
 # ADR-0001: Proxmox VE as Primary Bare-Metal Hypervisor vs. Pure Bare-Metal Kubernetes
 
+</div>
+
+<div align="center">
+
 ## Status
+
+</div>
 **Accepted**
 
+<div align="center">
+
 ## Context
+
+</div>
 The primary physical compute node (`pve_primary_x64`) is an Intel Core i3-10100F (4 cores / 8 threads) with 12GB DDR4 RAM, a 512GB NVMe SSD, and a dedicated NVIDIA GeForce GTX 1050 Ti (4GB VRAM) PCIe GPU.
 
 The platform requirements dictate hosting a heterogeneous collection of workloads:
@@ -17,7 +29,11 @@ If a bare-metal Kubernetes distribution (such as Talos Linux, Flatcar, or Ubuntu
 - Running multi-OS Active Directory domain controller forests with full Windows NT kernel emulation would be difficult to manage, snapshot, and backup.
 - Passthrough of the PCIe GPU to container workloads under Kubernetes requires complex device plugins (NVIDIA GPU Operator) that demand substantial memory overhead.
 
+<div align="center">
+
 ## Decision
+
+</div>
 We select **Proxmox Virtual Environment (PVE) 9.2** as the bare-metal Type-1 hypervisor operating system on Node 1 (`pve_primary_x64`).
 
 Key implementation aspects:
@@ -26,14 +42,26 @@ Key implementation aspects:
 3. **Software-Defined Networking**: Native Linux bridges (`vmbr0` through `vmbr4`) and 802.1q VLAN tagging providing line-rate inter-VM and inter-container transit.
 4. **Native Backup Integration**: Integration with vzdump and Proxmox Backup Server (PBS) enabling incremental, deduplicated, chunk-based backups.
 
+<div align="center">
+
 ## Consequences
 
+</div>
+
+<div align="center">
+
 ### Positive
+
+</div>
 - **Workload Flexibility**: Seamless execution of FreeBSD (OPNsense), Windows Server (AD Lab), and Debian/Alpine LXC containers on a single hardware host.
 - **Resource Efficiency**: LXC containers boot in milliseconds and consume only active memory (no guest kernel overhead).
 - **Snapshot & Rollback**: Instant ZFS/LVM-thin snapshots prior to cyber research drills or system upgrades.
 - **Hardware Passthrough**: Stable, native IOMMU passthrough for the GTX 1050 Ti GPU without container operator bloat.
 
+<div align="center">
+
 ### Negative
+
+</div>
 - **Management Plane Overhead**: The Proxmox VE pve-cluster, corosync, and web GUI consume approximately 1GB of host RAM.
 - **Orchestration Duality**: IaC requires managing both Proxmox resources (via `bpg/proxmox` Terraform provider) and in-container applications (via Ansible and Docker Compose) rather than a single unified Kubernetes API.

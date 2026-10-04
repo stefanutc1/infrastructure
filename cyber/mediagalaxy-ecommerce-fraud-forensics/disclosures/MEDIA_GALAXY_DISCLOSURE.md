@@ -1,10 +1,18 @@
+<div align="center">
+
 # Media Galaxy Official Brand Impersonation Disclosure / Notificare Oficială
+
+</div>
 
 This document contains the official incident notification sent to the Media Galaxy legal and information security departments regarding the active phishing and brand abuse operation uncovered on social media.
 
 ---
 
+<div align="center">
+
 ## Versiunea in Limba Romana (Original)
+
+</div>
 
 **Către:** Departamentul Juridic & Echipa de Securitate Informatică – Media Galaxy / Altex România  
 **Subiect:** Notificare privind o campanie activă de fraudă electronică și uzurpare de identitate de brand (Phishing Media Galaxy pe TikTok)  
@@ -12,13 +20,21 @@ This document contains the official incident notification sent to the Media Gala
 
 Vă aducem la cunoștință că la nivelul rețelelor sociale (în speță, platforma TikTok) se desfășoară o campanie activă de înșelăciune și fraudă electronică ce folosește în mod ilegal și abuziv imaginea și sigla companiei dumneavoastră.
 
+<div align="center">
+
 ### Detalii despre fraudă și indicatori tehnici (IoC-uri):
+
+</div>
 - **Mod de operare:** Atacatorii rulează reclame sponsorizate pe TikTok care promit reduceri masive la produse de uz casnic (de exemplu, detergenți la prețul de 4 lei).
 - **Subdomeniu de phishing / reclamă:** `mediagalaxy.voetbalshop-nlco.com`
 - **Infrastructura de e-mail scam asociată:** `noreply@email.worvixglobal.com` (cu adresa de răspuns `brekerfurught@outlook.com`)
 - **Backend / infrastructură centralizată:** `yiyangsaas.com` (ascuns în spatele Cloudflare)
 
+<div align="center">
+
 ### Impact asupra consumatorilor:
+
+</div>
 Utilizatorii care accesează aceste reclame introduc datele cardurilor bancare crezând că achiziționează produse oficiale de la Media Galaxy, suferind pagube financiare (retrageri neautorizate de pe cardurile bancare).
 
 Vă rugăm să dispuneți verificarea acestei situații de către departamentul juridic sau de securitate informatică și să inițiați demersurile legale necesare pentru blocarea acestor pagube aduse consumatorilor și imaginii brandului dumneavoastră.
@@ -28,7 +44,11 @@ Cu stimă,
 
 ---
 
+<div align="center">
+
 ## English Translation
+
+</div>
 
 **To:** Legal Department & Information Security Team – Media Galaxy / Altex Romania  
 **Subject:** Urgent Notification: Active E-Commerce Brand Impersonation and Phishing Campaign (Media Galaxy Spoofing on TikTok)  
@@ -36,13 +56,21 @@ Cu stimă,
 
 We hereby notify you that an active fraud and electronic deception campaign is currently circulating across social media platforms (specifically TikTok), unlawfully and deceptively utilizing your company's trademarks, logo, and brand identity.
 
+<div align="center">
+
 ### Incident Details and Technical Indicators (IoCs):
+
+</div>
 - **Modus Operandi:** Threat actors deploy sponsored TikTok advertisements promising massive, unrealistic discounts on household goods (such as laundry detergent for 4 RON).
 - **Phishing Landing Subdomain / Ad Target:** `mediagalaxy.voetbalshop-nlco.com`
 - **Associated Scam Email Infrastructure:** `noreply@email.worvixglobal.com` (with the suspicious reply-to address `brekerfurught@outlook.com`)
 - **Centralized Backend Infrastructure:** `yiyangsaas.com` (proxied behind Cloudflare)
 
+<div align="center">
+
 ### Impact on Consumers:
+
+</div>
 Unsuspecting consumers clicking these advertisements input their payment card information believing they are transacting on the official Media Galaxy storefront. This results in direct financial harm via unauthorized debits on their personal bank debit and credit cards.
 
 We urge your legal and cybersecurity teams to review this incident promptly and initiate the necessary takedown and legal measures to safeguard your consumers and protect your brand's reputation.

@@ -1,4 +1,8 @@
+<div align="center">
+
 # Bachelor's Thesis CyberLab Architecture Specification
+
+</div>
 
 <div align="center">
 
@@ -13,7 +17,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary & Research Objectives
+
+</div>
 
 This document specifies the architecture, network segmentation, virtualization parameters, and security policies governing the dedicated **Bachelor's Thesis (Lucrare de Licență)** research infrastructure deployed on the primary Proxmox VE 9.2 hypervisor host (`192.168.1.132`, Node 1).
 
@@ -33,7 +41,11 @@ The laboratory environment delivers an isolated, reproducible proving ground for
 
 ---
 
+<div align="center">
+
 ## 2. End-to-End Architectural Topology
+
+</div>
 
 The thesis laboratory utilizes a dual-tier isolation model. Workloads operate on **VLAN 30 (CyberLab Quarantine)** and **VLAN 20 (Core Banking)** attached to the isolated Linux bridge **`vmbr1`**, completely decoupled from the production home local area network (`vmbr0` / `192.168.1.0/24`).
 
@@ -83,50 +95,82 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## 3. Workload Profiles & Technical Specifications
 
+</div>
+
+<div align="center">
+
 ### 3.1 VM 310: `core-banking` (Apache Fineract Engine)
+
+</div>
 - **Role**: Core financial processing engine.
 - **Technology Stack**: Apache Fineract, OpenJDK 17, Spring Boot, Liquibase.
 - **Resources**: 2 vCPU, 4,096 MB RAM (VirtIO balloon: 2,048 MB), 40 GB NVMe disk.
 - **Network**: VLAN 20 (`192.168.20.50`), static IP.
 - **Operational Mode**: On-demand execution (`onboot: 0`).
 
+<div align="center">
+
 ### 3.2 VM 311: `banking-db` (PostgreSQL Financial Ledger)
+
+</div>
 - **Role**: High-integrity double-entry transaction database.
 - **Technology Stack**: PostgreSQL 16, pgAudit extension, SCRAM-SHA-256 encryption.
 - **Resources**: 2 vCPU, 4,096 MB RAM (VirtIO balloon: 2,048 MB), 50 GB NVMe disk.
 - **Network**: VLAN 20 (`192.168.20.51`), static IP.
 - **Operational Mode**: On-demand execution (`onboot: 0`).
 
+<div align="center">
+
 ### 3.3 VM 313: `swift-jumpbox` (Hardened SWIFT Bastion)
+
+</div>
 - **Role**: Privileged administrative access gateway adhering to SWIFT Customer Security Programme (CSP).
 - **Technology Stack**: Hardened Debian 12, MFA verification, OpenSSH with certificate validation.
 - **Resources**: 2 vCPU, 2,048 MB RAM (VirtIO balloon: 1,024 MB), 25 GB NVMe disk.
 - **Network**: VLAN 10 (`192.168.10.50`), static IP.
 - **Operational Mode**: On-demand execution (`onboot: 0`).
 
+<div align="center">
+
 ### 3.4 VM 300: `windows-server-licenta` (Active Directory DS Lab)
+
+</div>
 - **Role**: Enterprise identity and domain controller target.
 - **Technology Stack**: Windows Server 2019 Standard, Sysmon, AD DS.
 - **Resources**: 4 vCPU, 8,192 MB RAM (VirtIO balloon: 4,096 MB), 64 GB NVMe disk.
 - **Network**: VLAN 30 (`192.168.30.100`), static IP.
 - **Operational Mode**: On-demand execution (`onboot: 0`).
 
+<div align="center">
+
 ### 3.5 VM 301: `metasploitable-licenta` (Linux Target)
+
+</div>
 - **Role**: Vulnerable Linux service target for exploit testing.
 - **Resources**: 2 vCPU, 2,048 MB RAM (VirtIO balloon: 1,024 MB), 20 GB NVMe disk.
 - **Network**: VLAN 30 (`192.168.30.101`), static IP.
 - **Operational Mode**: On-demand execution (`onboot: 0`).
 
+<div align="center">
+
 ### 3.6 VM 302: `kali-licenta` (Red Team Operator Workstation)
+
+</div>
 - **Role**: Offensive security scanner and exploit platform.
 - **Technology Stack**: Kali Linux Rolling, Metasploit Framework, Burp Suite, Impacket, BloodHound.
 - **Resources**: 2 vCPU, 4,096 MB RAM (VirtIO balloon: 2,048 MB), 30 GB NVMe disk.
 - **Network**: VLAN 30 (`192.168.30.102`), static IP.
 - **Operational Mode**: On-demand execution (`onboot: 0`).
 
+<div align="center">
+
 ### 3.7 CT 303: `owasp-licenta` (OWASP Juice Shop / DVWA Container)
+
+</div>
 - **Role**: Containerized modern web application vulnerability target.
 - **Technology Stack**: Alpine Linux 3.24 LXC, nested Docker, OWASP Juice Shop (`:3000`).
 - **Resources**: 2 vCPU, 512 MB RAM, 8 GB NVMe rootfs.
@@ -135,13 +179,25 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## 4. Network Isolation & Security Architecture
 
+</div>
+
+<div align="center">
+
 ### 4.1 Linux Bridge Segregation (`vmbr0` vs `vmbr1`)
+
+</div>
 - **`vmbr0` (Production Bridge)**: Attached to physical NIC `enp3s0`. Serves home LAN traffic (`192.168.1.0/24`) and hypervisor management.
 - **`vmbr1` (Quarantined CyberLab Bridge)**: Virtual software bridge with zero physical network interfaces assigned. Guarantees **hardware-level air-gapping** from local physical devices. Exploits, ARP poisoning, and reverse shells executed on `vmbr1` **cannot leak** to external hardware or home subnets.
 
+<div align="center">
+
 ### 4.2 Inter-VLAN Firewall Policy Matrix
+
+</div>
 
 ```text
 ┌───────────────────┬────────────────────┬────────────────────────┬──────────┬───────────────────┐
@@ -157,7 +213,11 @@ flowchart TB
 
 ---
 
+<div align="center">
+
 ## 5. Declarative Infrastructure as Code References
+
+</div>
 
 All Bachelor Thesis infrastructure components are codified cleanly in the repository:
 - **Terraform Hypervisor Provisioning**: [`terraform/licenta.tf`](../terraform/licenta.tf)

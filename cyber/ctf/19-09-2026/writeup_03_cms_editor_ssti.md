@@ -1,4 +1,8 @@
+<div align="center">
+
 # Technical Write-Up: CMS Newsroom (Broken Access Control & Jinja2 SSTI to RCE)
+
+</div>
 
 <div align="center">
 
@@ -12,7 +16,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Challenge Specification
+
+</div>
 
 - **Target Application**: Newly migrated newsroom content management system (CMS).
 - **Flaw Context**: Single Sign-On (SSO) authentication middleware was erroneously omitted from editorial management routes, allowing unauthenticated visitors to create and edit articles. Article content is evaluated by the server before rendering.
@@ -21,7 +29,11 @@
 
 ---
 
+<div align="center">
+
 ## 2. Attack Surface Analysis & Root Cause
+
+</div>
 
 The challenge presents two chained vulnerabilities:
 
@@ -32,7 +44,11 @@ The challenge presents two chained vulnerabilities:
 
 ---
 
+<div align="center">
+
 ## 3. Template Engine Fingerprinting
+
+</div>
 
 Submitting mathematical expression payloads into article content via `POST /edit/5`:
 - **Initial Probe**: `{{ 7 * 7 }}`  
@@ -47,7 +63,11 @@ This confirmed an active **Jinja2 / Python** templating engine without sandbox i
 
 ---
 
+<div align="center">
+
 ## 4. Sandbox Escape & Remote Code Execution (RCE)
+
+</div>
 
 In Jinja2 on Python 3, access to underlying Python objects is achievable via the method resolution order (`__mro__`):
 
@@ -66,7 +86,11 @@ In Jinja2 on Python 3, access to underlying Python objects is achievable via the
 
 ---
 
+<div align="center">
+
 ## 5. Automated Python Solver (`blog_flag.py`)
+
+</div>
 
 ```python
 #!/usr/bin/env python3
@@ -94,7 +118,11 @@ if flag:
 
 ---
 
+<div align="center">
+
 ## 6. Remediation & Hardening Recommendations
+
+</div>
 
 1. **Enforce Authentication Middleware**: Apply mandatory SSO/OAuth2-Proxy authentication wrappers across all administrative and editorial routes.
 2. **Eliminate `render_template_string`**: Use static templates with explicit context parameter binding:

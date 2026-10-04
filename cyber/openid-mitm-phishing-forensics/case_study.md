@@ -1,4 +1,8 @@
+<div align="center">
+
 # Case Study: Forensic Analysis of an Adversary-in-the-Middle (AiTM) Attack on Steam OpenID Authentication
+
+</div>
 
 **Author:** @stefanutc1 
 **Date:** 22 November 2025 
@@ -7,7 +11,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Executive Summary
+
+</div>
 
 This case study documents an in-depth forensic investigation into an advanced **Adversary-in-the-Middle (AiTM)** phishing campaign targeting the competitive gaming ecosystem (CS2, Dota 2). Threat actors engineered deceptive tournament voting portals that lured victims into authenticating via a fraudulent Steam OpenID login mechanism.
 
@@ -15,7 +23,11 @@ The malicious infrastructure weaponized a high-fidelity **Browser-in-the-Middle 
 
 ---
 
+<div align="center">
+
 ## 2. Attack Lifecycle & Technical Architecture
+
+</div>
 
 ```mermaid
 sequenceDiagram
@@ -38,17 +50,29 @@ sequenceDiagram
  AttackerProxy-->>FakeSite: 10. Displays error message ("Vote recorded / Server busy")
 ```
 
+<div align="center">
+
 ### 2.1 Browser-in-the-Middle (BitM) Mechanics
+
+</div>
 Unlike traditional phishing campaigns that redirect victims to an external typo-squatted URL, the attacker utilized a simulated in-page window (`<div>` container) equipped with draggable title bars, an address bar mimicking `https://steamcommunity.com/openid/login`, and an interactive SSL padlock icon.
 
+<div align="center">
+
 ### 2.2 Session Relay & Cookie Extraction
+
+</div>
 1. Frontend JavaScript (`main.bundle.js`) intercepted the login form submit event.
 2. Credentials and mobile authenticator codes were dispatched via `fetch()` to `/api/v2/auth/steam_callback`.
 3. The C2 reverse proxy immediately initiated an automated session with Valve's authentication servers, acquiring the `steamLoginSecure` authentication token.
 
 ---
 
+<div align="center">
+
 ## 3. Post-Exploitation & Account Takeover Chain
+
+</div>
 
 1. **Family View Lockout**: The attacker automatically assigned a 4-digit PIN to Steam Family View, restricting the victim from accessing profile security settings, changing their email address, or revoking active sessions.
 2. **API Key Generation**: A Steam Web API Key was provisioned, granting the adversary read access to incoming and outgoing trade proposals.
@@ -56,7 +80,11 @@ Unlike traditional phishing campaigns that redirect victims to an external typo-
 
 ---
 
+<div align="center">
+
 ## 4. Technical Indicators of Compromise (IOCs)
+
+</div>
 
 | Category | Indicator / Value | Description |
 | :--- | :--- | :--- |
@@ -68,7 +96,11 @@ Unlike traditional phishing campaigns that redirect victims to an external typo-
 
 ---
 
+<div align="center">
+
 ## 5. MITRE ATT&CK Matrix Mapping
+
+</div>
 
 | Phase | Tactic | Technique ID | Technique Name & Operational Notes |
 | :--- | :--- | :--- | :--- |
@@ -81,7 +113,11 @@ Unlike traditional phishing campaigns that redirect victims to an external typo-
 
 ---
 
+<div align="center">
+
 ## 6. Defensive Countermeasures & Incident Response
+
+</div>
 
 1. **User Verification**: Authentic Steam OpenID sign-in prompts will immediately recognize an active browser session on `steamcommunity.com` and require only a single click ("Sign In"), never asking for a password or TOTP re-entry.
 2. **API Key Auditing**: Inspect `https://steamcommunity.com/dev/apikey` regularly for unauthorized API registrations.

@@ -1,4 +1,8 @@
+<div align="center">
+
 # Enterprise Service Catalog & Portfolio Specification
+
+</div>
 
 <div align="center">
 
@@ -15,7 +19,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 This document defines the formal Enterprise Service Catalog for the `stefanutc1/infrastructure` platform. It records both the active foundational workloads (OPNsense, Proxmox VE, Active Directory, Wazuh, Prometheus, Grafana, Ollama, Home Assistant, Scrutiny) and the curated **Enterprise / Research Homelab 2.0 Portfolio** (Identity, Cloud-Native CI/CD, SOC/DFIR, AI, Media & Personal Cloud automation, and Edge Microcontroller Telemetry).
 
@@ -23,7 +31,11 @@ Each service entry documents its operational role, deployment model, network loc
 
 ---
 
+<div align="center">
+
 ## Service Portfolio Overview
+
+</div>
 
 ```text
 ┌──────────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -74,9 +86,17 @@ Each service entry documents its operational role, deployment model, network loc
 
 ---
 
+<div align="center">
+
 ## 1. Complete Service Catalog
 
+</div>
+
+<div align="center">
+
 ### 1.1 Foundational Core, Identity & Storage
+
+</div>
 | # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **1** | **OPNsense Firewall** | Perimeter routing, NAT, stateful packet filter, Suricata DPI | KVM VM 200 | Node 1 | VLAN 10 (`192.168.1.134`) | `8443/TCP`, `53/UDP` | Password + TOTP | **P1 (Critical)** | `DEPLOYED` |
@@ -91,7 +111,11 @@ Each service entry documents its operational role, deployment model, network loc
 | **10**| **MinIO S3 Storage** | High-performance S3-compatible object storage for backups, logs, ML models | LXC CT 161 | Node 1 | VLAN 20 (`192.168.1.161`) | `9000/TCP`, `9001/TCP` | S3 Access Key / Secret | **P2 (High)** | `DEPLOYED` |
 | **11**| **Proxmox Backup Server**| Deduplicated, client-side encrypted backup target for VM/LXC snapshots | Dedicated Service| Node 1 / 2 | VLAN 10 (`192.168.1.132`) | `8007/TCP` | TLS Fingerprint / API | **P1 (Critical)** | `DEPLOYED` |
 
+<div align="center">
+
 ### 1.2 Media & Personal Cloud Automation (*arr Suite + Immich)
+
+</div>
 | # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Storage Volume | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **12**| **Gluetun VPN Gateway** | Dedicated WireGuard tunnel with automated iptables killswitch | Docker Container | Node 1 | VLAN 20 (`192.168.1.132`) | `8085/TCP`, `6881` | Config volume | **P2 (High)** | `DECLARED` |
@@ -105,7 +129,11 @@ Each service entry documents its operational role, deployment model, network loc
 | **20**| **Immich Server** | Self-hosted Google Photos alternative with mobile auto-sync | Docker Container | Node 1 | VLAN 20 (`192.168.1.132`) | `2283/TCP` | `/data/photos` | **P2 (High)** | `DECLARED` |
 | **21**| **Immich ML Engine** | Neural engine for facial recognition and semantic CLIP text search | Docker Container | Node 1 | VLAN 20 (`192.168.1.132`) | Internal API | Model cache volume | **P2 (High)** | `DECLARED` |
 
+<div align="center">
+
 ### 1.3 Cloud-Native, DevSecOps & Platform Engineering
+
+</div>
 | # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **22**| **Harbor Registry** | Enterprise OCI container & Helm registry with Trivy vulnerability scanning| Kubernetes / Compose | Node 1 / 4 | VLAN 30 (`192.168.1.18`) | `8088/TCP`, `8444` | Keycloak OIDC / RBAC | **P2 (High)** | `ROADMAP` |
@@ -116,7 +144,11 @@ Each service entry documents its operational role, deployment model, network loc
 | **27**| **Woodpecker CI** | Cloud-native lightweight container pipeline runner | Kubernetes Pod | Node 4 | VLAN 30 (`192.168.1.18`) | `8000/TCP` | GitHub Webhook / Token | **P3 (Normal)** | `DEPLOYED` |
 | **28**| **Backstage** | Internal Developer Portal, service catalog & architecture explorer | Kubernetes Pod | Node 4 | VLAN 30 | `7007/TCP` | Keycloak OIDC | **P3 (Normal)** | `ROADMAP` |
 
+<div align="center">
+
 ### 1.4 Security Operations Center (SOC), DFIR & Malware Lab
+
+</div>
 | # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **29**| **Wazuh Manager 4.14** | Host intrusion detection, file integrity monitoring & compliance audits | LXC CT 106 | Node 1 | VLAN 10 (`192.168.1.240`) | `1514/TCP`, `55000` | Wazuh Agent Token / API| **P1 (Critical)** | `DEPLOYED` |
@@ -129,7 +161,11 @@ Each service entry documents its operational role, deployment model, network loc
 | **36**| **CAPEv2 Sandbox** | Automated malware execution, unpacking and behavioral reporting | KVM VM / Bridge | Node 1 | VLAN 66 (Quarantine) | `8000/TCP` | Admin Password | **P4 (Lab)** | `ROADMAP` |
 | **37**| **REMnux / FLARE-VM** | Specialized digital forensics & reverse engineering workstations | KVM VMs | Node 1 | VLAN 66 (Quarantine) | `22/TCP`, `3389` | Operator Password | **P4 (Lab)** | `DEPLOYED` |
 
+<div align="center">
+
 ### 1.5 Artificial Intelligence & ELO Research Platform
+
+</div>
 | # | Service Name | Operational Role | Deployment Model | Host Node | Network / VLAN | Internal Port | Auth Protocol | Criticality | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **38**| **Ollama GPU AI** | GPU-accelerated local LLM inference (CUDA 12.x on GTX 1050 Ti) | LXC CT 102 | Node 1 | VLAN 20 (`192.168.1.110`) | `11434/TCP` | Internal / Caddy | **P2 (High)** | `DEPLOYED` |
@@ -139,7 +175,11 @@ Each service entry documents its operational role, deployment model, network loc
 | **42**| **Open WebUI** | Feature-rich AI workspace with multi-model chat, documents & tools | Docker Container | Node 1 | VLAN 20 (`192.168.1.110`) | `3000/TCP` | Keycloak OIDC | **P3 (Normal)** | `ROADMAP` |
 | **43**| **JupyterHub** | Multi-user Python data science and machine learning research platform | Docker / K8s Pod | Node 1 / 4 | VLAN 20 | `8000/TCP` | Keycloak OIDC | **P3 (Normal)** | `ROADMAP` |
 
+<div align="center">
+
 ### 1.6 Embedded Edge IoT Microcontroller Services (`esp32/`)
+
+</div>
 | # | Node / Service | Operational Role | Firmware Type | Network / VLAN | Protocol & Port | Integration Target | Factual State |
 | :- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **44**| **`esp32-footprint`** | Optical fingerprint biometric access, dual PIR, gate solenoid | C++ (Arduino Core) | VLAN 50 (`192.168.50.21`) | MQTT (`1883/TCP`) | Home Assistant (`CT 100`) | `DEPLOYED` |
@@ -149,7 +189,11 @@ Each service entry documents its operational role, deployment model, network loc
 
 ---
 
+<div align="center">
+
 ## 2. Port Allocation & Collision Prevention Table
+
+</div>
 
 The following static port assignments guarantee that no two services contend for identical sockets:
 

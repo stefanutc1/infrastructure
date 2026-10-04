@@ -1,4 +1,8 @@
+<div align="center">
+
 # Incident Analysis: TikTok Marketing Funnels & Recursive Master Resell Rights (MRR) Schemes
+
+</div>
 **Case File Reference:** `SEC-2025-MRR-001`  
 **Classification:** `TLP:CLEAR`  
 **Primary Incident Date:** 14 June 2025 (Abuse Dispatched: 18 April 2026)  
@@ -11,7 +15,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Project Overview
+
+</div>
 
 This repository contains the complete forensic investigation, lexical text analysis, payment gateway exploitation study, and legal abuse escalations regarding deceptive **Master Resell Rights (MRR)** and "Digital Marketing Accelerator" funnels operating across TikTok and social media ecosystems.
 
@@ -29,9 +37,17 @@ Threat actors deploy automated "faceless" content channels powered by AI voiceov
 
 ---
 
+<div align="center">
+
 ## 2. Funnel Architecture & Attack Lifecycle
 
+</div>
+
+<div align="center">
+
 ### 2.1 Recursive Pyramid Conversion Sequence
+
+</div>
 
 ```mermaid
 sequenceDiagram
@@ -57,7 +73,11 @@ sequenceDiagram
 
 ---
 
+<div align="center">
+
 ### 2.2 Four-Stage Funnel Architecture
+
+</div>
 
 ```mermaid
 flowchart TD
@@ -91,22 +111,38 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 3. Deep-Dive Technical Findings
 
+</div>
+
+<div align="center">
+
 ### 3.1 Lexical & Forensic Analysis of Delivered Course Artifacts
+
+</div>
 Forensic evaluation of the digital documents delivered upon payment revealed clear indicators of automated synthesis:
 - **Lexical Transition Markers**: Consistent occurrence of boilerplate conversational transitions (*"In today's fast-paced digital environment..."*, *"Furthermore, it is essential to remember that..."*).
 - **Absence of Actionable Telemetry**: Zero verifiable ad campaign data, production code snippets, API integration scripts, or empirical marketing analytics.
 - **Graphic Assets**: Synthesized book cover templates originating from public domain Canva layout bundles.
 
+<div align="center">
+
 ### 3.2 Payment Gateway & Merchant Platform Exploitation
+
+</div>
 - **Stripe Connect Shielding**: The operators leverage platform aggregators (e.g., Stan.store) using Stripe Connect. Because onboarding occurs under the master platform's merchant umbrella, individual sellers frequently evade the rigorous underwriting normally applied to high-risk digital products and multi-level marketing (MLM).
 - **Cooling-Off Rights Evasion**: Checkout footers incorporate clauses claiming that accessing the digital download waives statutory consumer return rights, directly contravening European consumer protection mandates.
 - **Merchant Switching**: In response to high chargeback ratios, operators switch endpoints to alternate payment providers (Whop, PayPal, or crypto payment buttons).
 
 ---
 
+<div align="center">
+
 ## 4. Formal Abuse & Regulatory Escalations
+
+</div>
 
 Prior to public research publication, formal disclosures were transmitted to platform Trust & Safety teams, upstream payment aggregators, and regulatory authorities:
 
@@ -117,20 +153,36 @@ Prior to public research publication, formal disclosures were transmitted to pla
 
 ---
 
+<div align="center">
+
 ## 5. Consumer Protection & Chargeback Playbook
+
+</div>
 
 For consumers seeking financial recovery after purchasing deceptive Master Resell Rights courses:
 
+<div align="center">
+
 ### 5.1 Card Dispute Grounds & Codes
+
+</div>
 1. **Mastercard Reason Code 4853**: *Goods/Services Not Provided or Defective/Not as Described*.
 2. **Visa Condition 13.3**: *Not as Described / Deceptive Practices*.
 3. **Primary Argument**: The vendor marketed a comprehensive educational training program in digital marketing, but delivered generic, unedited AI prompt dumps whose sole utility is recruiting secondary victims into an unlicensed resale scheme.
 
 ---
 
+<div align="center">
+
 ## 6. Practical Guidelines: DOs and DON'Ts
 
+</div>
+
+<div align="center">
+
 ### WHAT TO DO (DOs) - Protective Heuristics
+
+</div>
 
 | Recommended Action | Operational Guidance |
 | :--- | :--- |
@@ -141,7 +193,11 @@ For consumers seeking financial recovery after purchasing deceptive Master Resel
 
 ---
 
+<div align="center">
+
 ### WHAT NOT TO DO (DON'Ts) - Critical Traps
+
+</div>
 
 | Critical Trap | Threat Rationale |
 | :--- | :--- |

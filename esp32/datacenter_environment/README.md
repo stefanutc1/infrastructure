@@ -1,4 +1,8 @@
+<div align="center">
+
 # ESP32 Datacenter Rack Environment & Thermal Monitor
+
+</div>
 
 **Author**: Moană Ștefănuț-Cornel ([@stefanutc1](https://github.com/stefanutc1))  
 **Platform**: ESP32-WROOM-32  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Capabilities
+
+</div>
 
 The **Datacenter Rack Thermal Monitor** is an edge appliance monitoring physical environmental metrics for the server rack:
 - **Precision Environmental Sensing**: Bosch BME280 sensor measuring ambient temperature (°C), relative humidity (%), and barometric pressure (hPa).
@@ -19,7 +27,11 @@ The **Datacenter Rack Thermal Monitor** is an edge appliance monitoring physical
 
 ---
 
+<div align="center">
+
 ## 2. Pinout Matrix
+
+</div>
 
 | ESP32 Pin | Peripheral Pin | Function | Notes |
 | :--- | :--- | :--- | :--- |
@@ -34,7 +46,11 @@ The **Datacenter Rack Thermal Monitor** is an edge appliance monitoring physical
 
 ---
 
+<div align="center">
+
 ## 3. Prometheus Scrape Configuration (`prometheus.yml`)
+
+</div>
 
 Add the following scrape job to Prometheus on Node 1 (`CT 104`):
 

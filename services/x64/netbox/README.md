@@ -1,4 +1,8 @@
+<div align="center">
+
 # NetBox — Source of Truth for DCIM & IPAM
+
+</div>
 
 <div align="center">
 
@@ -11,7 +15,11 @@
 
 ---
 
+<div align="center">
+
 ## Executive Summary
+
+</div>
 
 NetBox functions as the centralized **Single Source of Truth (SSoT)** for the entire homelab and private cloud infrastructure:
 - **IPAM (IP Address Management)**: Authoritative tracking of all 802.1Q VLANs, VRFs, subnets, and static/DHCP IP assignments.
@@ -20,7 +28,11 @@ NetBox functions as the centralized **Single Source of Truth (SSoT)** for the en
 
 ---
 
+<div align="center">
+
 ## 1. Architectural Topology & Synchronization
+
+</div>
 
 ```mermaid
 flowchart LR
@@ -39,7 +51,11 @@ flowchart LR
 
 ---
 
+<div align="center">
+
 ## 2. Deployment Runbook
+
+</div>
 
 ```bash
 # 1. Prepare configuration

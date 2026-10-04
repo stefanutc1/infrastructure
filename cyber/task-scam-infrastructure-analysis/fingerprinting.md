@@ -1,4 +1,8 @@
+<div align="center">
+
 # Client-Side Tracking & Hardware Fingerprinting Teardown
+
+</div>
 
 **Case File Reference:** `SEC-2026-TASK-003`  
 **Classification:** `TLP:CLEAR`  
@@ -8,7 +12,11 @@
 
 ---
 
+<div align="center">
+
 ## 1. Overview & Forensic Objective
+
+</div>
 
 Task scam operators implement invasive browser and device fingerprinting to maintain multi-accounting control, track victim behavioral interactions across sessions, and detect automated threat intelligence crawlers, security analysts, or law enforcement investigators.
 
@@ -42,11 +50,19 @@ flowchart TD
 
 ---
 
+<div align="center">
+
 ## 2. Technical Breakdown of Extracted Telemetry
+
+</div>
 
 Auditing the browser's developer console and `localStorage` state immediately following session initialization revealed the following parameters captured from the isolated Kali Linux research VM:
 
+<div align="center">
+
 ### 2.1. Captured Storage Artifacts
+
+</div>
 ```javascript
 // Dump of window.localStorage contents extracted during forensic audit
 {
@@ -60,7 +76,11 @@ Auditing the browser's developer console and `localStorage` state immediately fo
 }
 ```
 
+<div align="center">
+
 ### 2.2. Canvas 2D Fingerprinting Mechanics
+
+</div>
 The script injects a hidden `<canvas>` element into the DOM:
 ```javascript
 const canvas = document.createElement('canvas');
@@ -80,20 +100,32 @@ const canvasHash = sha256(canvas.toDataURL());
 ```
 - Because different operating systems, GPU drivers, sub-pixel rendering algorithms, and font rasterizers render this specific string with micro-variations, the resulting Base64 DataURL produces a deterministic, platform-specific cryptographic hash (`fp_canvas`).
 
+<div align="center">
+
 ### 2.3. WebGL GPU Extraction
+
+</div>
 Through the `WEBGL_debug_renderer_info` extension, the script queried low-level graphic subsystem attributes:
 - **Unmasked Vendor:** `NVIDIA Corporation`
 - **Unmasked Renderer:** `NVIDIA GeForce GTX 1050 Ti/PCIe/SSE2` (corresponding to the PCIe passthrough GPU on the Proxmox lab node)
 - **Supported WebGL Extensions:** Enumerated 34 extensions including `OES_texture_float`, `EXT_shader_texture_lod`.
 
+<div align="center">
+
 ### 2.4. Hardware Concurrency & Screen Metrics
+
+</div>
 - **CPU Cores:** `navigator.hardwareConcurrency` extracted `2` (the exact virtual core count allocated to the test VM).
 - **RAM Tier:** `navigator.deviceMemory` identified `4 GB`.
 - **Display Properties:** Screen depth of 24-bit with `1920x1080` resolution.
 
 ---
 
+<div align="center">
+
 ## 3. Operational Purpose of the Threat Actor
+
+</div>
 
 1. **Anti-Sybil / Anti-Exploitation Control:**  
    Scam operators distribute a simulated starting bonus (e.g., 50 USDT phantom credit). To prevent automated bots or rogue users from repeatedly claiming the initial credit without depositing real funds, the backend binds the registration IP and device fingerprint (`device_id`).
@@ -106,7 +138,11 @@ Through the `WEBGL_debug_renderer_info` extension, the script queried low-level 
 
 ---
 
+<div align="center">
+
 ## 4. Countermeasures & Research Containment
+
+</div>
 
 When conducting threat intelligence against infrastructure utilizing hardware fingerprinting:
 1. **Canvas/WebGL Spoofing:** Employ browser configurations that inject slight randomized noise into canvas read operations (`privacy.resistFingerprinting = true` in Firefox or Canvas Defender extensions).

@@ -1,11 +1,23 @@
+<div align="center">
+
 # AI Platform Specification: Multi-Tier Model Routing Cascade
 
+</div>
+
+<div align="center">
+
 ## Objective
+
+</div>
 Establish an automated model routing architecture that maximizes reasoning quality, optimizes operating costs, and guarantees uninterrupted operational resilience during cloud outages or network disconnects.
 
 ---
 
+<div align="center">
+
 ## Routing Cascade Hierarchy
+
+</div>
 
 ```text
                              Inbound Inference Request
@@ -44,7 +56,11 @@ Establish an automated model routing architecture that maximizes reasoning quali
 
 ---
 
+<div align="center">
+
 ## Model Capabilities & Hardware Mapping
+
+</div>
 
 | Cascade Tier | Target Provider | Hosted Location | Hardware Backing | Latency Profile | Primary Use Case |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -55,7 +71,11 @@ Establish an automated model routing architecture that maximizes reasoning quali
 
 ---
 
+<div align="center">
+
 ## Local GPU Inference Configuration (Container 102)
+
+</div>
 
 Ollama is containerized with PCIe passthrough on Proxmox VE:
 - **Container**: CT 102 (`ollama`) running Debian 12.
@@ -67,7 +87,11 @@ Ollama is containerized with PCIe passthrough on Proxmox VE:
 
 ---
 
+<div align="center">
+
 ## Observability & Telemetry
+
+</div>
 Every routed inference call emits structured telemetry:
 - `prompt_tokens`, `completion_tokens`, `duration_ms`.
 - `selected_tier` (1, 2, 3, or 4).
