@@ -1,0 +1,68 @@
+{
+  "standard": "NATO STANAG 2022 / FM 2-22.3",
+  "name": "Admiralty Code Intelligence Evaluation System",
+  "reliability_ratings": {
+    "A": {
+      "level": "Completely Reliable",
+      "numeric_score": 1.0,
+      "description": "Tested source of continuous integrity and high technical verifiability"
+    },
+    "B": {
+      "level": "Usually Reliable",
+      "numeric_score": 0.8,
+      "description": "Source with proven history and occasional unverified assertions"
+    },
+    "C": {
+      "level": "Fairly Reliable",
+      "numeric_score": 0.6,
+      "description": "Source has demonstrated authentic output in some past instances"
+    },
+    "D": {
+      "level": "Not Usually Reliable",
+      "numeric_score": 0.4,
+      "description": "Source has past history of inaccuracies or bias"
+    },
+    "E": {
+      "level": "Unreliable",
+      "numeric_score": 0.2,
+      "description": "Source lacks credibility or has intentionally supplied deceptive data"
+    },
+    "F": {
+      "level": "Cannot Be Judged",
+      "numeric_score": 0.5,
+      "description": "Inadequate basis or unverified novel source"
+    }
+  },
+  "credibility_ratings": {
+    "1": {
+      "level": "Confirmed by Other Sources",
+      "numeric_score": 1.0,
+      "description": "Corroborated independently by non-correlated secondary and primary channels"
+    },
+    "2": {
+      "level": "Probably True",
+      "numeric_score": 0.8,
+      "description": "Consistent with historical observations, not fully corroborated"
+    },
+    "3": {
+      "level": "Possibly True",
+      "numeric_score": 0.6,
+      "description": "Plausible technical hypothesis lacking full validation"
+    },
+    "4": {
+      "level": "Doubtful",
+      "numeric_score": 0.4,
+      "description": "Inconsistent with known indicators, questionable authenticity"
+    },
+    "5": {
+      "level": "Improbable",
+      "numeric_score": 0.2,
+      "description": "Contradicts established physical or technical infrastructure facts"
+    },
+    "6": {
+      "level": "Truth Cannot Be Judged",
+      "numeric_score": 0.5,
+      "description": "No basis exists to determine factual probability"
+    }
+  }
+}

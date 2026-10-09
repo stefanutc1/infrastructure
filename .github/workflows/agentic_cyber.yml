@@ -1,0 +1,50 @@
+name: Autonomous Cyber Framework CI
+
+on:
+  push:
+    paths:
+      - 'cyber/opsec/**'
+      - 'cyber/osint/**'
+      - '.github/workflows/agentic_cyber.yml'
+  pull_request:
+    paths:
+      - 'cyber/opsec/**'
+      - 'cyber/osint/**'
+      - '.github/workflows/agentic_cyber.yml'
+  workflow_dispatch:
+
+jobs:
+  validate-cyber-frameworks:
+    name: Validate OPSEC and OSINT Agentic Frameworks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run OPSEC Unit Tests
+        run: |
+          python3 -m unittest discover -s cyber/opsec/tests -p "test_*.py"
+
+      - name: Execute OPSEC Compliance Audit
+        run: |
+          python3 cyber/opsec/scripts/audit_opsec.py
+
+      - name: Run OSINT Unit Tests
+        run: |
+          python3 -m unittest discover -s cyber/osint/tests -p "test_*.py"
+
+      - name: Execute OSINT Compliance Audit
+        run: |
+          python3 cyber/osint/scripts/audit_osint.py
+
+      - name: Verify CLI Tools Execution
+        run: |
+          python3 cyber/opsec/scripts/opsec_cli.py scan --text "Sample benign payload verification"
+          python3 cyber/opsec/scripts/opsec_cli.py canary-gen --label "ci_pipeline_verification"
+          python3 cyber/osint/scripts/osint_cli.py score --code A1
+          python3 cyber/osint/scripts/osint_cli.py extract --text "Sample 198.51.100.12 and test-domain.org verification"

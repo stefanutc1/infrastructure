@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "canary_system": "Autonomous Memory & File Canary Tripwire Framework",
+  "entropy_bytes": 16,
+  "default_alert_channel": "wazuh_siem",
+  "supported_token_types": [
+    "memory_marker",
+    "prompt_guard_canary",
+    "filesystem_trap",
+    "environment_canary"
+  ],
+  "tripwire_actions": [
+    "LOG_SECURITY_INCIDENT",
+    "TERMINATE_AGENT_SESSION",
+    "QUARANTINE_INPUT_STREAM",
+    "TRIGGER_SIEM_ALERT"
+  ]
+}

@@ -41,6 +41,8 @@ cyber/
 ├── openid-mitm-phishing-forensics/           # SEC-2025-AITM-004: Steam OpenID Browser-in-the-Middle (BitM) credential harvesting
 │
 ├── antigravity/                              # Automated DFIR tooling (Apple Vision OCR, ad scrapers, DNS sinkhole sync)
+├── opsec/                                    # Autonomous OPSEC & AI Countermeasure Framework (Scrubbing, Canaries, PromptGuard)
+├── osint/                                    # Autonomous OSINT Intelligence Framework (Admiralty STANAG 2022, Entity Extraction)
 ├── cve/                                      # Critical ecosystem CVE assessments (Proxmox VE, Hyper-V, AD DNS/DHCP)
 ├── ctf/                                      # Capture The Flag challenge writeups, exploit scripts & schema dumpers
 └── red-team/                                 # Local security auditing, container isolation & privilege escalation checks
@@ -221,6 +223,33 @@ Comprehensive writeups, exploitation tooling, and database extraction scripts:
 - **The Blog**: Stored Cross-Site Scripting (XSS) & headless admin browser context theft ([`writeup_01_the_blog_xss.md`](ctf/19-09-2026/writeup_01_the_blog_xss.md)).
 - **Portal InvataCyber.ro**: Boolean blind SQL injection via `TrackingId` cookies with SQLite schema dumping ([`writeup_02_portal_lockdown_sqli.md`](ctf/19-09-2026/writeup_02_portal_lockdown_sqli.md)).
 - **CMS Newsroom**: Jinja2 Server-Side Template Injection (SSTI) & unauthenticated RCE ([`writeup_03_cms_editor_ssti.md`](ctf/19-09-2026/writeup_03_cms_editor_ssti.md)).
+
+<div align="center">
+
+### 5.4. [`cyber/opsec/`](opsec/README.md) · Autonomous OPSEC & AI Countermeasure Framework
+
+</div>
+
+Enterprise operational security safeguards, honeypots, and input/output sanitation guards:
+- **`lib/sanitizer.py`**: Shannon entropy scanner and deterministic secret scrubber for keys, tokens, RFC1918 IPs, and PII.
+- **`lib/canary.py`**: Cryptographically signed HMAC-SHA256 honeypot canary tokens and context memory tripwire monitoring.
+- **`lib/prompt_guard.py`**: Ingress prompt injection detection, adversarial evasion evaluation, and model egress validation.
+- **`scripts/opsec_cli.py`**: Command-line interface for telemetry scanning, redactive scrubbing, and canary generation.
+- **`scripts/audit_opsec.py`**: Automated compliance auditor enforcing zero-emoji constraints and security verification.
+
+<div align="center">
+
+### 5.5. [`cyber/osint/`](osint/README.md) · Autonomous OSINT & Threat Intelligence Framework
+
+</div>
+
+Non-intrusive open-source intelligence collection, NATO Admiralty evaluation, and structured threat synthesis:
+- **`lib/entity_extractor.py`**: High-precision parser extracting and deduplicating IPv4/IPv6, FQDNs, CVEs, hashes, and crypto wallets.
+- **`lib/admiralty.py`**: NATO STANAG 2022 Admiralty Code evaluator calculating composite source and credibility confidence indices.
+- **`lib/passive_intel.py`**: Passive DNS reconciliation and Certificate Transparency (crt.sh) modeling without intrusive network scans.
+- **`lib/synthesis.py`**: Automated threat dossier compiler generating TLP-compliant incident response packages.
+- **`scripts/osint_cli.py`**: Unified command-line interface for indicator extraction, Admiralty scoring, and reconnaissance profiling.
+- **`scripts/audit_osint.py`**: Automated compliance auditor validating intelligence metrics and zero-emoji formatting.
 
 ---
 

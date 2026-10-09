@@ -1,0 +1,57 @@
+{
+  "version": "1.0.0",
+  "framework": "Autonomous Enterprise OSINT Engine",
+  "classification": "TLP:CLEAR",
+  "sources": [
+    {
+      "id": "CERT_TRANSPARENCY",
+      "name": "Certificate Transparency Logs",
+      "protocol": "HTTPS",
+      "category": "INFRASTRUCTURE_PIVOT",
+      "default_reliability": "B",
+      "description": "Public append-only logs of issued TLS certificates for subdomain enumeration"
+    },
+    {
+      "id": "PASSIVE_DNS",
+      "name": "Passive DNS Reconstitution",
+      "protocol": "DNS_CACHE",
+      "category": "HISTORICAL_NETWORK",
+      "default_reliability": "A",
+      "description": "Historical resolution telemetry mapping domains to IP addresses over time"
+    },
+    {
+      "id": "WHOIS_RDAP",
+      "name": "WHOIS and RDAP Registry Queries",
+      "protocol": "RDAP_REST",
+      "category": "REGISTRATION_DATA",
+      "default_reliability": "B",
+      "description": "Registrar, registrant organization, creation timestamp, and contact metadata"
+    },
+    {
+      "id": "WAYBACK_ARCHIVE",
+      "name": "Internet Wayback Machine and Archive Snapshots",
+      "protocol": "HTTPS_REST",
+      "category": "EPHEMERAL_CONTENT",
+      "default_reliability": "A",
+      "description": "Historical DOM captures and archived endpoints for deleted campaigns"
+    },
+    {
+      "id": "THREAT_INTEL_FEEDS",
+      "name": "Aggregated Threat Intelligence (MISP / AlienVault OTX)",
+      "protocol": "TAXII_STIX",
+      "category": "THREAT_INDICATOR",
+      "default_reliability": "B",
+      "description": "Curated feeds of known malware hashes, C2 IPs, and phishing kits"
+    }
+  ],
+  "entity_regexes": {
+    "ipv4": "\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b",
+    "domain": "\\b(?:[a-zA-Z0-9](?:[a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,}\\b",
+    "email": "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b",
+    "cve": "\\bCVE-\\d{4}-\\d{4,7}\\b",
+    "sha256": "\\b[a-fA-F0-9]{64}\\b",
+    "md5": "\\b[a-fA-F0-9]{32}\\b",
+    "asn": "\\bAS\\d{1,10}\\b",
+    "btc_address": "\\b(?:1[a-km-zA-HJ-NP-Z1-9]{25,34}|3[a-km-zA-HJ-NP-Z1-9]{25,34}|bc1[a-z0-9]{39,59})\\b"
+  }
+}
